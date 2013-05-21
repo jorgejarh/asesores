@@ -214,6 +214,6 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-*/application/config/config.php
-*/application/config/database.php
+application/config/config.php
+application/config/database.php
 
