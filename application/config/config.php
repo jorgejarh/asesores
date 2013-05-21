@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost:8080/asesoress/';
+$config['base_url']	= 'http://'.$_SERVER['HTTP_HOST'].'/asesores/';
 
 /*
 |--------------------------------------------------------------------------
