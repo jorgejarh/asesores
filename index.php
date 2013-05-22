@@ -13,7 +13,7 @@
  *
  *     development
  *     testing
- *     production
+ *     production dsdfdsfdsf
  *
  * NOTE: If you change these, also change the error_reporting() code below
  *
