@@ -7,45 +7,34 @@
       <?php echo anchor('perfiles','&lt; - Regresar a Perfiles');?>
       </div>
       <br />
-      <div>
-				<ul class="tabs_jarh">
-                	<?php
-                    if($tipos_contenido)
-					{
-						foreach($tipos_contenido as $valor)
-						{
-							?>
-                            <li class="cada_tab" id="tab_num_<?php echo $valor['id_tabla_contenido'];?>" onclick="estilo_tab('tab_num_<?php echo $valor['id_tabla_contenido'];?>');"><a onclick="cambiar_tab('tabs-<?php echo $valor['id_tabla_contenido'];?>');" href="#tabs-<?php echo $valor['id_tabla_contenido'];?>"><?php echo $valor['nombre_contenido'];?></a></li>
-                            <?php
-						}
-					}
+            
+      <div class="accordion"><!--contenido-->
+      		<?php
+			if($tipos_contenido)
+			{
+				foreach($tipos_contenido as $valor)
+				{
 					?>
-                    <li style="clear:both; height:1px; width:100%; float:none; background:none; padding:0px;">&nbsp;</li>
-				</ul>
-                <?php
-                    if($tipos_contenido)
-					{
-						foreach($tipos_contenido as $valor)
-						{
-							?>
-                            <div class="des_tab" id="tabs-<?php echo $valor['id_tabla_contenido'];?>">
+					<h3 class="cada_tab" id="tab_num_<?php echo $valor['id_tabla_contenido'];?>"><?php echo $valor['nombre_contenido'];?></h3>
+                    <div class="des_tab" id="tabs-<?php echo $valor['id_tabla_contenido'];?>">
                             
-                            </div>
-                            <script type="text/javascript">
-							
-							$(document).ready(function(){
-								
-								actualizar(<?php echo $valor['id_tabla_contenido'];?>,<?php echo $perfil['id_perfil'];?>);
-								
-								});
-							
-							</script>
-                            <?php
-						}
-					}
-					?>
-				
-	  </div>
+                    </div>
+                    <script type="text/javascript">
+                    
+                    $(document).ready(function(){
+                        
+                        actualizar(<?php echo $valor['id_tabla_contenido'];?>,<?php echo $perfil['id_perfil'];?>);
+                        
+                        });
+                    
+                    </script>
+					<?php
+				}
+			}
+			?>
+             
+      </div><!--contenido-->
+      
       <br />
       
 
@@ -115,110 +104,51 @@
     </div>
     <!-- end #dashboard --> 
   </div>
-  <!--<div id="sidebar" class="right">
-    <h2 class="ico_mug">Configuracion</h2>
-    <ul id="menu">
-      <?php $this->load->view('users/lateral_derecho_conf');?>
-    </ul>
-  </div>-->
-  <!-- end #sidebar --> 
+  
+  
   
 </div>
 <script type="text/javascript">
-	/*$(document).ready(function() {
-	    $('#example').dataTable( {
-	        <?php echo config_lenguaje_tabla(); ?>
-	    } );
-	} );
 
-function nuevo_registro()
-{
-	$.ajax({
-		  url: "<?php echo site_url('perfiles/nuevo');?>",
-		  type:"POST",
-		  success:function(data){
+$(document).ready(function(){
+  $(".accordion h3:first").addClass("active");
+  $(".accordion div:not(:first)").hide();
+  $(".accordion h3").click(function(){
+    $(this).next("div").slideToggle("slow")
+    .siblings("div:visible").slideUp("slow");
+    $(this).toggleClass("active");
+    $(this).siblings("h3").removeClass("active");
+  });
 
-		  	$.fancybox(data);
-		  }
-		  
-		});
-}
-
-function editar_registro(id)
-{
-	$.ajax({
-		  url: "<?php echo site_url('perfiles/editar');?>/"+id,
-		  type:"POST",
-		  success:function(data){
-
-		  	$.fancybox(data);
-		  }
-		  
-		});
-}
-
-function eliminar_registro(id)
-{
-	if(!confirm('¿Seguro de desea el registro?'))
-	{
-		return false;
-	}
-
-	$.ajax({
-		  url: "<?php echo site_url('perfiles/eliminar');?>/"+id,
-		  type:"POST",
-		  success:function(data){
-			location.reload();
-		  	/*$.fancybox({
-		  		content:data,
-		  		afterClose:function()
-		  		{
-		  			location.reload();
-		  		}
-		  	});
-		  }
-		  
-		});
-}*/
-
-function cambiar_tab(id)
-{
-	$('.des_tab').css('display','none');
-	$('#'+id).css('display','block');
-}
+/* IDEM PERO EL PRIMERO DESPLEGADO
+  $(".acordeon h3:first").addClass("active");
+  $(".acordeon div:not(:first)").hide();
+  $(".acordeon h3").click(function(){
+    $(this).next("div").slideToggle("slow")
+    .siblings("div:visible").slideUp("slow");
+    $(this).toggleClass("active");
+    $(this).siblings("h3").removeClass("active");
+  });*/
 
 
-function estilo_tab(id)
-{
-	$('.cada_tab').css('text-decoration','none');
-	$('#'+id).css('text-decoration','underline');
-}
+});
+
 
 </script>
 <style type="text/css">
-.tabs_jarh
-{
-	list-style:none;
-	
-}
 
-.tabs_jarh li
-{
-	float:left;
-	padding:5px;
-	font-size:14px;
-	/*background:#CCC;*/
-	margin:5px;
-}
-
-.des_tab
-{
-	display:none;
-}
 .bot_atras a
 {
 	font-size:16px;
 	padding:5px;
 	border:#CCC 1px solid;
+}
+
+.accordion h3
+{
+	border:1px #CCC solid;
+	text-align:center;
+	cursor:pointer;
+	margin:5px;
 }
 </style>
