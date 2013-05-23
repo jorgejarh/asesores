@@ -171,6 +171,10 @@ table.display td {
 	padding: 3px 10px;
 }
 
+table.display td.datatable_icono{
+	width: 50px;
+}
+
 table.display td.center {
 	text-align: center;
 }

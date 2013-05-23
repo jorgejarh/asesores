@@ -28,10 +28,10 @@ if($listado)
       <tr class="gradeA">
       	<td><?php echo $valor['perfil'];?></td>
         <td><?php echo $valor['curricula'];?></td>
-        <td align="center"><a target="_blank" href="<?php echo site_url('perfiles/ver_perfil/'.$valor['id_perfil']);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
-        <td align="center"><a href="<?php echo site_url('perfiles/asignar/'.$valor['id_perfil']);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
-        <td align="center"><a onClick="editar_registro(<?php echo $valor['id_perfil']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
-        <td align="center"><a onClick="eliminar_registro(<?php echo $valor['id_perfil']; ?>);" ><?php echo img('public/img/cancel.png');?></a></td>
+        <td align="center"	class="datatable_icono"><a target="_blank" href="<?php echo site_url('perfiles/ver_perfil/'.$valor['id_perfil']);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
+        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('perfiles/asignar/'.$valor['id_perfil']);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
+        <td align="center"	class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_perfil']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <td align="center"	class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_perfil']; ?>);" ><?php echo img('public/img/cancel.png');?></a></td>
       </tr>
       <?php
 		}

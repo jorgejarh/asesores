@@ -2,7 +2,7 @@
   <div id="main_panel_container" class="left" style="width:900px;">
     <div id="dashboard" style="width:100%;">
       <h2 class="ico_mug">Curriculas</h2>
-      <div class="" style="width:60%; margin:auto;" >
+      <div class="" style="width:90%; margin:auto;">
       
         <?php
 if($listado)
@@ -25,9 +25,9 @@ if($listado)
       <tr class="gradeA">
         <td><?php echo $valor['curricula'];?></td>
         <!--<td align="center"><a href="<?php echo site_url('curriculas/asigar/'.$valor['id_curricula']);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>-->
-        <td align="center"><a onClick="editar_registro(<?php echo $valor['id_curricula']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_curricula']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         
-        <td align="center"><a onClick="eliminar_registro(<?php echo $valor['id_curricula']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
+        <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_curricula']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
       </tr>
       <?php
 		}
