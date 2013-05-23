@@ -110,6 +110,23 @@ CREATE TABLE `conf_cooperativa` (
 
 insert  into `conf_cooperativa`(`id_cooperativa`,`cooperativa`,`ubicacion`,`telefono`,`fax`,`email`,`credito_fiscal`,`logotipo`) values (9,'ACACCIBA','Central','2618 2427',NULL,'gerencia.acacciba@fedecaces.com',NULL,'logos/logo_acacciba.png'),(6,'ACODJAR DE R.L.','Central','2333 7400','2333 7406','gerencia.acodjar@fedecaces.com',NULL,'logos/logo_acodjar.png'),(10,'ACACEMIHA DE R.L.','Central','2272 6527',NULL,'acacemiha@fedecaces.com',NULL,'logos/logo_acacemiha.png'),(19,'ACACES DE R.L.','daf','2288 2103','','info@acaces.com.sv','23',NULL);
 
+/*Table structure for table `conf_menu` */
+
+DROP TABLE IF EXISTS `conf_menu`;
+
+CREATE TABLE `conf_menu` (
+  `id_menu` int(11) NOT NULL auto_increment,
+  `nombre_menu` varchar(200) default NULL,
+  `id_padre` int(11) default '0',
+  `url` varchar(150) default '#',
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_menu`)
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+/*Data for the table `conf_menu` */
+
+insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'#',1),(2,'Capacitaciones',1,'#',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'#',1),(7,'Asesoria 1',6,'#',1),(8,'Consultoria',1,'#',1),(9,'Consultoria 1',8,'#',1),(10,'Reportes',0,'#',1),(11,'Dashboard',10,'#',1),(12,'Pagos',10,'#',1),(13,'Configuracion del sistema',0,'#',1),(14,'Usuarios',13,'users',1),(15,'Usuarios Clientes',14,'#',1),(16,'Usuarios Internos',14,'#',1),(17,'Cooperativas',13,'cooperativas',1),(18,'Sistema',13,'conf_sistema',1),(19,'Roles',13,'roles',1);
+
 /*Table structure for table `conf_modulo` */
 
 DROP TABLE IF EXISTS `conf_modulo`;
@@ -490,6 +507,19 @@ CREATE TABLE `usu_permisos` (
 
 insert  into `usu_permisos`(`id_permisos`,`id_subrol`,`id_opcion`,`estado`) values (1,1,1,1),(2,1,2,1),(3,1,3,1),(4,1,4,1),(5,1,5,1),(6,1,6,1),(7,1,7,1),(8,1,8,1),(9,1,9,1),(10,1,10,1),(11,2,7,1),(12,2,8,1),(13,3,7,1),(14,3,8,1),(15,4,7,1),(16,4,8,1),(17,1,11,1),(18,1,12,1);
 
+/*Table structure for table `usu_permisos_menu` */
+
+DROP TABLE IF EXISTS `usu_permisos_menu`;
+
+CREATE TABLE `usu_permisos_menu` (
+  `id_permiso` int(11) NOT NULL auto_increment,
+  `id_subrol` int(11) default NULL,
+  `id_menu` int(11) default NULL,
+  PRIMARY KEY  (`id_permiso`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `usu_permisos_menu` */
+
 /*Table structure for table `usu_rol` */
 
 DROP TABLE IF EXISTS `usu_rol`;
@@ -544,7 +574,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`id_rol`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`ultimo_acceso`,`estado`,`id_subrol`) values (1,1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-05-16 20:05:17',0,1),(2,1,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano','43434','495849584','9re98r9488dvkfckf',NULL,0,1),(3,1,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1),(4,2,'usu3','123','Usuario 3','','',NULL,NULL,1,2);
+insert  into `usu_usuario`(`id_usuario`,`id_rol`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`ultimo_acceso`,`estado`,`id_subrol`) values (1,1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-05-22 22:46:57',0,1),(2,1,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano','43434','495849584','9re98r9488dvkfckf',NULL,0,1),(3,1,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1),(4,2,'usu3','123','Usuario 3','','',NULL,NULL,1,2);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

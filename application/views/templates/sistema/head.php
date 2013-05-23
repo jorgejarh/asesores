@@ -73,7 +73,68 @@
 	    <div id="top_menu" class="clearfix">
 	    	<ul class="sf-menu"> <!-- DROPDOWN MENU -->
 	    	<li class="current" ><a href="<?php echo site_url('portal');?>">Inicio</a></li>
+            <?php
+            $menu=$this->users_model->obtener_menu($this->datos_user['id_subrol']);
+			
+			if($menu)
+			{//si hay menu
+				foreach($menu as $valor)
+				{
+					$submenu=$this->users_model->obtener_menus_por_id_padre($valor['id_menu'],$this->datos_user['id_subrol']);
+					if($submenu)
+					{// si hay sub menus
+						?>
+                        <li>
+							<a href="<?php echo $valor['url'];?>" class="sf-with-ul" ><?php echo $valor['nombre_menu'];?></a>
+                            <ul>
+                            <?php
+                            foreach($submenu as $valor_submenu)
+							{// foreach
+								?>
+								<li>
+									<a href="<?php echo $valor_submenu['url'];?>" class="sf-with-ul" ><?php echo $valor_submenu['nombre_menu'];?></a>
+                                    <?php
+                                    $submenu2=$this->users_model->obtener_menus_por_id_padre($valor_submenu['id_menu'],$this->datos_user['id_subrol']);
+									if($submenu2)
+									{//11
+										?>
+                                        <ul>
+										<?php
+										foreach($submenu2 as $valor_submeu2)
+										{
+											?>
+                                            <li>
+												<a href="<?php echo $valor_submeu2['url'];?>" class="sf-with-ul" ><?php echo $valor_submeu2['nombre_menu'];?></a>
+                                            </li>
+                                            <?php
+										}
+										?>
+                                        </ul>
+                                        <?php
+									}//11
+									?>
+                                </li>
+								<?php
+								
+							}//foreach
+							?>
+                            </ul>
+                   		</li>
+                        <?php
+						
+						
+					}// fin si hay sub menu
+					?>
+                    
+                    <?php
+				}
+			}// fin si hay menu
+			
+			?>
+            
+            
 			<?php
+			/*
 			$modulos=$this->users_model->obtener_modulos();
 			if($modulos)
 			{
@@ -103,7 +164,7 @@
 					}
 				}
 			}
-
+*/
 			?>
 			
 		</ul>
