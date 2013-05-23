@@ -28,6 +28,9 @@
 		      				<tr class="gradeA">
 		      					<td><?php 
 		      							//echo img('public/img/'.$valor['logotipo']);
+		      							if($valor['logotipo']==null){
+		      								$valor['logotipo'] = 'logos/logo_null.png';
+		      							}
 		      							$image_properties = array(
 		          							'src' => 'public/img/'.$valor['logotipo'],
 		          							'alt' => 'logo',
