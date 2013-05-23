@@ -1,15 +1,8 @@
 <div id="content_main" class="clearfix">
   <div id="main_panel_container" class="left">
     <div id="dashboard">
-      	<h2 class="ico_mug">
-      		<table width="100%">
-      			<tr>
-      				<td>Cooperativas</td>
-      				<td align="right"><button onClick="nuevo_registro();">Nuevo</button></td>
-      			</tr>
-      		</table>
-      	</h2>
-      		<!--<div class="clearfix">-->
+      	<h2 class="ico_mug">Cooperativas</h2>
+      		<div class="clearfix">
       	        <?php
 					if($listado)
 					{
@@ -62,8 +55,8 @@
 		  		<?php
 					}
 				?>
-		        
-    		<!--</div>-->
+		        <button onClick="nuevo_registro();">Nuevo</button>
+    		</div>
     	</div>
     	<!-- end #dashboard --> 
   	</div>
