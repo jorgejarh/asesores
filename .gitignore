@@ -218,4 +218,5 @@ pip-log.txt
 .mr.developer.cfg
 
 
-
+application/config/config.php
+application/config/database.php
