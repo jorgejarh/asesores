@@ -15,6 +15,8 @@
 					        <th>Ubicaci&oacute;n</th>
 					        <th>Tel&eacute;fono</th>
 					        <th>Fax</th>
+					        <th>Email</th>
+					        <th>Credito Fiscal</th>
 					        <!--<th>Correo Electr&oacute;nico</th>-->
 					        <th>Editar</th>
 					        <th>Eliminar</th>
@@ -46,6 +48,8 @@
 						        <td><?php echo $valor['ubicacion'];?></td>
 						        <td><?php echo $valor['telefono'];?></td>
 						        <td><?php echo $valor['fax'];?></td>
+						        <td><?php echo $valor['email'];?></td>
+						        <td><?php echo $valor['credito_fiscal'];?></td>
 						        <!--<td><?php echo $valor['email'];?></td>-->
 						        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_cooperativa']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
 						        <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_cooperativa']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
