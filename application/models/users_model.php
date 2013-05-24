@@ -103,6 +103,9 @@ function obtener_datos_usuario($id)
 	
 	function obtener_menu($id_subrol=0)
 	{
+		return $this->db->get_where('conf_menu',array('id_padre'=>0,'activo'=>1))->result_array();
+		/*
+		Activaremos esta parte cuando tengamos el modulo de permisos
 		return $this->db->query("SELECT 
                                     menu.id_menu,
                                     nombre_menu,
@@ -116,11 +119,16 @@ function obtener_datos_usuario($id)
                                     AND permisos.id_subrol = subrol.id_subrol
                                     AND menu.id_menu = permisos.id_menu
                                     AND activo = 1
-                                    AND id_padre = 0")->result_array();
+                                    AND id_padre = 0")->result_array();*/
 	}
 	
 	function obtener_menus_por_id_padre($id_menu=0,$id_subrol=0)
 	{
+		return $this->db->get_where('conf_menu',array('id_padre'=>$id_menu,'activo'=>1))->result_array();
+		
+		/*
+		Activaremos esta parte cuando tengamos el modulo de permisos
+		
 		return $this->db->query("SELECT 
                                     menu.id_menu,
                                     nombre_menu,
@@ -134,7 +142,7 @@ function obtener_datos_usuario($id)
                                     AND permisos.id_subrol = subrol.id_subrol
                                     AND menu.id_menu = permisos.id_menu
                                     AND activo = 1
-                                    AND id_padre = ".$id_menu)->result_array();
+                                    AND id_padre = ".$id_menu)->result_array();*/
 	}
 	
 	
