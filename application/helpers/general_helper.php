@@ -35,4 +35,21 @@ function config_lenguaje_tabla()
 		}';
 }
 
+
+if ( ! function_exists('preparar_select'))
+{
+	function preparar_select($result,$campo_value,$campo_mostrar)
+	{
+		$nuevo_array=array();
+		
+		foreach($result as $valor)
+		{
+			
+			$nuevo_array[$valor[$campo_value]]=$valor[$campo_mostrar];
+			
+		}
+		return $nuevo_array;
+	}
+}
+
 ?>

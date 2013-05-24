@@ -47,3 +47,15 @@ myHtmlSettings = {
   }
   );
   }				
+
+
+function poner_malo_texto(selector)
+{
+	selector.css('border','1px solid red');
+}
+
+function poner_bueno_texto(selector)
+{
+	selector.css('border','1px solid green');
+}
+
