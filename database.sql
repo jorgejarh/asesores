@@ -121,11 +121,11 @@ CREATE TABLE `conf_menu` (
   `url` varchar(150) default '#',
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_menu`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 /*Data for the table `conf_menu` */
 
-insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'#',1),(2,'Capacitaciones',1,'#',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'#',1),(7,'Asesoria 1',6,'#',1),(8,'Consultoria',1,'#',1),(9,'Consultoria 1',8,'#',1),(10,'Reportes',0,'#',1),(11,'Dashboard',10,'#',1),(12,'Pagos',10,'#',1),(13,'Configuracion del sistema',0,'#',1),(14,'Usuarios',13,'users',1),(15,'Usuarios Clientes',14,'#',1),(16,'Usuarios Internos',14,'#',1),(17,'Cooperativas',13,'cooperativas',1),(18,'Sistema',13,'conf_sistema',1),(19,'Roles',13,'roles',1),(20,'Gestion de Menu',13,'conf_menu',1),(21,'Sucursales',13,'sucursales',1);
+insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'#',1),(2,'Capacitaciones',1,'#',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'#',1),(7,'Asesoria 1',6,'#',1),(8,'Consultoria',1,'#',1),(9,'Consultoria 1',8,'#',1),(10,'Reportes',0,'#',1),(11,'Dashboard',10,'#',1),(12,'Pagos',10,'#',1),(13,'Configuracion del sistema',0,'#',1),(14,'Usuarios',13,'users',1),(15,'Usuarios Clientes',14,'#',1),(16,'Usuarios Internos',14,'#',1),(17,'Cooperativas',13,'cooperativas',1),(18,'Sistema',13,'conf_sistema',1),(19,'Roles',13,'roles',1),(20,'Gestion de Menu',13,'conf_menu',1),(21,'Sucursales',13,'sucursales',1),(26,'roles',14,'roles',1);
 
 /*Table structure for table `conf_modulo` */
 
@@ -526,14 +526,15 @@ DROP TABLE IF EXISTS `usu_rol`;
 
 CREATE TABLE `usu_rol` (
   `id_rol` int(11) NOT NULL auto_increment,
+  `id_tipo_usuario` int(11) default '0',
   `rol` varchar(25) default NULL,
   `estado` tinyint(1) default NULL,
   PRIMARY KEY  (`id_rol`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usu_rol` */
 
-insert  into `usu_rol`(`id_rol`,`rol`,`estado`) values (1,'Administrador del Sistema',1),(2,'Cliente',1),(3,'Consultor y/o Asesor',1),(4,'Administrador Curricula',1),(5,'Administrador del Plan',1);
+insert  into `usu_rol`(`id_rol`,`id_tipo_usuario`,`rol`,`estado`) values (1,2,'Administrador del Sistema',1),(2,1,'Cliente',1),(3,1,'Consultor y/o Asesor',1),(4,1,'Administrador Curricula',1),(5,1,'Administrador del Plan',1);
 
 /*Table structure for table `usu_subrol` */
 
@@ -551,6 +552,20 @@ CREATE TABLE `usu_subrol` (
 /*Data for the table `usu_subrol` */
 
 insert  into `usu_subrol`(`id_subrol`,`id_rol`,`subrol`,`estado`) values (1,1,'Admin',1),(2,2,'Federacion',1),(3,2,'Cooperativa',1),(4,2,'Sucursal',1);
+
+/*Table structure for table `usu_tipo_usuario` */
+
+DROP TABLE IF EXISTS `usu_tipo_usuario`;
+
+CREATE TABLE `usu_tipo_usuario` (
+  `id_tipo_usuario` int(11) NOT NULL auto_increment,
+  `nombre_tipo_usuario` varchar(200) default NULL,
+  PRIMARY KEY  (`id_tipo_usuario`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `usu_tipo_usuario` */
+
+insert  into `usu_tipo_usuario`(`id_tipo_usuario`,`nombre_tipo_usuario`) values (1,'Usuario Interno'),(2,'Usuario Externo');
 
 /*Table structure for table `usu_usuario` */
 
@@ -574,7 +589,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`id_rol`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`ultimo_acceso`,`estado`,`id_subrol`) values (1,1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-05-23 23:42:11',0,1),(2,1,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano','43434','495849584','9re98r9488dvkfckf',NULL,0,1),(3,1,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1),(4,2,'usu3','123','Usuario 3','','',NULL,NULL,1,2);
+insert  into `usu_usuario`(`id_usuario`,`id_rol`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`ultimo_acceso`,`estado`,`id_subrol`) values (1,1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-05-24 21:48:26',0,1),(2,1,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano','43434','495849584','9re98r9488dvkfckf',NULL,0,1),(3,1,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1),(4,2,'usu3','123','Usuario 3','','',NULL,NULL,1,2);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
