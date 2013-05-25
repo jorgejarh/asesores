@@ -82,11 +82,18 @@ function obtener_datos_usuario($id)
 		{
         	return $this->db->get_where('usu_rol',array('id_rol'=>$id))->row_array();
 		}else{
-			return $this->db->get_where('usu_rol', array('estado'=>1))->result_array();
+			$this->db->select("a.*, b.nombre_tipo_usuario");
+			$this->db->where("a.id_tipo_usuario = b.id_tipo_usuario");
+			return $this->db->get_where('usu_rol a, usu_tipo_usuario b', array('estado'=>1))->result_array();
 			}
     }
-
-    function obtener_sub_roles($id_rol)
+	
+	function obtener_tipos_usuarios()
+	{
+		return $this->db->get_where('usu_tipo_usuario')->result_array();
+	}
+	
+    function obtener_sub_roles($id_rol=0)
     {
         return $this->db->get_where('usu_subrol',array('estado'=>1,'id_rol'=>$id_rol))->result_array();
     }

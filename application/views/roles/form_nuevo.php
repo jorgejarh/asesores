@@ -12,15 +12,19 @@ echo form_open('',array(
 		<td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
 	</tr>
 	<tr>
-		<td valign="middle">Rol: </td>
-		<td valign="middle"><input type="text" id="rol" name="rol" /></td>
+		<td>Tipo de usuario: </td>
+		<td><?php echo form_dropdown('id_tipo_usuario',$tipos_usuarios);?></td>
+	</tr>
+	<tr>
+		<td>Rol: </td>
+        <td><?php echo form_input('rol', '','class="requerido"');?></td>
 	</tr>
 	<tr>
 		<td colspan="2"><hr></td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
-        <input type="hidden" name="estado" value="1" />
+        	<input type="hidden" name="estado" value="1" />
 			<input type="submit" id="save" value="Guardar" />
 		</td>
 	</tr>
@@ -34,16 +38,13 @@ $(document).ready(function(e){
 
 	$('#form_nuevo').submit(function(){
 
-		if($('#rol').val()=="")
+		valido=validar_form("#"+$(this).attr('id'));
+		
+		
+		if(valido==false)
 		{
-			poner_malo('#rol');
-			$('#error').html('Campo Requerido');
 			return false;
-		}else{
-
-			poner_bueno('#rol');
 		}
-
 		
 
 		//$('input[type=submit]').disable();
@@ -69,16 +70,5 @@ $(document).ready(function(e){
 	});
 
 });
-
-
-function poner_malo(selector)
-{
-	$(selector).css('border','1px solid red');
-}
-
-function poner_bueno(selector)
-{
-	$(selector).css('border','1px solid green');
-}
 
 </script>

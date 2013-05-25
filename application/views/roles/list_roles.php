@@ -11,8 +11,10 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
+      	<th>Tipo de Usuario</th>
         <th>Rol</th>
         <th>Editar</th>
+        
         <th>Eliminar</th>
       </tr>
     </thead>
@@ -22,6 +24,7 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
+      	<td><?php echo $valor['nombre_tipo_usuario'];?></td>
         <td><?php echo $valor['rol'];?></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_rol']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_rol']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>

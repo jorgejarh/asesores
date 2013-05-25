@@ -59,3 +59,30 @@ function poner_bueno_texto(selector)
 	selector.css('border','1px solid green');
 }
 
+
+function validar_form(selector_form)
+{
+	valido=0;
+	
+	$(selector_form+' .requerido').each(function(index,element){
+			
+			if($(this).val()=="")
+			{
+				poner_malo_texto($(this));
+				$('#error').html('Campo Requerido');
+				valido=1;
+			}else{
+	
+				poner_bueno_texto($(this));
+			}
+			
+		});
+	
+	if(valido==1)
+	{
+		return false;
+	}else{
+		return true;
+		}
+}
+

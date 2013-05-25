@@ -18,7 +18,6 @@ class Roles extends CI_Controller {
 		$data['title']="Mantenimiento de Roles";
 		$data['template']="sistema";
 		$data['contenido']="roles/list_roles";
-		
 		$data['listado']=$this->users_model->obtener_roles();
 
 		$this->load->view('template',$data);
@@ -28,7 +27,7 @@ class Roles extends CI_Controller {
 	public function nuevo()
 	{
 		$data=array();
-		
+		$data['tipos_usuarios']=preparar_select($this->users_model->obtener_tipos_usuarios(),'id_tipo_usuario','nombre_tipo_usuario');
 		$this->load->view('roles/form_nuevo',$data);
 	}
 	
@@ -57,7 +56,7 @@ class Roles extends CI_Controller {
 	{
 		
 		$data['dato']=$this->users_model->obtener_roles($id);
-
+		$data['tipos_usuarios']=preparar_select($this->users_model->obtener_tipos_usuarios(),'id_tipo_usuario','nombre_tipo_usuario');
 		$this->load->view('roles/form_editar',$data);
 	}
 	
@@ -67,8 +66,8 @@ class Roles extends CI_Controller {
 		$post=$this->input->post();
 		if($post)
 		{
-			$id=$post['id_rol'];
-			unset($post['id_rol']);
+			$id=$post['id'];
+			unset($post['id']);
 						
 			$resultado = $this->db->update('usu_rol',$post,array('id_rol'=>$id));
 

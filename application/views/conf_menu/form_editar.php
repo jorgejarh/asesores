@@ -43,27 +43,13 @@ $(document).ready(function(e){
 	$('#form_nuevo').submit(function(){
 		
 		
-		valido=0;
+		valido=validar_form("#"+$(this).attr('id'));
 		
-		$('.requerido').each(function(index,element){
-				
-				if($(this).val()=="")
-				{
-					poner_malo_texto($(this));
-					$('#error').html('Campo Requerido');
-					valido=1;
-				}else{
 		
-					poner_bueno_texto($(this));
-				}
-				
-			});
-		
-		if(valido==1)
+		if(valido==false)
 		{
 			return false;
 		}
-		
 		
 		
 		//$('input[type=submit]').disable();

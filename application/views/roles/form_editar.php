@@ -3,7 +3,8 @@
 <?php
 echo form_open('',array(
 						'id'=>'form_nuevo'
-							)
+							),
+					array('id'=>$dato['id_rol'])
 				);
 ?>
 
@@ -11,16 +12,19 @@ echo form_open('',array(
 	<tr>
 		<td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
 	</tr>
+    <tr>
+		<td>Tipo de usuario: </td>
+		<td><?php echo form_dropdown('id_tipo_usuario',$tipos_usuarios,$dato['id_tipo_usuario']);?></td>
+	</tr>
 	<tr>
 		<td>Rol: </td>
-		<td><input value= "<?php echo $dato['rol']; ?>" type="text" id="rol" name="rol" /></td>
+        <td><?php echo form_input('rol', $dato['rol'],'class="requerido"');?></td>
 	</tr>
 	<tr>
 		<td colspan="2"><hr></td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
-			<input type="hidden" value="<?php echo $dato['id_rol']; ?>" name="id_rol" />
 			<input type="submit" id="save" value="Guardar" />
 		</td>
 	</tr>
@@ -34,16 +38,13 @@ $(document).ready(function(e){
 	
 	$('#form_nuevo').submit(function(){
 
-		if($('#rol').val()=="")
+		valido=validar_form("#"+$(this).attr('id'));
+		
+		
+		if(valido==false)
 		{
-			poner_malo('#rol');
-			$('#error').html('Campo Requerido');
 			return false;
-		}else{
-
-			poner_bueno('#rol');
 		}
-
 		
 		//$('input[type=submit]').disable();
 
@@ -68,16 +69,5 @@ $(document).ready(function(e){
 	});
 
 });
-
-
-function poner_malo(selector)
-{
-	$(selector).css('border','1px solid red');
-}
-
-function poner_bueno(selector)
-{
-	$(selector).css('border','1px solid green');
-}
 
 </script>
