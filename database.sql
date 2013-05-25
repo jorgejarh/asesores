@@ -121,11 +121,11 @@ CREATE TABLE `conf_menu` (
   `url` varchar(150) default '#',
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_menu`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 /*Data for the table `conf_menu` */
 
-insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'#',1),(2,'Capacitaciones',1,'#',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'#',1),(7,'Asesoria 1',6,'#',1),(8,'Consultoria',1,'#',1),(9,'Consultoria 1',8,'#',1),(10,'Reportes',0,'#',1),(11,'Dashboard',10,'#',1),(12,'Pagos',10,'#',1),(13,'Configuracion del sistema',0,'#',1),(14,'Usuarios',13,'users',1),(15,'Usuarios Clientes',14,'#',1),(16,'Usuarios Internos',14,'#',1),(17,'Cooperativas',13,'cooperativas',1),(18,'Sistema',13,'conf_sistema',1),(19,'Roles',13,'roles',1),(20,'Gestion de Menu',13,'conf_menu',1),(21,'Sucursales',13,'sucursales',1),(26,'roles',14,'roles',1);
+insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'#',1),(2,'Capacitaciones',1,'#',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'#',1),(7,'Asesoria 1',6,'#',1),(8,'Consultoria',1,'#',1),(9,'Consultoria 1',8,'#',1),(10,'Reportes',0,'#',1),(11,'Dashboard',10,'#',1),(12,'Pagos',10,'#',1),(13,'Configuracion del sistema',0,'#',1),(14,'Usuarios',13,'users',1),(15,'Usuarios Clientes',14,'#',1),(16,'Usuarios Internos',14,'#',1),(17,'Cooperativas',13,'cooperativas',1),(18,'Sistema',13,'conf_sistema',1),(19,'Roles',13,'roles',1),(20,'Gestion de Menu',13,'conf_menu',1),(21,'Sucursales',13,'sucursales',1),(26,'roles',14,'roles',0),(27,'Sub Roles',19,'subroles',1);
 
 /*Table structure for table `conf_modulo` */
 
@@ -547,7 +547,7 @@ CREATE TABLE `usu_subrol` (
   `estado` tinyint(1) default NULL,
   PRIMARY KEY  (`id_subrol`),
   KEY `fk_usu_subrol_usu_rol1` (`id_rol`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usu_subrol` */
 

@@ -88,6 +88,18 @@ function obtener_datos_usuario($id)
 			}
     }
 	
+	function obtener_subroles($id=0)
+    {
+		if($id!=0)
+		{
+        	return $this->db->get_where('usu_subrol',array('id_subrol'=>$id))->row_array();
+		}else{
+			$this->db->select("a.rol, b.*");
+			$this->db->where("a.id_rol = b.id_rol");
+			return $this->db->get_where('usu_rol a, usu_subrol b', array('b.estado'=>1))->result_array();
+			}
+    }
+	
 	function obtener_tipos_usuarios()
 	{
 		return $this->db->get_where('usu_tipo_usuario')->result_array();
@@ -150,6 +162,24 @@ function obtener_datos_usuario($id)
                                     AND menu.id_menu = permisos.id_menu
                                     AND activo = 1
                                     AND id_padre = ".$id_menu)->result_array();*/
+	}
+	
+	
+	function actualizar_subrol($post,$id=0)
+	{
+		if($id==0)
+		{
+			return $this->db->insert('usu_subrol',$post);
+		}else{
+			return $this->db->update('usu_subrol',$post,array('id_subrol'=>$id));
+			}
+	}
+	
+	function eliminar_subrol($id)
+	{
+		//$this->db->delete('usu_rol', array('id_rol'=>$id));
+		
+		return  $this->actualizar_subrol(array('estado'=>0),$id);
 	}
 	
 	
