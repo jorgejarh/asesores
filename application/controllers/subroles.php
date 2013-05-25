@@ -9,6 +9,7 @@ class Subroles extends CI_Controller {
         parent::__construct();
 
         $this->datos_user=comprobar_login();
+        $this->load->model('conf_menu_model');
 
     }
 
@@ -28,6 +29,7 @@ class Subroles extends CI_Controller {
 	{
 		$data=array();
 		$data['roles']=preparar_select($this->users_model->obtener_roles(),'id_rol','rol');
+		$data['menus']=$this->conf_menu_model->obtener_menus_completo();
 		$this->load->view('subroles/form_nuevo',$data);
 	}
 	
@@ -57,6 +59,8 @@ class Subroles extends CI_Controller {
 		
 		$data['dato']=$this->users_model->obtener_subroles($id);
 		$data['roles']=preparar_select($this->users_model->obtener_roles(),'id_rol','rol');
+		$data['menus']=$this->conf_menu_model->obtener_menus_completo();
+		$data['permisos']=$this->conf_menu_model->obtener_permisos($id);
 		$this->load->view('subroles/form_editar',$data);
 	}
 	

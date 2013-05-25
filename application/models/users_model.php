@@ -167,10 +167,52 @@ function obtener_datos_usuario($id)
 	
 	function actualizar_subrol($post,$id=0)
 	{
+
+        $permisos=$post['permisos'];
+        unset($post['permisos']);
+
 		if($id==0)
 		{
-			return $this->db->insert('usu_subrol',$post);
+
+			$resultado=$this->db->insert('usu_subrol',$post);
+            $id=$this->db->insert_id();
+
+             $this->db->delete('usu_permisos_menu',array('id_subrol'=>$id));
+            
+            if($permisos)
+            {
+                foreach($permisos as $id_menu)
+                {
+                    
+                    $data_permisos=array(
+                        'id_subrol'=>$id,
+                        'id_menu'=>$id_menu
+                        );
+                    $this->db->insert('usu_permisos_menu',$data_permisos);
+                }
+            }
+
+            return $resultado;
+
+
 		}else{
+
+            $this->db->delete('usu_permisos_menu',array('id_subrol'=>$id));
+            
+            if($permisos)
+            {
+                foreach($permisos as $id_menu)
+                {
+                    
+                    $data_permisos=array(
+                        'id_subrol'=>$id,
+                        'id_menu'=>$id_menu
+                        );
+                    $this->db->insert('usu_permisos_menu',$data_permisos);
+                }
+            }
+            
+
 			return $this->db->update('usu_subrol',$post,array('id_subrol'=>$id));
 			}
 	}

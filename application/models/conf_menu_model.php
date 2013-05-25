@@ -63,6 +63,30 @@ class Conf_menu_model extends CI_Model {
 		
 		return $this->db->update('conf_menu',array('activo'=>0), array('id_menu'=>$id));
 	}
+
+	function obtener_permisos($id_subrol=0)
+	{
+		return $this->db->get_where('usu_permisos_menu',array('id_subrol'=>$id_subrol))->result_array();
+	}
 	
+	function existe_permiso($permisos,$id_menu)
+	{
+		if($permisos)
+		{
+			foreach($permisos as $valor)
+			{
+				
+				if($valor['id_menu']==$id_menu)
+				{
+
+					return true;
+
+				}
+			}
+
+		}else{
+			return false;
+		}
+	}
 	
 }
