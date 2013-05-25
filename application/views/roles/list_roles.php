@@ -1,8 +1,8 @@
 <div id="content_main" class="clearfix">
-  <div id="main_panel_container" class="left">
-    <div id="dashboard">
+  <div id="main_panel_container" class="left" style="width:900px;">
+    <div id="dashboard" style="width:100%;">
       <h2 class="ico_mug">Roles</h2>
-      <div class="clearfix">
+      <div class="" style="width:90%; margin:auto;">
       
         <?php
 if($listado)
@@ -23,8 +23,8 @@ if($listado)
 			?>
       <tr class="gradeA">
         <td><?php echo $valor['rol'];?></td>
-        <td align="center"><a onClick="editar_registro(<?php echo $valor['id_rol']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
-        <td align="center"><a onClick="eliminar_registro(<?php echo $valor['id_rol']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
+        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_rol']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_rol']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
       </tr>
       <?php
 		}
@@ -39,12 +39,7 @@ if($listado)
     </div>
     <!-- end #dashboard --> 
   </div>
-  <div id="sidebar" class="right">
-    <h2 class="ico_mug">Configuracion</h2>
-    <ul id="menu">
-      <?php $this->load->view('users/lateral_derecho_conf');?>
-    </ul>
-  </div>
+  
   <!-- end #sidebar --> 
   
 </div>
