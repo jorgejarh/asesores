@@ -28,13 +28,17 @@ echo form_open('',array(
 	</tr>
 	<tr>
 		<td colspan="2">
-			
+			<table>
+            	<tr>
 				<?php
 				if($menus)
 				{
 					$activo=false;
 					foreach($menus as $valor1)
 					{
+						?>
+                            <td>
+                            <?php
 						$activo=$this->conf_menu_model->existe_permiso($permisos,$valor1['id_menu']);
 
 						echo "<h4>".form_checkbox('permisos[]',$valor1['id_menu'],$activo)." ".$valor1['nombre_menu']."</h4>";
@@ -57,11 +61,15 @@ echo form_open('',array(
 								}
 							}
 						}
+						?>
+                            </td>
+                            <?php
 					}
 				}
 				?>
 				
-			
+				</tr>
+            </table>
 		</td>
 	</tr>
 	<tr>

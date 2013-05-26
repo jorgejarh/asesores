@@ -22,40 +22,58 @@ echo form_open('',array(
 	<tr>
 		<td colspan="2"><hr></td>
 	</tr>
+    <tr>
+		<td colspan="2"><h3>Permisos</h3></td>
+	</tr>
 	<tr>
 		<td colspan="2">
-			
-				<?php
-				if($menus)
-				{
-					$activo=false;
-					foreach($menus as $valor1)
+			<table>
+            	<tr>
+                	<?php
+					if($menus)
 					{
-
-						echo "<h4>".form_checkbox('permisos[]',$valor1['id_menu'],$activo)." ".$valor1['nombre_menu']."</h4>";
-						if($valor1['submenu'])
+						$activo=false;
+						foreach($menus as $valor1)
 						{
-							
-							foreach ($valor1['submenu'] as $valor2) 
+							?>
+                            <td>
+                            <?php
+							echo "<h4>".form_checkbox('permisos[]',$valor1['id_menu'],$activo)." ".$valor1['nombre_menu']."</h4>";
+							if($valor1['submenu'])
 							{
-								echo '<h4 style="margin-left:15px; font-weight:normal;">'.form_checkbox('permisos[]',$valor2['id_menu'],$activo)." ".$valor2['nombre_menu'].'</h4>';
-								if($valor2['submenu'])
+								
+								foreach ($valor1['submenu'] as $valor2) 
 								{
-									
-									foreach($valor2['submenu'] as $valor3)
+									echo '<h4 style="margin-left:15px; font-weight:normal;">'.form_checkbox('permisos[]',$valor2['id_menu'],$activo)." ".$valor2['nombre_menu'].'</h4>';
+									if($valor2['submenu'])
 									{
-										echo '<h4 style="margin-left:30px; font-weight:normal;">'.form_checkbox('permisos[]',$valor3['id_menu'],$activo)." ".$valor3['nombre_menu'].'</h4>';
-
+										
+										foreach($valor2['submenu'] as $valor3)
+										{
+											echo '<h4 style="margin-left:30px; font-weight:normal;">'.form_checkbox('permisos[]',$valor3['id_menu'],$activo)." ".$valor3['nombre_menu'].'</h4>';
+	
+										}
 									}
 								}
 							}
+							
+							?>
+                            </td>
+                            <?php
+							
 						}
 					}
-				}
-				?>
+					?>
+                	<td></td>
+                </tr>
+            </table>
+				
 				
 			
 		</td>
+	</tr>
+    <tr>
+		<td colspan="2"><hr></td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
