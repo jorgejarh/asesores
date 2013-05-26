@@ -1,6 +1,15 @@
 application/config/config.php
 application/config/database.php
 
+*/config/config.php
+*/config/database.php
+
+*/logs/log-*.php
+*/logs/!index.html
+*/cache/*
+*/cache/!index.html
+
+
 #################
 ## Eclipse
 #################
@@ -217,6 +226,3 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-
-application/config/config.php
-application/config/database.php
