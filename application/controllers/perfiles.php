@@ -51,7 +51,6 @@ class Perfiles extends CI_Controller {
 				echo "Error al guardar el registro.";
 			}
 
-			
 		}
 
 	}

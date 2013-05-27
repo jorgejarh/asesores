@@ -66,7 +66,7 @@ function validar_form(selector_form)
 	
 	$(selector_form+' .requerido').each(function(index,element){
 			
-			if($(this).val()=="")
+			if($(this).val()=="" || $(this).val()=="false")
 			{
 				poner_malo_texto($(this));
 				$('#error').html('Campo Requerido');

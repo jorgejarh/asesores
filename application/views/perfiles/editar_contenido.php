@@ -12,7 +12,7 @@ echo form_open('',array(
 		<td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
 	</tr>
 	<tr>
-		<td align="center" valign="middle"><input type="text" id="nombre" name="nombre" style="width:80%;" value="<?php echo $dato['nombre'];?>" /></td>
+		<td align="center" valign="middle"><input type="text" id="nombre" name="nombre" style="width:80%;" value="<?php echo $dato['nombre'];?>" class="requerido" /></td>
 	</tr>
 	<tr>
 		<td colspan="2"><hr></td>
@@ -35,14 +35,12 @@ $(document).ready(function(e){
 
 	$('#form_nuevo').submit(function(){
 				
-		if($('#nombre').val()=="")
+		valido=validar_form("#"+$(this).attr('id'));
+		
+		
+		if(valido==false)
 		{
-			poner_malo('#nombre');
-			$('#error').html('Campo Requerido');
 			return false;
-		}else{
-
-			poner_bueno('#nombre');
 		}
 
 		

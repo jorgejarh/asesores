@@ -14,8 +14,8 @@ echo form_open('',array(
     <tr>
 		<td valign="middle">Curricula: </td>
 		<td valign="middle">
-        <select id="id_curricula" name="id_curricula">
-        	<option value="0">Seleccione...</option>
+        <select id="id_curricula" name="id_curricula" class="requerido">
+        	<option value="false">Seleccione...</option>
             <?php
             if($curriculas)
 			{
@@ -32,7 +32,7 @@ echo form_open('',array(
 	</tr>
 	<tr>
 		<td valign="middle">Nombre del perfil: </td>
-		<td valign="middle"><input type="text" id="perfil" name="perfil" /></td>
+		<td valign="middle"><input type="text" id="perfil" name="perfil" class="requerido"/></td>
 	</tr>
     <tr>
 		<td valign="middle">Fecha: </td>
@@ -55,28 +55,15 @@ $(document).ready(function(e){
 
 
 	$('#form_nuevo').submit(function(){
+
+
+		valido=validar_form("#"+$(this).attr('id'));
 		
-		if($('#id_curricula').val()==0)
+		
+		if(valido==false)
 		{
-			poner_malo('#id_curricula');
-			$('#error').html('Campo Requerido');
 			return false;
-		}else{
-
-			poner_bueno('#id_curricula');
 		}
-		
-		if($('#perfil').val()=="")
-		{
-			poner_malo('#perfil');
-			$('#error').html('Campo Requerido');
-			return false;
-		}else{
-
-			poner_bueno('#perfil');
-		}
-
-		
 
 		//$('input[type=submit]').disable();
 
