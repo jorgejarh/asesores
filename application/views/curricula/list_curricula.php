@@ -86,7 +86,7 @@ function editar_registro(id)
 
 function eliminar_registro(id)
 {
-	if(!confirm('¿Seguro de desea el registro?'))
+	if(!confirm('¿Seguro que desea eliminar el registro?'))
 	{
 		return false;
 	}

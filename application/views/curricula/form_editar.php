@@ -13,7 +13,7 @@ echo form_open('',array(
 	</tr>
 	<tr>
 		<td>Nombre de la Curricula: </td>
-		<td><input value= "<?php echo $dato['curricula']; ?>" type="text" id="curricula" name="curricula" /></td>
+		<td><input value= "<?php echo $dato['curricula']; ?>" type="text" id="curricula" name="curricula" class="requerido"/></td>
 	</tr>
      <td>Estado: </td>
 		<td>
@@ -40,16 +40,13 @@ $(document).ready(function(e){
 	
 	$('#form_nuevo').submit(function(){
 
-		if($('#curricula').val()=="")
+		valido=validar_form("#"+$(this).attr('id'));
+		
+		
+		if(valido==false)
 		{
-			poner_malo('#curricula');
-			$('#error').html('Campo Requerido');
 			return false;
-		}else{
-
-			poner_bueno('#curricula');
 		}
-
 		
 		//$('input[type=submit]').disable();
 
