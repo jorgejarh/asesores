@@ -15,7 +15,7 @@ echo form_open('',array(
 		<td valign="middle">Curricula: </td>
 		<td valign="middle">
         <select id="id_curricula" name="id_curricula" class="requerido">
-        	<option value="false">Seleccione...</option>
+        	<option value="">Seleccione...</option>
             <?php
             if($curriculas)
 			{
