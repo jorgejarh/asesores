@@ -56,5 +56,19 @@ class Curricula_model extends CI_Model {
 			return $this->db->get_where($tabla,array('id'=>$id))->row_array();
 		}
 	}
+
+	//Funciones Insert Update y Delete
+
+	public function insertar_curricula($post=''){
+		return $this->db->insert('cu_curricula',$post);
+	} 
+
+	public function editar_curricula($post='', $id=0){
+		return $this->db->update('cu_curricula',$post,array('id_curricula'=>$id));
+	}
+
+	public function eliminar($id=0){
+		return $this->db->delete('cu_curricula', array('id_curricula'=>$id));
+	}
 	
 }

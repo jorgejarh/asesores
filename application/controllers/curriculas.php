@@ -37,8 +37,8 @@ class Curriculas extends CI_Controller {
 		$post=$this->input->post();
 		if($post)
 		{
-						
-			$guardar=$this->db->insert('cu_curricula',$post);
+					
+			$guardar = $this->curricula_model->insertar_curricula($post);
 
 			if($guardar)
 			{
@@ -70,7 +70,7 @@ class Curriculas extends CI_Controller {
 			$id=$post['id_curricula'];
 			unset($post['id_curricula']);
 						
-			$resultado = $this->db->update('cu_curricula',$post,array('id_curricula'=>$id));
+			$resultado = $this->curricula_model->editar_curricula($post, $id);
 
 			if($resultado)
 			{
@@ -86,8 +86,7 @@ class Curriculas extends CI_Controller {
 	{
 		if ($id!=0)
 		{
-			//$resultado=$this->db->update('usu_usuario', array('estado'=>$this->input->post('activo')),array('id_usuario'=>$id));
-			$resultado=$this->db->delete('cu_curricula', array('id_curricula'=>$id));
+			$resultado = $this->curricula_model->eliminar($id);
 		}
 		if($resultado)
 		{
