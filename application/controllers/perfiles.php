@@ -9,6 +9,7 @@ class Perfiles extends CI_Controller {
         parent::__construct();
 
         $this->datos_user=comprobar_login();
+        $this->load->model('perfiles_model');
 
     }
 
@@ -18,7 +19,6 @@ class Perfiles extends CI_Controller {
 		$data['title']="Mantenimiento de Perfiles";
 		$data['template']="sistema";
 		$data['contenido']="perfiles/list_perfiles";
-		
 		$data['listado']=$this->curricula_model->obtener_perfiles();
 		
 
@@ -41,7 +41,7 @@ class Perfiles extends CI_Controller {
 		if($post)
 		{
 						
-			$guardar=$this->db->insert('cu_perfil',$post);
+			$guardar=$this->perfiles_model->insertar_perfil($post);
 
 			if($guardar)
 			{
@@ -74,8 +74,8 @@ class Perfiles extends CI_Controller {
 		{
 			$id=$post['id_perfil'];
 			unset($post['id_perfil']);
-						
-			$resultado = $this->db->update('cu_perfil',$post,array('id_perfil'=>$id));
+
+			$resultado = $this->perfiles_model->editar_perfil($post,$id);
 
 			if($resultado)
 			{
@@ -92,7 +92,7 @@ class Perfiles extends CI_Controller {
 		if ($id!=0)
 		{
 			//$resultado=$this->db->update('usu_usuario', array('estado'=>$this->input->post('activo')),array('id_usuario'=>$id));
-			$resultado=$this->db->delete('cu_perfil', array('id_perfil'=>$id));
+			$resultado = $this->perfiles_model->eliminar($id);
 		}
 		if($resultado)
 		{
@@ -160,8 +160,8 @@ class Perfiles extends CI_Controller {
 		$post=$this->input->post();
 		if($post)
 		{
-			$resultado=$this->db->insert($post['tabla'],array('nombre'=>$post['nombre'],'id_perfil'=>$post['id_perfil']));
-			
+			//$resultado=$this->db->insert($post['tabla'],array('nombre'=>$post['nombre'],'id_perfil'=>$post['id_perfil']));
+			$resultado = $this->perfiles_model->insertar_contenido($post);
 			if($resultado)
 			{
 				echo "ok";
@@ -195,7 +195,7 @@ class Perfiles extends CI_Controller {
 		$post=$this->input->post();
 		if($post)
 		{
-			$resultado=$this->db->update($post['tabla'],array('nombre'=>$post['nombre']),array('id'=>$post['id']));
+			$resultado = $this->perfiles_model->editar_y_actualizar_contenido($post);
 			
 			if($resultado)
 			{
@@ -212,8 +212,9 @@ class Perfiles extends CI_Controller {
 		$post=$this->input->post();
 		if($post)
 		{
-			$resultado=$this->db->delete($post['tabla'],array('id'=>$post['id']));
-			
+			//$resultado=$this->db->delete($post['tabla'],array('id'=>$post['id']));
+			$resultado = $this->perfiles_model->eliminar_contenido($post);
+
 			if($resultado)
 			{
 				echo "ok";
