@@ -1,7 +1,14 @@
 <div id="content_main" class="clearfix">
   <div id="main_panel_container" class="left">
-    <div id="dashboard" style="width:900px;">
-      <h2 class="ico_mug">Perfiles</h2>
+    <div id="dashboard" style="width:900px;padding-bottom:50px;">
+      <h2 class="ico_mug">
+      	<table style="width:100%;">
+      		<tr>
+      			<td>Perfiles</td>
+      			<td style="text-align:right;"><button onClick="nuevo_registro();">Nuevo</button></td>
+      		</tr>
+      	</table>
+      </h2>
       <div style="width:90%; margin:auto;">
       
         <?php
@@ -41,7 +48,7 @@ if($listado)
   <?php
 }
 ?>
-          <button onClick="nuevo_registro();">Nuevo</button>
+          
       </div>
     </div>
     <!-- end #dashboard --> 

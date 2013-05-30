@@ -1,4 +1,4 @@
-<h3 align="center">Editar Usuario</h3>
+<h3 align="center">Editar Cooperativa</h3>
 <hr>
 <?php
 echo form_open('',array(
