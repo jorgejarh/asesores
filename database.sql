@@ -204,7 +204,7 @@ CREATE TABLE `conf_menu` (
 
 LOCK TABLES `conf_menu` WRITE;
 /*!40000 ALTER TABLE `conf_menu` DISABLE KEYS */;
-INSERT INTO `conf_menu` VALUES (1,'Servicios',0,'#',1),(2,'Capacitaciones',1,'#',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'#',1),(7,'Asesoria 1',6,'#',1),(8,'Consultoria',1,'#',1),(9,'Consultoria 1',8,'#',1),(10,'Reportes',0,'#',1),(11,'Dashboard',10,'#',1),(12,'Pagos',10,'#',1),(13,'Configuracion',0,'#',1),(14,'Gestion Usuarios',13,'users',1),(15,'Internos',14,'#',1),(16,'Externos',14,'#',1),(17,'Cooperativas',28,'cooperativas',1),(18,'Gestion Sistema',13,'conf_sistema',1),(19,'Roles',14,'roles',1),(20,'Menu',18,'conf_menu',1),(21,'Sucursales',28,'sucursales',1),(26,'roles',14,'roles',0),(27,'Sub Roles',14,'subroles',1),(28,'Gestion Clientes',13,'#',1),(29,'Respaldo',18,'#',1);
+INSERT INTO `conf_menu` VALUES (1,'Servicios',0,'#',1),(2,'Capacitaciones',1,'#',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'#',1),(7,'Asesoria 1',6,'#',1),(8,'Consultoria',1,'#',1),(9,'Consultoria 1',8,'#',1),(10,'Reportes',0,'#',1),(11,'Dashboard',10,'#',1),(12,'Pagos',10,'#',1),(13,'Configuracion',0,'#',1),(14,'Gestion Usuarios',13,'users',1),(15,'Internos',14,'#',1),(16,'Externos',14,'#',1),(17,'Cooperativas',28,'cooperativas',1),(18,'Gestion Sistema',13,'conf_sistema',1),(19,'Roles',14,'roles',1),(20,'Menu',18,'conf_menu',1),(21,'Sucursales',28,'sucursales',1),(26,'roles',14,'roles',0),(27,'Permisos',14,'subroles',1),(28,'Gestion Clientes',13,'#',1),(29,'Respaldo',18,'#',1);
 /*!40000 ALTER TABLE `conf_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -980,7 +980,7 @@ CREATE TABLE `usu_usuario` (
 
 LOCK TABLES `usu_usuario` WRITE;
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT INTO `usu_usuario` VALUES (1,1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-05-24 21:48:26',0,1),(2,1,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano','43434','495849584','9re98r9488dvkfckf',NULL,0,1),(3,1,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1),(4,2,'usu3','123','Usuario 3','','',NULL,NULL,1,2);
+INSERT INTO `usu_usuario` VALUES (1,1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-05-30 03:03:55',0,1),(2,1,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano','43434','495849584','9re98r9488dvkfckf',NULL,0,1),(3,1,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1),(4,2,'usu3','123','Usuario 3','','',NULL,NULL,1,2);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -993,4 +993,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-05-29 20:41:53
+-- Dump completed on 2013-05-29 21:24:35

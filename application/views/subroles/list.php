@@ -4,7 +4,7 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td>Sub Roles</td>
+      			<td>Permisos</td>
       			<td style="text-align:right;"><button onClick="nuevo_registro();">Nuevo</button></td>
       		</tr>
       	</table>
