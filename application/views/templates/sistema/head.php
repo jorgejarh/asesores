@@ -85,14 +85,24 @@
 					{// si hay sub menus
 						?>
                         <li>
-							<a href="<?php echo site_url($valor['url']);?>" class="sf-with-ul" ><?php echo $valor['nombre_menu'];?></a>
+                        	<!--Esta condicion es para que no redirecciones al login en caso que no haya URL-->
+                        	<?php if($valor['url'] != "#"){ ?>
+								<a href="<?php echo site_url($valor['url']);?>" class="sf-with-ul" ><?php echo $valor['nombre_menu'];?></a>
+							<?php }else{ ?>
+								<a href="<?php echo $valor['url'];?>" class="sf-with-ul" ><?php echo $valor['nombre_menu'];?></a>
+							<?php } ?>
                             <ul>
                             <?php
                             foreach($submenu as $valor_submenu)
 							{// foreach
 								?>
 								<li>
-									<a href="<?php echo site_url($valor_submenu['url']);?>" class="sf-with-ul" ><?php echo $valor_submenu['nombre_menu'];?></a>
+									<!--Esta condicion es para que no redirecciones al login en caso que no haya URL-->
+									<?php if($valor['url'] != "#"){ ?>
+										<a href="<?php echo site_url($valor_submenu['url']);?>" class="sf-with-ul" ><?php echo $valor_submenu['nombre_menu'];?></a>
+									<?php }else{ ?>
+										<a href="<?php echo $valor_submenu['url'];?>" class="sf-with-ul" ><?php echo $valor_submenu['nombre_menu'];?></a>
+									<?php } ?>
                                     <?php
                                     $submenu2=$this->users_model->obtener_menus_por_id_padre($valor_submenu['id_menu'],$this->datos_user['id_subrol']);
 									if($submenu2)
@@ -104,7 +114,12 @@
 										{
 											?>
                                             <li>
-												<a href="<?php echo site_url($valor_submeu2['url']);?>" class="sf-with-ul" ><?php echo $valor_submeu2['nombre_menu'];?></a>
+												<!--Esta condicion es para que no redirecciones al login en caso que no haya URL-->
+												<?php if($valor['url'] != "#"){ ?>
+													<a href="<?php echo site_url($valor_submeu2['url']);?>" class="sf-with-ul" ><?php echo $valor_submeu2['nombre_menu'];?></a>
+												<?php }else{ ?>
+													<a href="<?php echo $valor_submeu2['url'];?>" class="sf-with-ul" ><?php echo $valor_submeu2['nombre_menu'];?></a>
+												<?php } ?>
                                             </li>
                                             <?php
 										}
