@@ -1,8 +1,15 @@
 <div id="content_main" class="clearfix">
-  <div id="main_panel_container" class="left">
-    <div id="dashboard">
-      <h2 class="ico_mug">Planes de Capacitación</h2>
-      <div class="clearfix">
+  <div id="main_panel_container" class="left" style="width:900px;">
+    <div id="dashboard" style="width:100%;padding-bottom:50px;">
+      <h2 class="ico_mug">
+      	<table style="width:100%;">
+      		<tr>
+      			<td>Planes de Capacitación</td>
+      			<td style="text-align:right;"><button onClick="nuevo_registro();">Nuevo</button></td>
+      		</tr>
+      	</table>
+      </h2>
+      <div class="" style="width:90%; margin:auto;">
       
         <?php
 if($listado)
@@ -47,17 +54,17 @@ if($listado)
   <?php
 }
 ?>
-          <button onClick="nuevo_registro();">Nuevo</button>
+         
       </div>
     </div>
     <!-- end #dashboard --> 
   </div>
-  <div id="sidebar" class="right">
+  <!--<div id="sidebar" class="right">
     <h2 class="ico_mug">Planes</h2>
     <ul id="menu">
       <?php $this->load->view('plan/lateral_derecho_plan');?>
     </ul>
-  </div>
+  </div>-->
   <!-- end #sidebar --> 
   
 </div>
