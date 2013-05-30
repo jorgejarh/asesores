@@ -86,8 +86,10 @@ $(document).ready(function(e){
 
 			  		if(data)
 			  		{
-			  			//alert('Registro guardado correctamente.');
-			  			$.fancybox(
+			  			if(confirm('Registro guardado correctamente.\ndesea subirle un logo?'))
+			  			{
+
+			  				$.fancybox(
 			  				{
 		  						content:data,
 		  						afterClose:function()
@@ -96,7 +98,12 @@ $(document).ready(function(e){
 		  						}
 		  					}
 			  				);
-			  			//location.reload();
+
+			  			}else{
+			  				location.reload();
+			  			}
+			  			
+			  			
 			  		}else{
 			  			alert(data);
 			  		}

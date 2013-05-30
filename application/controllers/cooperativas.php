@@ -103,10 +103,10 @@ class Cooperativas extends CI_Controller {
 	 
 	    $this->load->library('upload', $config);*/
 	    $id_cooperativa = $this->input->post('id_cooperativa');
-	    $path = exec('cd');
+	    //$path = exec('cd');
 	    $arc = $_FILES["file"]["name"];
 		$dirTemp = $_FILES["file"]["tmp_name"];
-		$dirAct = $path."/public/img/logos/";
+		$dirAct = "public/img/logos/";
 		echo $arc." - ".$dirTemp." - ".$dirAct;
 
 		$subido = $this->cooperativa_model->subeArc($dirTemp, $dirAct, $arc);
@@ -117,6 +117,7 @@ class Cooperativas extends CI_Controller {
 			echo "parent.document.getElementById('ok').innerHTML = 'El archivo ".$arc." fue subido';";
 			echo "parent.document.getElementById('ok').style.display = 'block';";
 			echo "parent.document.getElementById('cerrar').style.display = 'block';";
+			echo "parent.document.getElementById('subir').style.display = 'none';";
 			echo "</script>";
 		}else{
 			echo "<script>";
