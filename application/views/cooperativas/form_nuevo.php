@@ -11,10 +11,10 @@ echo form_open_multipart('cooperativas/do_upload',array(
 	<tr>
 		<td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
 	</tr>
-	<tr>
+	<!--<tr>
 		<td valign="middle">Logo: </td>
-		<td valign="middle"><input type="file" name="logotipo" size="25" /></td>
-	</tr>
+		<td valign="middle"><input type="file" name="file" is="file" size="25" /></td>
+	</tr>-->
 	<tr>
 		<td valign="middle">Nombre Cooperativa: </td>
 		<td valign="middle"><input type="text" id="cooperativa" name="cooperativa"  size="30" /></td>
@@ -84,10 +84,19 @@ $(document).ready(function(e){
 			  data:$(this).serialize(),
 			  success:function(data){
 
-			  		if(data=="ok")
+			  		if(data)
 			  		{
-			  			alert('Registro guardado correctamente.');
-			  			location.reload();
+			  			//alert('Registro guardado correctamente.');
+			  			$.fancybox(
+			  				{
+		  						content:data,
+		  						afterClose:function()
+		  						{
+		  							location.reload();
+		  						}
+		  					}
+			  				);
+			  			//location.reload();
 			  		}else{
 			  			alert(data);
 			  		}

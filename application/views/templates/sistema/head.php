@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $title;?></title>
+	<?php date_default_timezone_set('America/El_Salvador'); ?>
 	<meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="robots" content="index,follow" />

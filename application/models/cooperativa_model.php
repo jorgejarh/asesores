@@ -27,4 +27,15 @@ class Cooperativa_model extends CI_Model {
 			}
 			
     }
+
+    public function subeArc($dirTemp, $dirAct, $arc){
+        $subido = $dirAct."/".$arc;
+        move_uploaded_file($dirTemp, $subido);
+        return $subido;
+    }
+
+    public function insertArc($id_cooperativa=0, $arc=''){
+        $this->db->where('id_cooperativa', $id_cooperativa);
+        return $this->db->update('conf_cooperativa', array('logotipo' => "logos/".$arc));
+    }
 }

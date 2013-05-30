@@ -34,10 +34,12 @@ class Cooperativas extends CI_Controller {
 		if($post)
 		{
 			$guardar=$this->db->insert('conf_cooperativa',$post);
+			$id_cooperativa = $this->db->insert_id();
 
 			if($guardar)
 			{
-				echo "ok";
+				$data=array('id_cooperativa' => $id_cooperativa);
+				$this->load->view('cooperativas/sube_arc',$data);
 			}else{
 
 				echo "Error al guardar el registro.";
@@ -91,7 +93,7 @@ class Cooperativas extends CI_Controller {
 
 	function do_upload()
 	{
-	    $config['upload_path'] = 'public/img/logos/';
+	    /*$config['upload_path'] = 'public/img/logos/';
 	    $config['allowed_types'] = 'gif|jpg|png';
 	    $config['max_size'] = '100';
 	    $config['max_width'] = '1024';
@@ -99,6 +101,30 @@ class Cooperativas extends CI_Controller {
 	 
 	    // You can give video formats if you want to upload any video file.
 	 
-	    $this->load->library('upload', $config);
+	    $this->load->library('upload', $config);*/
+	    $id_cooperativa = $this->input->post('id_cooperativa');
+	    $path = exec('cd');
+	    $arc = $_FILES["file"]["name"];
+		$dirTemp = $_FILES["file"]["tmp_name"];
+		$dirAct = $path."/public/img/logos/";
+		echo $arc." - ".$dirTemp." - ".$dirAct;
+
+		$subido = $this->cooperativa_model->subeArc($dirTemp, $dirAct, $arc);
+		$insertArc = $this->cooperativa_model->insertArc($id_cooperativa, $arc);
+		if($subido && $insertArc){
+			echo "archivo subido";
+			echo "<script>";
+			echo "parent.document.getElementById('ok').innerHTML = 'El archivo ".$arc." fue subido';";
+			echo "parent.document.getElementById('ok').style.display = 'block';";
+			echo "parent.document.getElementById('cerrar').style.display = 'block';";
+			echo "</script>";
+		}else{
+			echo "<script>";
+			echo "parent.document.getElementById('error').innerHTML = 'Error: No se pudo subir el Archivo';";
+			echo "parent.document.getElementById('error').style.display = 'block';";
+			echo "parent.document.getElementById('cerrar').style.display = 'block';";
+			echo "</script>";
+		}
+
 	}
 }
