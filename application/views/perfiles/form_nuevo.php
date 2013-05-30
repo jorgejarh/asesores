@@ -36,7 +36,7 @@ echo form_open('',array(
 	</tr>
     <tr>
 		<td valign="middle">Fecha: </td>
-		<td valign="middle"><input type="text" id="fecha" name="fecha" /></td>
+		<td valign="middle"><input type="date" id="fecha" name="fecha" value="<?php echo date('Y-m-d'); ?>"/></td>
 	</tr>
 	<tr>
 		<td colspan="2"><hr></td>
