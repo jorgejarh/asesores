@@ -1,3 +1,6 @@
+
+  <button onClick="nuevo_contenido(<?php echo $tipo_contenido['id_tabla_contenido'].",".$id_perfil;?>);">Nuevo</button>
+
 <div align="center">
   <?php
     if($listado)
@@ -29,9 +32,6 @@
   <?php
 	}
 	?>
-</div>
-<div align="center">
-  <button onClick="nuevo_contenido(<?php echo $tipo_contenido['id_tabla_contenido'].",".$id_perfil;?>);">Nuevo</button>
 </div>
 <style>
 .tabla_con td

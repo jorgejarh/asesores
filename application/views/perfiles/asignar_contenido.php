@@ -139,9 +139,21 @@ $(document).ready(function(){
 
 .bot_atras a
 {
-	font-size:16px;
+	/*font-size:16px;
 	padding:5px;
-	border:#CCC 1px solid;
+	border:#CCC 1px solid;*/
+	text-transform:uppercase;
+	font-size:10px;
+	padding:3px;color:#fff;
+	background:#4780ae;
+	border-left:1px solid #084577;
+	border-top:1px solid #084577;
+	border-right:1px solid #7ab7e8;
+	border-bottom:1px solid #7ab7e8;
+	-moz-border-radius:3px;
+	margin:3px;
+	margin-top:5px;
+	text-decoration: none;
 }
 
 .accordion h3
