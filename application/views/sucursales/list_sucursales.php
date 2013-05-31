@@ -4,7 +4,7 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td>Listado de Usuarios</td>
+      			<td>Listado de Sucursales</td>
       			<td style="text-align:right;"><button onClick="nuevo_registro();">Nuevo</button></td>
       		</tr>
       	</table>

@@ -52,4 +52,23 @@ if ( ! function_exists('preparar_select'))
 	}
 }
 
+if ( ! function_exists('traer_errores_form'))
+{
+	function traer_errores_form()
+	{
+		//return validation_errors('<div class="fail" class="info_div"><span class="ico_error">','</span></div>');
+		return validation_errors('<div class="warning" class="info_div"><span class="ico_error">','</span></div>');
+	}
+}
+
+
+if ( ! function_exists('traer_exito_form'))
+{
+	function traer_exito_form($msj="")
+	{
+		//return validation_errors('<div class="fail" class="info_div"><span class="ico_error">','</span></div>');
+		return '<div class="success" class="info_div"><span class="ico_error">'.$msj.'</span></div>';
+	}
+}
+
 ?>

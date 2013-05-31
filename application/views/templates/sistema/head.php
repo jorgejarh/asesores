@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $title;?></title>
-	<?php date_default_timezone_set('America/El_Salvador'); ?>
+	
 	<meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="robots" content="index,follow" />
@@ -87,10 +87,10 @@
 						?>
                         <li>
                         	<!--Esta condicion es para que no redirecciones al login en caso que no haya URL-->
-                        	<?php if($valor['url'] != "#"){ ?>
+                        	<?php if($valor['url']){ ?>
 								<a href="<?php echo site_url($valor['url']);?>" class="sf-with-ul" ><?php echo $valor['nombre_menu'];?></a>
 							<?php }else{ ?>
-								<a href="<?php echo $valor['url'];?>" class="sf-with-ul" ><?php echo $valor['nombre_menu'];?></a>
+								<a href="#" class="sf-with-ul" ><?php echo $valor['nombre_menu'];?></a>
 							<?php } ?>
                             <ul>
                             <?php
@@ -99,10 +99,10 @@
 								?>
 								<li>
 									<!--Esta condicion es para que no redirecciones al login en caso que no haya URL-->
-									<?php if($valor['url'] != "#"){ ?>
+									<?php if($valor_submenu['url']){ ?>
 										<a href="<?php echo site_url($valor_submenu['url']);?>" class="sf-with-ul" ><?php echo $valor_submenu['nombre_menu'];?></a>
 									<?php }else{ ?>
-										<a href="<?php echo $valor_submenu['url'];?>" class="sf-with-ul" ><?php echo $valor_submenu['nombre_menu'];?></a>
+										<a href="#" class="sf-with-ul" ><?php echo $valor_submenu['nombre_menu'];?></a>
 									<?php } ?>
                                     <?php
                                     $submenu2=$this->users_model->obtener_menus_por_id_padre($valor_submenu['id_menu'],$this->datos_user['id_subrol']);
@@ -116,10 +116,10 @@
 											?>
                                             <li>
 												<!--Esta condicion es para que no redirecciones al login en caso que no haya URL-->
-												<?php if($valor['url'] != "#"){ ?>
+												<?php if($valor_submeu2['url']){ ?>
 													<a href="<?php echo site_url($valor_submeu2['url']);?>" class="sf-with-ul" ><?php echo $valor_submeu2['nombre_menu'];?></a>
 												<?php }else{ ?>
-													<a href="<?php echo $valor_submeu2['url'];?>" class="sf-with-ul" ><?php echo $valor_submeu2['nombre_menu'];?></a>
+													<a href="#" class="sf-with-ul" ><?php echo $valor_submeu2['nombre_menu'];?></a>
 												<?php } ?>
                                             </li>
                                             <?php

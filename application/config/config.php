@@ -16,6 +16,8 @@
 */
 $config['base_url']	= 'http://'.$_SERVER['HTTP_HOST'].'/asesores/';
 
+date_default_timezone_set('America/El_Salvador');
+
 /*
 |--------------------------------------------------------------------------
 | Index File

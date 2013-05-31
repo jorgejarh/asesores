@@ -4,7 +4,7 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td>Permisos</td>
+      			<td>Usuarios Internos</td>
       			<td style="text-align:right;"><button onClick="nuevo_registro();">Nuevo</button></td>
       		</tr>
       	</table>
@@ -18,12 +18,12 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Tipo Usuario</th>
-      	<th>Rol</th>
-        <th>Sub Rol</th>
-        <th>Editar</th>
+      	<th>Sub Rol</th>
+        <th>Usuario</th>
+        <th>Nombre Completo</th>
         
-        <th>Eliminar</th>
+        <th>Editar</th>
+        <th>Estado</th>
       </tr>
     </thead>
     <tbody>
@@ -32,11 +32,23 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombre_tipo_usuario'];?></td>
-      	<td><?php echo $valor['rol'];?></td>
-        <td><?php echo $valor['subrol'];?></td>
-        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_subrol']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_subrol']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
+      	<td><?php echo $valor['nombre_subrol'];?></td>
+        <td><?php echo $valor['usuario'];?></td>
+        <td><?php echo $valor['nombre_completo'];?></td>
+        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_usuario']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <td align="center" class="datatable_icono">
+          <?php
+						if($valor['estado']==1)
+						{
+							?>
+          <a onClick="eliminar_registro(<?php echo $valor['id_usuario']; ?>,0);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a>
+          <?php
+						} else{
+							?>
+          <a onClick="eliminar_registro(<?php echo $valor['id_usuario']; ?>,1);" title="Clic para Activar"><?php echo img('public/img/accept.png');?></a>
+          <?php
+						}
+					;?></td>
       </tr>
       <?php
 		}
@@ -65,7 +77,7 @@ if($listado)
 function nuevo_registro()
 {
 	$.ajax({
-		  url: "<?php echo site_url('subroles/nuevo');?>",
+		  url: "<?php echo site_url($this->nombre_controlador.'/nuevo');?>",
 		  type:"POST",
 		  success:function(data){
 
@@ -78,7 +90,7 @@ function nuevo_registro()
 function editar_registro(id)
 {
 	$.ajax({
-		  url: "<?php echo site_url('subroles/editar');?>/"+id,
+		  url: "<?php echo site_url($this->nombre_controlador.'/editar');?>/"+id,
 		  type:"POST",
 		  success:function(data){
 
@@ -88,25 +100,26 @@ function editar_registro(id)
 		});
 }
 
-function eliminar_registro(id)
+function eliminar_registro(id,estado)
 {
-	if(!confirm('¿Seguro de desea el registro?'))
+	if(!confirm('¿Seguro de desea cambiar el estado del usuario?'))
 	{
 		return false;
 	}
 
 	$.ajax({
-		  url: "<?php echo site_url('subroles/eliminar');?>/"+id,
+		  url: "<?php echo site_url($this->nombre_controlador.'/eliminar');?>/"+id,
 		  type:"POST",
+		  data:{activo:estado},
 		  success:function(data){
-/*
+
 		  	$.fancybox({
 		  		content:data,
 		  		afterClose:function()
-		  		{*/
+		  		{
 		  			location.reload();
-		  		/*}
-		  	});*/
+		  		}
+		  	});
 		  }
 		  
 		});

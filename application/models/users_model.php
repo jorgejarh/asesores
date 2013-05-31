@@ -94,9 +94,9 @@ function obtener_datos_usuario($id)
 		{
         	return $this->db->get_where('usu_subrol',array('id_subrol'=>$id))->row_array();
 		}else{
-			$this->db->select("a.rol, b.*");
-			$this->db->where("a.id_rol = b.id_rol");
-			return $this->db->get_where('usu_rol a, usu_subrol b', array('b.estado'=>1))->result_array();
+			$this->db->select("a.rol, b.*, c.nombre_tipo_usuario");
+			$this->db->where("a.id_rol = b.id_rol and a.id_tipo_usuario = c.id_tipo_usuario");
+			return $this->db->get_where('usu_rol a, usu_subrol b, usu_tipo_usuario c', array('b.estado'=>1))->result_array();
 			}
     }
 	

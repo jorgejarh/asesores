@@ -41,7 +41,7 @@
 									{
 										?>
                                         <tr class="gradeA">
-                                            <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |- <?php echo $valor2['nombre_menu'];?></td>
+                                            <td>&nbsp;  &nbsp;  |- - <?php echo $valor2['nombre_menu'];?></td>
                                             <td><?php echo $valor2['url'];?></td> 
                                             <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor2['id_menu']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
                                             <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor2['id_menu']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
@@ -53,7 +53,7 @@
 											{
 												?>
 												<tr class="gradeA">
-													<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  |- <?php echo $valor3['nombre_menu'];?></td>
+													<td> &nbsp;  &nbsp;  &nbsp;  &nbsp; |- - - <?php echo $valor3['nombre_menu'];?></td>
 													<td><?php echo $valor3['url'];?></td> 
 													<td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor3['id_menu']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
 													<td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor3['id_menu']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
