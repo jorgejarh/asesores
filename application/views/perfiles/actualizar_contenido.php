@@ -1,42 +1,58 @@
 
   <button onClick="nuevo_contenido(<?php echo $tipo_contenido['id_tabla_contenido'].",".$id_perfil;?>);">Nuevo</button>
 
-<div align="center">
+<div align="center" id="contDiv">
   <?php
     if($listado)
 	{
 		$con=0;
 		?>
-  <table align="center"  class="tabla_con">
+  <table id="example<?php echo $tipo_contenido['nombre_tabla'];  ?>" class="display" align="center">
+    <thead>
     <tr>
-      <td><b>No. </b></td>
-      <td><b>Descripcion</b></td>
-      <td><b>Editar</b></td>
-      <td><b>Eliminar </b></td>
+      <th><b>No. </b></th>
+      <th><b>Descripcion</b></th>
+      <th><b>Editar</b></th>
+      <th><b>Eliminar </b></th>
     </tr>
+    </thead>
+    <tbody>
     <?php
 		foreach($listado as $valor)
 		{
 			$con++;
 			?>
-    <tr>
+    <tr class="gradeA">
       <td><?php echo $con;?></td>
       <td align="left" style="text-align:left;"><?php echo $valor['nombre'];?></td>
-      <td><a style="cursor:pointer;" onClick="editar(<?php echo $tipo_contenido['id_tabla_contenido'];?>,<?php echo $id_perfil;?>,<?php echo $valor['id'];?>);"><?php echo img('public/img/edit.png');?></a></td>
-      <td><a style="cursor:pointer;"  onClick="del(<?php echo $tipo_contenido['id_tabla_contenido'];?>,<?php echo $id_perfil;?>,<?php echo $valor['id'];?>,'<?php echo $tipo_contenido['nombre_tabla'];?>');"><?php echo img('public/img/cancel.png');?></a></td>
+      <td class="datatable_icono"><a style="cursor:pointer;" onClick="editar(<?php echo $tipo_contenido['id_tabla_contenido'];?>,<?php echo $id_perfil;?>,<?php echo $valor['id'];?>);"><?php echo img('public/img/edit.png');?></a></td>
+      <td class="datatable_icono"><a style="cursor:pointer;"  onClick="del(<?php echo $tipo_contenido['id_tabla_contenido'];?>,<?php echo $id_perfil;?>,<?php echo $valor['id'];?>,'<?php echo $tipo_contenido['nombre_tabla'];?>');"><?php echo img('public/img/cancel.png');?></a></td>
     </tr>
     <?php
 		}
 		?>
+  </tbody>
   </table>
   <?php
 	}
 	?>
 </div>
 <style>
+#contDiv{
+  padding-bottom: 40px;
+}
 .tabla_con td
 {
 	padding:5px;
 	text-align:center;
 }
 </style>
+<script>
+  $(document).ready(function() {
+     $("#example<?php echo $tipo_contenido['nombre_tabla']; ?>").dataTable( {
+          <?php echo config_lenguaje_tabla(); ?>
+      } );
+  });
+</script>
+
+

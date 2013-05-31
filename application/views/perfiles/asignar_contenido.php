@@ -24,6 +24,8 @@
                     $(document).ready(function(){
                         
                         actualizar(<?php echo $valor['id_tabla_contenido'];?>,<?php echo $perfil['id_perfil'];?>);
+
+
                         
                         });
                     
@@ -32,6 +34,7 @@
 				}
 			}
 			?>
+
              
       </div><!--contenido-->
       
