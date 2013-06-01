@@ -7967,7 +7967,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"aLengthMenu": [ 5, 10, 25, 50, 100 ],
+		"aLengthMenu": [ 10, 25, 50, 100 ],
 	
 	
 		/**
@@ -11638,7 +11638,7 @@
 		 * Purpose:  Change the number of pages which can be seen
 		 * Scope:    jQuery.fn.dataTableExt.oPagination
 		 */
-		"iFullNumbersShowPages": 5,
+		"iFullNumbersShowPages": 10,
 		
 		/*
 		 * Variable: full_numbers

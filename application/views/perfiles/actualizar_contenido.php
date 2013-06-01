@@ -50,7 +50,9 @@
 <script>
   $(document).ready(function() {
      $("#example<?php echo $tipo_contenido['nombre_tabla']; ?>").dataTable( {
-          <?php echo config_lenguaje_tabla(); ?>
+          <?php echo config_lenguaje_tabla(); ?>,
+          "aLengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"  ]],
+          
       } );
   });
 </script>
