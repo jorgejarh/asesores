@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Usuarios_internos extends CI_Controller {
+class Usuarios_externos extends CI_Controller {
 
 	public $datos_user=array();
 
-	public $carpeta_view="usuarios_internos";
+	public $carpeta_view="usuarios_externos";
 
-	public $modelo_usar="usuarios_internos_model";
+	public $modelo_usar="usuarios_externos_model";
 
-	public $nombre_controlador="Usuarios_internos";
+	public $nombre_controlador="Usuarios_externos";
 
 	function __construct()
     {
@@ -22,7 +22,7 @@ class Usuarios_internos extends CI_Controller {
 	public function index()
 	{
 		$model=$this->modelo_usar;
-		$data['title']="Gestion de Usuarios Internos";
+		$data['title']="Gestion de Usuarios Externos";
 		$data['template']="sistema";
 		$data['contenido']=$this->carpeta_view."/lista";
 		$data['listado']=$this->$model->obtener_lista();
@@ -37,9 +37,30 @@ class Usuarios_internos extends CI_Controller {
 		$data=array();
 		$data['subroles']=preparar_select($this->$model->obtener_subroles(),'id_subrol','subrol');
 		
+		$data['cooperativas']=preparar_select($this->$model->obtener_cooperativas(),'id_cooperativa','cooperativa');
+
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	
+	function select_sucursal($id=0)
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		if($post)
+		{
+			$json=array();
+
+			$sucursales=preparar_select($this->$model->obtener_sucursales($post['id']),'id_sucursal','sucursal');
+			$sucursales[0]="Todas";
+			ksort($sucursales);
+			$json['html']=form_dropdown('id_sucursal',$sucursales,$id);
+
+			echo json_encode($json);
+		}
+			
+	}
+
+
 	public function insertar()
 	{
 		$model=$this->modelo_usar;
@@ -86,6 +107,8 @@ class Usuarios_internos extends CI_Controller {
 
 		if($data['dato'])
 		{
+			$data['cooperativas']=preparar_select($this->$model->obtener_cooperativas(),'id_cooperativa','cooperativa');
+			$data['dato_extra']=$this->$model->obtener_coo_suc($id);
 			$this->load->view($this->carpeta_view.'/form_editar',$data);
 		}else{
 			redirect($this->nombre_controlador);

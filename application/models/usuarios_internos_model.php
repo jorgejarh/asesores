@@ -24,12 +24,34 @@ class Usuarios_internos_model extends CI_Model {
 		return $this->db->get_where('usu_subrol a, usu_tipo_usuario b, usu_rol c',array('a.estado'=>1))->result_array();
 	}
 
-	function insertar($post)
+	function insertar($post,$id=0)
 	{
-		unset($post['clave2']);
-		$post['clave']=md5($post['clave']);
-		return $this->db->insert('usu_usuario',$post);
+        unset($post['clave2']);
+
+        if($post['clave']!="")
+        {
+            $post['clave']=md5($post['clave']);
+        }
+
+        if($id==0)
+        {
+            return $this->db->insert('usu_usuario',$post);
+        }else{
+            unset($post['user']);
+            return $this->db->update('usu_usuario',$post,array('id_usuario'=>$id));
+        }
+		
 	}
+
+    function obtener_registro($id=0)
+    {
+        return $this->db->get_where('usu_usuario',array('id_usuario'=>$id))->row_array();
+    }
+
+    function eliminar($id,$post)
+    {
+        return $this->db->update('usu_usuario',$post,array('id_usuario'=>$id));
+    }
 
 }
 ?>
