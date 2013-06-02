@@ -49,11 +49,11 @@ CREATE TABLE `conf_menu` (
   `url` varchar(150) default '#',
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 /*Data for the table `conf_menu` */
 
-insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'',1),(2,'Capacitaciones',1,'',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'',1),(7,'Asesoria 1',6,'',1),(8,'Consultoria',1,'',1),(9,'Consultoria 1',8,'',1),(10,'Reportes',0,'',1),(11,'Dashboard',10,'',1),(12,'Pagos',10,'',1),(13,'Configuracion',0,'',1),(14,'Gestion Usuarios',13,'',1),(15,'Internos',14,'usuarios_internos',1),(16,'Externos',14,'usuarios_externos',1),(17,'Cooperativas',28,'cooperativas',1),(18,'Gestion Sistema',13,'',1),(19,'Roles',14,'roles',1),(20,'Menu',18,'conf_menu',1),(21,'Sucursales',28,'sucursales',1),(26,'roles',14,'roles',0),(27,'Permisos',14,'subroles',1),(28,'Gestion Clientes',13,'',1),(29,'Respaldo',18,'conf_sistema',1);
+insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'',1),(2,'Capacitaciones',1,'',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'',1),(7,'Asesoria 1',6,'',1),(8,'Consultoria',1,'',1),(9,'Consultoria 1',8,'',1),(10,'Reportes',0,'',1),(11,'Dashboard',10,'',1),(12,'Pagos',10,'',1),(13,'Configuracion',0,'',1),(14,'Gestion Usuarios',13,'',1),(15,'Internos',14,'usuarios_internos',1),(16,'Externos',14,'usuarios_externos',1),(17,'Cooperativas',28,'cooperativas',1),(18,'Gestion Sistema',13,'',1),(19,'Roles',14,'roles',1),(20,'Menu',18,'conf_menu',1),(21,'Sucursales',28,'sucursales',1),(26,'roles',14,'roles',0),(27,'Permisos',14,'subroles',1),(28,'Gestion Clientes',13,'',1),(29,'Respaldo',18,'conf_sistema',1),(30,'Mantenimientos',0,'#',1),(31,'Modalidades',30,'mante_modalidades',1),(32,'Estados de Planes',30,'mante_estados_plan',1),(33,'Gestion de facilitadores',30,'mante_facilitadores',1),(34,'Gestion de Lugares',30,'mante_lugares',1),(35,'Gestion de Costos',30,'mante_costos',1),(36,'Gestion de Sub Costos',30,'mante_subcostos',1);
 
 /*Table structure for table `conf_sucursal` */
 
@@ -258,6 +258,74 @@ CREATE TABLE `cu_tablas_contenido` (
 
 insert  into `cu_tablas_contenido`(`id_tabla_contenido`,`nombre_tabla`,`id_tabla`,`nombre_contenido`) values (1,'cu_perfil_contenido_aspectos','id_aspecto','Aspectos Generales'),(2,'cu_perfil_contenido_objetivos','id_objetivo','Objetivos'),(3,'cu_perfil_contenido_unidades_competencia',NULL,'Unidades de competencia'),(4,'cu_perfil_contenido_niveles_logro',NULL,'Niveles de logro'),(5,'cu_perfil_contenido_unidades_contenido',NULL,'Unidades de contenido'),(6,'cu_perfil_contenido_sugerencias_metodologicas',NULL,'Sugerencias metodologicas'),(7,'cu_perfil_contenido_recursos',NULL,'Recursos'),(8,'cu_perfil_contenido_b_material_apoyo',NULL,'Bibliografía y material de apoyo');
 
+/*Table structure for table `mante_estados_planes` */
+
+DROP TABLE IF EXISTS `mante_estados_planes`;
+
+CREATE TABLE `mante_estados_planes` (
+  `id_estado_plan` int(11) NOT NULL auto_increment,
+  `nombre_estado` varchar(100) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_estado_plan`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `mante_estados_planes` */
+
+insert  into `mante_estados_planes`(`id_estado_plan`,`nombre_estado`,`activo`) values (1,'estado 11',1);
+
+/*Table structure for table `mante_facilitadores` */
+
+DROP TABLE IF EXISTS `mante_facilitadores`;
+
+CREATE TABLE `mante_facilitadores` (
+  `id_facilitador` int(11) NOT NULL auto_increment,
+  `nombres` varchar(50) default NULL,
+  `apellidos` varchar(50) default NULL,
+  `telefono` varchar(20) default NULL,
+  `t_oficina` varchar(20) default NULL,
+  `celular` varchar(20) default NULL,
+  `correo` varchar(15) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_facilitador`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*Data for the table `mante_facilitadores` */
+
+/*Table structure for table `mante_lugares` */
+
+DROP TABLE IF EXISTS `mante_lugares`;
+
+CREATE TABLE `mante_lugares` (
+  `id_lugar` int(11) NOT NULL auto_increment,
+  `nombre_lugar` varchar(100) default NULL,
+  `telefono` varchar(50) default NULL,
+  `ubicacion` varchar(100) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_lugar`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `mante_lugares` */
+
+insert  into `mante_lugares`(`id_lugar`,`nombre_lugar`,`telefono`,`ubicacion`,`activo`) values (1,'Lugar 1','123456','111111111122',0);
+
+/*Table structure for table `mante_modalidades` */
+
+DROP TABLE IF EXISTS `mante_modalidades`;
+
+CREATE TABLE `mante_modalidades` (
+  `id_modalidad` int(11) NOT NULL auto_increment,
+  `nombre_modalidad` varchar(100) default NULL,
+  `objetivo` varchar(300) default NULL,
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_modalidad`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `mante_modalidades` */
+
+insert  into `mante_modalidades`(`id_modalidad`,`nombre_modalidad`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,'Modalidad 11','Objetivos Objetivos 1','2013-06-01 20:40:16',1,0),(2,'Modalidad 1','Objetivo 2','2013-06-01 20:54:52',1,1);
+
 /*Table structure for table `usu_coop_suc` */
 
 DROP TABLE IF EXISTS `usu_coop_suc`;
@@ -287,11 +355,11 @@ CREATE TABLE `usu_permisos_menu` (
   KEY `FK_usu_permisos_menu2` (`id_subrol`),
   CONSTRAINT `FK_usu_permisos_menu` FOREIGN KEY (`id_menu`) REFERENCES `conf_menu` (`id_menu`),
   CONSTRAINT `FK_usu_permisos_menu2` FOREIGN KEY (`id_subrol`) REFERENCES `usu_subrol` (`id_subrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usu_permisos_menu` */
 
-insert  into `usu_permisos_menu`(`id_permiso`,`id_subrol`,`id_menu`) values (25,1,1),(26,1,2),(27,1,3),(28,1,4),(29,1,5),(30,1,6),(31,1,7),(32,1,8),(33,1,9),(34,1,10),(35,1,11),(36,1,12),(37,1,13),(38,1,14),(39,1,15),(40,1,16),(41,1,19),(42,1,27),(43,1,18),(44,1,20),(45,1,29),(46,1,28),(47,1,17),(48,1,21);
+insert  into `usu_permisos_menu`(`id_permiso`,`id_subrol`,`id_menu`) values (49,1,1),(50,1,2),(51,1,3),(52,1,4),(53,1,5),(54,1,6),(55,1,7),(56,1,8),(57,1,9),(58,1,10),(59,1,11),(60,1,12),(61,1,13),(62,1,14),(63,1,15),(64,1,16),(65,1,19),(66,1,27),(67,1,18),(68,1,20),(69,1,29),(70,1,28),(71,1,17),(72,1,21),(73,1,30),(74,1,31),(75,1,32),(76,1,33),(77,1,34),(78,1,35),(79,1,36);
 
 /*Table structure for table `usu_rol` */
 
@@ -366,7 +434,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-05-31 20:51:18',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,1,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-06-01 22:15:06',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
