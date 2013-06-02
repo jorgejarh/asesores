@@ -33,20 +33,19 @@ class Cooperativas extends CI_Controller {
 		$post=$this->input->post();
 		if($post)
 		{
-			$guardar=$this->db->insert('conf_cooperativa',$post);
+			$guardar = $this->cooperativa_model->insertar_cooperativa($post);
 			$id_cooperativa = $this->db->insert_id();
-
+			$obtener_cooperativa = $this->cooperativa_model->obtener_cooperativa($id_cooperativa);
 			if($guardar)
 			{
-				$data=array('id_cooperativa' => $id_cooperativa);
+				$data['cooperativa'] = $obtener_cooperativa['cooperativa'];
+				$data['id_cooperativa'] = $id_cooperativa;
 				$this->load->view('cooperativas/sube_arc',$data);
 			}else{
 
 				echo "Error al guardar el registro.";
 			}
-
 		}
-
 	}
 	
 	public function editar($id=0)
@@ -62,10 +61,8 @@ class Cooperativas extends CI_Controller {
 		if($post)
 		{
 			$id=$post['id_cooperativa'];
-			unset($post['id_cooperativa']);
-						
-			$resultado = $this->db->update('conf_cooperativa',$post,array('id_cooperativa'=>$id));
-
+			unset($post['id_cooperativa']);		
+			$resultado = $this->cooperativa_model->editar_cooperativa($post, $id);
 			if($resultado)
 			{
 				echo "ok";
@@ -80,48 +77,69 @@ class Cooperativas extends CI_Controller {
 	{
 		if ($id!=0)
 		{
-			//$resultado=$this->db->update('usu_usuario', array('estado'=>$this->input->post('activo')),array('id_usuario'=>$id));
-			$resultado=$this->db->delete('conf_cooperativa', array('id_cooperativa'=>$id));
+			$obtener_cooperativa = $this->cooperativa_model->obtener_cooperativa($id);
+			$resultado = $this->cooperativa_model->eliminar($id);
 		}
 		if($resultado)
 		{
-			echo "<h1>Registro Eliminado Correctamente</h1>";
+			$eliminarArc = $this->cooperativa_model->eliminarArc('public/img/'.$obtener_cooperativa['logotipo']);
+			if($eliminarArc){
+				echo "Cooperativa Eliminada";
+			}else{
+				echo "Cooperativa Eliminada. El logo no pudo ser eliminado";
+			}
 		}else{
-			echo "<h1>Error al eliminar el registro</h1>";
+			echo "Error! No se pudo Eliminar la Cooperativa";
 		}
 	}
 
 	function do_upload()
 	{
+		$id_cooperativa = $this->input->post('id_cooperativa');
+
 	    /*$config['upload_path'] = 'public/img/logos/';
-	    $config['allowed_types'] = 'gif|jpg|png';
+	    $config['allowed_types'] = 'gif|jpg|png|bmp|GIF|JPG|PNG|BMP';
 	    $config['max_size'] = '100';
 	    $config['max_width'] = '1024';
 	    $config['max_height'] = '768';
 	 
-	    // You can give video formats if you want to upload any video file.
-	 
-	    $this->load->library('upload', $config);*/
-	    $id_cooperativa = $this->input->post('id_cooperativa');
-	    //$path = exec('cd');
+	    $this->load->library('upload', $config);
+	    $subido = $this->upload->do_upload();*/
+	    
+	    $max = 650000;
 	    $arc = $_FILES["file"]["name"];
+	    $size = $_FILES["file"]["size"];
 		$dirTemp = $_FILES["file"]["tmp_name"];
 		$dirAct = "public/img/logos/";
-		echo $arc." - ".$dirTemp." - ".$dirAct;
-
-		$subido = $this->cooperativa_model->subeArc($dirTemp, $dirAct, $arc);
-		$insertArc = $this->cooperativa_model->insertArc($id_cooperativa, $arc);
-		if($subido && $insertArc){
-			echo "archivo subido";
-			echo "<script>";
-			echo "parent.document.getElementById('ok').innerHTML = 'El archivo ".$arc." fue subido';";
-			echo "parent.document.getElementById('ok').style.display = 'block';";
-			echo "parent.document.getElementById('cerrar').style.display = 'block';";
-			echo "parent.document.getElementById('subir').style.display = 'none';";
-			echo "</script>";
+		$subido = false;
+		$existeArc = $this->cooperativa_model->existeArc($dirAct.$arc);
+		
+		if(($size <= $max) && (!$existeArc)){
+			$subido = $this->cooperativa_model->subeArc($dirTemp, $dirAct, $arc);
+		}
+		
+		if($subido){
+			$insertArc = $this->cooperativa_model->insertArc($id_cooperativa, $arc);
+			if($insertArc){
+				echo "<script>";
+				echo "parent.document.getElementById('ok').innerHTML = 'El archivo ".$arc." fue subido';";
+				echo "parent.document.getElementById('ok').style.display = 'block';";
+				echo "parent.document.getElementById('cerrar').style.display = 'block';";
+				echo "parent.document.getElementById('error').style.display = 'none';";
+				echo "parent.document.getElementById('subir').style.display = 'none';";
+				echo "</script>";
+			}else{
+				echo "algo pasa";
+				echo "<script>";
+				echo "parent.document.getElementById('error').innerHTML = 'Error: El archivo no pudo ser Guardado';";
+				echo "parent.document.getElementById('error').style.display = 'block';";
+				echo "parent.document.getElementById('cerrar').style.display = 'block';";
+				echo "</script>";
+			}
+			
 		}else{
 			echo "<script>";
-			echo "parent.document.getElementById('error').innerHTML = 'Error: No se pudo subir el Archivo';";
+			echo "parent.document.getElementById('error').innerHTML = 'Error: El archivo no pudo ser Subido Puede ser que el archivo sobrepase el maximo permitido o que ya exista un Archivo con ese Nombre';";
 			echo "parent.document.getElementById('error').style.display = 'block';";
 			echo "parent.document.getElementById('cerrar').style.display = 'block';";
 			echo "</script>";
