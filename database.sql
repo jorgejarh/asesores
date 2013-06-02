@@ -49,11 +49,11 @@ CREATE TABLE `conf_menu` (
   `url` varchar(150) default '#',
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 /*Data for the table `conf_menu` */
 
-insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'',1),(2,'Capacitaciones',1,'',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'',1),(7,'Asesoria 1',6,'',1),(8,'Consultoria',1,'',1),(9,'Consultoria 1',8,'',1),(10,'Reportes',0,'',1),(11,'Dashboard',10,'',1),(12,'Pagos',10,'',1),(13,'Configuracion',0,'',1),(14,'Gestion Usuarios',13,'',1),(15,'Internos',14,'usuarios_internos',1),(16,'Externos',14,'usuarios_externos',1),(17,'Cooperativas',28,'cooperativas',1),(18,'Gestion Sistema',13,'',1),(19,'Roles',14,'roles',1),(20,'Menu',18,'conf_menu',1),(21,'Sucursales',28,'sucursales',1),(26,'roles',14,'roles',0),(27,'Permisos',14,'subroles',1),(28,'Gestion Clientes',13,'',1),(29,'Respaldo',18,'conf_sistema',1),(30,'Mantenimientos',0,'#',1),(31,'Modalidades',30,'mante_modalidades',1),(32,'Estados de Planes',30,'mante_estados_plan',1),(33,'Gestion de facilitadores',30,'mante_facilitadores',1),(34,'Gestion de Lugares',30,'mante_lugares',1),(35,'Gestion de Costos',30,'mante_costos',1),(36,'Gestion de Sub Costos',30,'mante_subcostos',1);
+insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'',1),(2,'Capacitaciones',1,'',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'',1),(7,'Asesoria 1',6,'',1),(8,'Consultoria',1,'',1),(9,'Consultoria 1',8,'',1),(10,'Reportes',0,'',1),(11,'Dashboard',10,'',1),(12,'Pagos',10,'',1),(13,'Configuracion',0,'',1),(14,'Gestion Usuarios',13,'',1),(15,'Internos',14,'usuarios_internos',1),(16,'Externos',14,'usuarios_externos',1),(17,'Cooperativas',28,'cooperativas',1),(18,'Gestion Sistema',13,'',1),(19,'Roles',14,'roles',1),(20,'Menu',18,'conf_menu',1),(21,'Sucursales',28,'sucursales',1),(26,'roles',14,'roles',0),(27,'Permisos',14,'subroles',1),(28,'Gestion Clientes',13,'',1),(29,'Respaldo',18,'conf_sistema',1),(30,'Mantenimientos',0,'#',1),(31,'Modalidades',30,'mante_modalidades',1),(32,'Estados de Planes',30,'mante_estados_plan',1),(33,'Gestion de facilitadores',30,'mante_facilitadores',1),(34,'Gestion de Lugares',30,'mante_lugares',1),(35,'Costos',37,'mante_costos',1),(36,'Sub Costos',37,'mante_subcostos',1),(37,'Gestion de Costos',30,'#',1);
 
 /*Table structure for table `conf_sucursal` */
 
@@ -258,6 +258,21 @@ CREATE TABLE `cu_tablas_contenido` (
 
 insert  into `cu_tablas_contenido`(`id_tabla_contenido`,`nombre_tabla`,`id_tabla`,`nombre_contenido`) values (1,'cu_perfil_contenido_aspectos','id_aspecto','Aspectos Generales'),(2,'cu_perfil_contenido_objetivos','id_objetivo','Objetivos'),(3,'cu_perfil_contenido_unidades_competencia',NULL,'Unidades de competencia'),(4,'cu_perfil_contenido_niveles_logro',NULL,'Niveles de logro'),(5,'cu_perfil_contenido_unidades_contenido',NULL,'Unidades de contenido'),(6,'cu_perfil_contenido_sugerencias_metodologicas',NULL,'Sugerencias metodologicas'),(7,'cu_perfil_contenido_recursos',NULL,'Recursos'),(8,'cu_perfil_contenido_b_material_apoyo',NULL,'Bibliografía y material de apoyo');
 
+/*Table structure for table `mante_costos` */
+
+DROP TABLE IF EXISTS `mante_costos`;
+
+CREATE TABLE `mante_costos` (
+  `id_costo` int(11) NOT NULL auto_increment,
+  `nombre_costo` varchar(100) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_costo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `mante_costos` */
+
+insert  into `mante_costos`(`id_costo`,`nombre_costo`,`activo`) values (1,'Costo 12',0),(2,'costo 3',1),(3,'costos 2',1);
+
 /*Table structure for table `mante_estados_planes` */
 
 DROP TABLE IF EXISTS `mante_estados_planes`;
@@ -267,7 +282,7 @@ CREATE TABLE `mante_estados_planes` (
   `nombre_estado` varchar(100) default NULL,
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_estado_plan`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_estados_planes` */
 
@@ -287,7 +302,7 @@ CREATE TABLE `mante_facilitadores` (
   `correo` varchar(15) default NULL,
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_facilitador`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_facilitadores` */
 
@@ -302,7 +317,7 @@ CREATE TABLE `mante_lugares` (
   `ubicacion` varchar(100) default NULL,
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_lugar`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_lugares` */
 
@@ -320,11 +335,29 @@ CREATE TABLE `mante_modalidades` (
   `id_usuario` int(11) default NULL,
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_modalidad`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_modalidades` */
 
 insert  into `mante_modalidades`(`id_modalidad`,`nombre_modalidad`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,'Modalidad 11','Objetivos Objetivos 1','2013-06-01 20:40:16',1,0),(2,'Modalidad 1','Objetivo 2','2013-06-01 20:54:52',1,1);
+
+/*Table structure for table `mante_subcostos` */
+
+DROP TABLE IF EXISTS `mante_subcostos`;
+
+CREATE TABLE `mante_subcostos` (
+  `id_subcosto` int(11) NOT NULL auto_increment,
+  `id_costo` int(11) default NULL,
+  `nombre_subcosto` varchar(100) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_subcosto`),
+  KEY `FK_mante_subcostos` (`id_costo`),
+  CONSTRAINT `FK_mante_subcostos` FOREIGN KEY (`id_costo`) REFERENCES `mante_costos` (`id_costo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `mante_subcostos` */
+
+insert  into `mante_subcostos`(`id_subcosto`,`id_costo`,`nombre_subcosto`,`activo`) values (1,3,'sub costo 1',1);
 
 /*Table structure for table `usu_coop_suc` */
 
@@ -355,11 +388,11 @@ CREATE TABLE `usu_permisos_menu` (
   KEY `FK_usu_permisos_menu2` (`id_subrol`),
   CONSTRAINT `FK_usu_permisos_menu` FOREIGN KEY (`id_menu`) REFERENCES `conf_menu` (`id_menu`),
   CONSTRAINT `FK_usu_permisos_menu2` FOREIGN KEY (`id_subrol`) REFERENCES `usu_subrol` (`id_subrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usu_permisos_menu` */
 
-insert  into `usu_permisos_menu`(`id_permiso`,`id_subrol`,`id_menu`) values (49,1,1),(50,1,2),(51,1,3),(52,1,4),(53,1,5),(54,1,6),(55,1,7),(56,1,8),(57,1,9),(58,1,10),(59,1,11),(60,1,12),(61,1,13),(62,1,14),(63,1,15),(64,1,16),(65,1,19),(66,1,27),(67,1,18),(68,1,20),(69,1,29),(70,1,28),(71,1,17),(72,1,21),(73,1,30),(74,1,31),(75,1,32),(76,1,33),(77,1,34),(78,1,35),(79,1,36);
+insert  into `usu_permisos_menu`(`id_permiso`,`id_subrol`,`id_menu`) values (80,1,1),(81,1,2),(82,1,3),(83,1,4),(84,1,5),(85,1,6),(86,1,7),(87,1,8),(88,1,9),(89,1,10),(90,1,11),(91,1,12),(92,1,13),(93,1,14),(94,1,15),(95,1,16),(96,1,19),(97,1,27),(98,1,18),(99,1,20),(100,1,29),(101,1,28),(102,1,17),(103,1,21),(104,1,30),(105,1,31),(106,1,32),(107,1,33),(108,1,34),(109,1,37),(110,1,35),(111,1,36);
 
 /*Table structure for table `usu_rol` */
 
