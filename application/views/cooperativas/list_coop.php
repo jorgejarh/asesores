@@ -112,7 +112,7 @@ function editar_registro(id)
 
 function eliminar_registro(id)
 {
-	if(!confirm('¿Seguro de desea el registro?'))
+	if(!confirm('¿Esta seguro de Elminar esta Cooperativa?'))
 	{
 		return false;
 	}
@@ -121,14 +121,8 @@ function eliminar_registro(id)
 		  url: "<?php echo site_url('cooperativas/eliminar');?>/"+id,
 		  type:"POST",
 		  success:function(data){
-
-		  	$.fancybox({
-		  		content:data,
-		  		afterClose:function()
-		  		{
-		  			location.reload();
-		  		}
-		  	});
+		  		alert(data);
+		  		location.reload();
 		  }
 		  
 		});

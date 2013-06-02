@@ -55,12 +55,12 @@ $(document).ready(function(e){
 
 			  		if(data=="ok")
 			  		{
-			  			alert('Registro actualizado correctamente.');
+			  			alert('La Cooperativa fue Actualizada.');
 			  			location.reload();
 			  		}else{
 			  			alert(data);
 			  		}
-			  		
+		
 			  }
 		});
 

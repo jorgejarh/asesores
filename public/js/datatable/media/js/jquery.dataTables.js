@@ -9036,7 +9036,7 @@
 		 *      } );
 		 *    } )
 		 */
-		"iDisplayLength": 5,
+		"iDisplayLength": 10,
 	
 	
 		/**

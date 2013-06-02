@@ -1,14 +1,13 @@
-<h3 align="center">Subir Logo de Cooperativa</h3>
+<h3 align="center">Suba un Logo para la Cooperativa: <b><?php echo $cooperativa; ?></b></h3>
 <hr>
+
 <?php
-echo form_open_multipart('cooperativas/do_upload',array(
-						'id'=>'form_nuevo',
-						"target" => "subeArc"
-							)
-				);
+echo form_open_multipart('cooperativas/do_upload', array('id' => 'form_nuevo', "target" => "subeArc"));
 ?>
+
 <div id="ok"  style="display:none"></div>
 <div id="error" style="display:none"></div>
+
 <table>
 	<tr>
 		<td valign="middle">Logo: </td>
@@ -48,12 +47,7 @@ echo form_close();
 </style>
 
 <script>
-		function cerrar(){
-			location.reload();
-		}
-
 		$(document).ready(function() {
-
 
 			var arc = ""; 
 
@@ -66,14 +60,22 @@ echo form_close();
 					alert("No ha seleccionado ningun archivo")
 					return false;
 				}
-				else if((!arc.match(/.(png)$/)) && (!arc.match(/.(jpg)$/))){
-					alert("Error: solo se permiten extensiones: *.png y *.jpg");
+				else if((!arc.match(/.(png)$/)) && (!arc.match(/.(jpg)$/)) && (!arc.match(/.(gif)$/)) && (!arc.match(/.(bmp)$/)) && (!arc.match(/.(PNG)$/)) && (!arc.match(/.(JPG)$/)) && (!arc.match(/.(GIF)$/)) && (!arc.match(/.(BMP)$/))){
+					alert("Error: solo se permiten extensiones:\n*.png, *.jpg, *.gif o *.bmp");
 					return false;
 				}else{
-					$('#save').attr("disabled", true);
+					//$('#save').attr("disabled", true);
 				}
 			});
 
 
 		});
+
+
+
+		function cerrar(){
+			location.reload();
+		}
+
+
 </script>

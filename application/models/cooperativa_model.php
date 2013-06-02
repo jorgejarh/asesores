@@ -28,14 +28,36 @@ class Cooperativa_model extends CI_Model {
 			
     }
 
-    public function subeArc($dirTemp, $dirAct, $arc){
+    /*FUNCIONES DE ARCHIVOS*/
+    public function subeArc($dirTemp='', $dirAct='', $arc=''){
         $subido = $dirAct."/".$arc;
-        move_uploaded_file($dirTemp, $subido);
-        return $subido;
+        return move_uploaded_file($dirTemp, $subido);
+    }
+    public function eliminarArc($arc=''){
+        return unlink($arc);
     }
 
+    public function existeArc($arc=''){
+        return file_exists($arc);
+    }
+
+
+    /*SENTENCIAS UPDATE INSERT Y DELETE*/
     public function insertArc($id_cooperativa=0, $arc=''){
         $this->db->where('id_cooperativa', $id_cooperativa);
         return $this->db->update('conf_cooperativa', array('logotipo' => "logos/".$arc));
+    }
+
+    public function insertar_cooperativa($post=''){
+        return $this->db->insert('conf_cooperativa',$post);
+    }
+
+    public function editar_cooperativa($post='', $id=0){
+        return $this->db->update('conf_cooperativa',$post,array('id_cooperativa'=>$id));
+    }
+
+    public function eliminar($id=0){
+        //$resultado=$this->db->update('usu_usuario', array('estado'=>$this->input->post('activo')),array('id_usuario'=>$id));
+        return $this->db->delete('conf_cooperativa', array('id_cooperativa'=>$id));        
     }
 }

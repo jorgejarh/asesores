@@ -86,7 +86,7 @@ $(document).ready(function(e){
 
 			  		if(data)
 			  		{
-			  			if(confirm('Registro guardado correctamente.\ndesea subirle un logo?'))
+			  			if(confirm('Cooperativa Guardada con Exito.\nDesea subirle un logo?'))
 			  			{
 
 			  				$.fancybox(
@@ -102,8 +102,6 @@ $(document).ready(function(e){
 			  			}else{
 			  				location.reload();
 			  			}
-			  			
-			  			
 			  		}else{
 			  			alert(data);
 			  		}
