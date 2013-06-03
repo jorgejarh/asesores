@@ -425,6 +425,7 @@ CREATE TABLE `pl_modulos` (
   `objetivo_modulo` varchar(300) default NULL,
   `id_contenido` int(11) default NULL,
   `fecha_prevista` date default NULL,
+  `fecha_prevista_fin` date default NULL,
   `id_usuario` int(11) default NULL,
   `f_creacion` datetime default NULL,
   `activo` int(11) default '1',
