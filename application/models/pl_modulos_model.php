@@ -60,4 +60,21 @@ class Pl_modulos_model extends CI_Model {
 		//return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
 	}
 	
+	function obtener_curriculas()
+	{
+		return $this->db->get_where('cu_curricula',array('estado'=>1))->result_array();
+	}
+	
+	function obtener_perfiles($id)
+	{
+		return $this->db->get_where('cu_perfil',array('id_curricula'=>$id))->result_array();
+	}
+	
+	function obtener_contenidos($id)
+	{
+		return $this->db->get_where('cu_perfil_contenido_aspectos',array('id_perfil'=>$id))->result_array();
+	}
+	
+	
+	
 }

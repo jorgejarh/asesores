@@ -64,6 +64,7 @@ class Pl_modulos extends CI_Controller {
 		$data=array();
 		$data['title']=$this->nombre_titulo." - Nuevo";
 		$data['id']=$id;
+		$data['curriculas']=preparar_select($this->$model->obtener_curriculas(),'id_curricula','curricula');
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	
@@ -172,5 +173,43 @@ class Pl_modulos extends CI_Controller {
 			$resultado= $this->$model->eliminar($id,$post);
 		}
 	}
+	
+	function select_curricula($id=0)
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		if($post)
+		{
+			$json=array();
+
+			$lista=preparar_select($this->$model->obtener_perfiles($post['id']),'id_perfil','perfil');
+			$lista[0]="-Seleccione-";
+			ksort($lista);
+			$json['html']=form_dropdown('',$lista,$id,'id="perfiles_select"');
+
+			echo json_encode($json);
+		}
+			
+	}
+	
+	function select_perfil($id=0)
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		if($post)
+		{
+			$json=array();
+
+			$lista=preparar_select($this->$model->obtener_contenidos($post['id']),'id','nombre');
+			$lista[0]="-Seleccione-";
+			ksort($lista);
+			$json['html']=form_dropdown('id_contenido',$lista,$id,'');
+
+			echo json_encode($json);
+		}
+			
+	}
+	
+	
 
 }
