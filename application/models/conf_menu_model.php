@@ -42,18 +42,18 @@ class Conf_menu_model extends CI_Model {
 	
 	function actualizar_menu($post,$id)
 	{
-		if($post['url']=="")
+		/*if($post['url']=="")
 			{
 				$post['url']="#";
-			}
+			}*/
 		return $this->db->update('conf_menu',$post,array('id_menu'=>$id));
 	}
 	function insertar_menu($post)
 	{
-		if($post['url']=="")
+		/*if($post['url']=="")
 			{
 				$post['url']="#";
-			}
+			}*/
 		
 		return $this->db->insert('conf_menu',$post);
 	}

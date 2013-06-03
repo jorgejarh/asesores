@@ -16,6 +16,26 @@ echo form_open('',array(
 		<td><input value= "<?php echo $dato['cooperativa']; ?>" type="text" id="cooperativa" name="cooperativa" /></td>
 	</tr>
 	<tr>
+		<td valign="middle">Ubicaci&oacute;n: </td>
+		<td valign="middle"><textarea id="ubicacion" name="ubicacion" cols="25" rows="5"><?php echo $dato['ubicacion']; ?></textarea></td>
+	</tr>
+	<tr>
+		<td valign="middle">Tel&eacute;fono: </td>
+		<td valign="middle"><input value="<?php echo $dato['telefono'] ?>" type="text" id="telefono" name="telefono"  size="30" /></td>
+	</tr>
+	<tr>
+		<td valign="middle">Fax: </td>
+		<td valign="middle"><input value="<?php echo $dato['fax'] ?>" type="text" id="fax" name="fax"  size="30" /></td>
+	</tr>
+	<tr>
+		<td valign="middle">Correo Electr&oacute;nico: </td>
+		<td valign="middle"><input value="<?php echo $dato['email'] ?>" type="mail" id="email" name="email"  size="30" /></td>
+	</tr>
+	<tr>
+		<td valign="middle">Cr&eacute;dito Fiscal: </td>
+		<td valign="middle"><input value="<?php echo $dato['credito_fiscal'] ?>" type="text" id="credito_fiscal" name="credito_fiscal"  size="30" /></td>
+	</tr>
+	<tr>
 		<td colspan="2"><hr></td>
 	</tr>
 	<tr>
@@ -42,6 +62,15 @@ $(document).ready(function(e){
 		}else{
 
 			poner_bueno('#cooperativa');
+		}
+		if($('#credito_fiscal').val()=="")
+		{
+			poner_malo('#credito_fiscal');
+			$('#error').html('Campo Requerido');
+			return false;
+		}else{
+
+			poner_bueno('#credito_fiscal');
 		}
 
 		

@@ -53,6 +53,13 @@ class Cooperativas extends CI_Controller {
 		$data['dato']=$this->cooperativa_model->obtener_cooperativa($id);
 		$this->load->view('cooperativas/form_editar',$data);
 	}
+
+	public function cambiar_imagen($id_cooperativa=0){
+		$obtener_cooperativa = $this->cooperativa_model->obtener_cooperativa($id_cooperativa);
+		$data['cooperativa'] = $obtener_cooperativa['cooperativa'];
+		$data['id_cooperativa'] = $id_cooperativa;
+		$this->load->view('cooperativas/sube_arc', $data);
+	}
 	
 	
 	public function editar_cooperativa()
@@ -96,6 +103,8 @@ class Cooperativas extends CI_Controller {
 	function do_upload()
 	{
 		$id_cooperativa = $this->input->post('id_cooperativa');
+		$obtener_cooperativa = $this->cooperativa_model->obtener_cooperativa($id_cooperativa);
+		$logotipo = $obtener_cooperativa['logotipo'];
 
 	    /*$config['upload_path'] = 'public/img/logos/';
 	    $config['allowed_types'] = 'gif|jpg|png|bmp|GIF|JPG|PNG|BMP';
@@ -121,6 +130,12 @@ class Cooperativas extends CI_Controller {
 		if($subido){
 			$insertArc = $this->cooperativa_model->insertArc($id_cooperativa, $arc);
 			if($insertArc){
+				if($logotipo){
+					$existeArcAnterior = $this->cooperativa_model->existeArc('public/img/'.$logotipo);
+					if($existeArcAnterior){
+						$this->cooperativa_model->eliminarArc('public/img/'.$logotipo);
+					}
+				}
 				echo "<script>";
 				echo "parent.document.getElementById('ok').innerHTML = 'El archivo ".$arc." fue subido';";
 				echo "parent.document.getElementById('ok').style.display = 'block';";
@@ -139,7 +154,7 @@ class Cooperativas extends CI_Controller {
 			
 		}else{
 			echo "<script>";
-			echo "parent.document.getElementById('error').innerHTML = 'Error: El archivo no pudo ser Subido Puede ser que el archivo sobrepase el maximo permitido o que ya exista un Archivo con ese Nombre';";
+			echo "parent.document.getElementById('error').innerHTML = 'Error: El archivo no pudo ser Subido Puede ser que el archivo sobrepase el maximo permitido o puede ser que ya exista un Archivo con ese Nombre';";
 			echo "parent.document.getElementById('error').style.display = 'block';";
 			echo "parent.document.getElementById('cerrar').style.display = 'block';";
 			echo "</script>";

@@ -47,9 +47,22 @@
 		          							'height' => '50',
 		          							'title' => 'Cooperativa',
 											);
+		      							$image_icon_properties = array(
+		          							'src' => 'public/img/edit.png',
+		          							'alt' => 'cambiar',
+		          							'title' => 'cambiar imagen',
+		          							'width' => '10px',
+		          							'height' => '10px'
+											);
 
-										echo img($image_properties);
+										//echo img($image_properties);
 		      						?>
+		      					<div class="logo_img" style="background:url(<?php echo base_url(); ?>public/img/<?php echo $valor['logotipo'] ?>);background-size:50px 50px;width:50px; height:50px">
+		      						<div class="cambiar_icono">
+		      							<?php echo img($image_icon_properties); ?>Cambiar
+		      							<input type="hidden" value="<?php echo $valor['id_cooperativa']; ?>">
+		      						</div>
+		      					</div>
 		      					</td>
 						        <td><?php echo $valor['cooperativa'];?></td>
 						        <td><?php echo $valor['ubicacion'];?></td>
@@ -82,7 +95,32 @@
 	    $('#example').dataTable( {
 	        <?php echo config_lenguaje_tabla(); ?>
 	    } );
-	} );
+
+
+
+	 $('.cambiar_icono').click(function(){
+	 	var id_cooperativa = $(this).children("input").val();
+	 	$.ajax({
+		  url: "<?php echo site_url('cooperativas/cambiar_imagen/"+id_cooperativa+"');?>",
+		  type:"POST",
+		  success:function(data){
+		  	$.fancybox(
+		  		{
+		  			content:data,
+		  			afterClose:function()
+		  			{
+		  				location.reload();
+		  			}
+		  		}
+		  		);
+		  }
+		  
+		});
+	 });
+
+
+
+	});
 
 function nuevo_registro()
 {
@@ -130,3 +168,18 @@ function eliminar_registro(id)
 
 </script>
 
+<style>
+	.cambiar_icono{
+		background-color: #000000;
+		color: #FFFFFF;
+		font-size: 9px;
+		display: none;
+		width: 50px;
+		opacity:0.8;
+	}
+
+	.logo_img:hover div{
+		display: block;
+		position: absolute;
+	}
+</style>

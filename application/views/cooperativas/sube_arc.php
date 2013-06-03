@@ -60,8 +60,8 @@ echo form_close();
 					alert("No ha seleccionado ningun archivo")
 					return false;
 				}
-				else if((!arc.match(/.(png)$/)) && (!arc.match(/.(jpg)$/)) && (!arc.match(/.(gif)$/)) && (!arc.match(/.(bmp)$/)) && (!arc.match(/.(PNG)$/)) && (!arc.match(/.(JPG)$/)) && (!arc.match(/.(GIF)$/)) && (!arc.match(/.(BMP)$/))){
-					alert("Error: solo se permiten extensiones:\n*.png, *.jpg, *.gif o *.bmp");
+				else if((!arc.match(/.(png)$/)) && (!arc.match(/.(jpg)$/)) && (!arc.match(/.(bmp)$/)) && (!arc.match(/.(PNG)$/)) && (!arc.match(/.(JPG)$/)) && (!arc.match(/.(BMP)$/))){
+					alert("Error: solo se permiten extensiones:\n*.png, *.jpg o *.bmp");
 					return false;
 				}else{
 					//$('#save').attr("disabled", true);
