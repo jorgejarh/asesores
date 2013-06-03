@@ -53,7 +53,7 @@ CREATE TABLE `conf_menu` (
 
 /*Data for the table `conf_menu` */
 
-insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'',1),(2,'Capacitaciones',1,'',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'plan',1),(6,'Asesorias',1,'',1),(7,'Asesoria 1',6,'',1),(8,'Consultoria',1,'',1),(9,'Consultoria 1',8,'',1),(10,'Reportes',0,'',1),(11,'Dashboard',10,'',1),(12,'Pagos',10,'',1),(13,'Configuracion',0,'',1),(14,'Gestion Usuarios',13,'',1),(15,'Internos',14,'usuarios_internos',1),(16,'Externos',14,'usuarios_externos',1),(17,'Cooperativas',28,'cooperativas',1),(18,'Gestion Sistema',13,'',1),(19,'Roles',14,'roles',1),(20,'Menu',18,'conf_menu',1),(21,'Sucursales',28,'sucursales',1),(26,'roles',14,'roles',0),(27,'Permisos',14,'subroles',1),(28,'Gestion Clientes',13,'',1),(29,'Respaldo',18,'conf_sistema',1),(30,'Mantenimientos',0,'#',1),(31,'Modalidades',30,'mante_modalidades',1),(32,'Estados de Planes',30,'mante_estados_plan',1),(33,'Gestion de facilitadores',30,'mante_facilitadores',1),(34,'Gestion de Lugares',30,'mante_lugares',1),(35,'Costos',37,'mante_costos',1),(36,'Sub Costos',37,'mante_subcostos',1),(37,'Gestion de Costos',30,'#',1);
+insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`) values (1,'Servicios',0,'',1),(2,'Capacitaciones',1,'',1),(3,'Curricula',2,'curriculas',1),(4,'Perfiles',2,'perfiles',1),(5,'Plan de Capacitaciones',2,'pl_planes',1),(6,'Asesorias',1,'',1),(7,'Asesoria 1',6,'',1),(8,'Consultoria',1,'',1),(9,'Consultoria 1',8,'',1),(10,'Reportes',0,'',1),(11,'Dashboard',10,'',1),(12,'Pagos',10,'',1),(13,'Configuracion',0,'',1),(14,'Gestion Usuarios',13,'',1),(15,'Internos',14,'usuarios_internos',1),(16,'Externos',14,'usuarios_externos',1),(17,'Cooperativas',28,'cooperativas',1),(18,'Gestion Sistema',13,'',1),(19,'Roles',14,'roles',1),(20,'Menu',18,'conf_menu',1),(21,'Sucursales',28,'sucursales',1),(26,'roles',14,'roles',0),(27,'Permisos',14,'subroles',1),(28,'Gestion Clientes',13,'',1),(29,'Respaldo',18,'conf_sistema',1),(30,'Mantenimientos',0,'#',1),(31,'Modalidades',30,'mante_modalidades',1),(32,'Estados de Planes',30,'mante_estados_plan',1),(33,'Gestion de facilitadores',30,'mante_facilitadores',1),(34,'Gestion de Lugares',30,'mante_lugares',1),(35,'Costos',37,'mante_costos',1),(36,'Sub Costos',37,'mante_subcostos',1),(37,'Gestion de Costos',30,'#',1);
 
 /*Table structure for table `conf_sucursal` */
 
@@ -266,12 +266,14 @@ CREATE TABLE `mante_costos` (
   `id_costo` int(11) NOT NULL auto_increment,
   `nombre_costo` varchar(100) default NULL,
   `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
   PRIMARY KEY  (`id_costo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_costos` */
 
-insert  into `mante_costos`(`id_costo`,`nombre_costo`,`activo`) values (1,'Costo 12',0),(2,'costo 3',1),(3,'costos 2',1);
+insert  into `mante_costos`(`id_costo`,`nombre_costo`,`activo`,`id_usuario`,`f_creacion`) values (1,'Costo 12',0,NULL,NULL),(2,'costo 3',1,NULL,NULL),(3,'costos 2',1,NULL,NULL),(4,'costo 4',1,NULL,NULL);
 
 /*Table structure for table `mante_estados_planes` */
 
@@ -281,12 +283,14 @@ CREATE TABLE `mante_estados_planes` (
   `id_estado_plan` int(11) NOT NULL auto_increment,
   `nombre_estado` varchar(100) default NULL,
   `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
   PRIMARY KEY  (`id_estado_plan`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_estados_planes` */
 
-insert  into `mante_estados_planes`(`id_estado_plan`,`nombre_estado`,`activo`) values (1,'estado 11',1);
+insert  into `mante_estados_planes`(`id_estado_plan`,`nombre_estado`,`activo`,`id_usuario`,`f_creacion`) values (1,'estado 11',1,NULL,NULL),(2,'estado2',1,NULL,NULL),(3,'estado 5',1,1,'2013-06-02 13:54:33');
 
 /*Table structure for table `mante_facilitadores` */
 
@@ -301,10 +305,14 @@ CREATE TABLE `mante_facilitadores` (
   `celular` varchar(20) default NULL,
   `correo` varchar(15) default NULL,
   `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
   PRIMARY KEY  (`id_facilitador`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_facilitadores` */
+
+insert  into `mante_facilitadores`(`id_facilitador`,`nombres`,`apellidos`,`telefono`,`t_oficina`,`celular`,`correo`,`activo`,`id_usuario`,`f_creacion`) values (1,'Jorge Antonio','Rodriguez','123456','123456','132465','jarh@jarh.com',1,NULL,NULL);
 
 /*Table structure for table `mante_lugares` */
 
@@ -316,12 +324,14 @@ CREATE TABLE `mante_lugares` (
   `telefono` varchar(50) default NULL,
   `ubicacion` varchar(100) default NULL,
   `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
   PRIMARY KEY  (`id_lugar`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_lugares` */
 
-insert  into `mante_lugares`(`id_lugar`,`nombre_lugar`,`telefono`,`ubicacion`,`activo`) values (1,'Lugar 1','123456','111111111122',0);
+insert  into `mante_lugares`(`id_lugar`,`nombre_lugar`,`telefono`,`ubicacion`,`activo`,`id_usuario`,`f_creacion`) values (1,'Lugar 1','123456','111111111122',0,NULL,NULL);
 
 /*Table structure for table `mante_modalidades` */
 
@@ -335,11 +345,11 @@ CREATE TABLE `mante_modalidades` (
   `id_usuario` int(11) default NULL,
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_modalidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_modalidades` */
 
-insert  into `mante_modalidades`(`id_modalidad`,`nombre_modalidad`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,'Modalidad 11','Objetivos Objetivos 1','2013-06-01 20:40:16',1,0),(2,'Modalidad 1','Objetivo 2','2013-06-01 20:54:52',1,1);
+insert  into `mante_modalidades`(`id_modalidad`,`nombre_modalidad`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,'Modalidad 11','Objetivos Objetivos 1','2013-06-01 20:40:16',1,0),(2,'Diplomados','Diplomados, Diplomados','2013-06-01 20:54:52',1,1),(3,'Seminarios y Foros','Seminarios y Foros, Seminarios y Foros','2013-06-02 17:05:20',1,1),(4,'Talleres','Talleres, Talleres','2013-06-02 17:05:41',1,1),(5,'Congresos','Congresos, Congresos','2013-06-02 17:05:55',1,1);
 
 /*Table structure for table `mante_subcostos` */
 
@@ -350,6 +360,8 @@ CREATE TABLE `mante_subcostos` (
   `id_costo` int(11) default NULL,
   `nombre_subcosto` varchar(100) default NULL,
   `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
   PRIMARY KEY  (`id_subcosto`),
   KEY `FK_mante_subcostos` (`id_costo`),
   CONSTRAINT `FK_mante_subcostos` FOREIGN KEY (`id_costo`) REFERENCES `mante_costos` (`id_costo`)
@@ -357,7 +369,91 @@ CREATE TABLE `mante_subcostos` (
 
 /*Data for the table `mante_subcostos` */
 
-insert  into `mante_subcostos`(`id_subcosto`,`id_costo`,`nombre_subcosto`,`activo`) values (1,3,'sub costo 1',1);
+insert  into `mante_subcostos`(`id_subcosto`,`id_costo`,`nombre_subcosto`,`activo`,`id_usuario`,`f_creacion`) values (1,3,'sub costo 1',1,NULL,NULL);
+
+/*Table structure for table `pl_capacitaciones` */
+
+DROP TABLE IF EXISTS `pl_capacitaciones`;
+
+CREATE TABLE `pl_capacitaciones` (
+  `id_capacitacion` int(11) NOT NULL auto_increment,
+  `id_plan_modalidad` int(11) default NULL,
+  `nombre_capacitacion` varchar(100) default NULL,
+  `objetivo` varchar(300) default NULL,
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_capacitacion`),
+  KEY `FK_pl_capacitaciones` (`id_plan_modalidad`),
+  CONSTRAINT `FK_pl_capacitaciones` FOREIGN KEY (`id_plan_modalidad`) REFERENCES `pl_modalidades` (`id_plan_modalidad`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pl_capacitaciones` */
+
+insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva','2013-06-02 18:19:52',1,1);
+
+/*Table structure for table `pl_modalidades` */
+
+DROP TABLE IF EXISTS `pl_modalidades`;
+
+CREATE TABLE `pl_modalidades` (
+  `id_plan_modalidad` int(11) NOT NULL auto_increment,
+  `id_plan` int(11) default NULL,
+  `id_modalidad` int(11) default NULL,
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_plan_modalidad`),
+  KEY `FK_pl_modalidades` (`id_plan`),
+  KEY `FK_pl_modalidades2` (`id_modalidad`),
+  CONSTRAINT `FK_pl_modalidades2` FOREIGN KEY (`id_modalidad`) REFERENCES `mante_modalidades` (`id_modalidad`),
+  CONSTRAINT `FK_pl_modalidades` FOREIGN KEY (`id_plan`) REFERENCES `pl_planes` (`id_plan`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pl_modalidades` */
+
+insert  into `pl_modalidades`(`id_plan_modalidad`,`id_plan`,`id_modalidad`,`id_usuario`,`f_creacion`,`activo`) values (1,1,2,1,'2013-06-02 16:31:12',1),(2,1,3,1,'2013-06-02 17:22:10',1),(3,1,4,1,'2013-06-02 17:22:14',1),(4,1,5,1,'2013-06-02 17:22:20',1);
+
+/*Table structure for table `pl_modulos` */
+
+DROP TABLE IF EXISTS `pl_modulos`;
+
+CREATE TABLE `pl_modulos` (
+  `id_modulo` int(11) NOT NULL auto_increment,
+  `id_capacitacion` int(11) default NULL,
+  `nombre_modulo` varchar(100) default NULL,
+  `objetivo_modulo` varchar(300) default NULL,
+  `id_contenido` int(11) default NULL,
+  `fecha_prevista` date default NULL,
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_modulo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pl_modulos` */
+
+insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`nombre_modulo`,`objetivo_modulo`,`id_contenido`,`fecha_prevista`,`id_usuario`,`f_creacion`,`activo`) values (1,1,'modulo 122','dddddddd22',NULL,NULL,1,'2013-06-02 19:43:26',1);
+
+/*Table structure for table `pl_planes` */
+
+DROP TABLE IF EXISTS `pl_planes`;
+
+CREATE TABLE `pl_planes` (
+  `id_plan` int(11) NOT NULL auto_increment,
+  `nombre_plan` varchar(100) default NULL,
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `id_estado_plan` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_plan`),
+  KEY `FK_pl_planes` (`id_estado_plan`),
+  CONSTRAINT `FK_pl_planes` FOREIGN KEY (`id_estado_plan`) REFERENCES `mante_estados_planes` (`id_estado_plan`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pl_planes` */
+
+insert  into `pl_planes`(`id_plan`,`nombre_plan`,`f_creacion`,`id_usuario`,`id_estado_plan`,`activo`) values (1,'Plan de capacitacion 2013','2013-06-02 14:14:59',1,2,1);
 
 /*Table structure for table `usu_coop_suc` */
 
@@ -467,7 +563,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-06-01 22:15:06',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,1,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-06-02 13:41:14',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

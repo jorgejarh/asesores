@@ -41,6 +41,8 @@ class Mante_modalidades_model extends CI_Model {
 	
 	function nuevo($datos)
 	{
+		$datos['id_usuario']=$this->datos_user['id_usuario'];
+		$datos['f_creacion']=date('Y-m-d H:i:s');
 		return $this->db->insert($this->nombre_tabla,$datos);
 	}
 	
@@ -51,6 +53,3 @@ class Mante_modalidades_model extends CI_Model {
 	}
 	
 }
-
-?>
-

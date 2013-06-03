@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Mante_subcostos_model extends CI_Model {
+class Pl_planes_model extends CI_Model {
 	
-	public $nombre_tabla="mante_subcostos";
+	public $nombre_tabla="pl_planes";
 	
 	public $id_tabla="";
 	
@@ -26,9 +26,9 @@ class Mante_subcostos_model extends CI_Model {
 	{
 		if($id==0)
 		{
-			$this->db->select("a.*, b.nombre_costo");
-			$this->db->where("a.id_costo = b.id_costo");
-			return $this->db->get_where($this->nombre_tabla." a, mante_costos b",array('a.activo'=>1))->result_array();
+			$this->db->select("a.*, b.nombre_estado");
+			$this->db->where("a.id_estado_plan = b.id_estado_plan");
+			return $this->db->get_where($this->nombre_tabla." a, mante_estados_planes b",array('a.activo'=>1))->result_array();
 		}else{
 			return $this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
 			}

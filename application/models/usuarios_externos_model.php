@@ -84,5 +84,3 @@ class Usuarios_externos_model extends CI_Model {
         return $this->db->update('usu_usuario',$post,array('id_usuario'=>$id));
     }
 }
-?>
-

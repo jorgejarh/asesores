@@ -54,5 +54,3 @@ class Usuarios_internos_model extends CI_Model {
     }
 
 }
-?>
-
