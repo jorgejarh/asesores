@@ -17,7 +17,7 @@ echo form_open_multipart('cooperativas/do_upload', array('id' => 'form_nuevo', "
 		<td></td>
 		<td>
 			<div id="subir" style="float:left"><input type="submit" id="save" value="Subir"/></div>
-			<div id="cerrar" style="float:right;display:none"><button onClick="cerrar();">Cerrar</button></div>
+			<div id="cerrar" style="float:right;display:none"><button type="button" onClick="cerrar();">Cerrar</button></div>
 		</td>
 		<input type="hidden" value="<?php echo $id_cooperativa; ?>" name="id_cooperativa">
 	</tr>
