@@ -349,9 +349,11 @@ DROP TABLE IF EXISTS `cu_curricula`;
 CREATE TABLE `cu_curricula` (
   `id_curricula` int(11) NOT NULL AUTO_INCREMENT,
   `curricula` varchar(100) DEFAULT NULL,
+  `objetivo` varchar(700) DEFAULT NULL,
+  `f_creacion` date DEFAULT NULL,
   `estado` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_curricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -360,7 +362,7 @@ CREATE TABLE `cu_curricula` (
 
 LOCK TABLES `cu_curricula` WRITE;
 /*!40000 ALTER TABLE `cu_curricula` DISABLE KEYS */;
-INSERT INTO `cu_curricula` VALUES (2,'Curricula General',1),(5,'Curricula 2',1);
+INSERT INTO `cu_curricula` VALUES (2,'Curricula General',NULL,NULL,1),(5,'Curricula 2',NULL,NULL,1),(6,'Liderazgo','Prepara futuros lidres','2013-06-05',1);
 /*!40000 ALTER TABLE `cu_curricula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1034,8 +1036,8 @@ CREATE TABLE `pl_modalidades` (
   PRIMARY KEY (`id_plan_modalidad`),
   KEY `FK_pl_modalidades` (`id_plan`),
   KEY `FK_pl_modalidades2` (`id_modalidad`),
-  CONSTRAINT `FK_pl_modalidades2` FOREIGN KEY (`id_modalidad`) REFERENCES `mante_modalidades` (`id_modalidad`),
-  CONSTRAINT `FK_pl_modalidades` FOREIGN KEY (`id_plan`) REFERENCES `pl_planes` (`id_plan`)
+  CONSTRAINT `FK_pl_modalidades` FOREIGN KEY (`id_plan`) REFERENCES `pl_planes` (`id_plan`),
+  CONSTRAINT `FK_pl_modalidades2` FOREIGN KEY (`id_modalidad`) REFERENCES `mante_modalidades` (`id_modalidad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1329,7 +1331,7 @@ CREATE TABLE `usu_usuario` (
 
 LOCK TABLES `usu_usuario` WRITE;
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-06-02 13:41:14',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,1,2,1);
+INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-06-05 15:17:48',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,1,2,1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1342,4 +1344,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-05 11:09:09
+-- Dump completed on 2013-06-05 15:31:05

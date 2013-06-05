@@ -19,6 +19,7 @@ if($listado)
     <thead>
       <tr>
         <th>Curricula</th>
+        <th>Objetivo</th>
 		<th>Asignar Perfiles</th>
         <th>Editar Nombre</th>
         <th>Eliminar</th>
@@ -31,6 +32,7 @@ if($listado)
 			?>
       <tr class="gradeA">
         <td><?php echo $valor['curricula'];?></td>
+        <td><?php echo $valor['objetivo']; ?></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('perfiles/index/'.$valor['id_curricula']);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_curricula']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         

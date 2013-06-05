@@ -1,4 +1,4 @@
-<h3 align="center">Nueva Cooperativa</h3>
+<h3 align="center">Curricula - Nueva</h3>
 <hr>
 <?php
 echo form_open('',array(
@@ -15,6 +15,10 @@ echo form_open('',array(
 		<td valign="middle">Nombre de la Curricula: </td>
 		<td valign="middle"><input type="text" id="curricula" name="curricula" class="requerido"/></td>
 	</tr>
+	<tr>
+		<td valign="middle">Objetivo: </td>
+		<td valign="middle"><textarea name="objetivo" id="" cols="25" rows="5"></textarea></td>
+	</tr>
     <tr>
     <td>Estado: </td>
 		<td>
@@ -28,6 +32,7 @@ echo form_open('',array(
 	<tr>
 		<td colspan="2" align="center">
 			<input type="submit" id="save" value="Guardar" />
+			<input type="hidden" value="<?php echo date('Y-m-d'); ?>" name="f_creacion">
 		</td>
 	</tr>
 </table>

@@ -15,6 +15,10 @@ echo form_open('',array(
 		<td>Nombre de la Curricula: </td>
 		<td><input value= "<?php echo $dato['curricula']; ?>" type="text" id="curricula" name="curricula" class="requerido"/></td>
 	</tr>
+	<tr>
+		<td valign="middle">Objetivo: </td>
+		<td valign="middle"><textarea name="objetivo" id="" cols="25" rows="5"><?php echo $dato['objetivo']; ?></textarea></td>
+	</tr>
      <td>Estado: </td>
 		<td>
 			Activo <input type="radio" name="estado" value="1" checked /> 
