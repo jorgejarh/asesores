@@ -11,7 +11,7 @@
   <h3 align="center"><?php echo $curricula['curricula'];?></h3>
   <table align="center" width="80%">
     <tr>
-      <td align="left" valign="middle"><b>Puesto: </b> <?php echo $perfil['perfil'];?></td>
+      <td align="left" valign="middle"><b>Perfil: </b> <?php echo $perfil['perfil'];?></td>
       <td align="right" valign="middle"><b>Fecha: </b> <?php echo $perfil['fecha'];?></td>
     </tr>
   </table>

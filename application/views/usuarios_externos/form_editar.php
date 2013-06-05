@@ -1,4 +1,4 @@
-<h3 align="center">Nuevo Usuario Interno</h3>
+<h3 align="center">Editar Usuario Externo</h3>
 <hr>
 <?php
 echo form_open('',array(
@@ -20,6 +20,10 @@ echo form_open('',array(
 	<tr>
 		<td>Celular: </td>
 		<td><?php echo form_input('celular',$dato['celular'],'class="requerido"');?></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td><?php echo form_input('correo',$dato['correo'],'class=""');?></td>
 	</tr>
 	<tr>
 		<td colspan="2"><hr></td>

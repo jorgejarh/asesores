@@ -353,7 +353,7 @@ CREATE TABLE `cu_curricula` (
   `f_creacion` date DEFAULT NULL,
   `estado` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_curricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,7 +362,7 @@ CREATE TABLE `cu_curricula` (
 
 LOCK TABLES `cu_curricula` WRITE;
 /*!40000 ALTER TABLE `cu_curricula` DISABLE KEYS */;
-INSERT INTO `cu_curricula` VALUES (2,'Curricula General',NULL,NULL,1),(5,'Curricula 2',NULL,NULL,1),(6,'Liderazgo','Prepara futuros lidres','2013-06-05',1);
+INSERT INTO `cu_curricula` VALUES (2,'Curricula General',NULL,NULL,1),(5,'Curricula 2',NULL,NULL,1),(6,'Liderazgo','Prepara futuros lidres','2013-06-05',1),(7,'Cultura General','Conservar patrones culturales','2013-06-05',1);
 /*!40000 ALTER TABLE `cu_curricula` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1150,7 +1150,7 @@ CREATE TABLE `usu_coop_suc` (
   `id_cooperativa` int(11) DEFAULT NULL,
   `id_sucursal` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_usu_coop`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1159,7 +1159,7 @@ CREATE TABLE `usu_coop_suc` (
 
 LOCK TABLES `usu_coop_suc` WRITE;
 /*!40000 ALTER TABLE `usu_coop_suc` DISABLE KEYS */;
-INSERT INTO `usu_coop_suc` VALUES (2,6,9,0),(3,4,9,0);
+INSERT INTO `usu_coop_suc` VALUES (2,6,9,0),(3,4,9,0),(5,10,6,0),(6,9,6,0);
 /*!40000 ALTER TABLE `usu_coop_suc` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1314,6 +1314,7 @@ CREATE TABLE `usu_usuario` (
   `nombre_completo` varchar(200) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `celular` varchar(20) DEFAULT NULL,
+  `correo` varchar(30) DEFAULT NULL,
   `direccion` text,
   `ultimo_acceso` datetime DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
@@ -1322,7 +1323,7 @@ CREATE TABLE `usu_usuario` (
   PRIMARY KEY (`id_usuario`),
   KEY `FK_usu_usuario` (`id_subrol`),
   CONSTRAINT `FK_usu_usuario` FOREIGN KEY (`id_subrol`) REFERENCES `usu_subrol` (`id_subrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1331,7 +1332,7 @@ CREATE TABLE `usu_usuario` (
 
 LOCK TABLES `usu_usuario` WRITE;
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk','2013-06-05 15:17:48',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,1,2,1);
+INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','','dkfjkdsjfk','2013-06-05 16:24:04',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111',NULL,'9re98r9488dvkfckf',NULL,1,1,1),(3,'sdoradea','c20ad4d76fe97759aa27a0c99bff6710','Sergio','434','34324','',NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,NULL,1,2,1),(7,'sarita','','Sara melgar','65656','5656','',NULL,NULL,1,1,1),(8,'renax','c81e728d9d4c2f636f067f89cc14862c','renato','23569652','','renax@mail.ocm',NULL,NULL,1,1,1),(9,'lolita','','lola','23658569','','loli@gmail.com',NULL,NULL,1,2,1),(10,'robson','ad61ab143223efbc24c7d2583be69251','Robert','65895698','','rob@mail.com',NULL,NULL,1,2,1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1344,4 +1345,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-05 15:31:05
+-- Dump completed on 2013-06-05 16:29:30

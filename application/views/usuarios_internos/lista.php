@@ -18,9 +18,10 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Sub Rol</th>
-        <th>Usuario</th>
-        <th>Nombre Completo</th>
+      	<th>Nombre Completo</th>
+      	<th>Usuario</th>
+      	<th>Rol</th>
+      	<th>Email</th>
         
         <th>Editar</th>
         <th>Estado</th>
@@ -32,9 +33,11 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
+      	<td><?php echo $valor['nombre_completo'];?></td>
+      	<td><?php echo $valor['usuario'];?></td>
       	<td><?php echo $valor['nombre_subrol'];?></td>
-        <td><?php echo $valor['usuario'];?></td>
-        <td><?php echo $valor['nombre_completo'];?></td>
+      	<td><?php echo $valor['correo'] ;?></td>
+        
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_usuario']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
           <?php

@@ -51,7 +51,9 @@ class Usuarios_internos extends CI_Controller {
 			$this->form_validation->set_rules('telefono','Telefono',"required|xss_clean");
 			$this->form_validation->set_rules('usuario','Usuario',"required|is_unique[usu_usuario.usuario]|xss_clean");
 			$this->form_validation->set_message('matches',"Las contraseñas no coinciden");
-			$this->form_validation->set_rules('clave','Contraseña',"required|matches[clave2]|xss_clean");
+			$this->form_validation->set_rules('clave','Contraseña',"required|matches[clave2]|xss_clean|min_length[6]");
+			$this->form_validation->set_rules('correo','Email',"valid_email|xss_clean");
+
 
 
 			if($this->form_validation->run()==TRUE)

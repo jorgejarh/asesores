@@ -21,6 +21,10 @@ echo form_open('',array(
 		<td><?php echo form_input('celular','','class="requerido"');?></td>
 	</tr>
 	<tr>
+		<td>Email</td>
+		<td><?php echo form_input('correo','','class=""');?></td>
+	</tr>
+	<tr>
 		<td colspan="2"><hr></td>
 	</tr>
 	<tr>
