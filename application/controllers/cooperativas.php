@@ -86,14 +86,22 @@ class Cooperativas extends CI_Controller {
 		{
 			$obtener_cooperativa = $this->cooperativa_model->obtener_cooperativa($id);
 			$resultado = $this->cooperativa_model->eliminar($id);
+			$logotipo = $obtener_cooperativa['logotipo'];
 		}
 		if($resultado)
 		{
-			$eliminarArc = $this->cooperativa_model->eliminarArc('public/img/'.$obtener_cooperativa['logotipo']);
-			if($eliminarArc){
-				echo "Cooperativa Eliminada";
+			if($logotipo){
+				$existeArc = $this->cooperativa_model->existeArc('public/img/'.$logotipo);
+				if($existeArc){
+					$eliminarArc = $this->cooperativa_model->eliminarArc('public/img/'.$logotipo);
+					if($eliminarArc){
+						echo "Cooperativa Eliminada";
+					}else{
+						echo "Cooperativa Eliminada. El logo no pudo ser eliminado";
+					}
+				}
 			}else{
-				echo "Cooperativa Eliminada. El logo no pudo ser eliminado";
+				echo "Cooperativa Eliminada";
 			}
 		}else{
 			echo "Error! No se pudo Eliminar la Cooperativa";

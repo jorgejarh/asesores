@@ -11,10 +11,10 @@ echo form_open('',array(
 	<tr>
 		<td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
 	</tr>
-    <tr>
+    <!--<tr>
 		<td valign="middle">Curricula: </td>
 		<td valign="middle">
-        <select id="id_curricula" name="id_curricula" class="requerido">
+        <select id="id_curricula" name="">
         	<option value="">Seleccione...</option>
             <?php
             if($curriculas)
@@ -29,7 +29,8 @@ echo form_open('',array(
 			?>
         </select>
         </td>
-	</tr>
+	</tr>-->
+	<input type="hidden" value="<?php echo $id_curricula; ?>" name="id_curricula">
 	<tr>
 		<td valign="middle">Nombre del perfil: </td>
 		<td valign="middle"><input type="text" id="perfil" name="perfil" class="requerido"/></td>

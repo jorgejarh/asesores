@@ -1,4 +1,4 @@
-<div id="content_main" class="clearfix">
+  <div id="content_main" class="clearfix">
   <div id="main_panel_container" class="left" style="width:900px;">
     <div id="dashboard" style="width:100%;padding-bottom:50px;">
       <h2 class="ico_mug">
@@ -34,7 +34,7 @@ if($listado)
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_plan'];?></td>
         <td align="center"	class="datatable_icono"><a target="_blank" href="<?php echo site_url('pl_planes/ver_plan/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
-        <td align="center"	class="datatable_icono"><a target="_blank" href="<?php echo site_url('pl_modalidades/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
+        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modalidades/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td><?php echo $valor['nombre_estado'];?></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">

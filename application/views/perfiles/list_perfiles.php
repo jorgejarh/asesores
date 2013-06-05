@@ -5,10 +5,15 @@
       	<table style="width:100%;">
       		<tr>
       			<td>Perfiles</td>
-      			<td style="text-align:right;"><button onClick="nuevo_registro();">Nuevo</button></td>
+      			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $id_curricula; ?>);">Nuevo</button></td>
       		</tr>
       	</table>
       </h2>
+      <div class="bot_atras">
+      <?php
+        echo anchor('curriculas','<- Regresar');
+    ?>
+    </div>
       <div style="width:90%; margin:auto;">
       
         <?php
@@ -69,10 +74,10 @@ if($listado)
 	    } );
 	} );
 
-function nuevo_registro()
+function nuevo_registro(id_curricula)
 {
 	$.ajax({
-		  url: "<?php echo site_url('perfiles/nuevo');?>",
+		  url: "<?php echo site_url('perfiles/nuevo');?>/"+id_curricula,
 		  type:"POST",
 		  success:function(data){
 

@@ -29,6 +29,13 @@ class Curricula_model extends CI_Model {
 			}
 			
     }
+
+    function obtener_perfiles_por_id_curricula($id_curricula){
+    	if($id_curricula!=0)
+		{
+        	return $this->db->select('a.*,b.curricula')->get_where('cu_perfil a, cu_curricula b','a.id_curricula = '.$id_curricula.' and a.id_curricula = b.id_curricula')->result_array();
+		}
+    }
 	
 	function obtener_tipos_contenido($id=0)
 	{

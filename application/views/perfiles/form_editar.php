@@ -11,7 +11,7 @@ echo form_open('',array(
 	<tr>
 		<td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
 	</tr>
-	<tr>
+	<!--<tr>
 		<td valign="middle">Curricula: </td>
 		<td valign="middle">
         <select id="id_curricula" name="id_curricula" class="requerido">
@@ -29,7 +29,7 @@ echo form_open('',array(
 			?>
         </select>
         </td>
-	</tr>
+	</tr>-->
 	<tr>
 		<td valign="middle">Nombre del perfil: </td>
 		<td valign="middle"><input type="text" id="perfil" name="perfil" value="<?php echo $dato['perfil'];?>" class="requerido"/></td>
