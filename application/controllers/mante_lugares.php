@@ -15,12 +15,13 @@ class Mante_lugares extends CI_Controller {
 	public $campos=array();
 	
 	
-	public function set_campo($nombre_campo,$nombre_mostrar,$reglas="")
+	public function set_campo($nombre_campo,$nombre_mostrar,$reglas="",$tipo_elemento="text")
 	{
 		$this->campos[]=array(
 								'nombre_campo'=>$nombre_campo,
 								'nombre_mostrar'=>$nombre_mostrar,
-								'reglas'=>$reglas
+								'reglas'=>$reglas,
+								'tipo_elemento'=>$tipo_elemento
 								);
 	}
 	
@@ -31,9 +32,9 @@ class Mante_lugares extends CI_Controller {
         $model=$this->modelo_usar;
 		$this->load->model($model);
 		
-		$this->set_campo("nombre_lugar","Nombre",'required|xss_clean');
-		$this->set_campo("telefono","Telefono",'required|xss_clean');
-		$this->set_campo("ubicacion","Ubicacion",'required|xss_clean');
+		$this->set_campo("nombre_lugar","Nombre",'required|xss_clean', 'text');
+		$this->set_campo("telefono","Telefono",'required|xss_clean', 'text');
+		$this->set_campo("ubicacion","Ubicacion",'required|xss_clean', 'textarea');
 
     }
 

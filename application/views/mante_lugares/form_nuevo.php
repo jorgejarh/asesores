@@ -17,7 +17,25 @@ echo form_open('',array(
 		?>
 	<tr>
 		<td><?php echo $valor['nombre_mostrar']; ?>: </td>
-		<td><?php echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));?> </td>
+		<td>
+			<?php 
+				switch($valor['tipo_elemento'])
+				{
+					case 'text':
+						echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));
+					break;
+				
+					case 'textarea':
+						$data = array(
+								'name' => $valor['nombre_campo'],
+								'cols' => '25',
+								'rows' => '5'
+							);
+						echo form_textarea($data);
+					break;
+				}
+			?> 
+		</td>
 	</tr>
 		<?php
 	}
