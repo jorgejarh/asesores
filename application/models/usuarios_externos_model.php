@@ -39,11 +39,14 @@ class Usuarios_externos_model extends CI_Model {
 	{
         unset($post['clave2']);
 
-        if($post['clave']!="")
+        if(isset($post['clave']))
         {
-            $post['clave']=md5($post['clave']);
+            if($post['clave']!="")
+            {
+                $post['clave']=md5($post['clave']);
+            }
         }
-
+        
         $post2=array('id_cooperativa'=>$post['id_cooperativa'],'id_sucursal'=>$post['id_sucursal']);
         unset($post['id_cooperativa']);
         unset($post['id_sucursal']);

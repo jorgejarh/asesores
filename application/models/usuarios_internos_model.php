@@ -28,9 +28,11 @@ class Usuarios_internos_model extends CI_Model {
 	{
         unset($post['clave2']);
 
-        if($post['clave']!="")
-        {
-            $post['clave']=md5($post['clave']);
+        if(isset($post['clave'])){
+            if($post['clave']!="")
+            {
+                $post['clave']=md5($post['clave']);
+            }
         }
 
         if($id==0)
