@@ -25,7 +25,7 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Capacitacion</th>
+      	<th>Tema</th>
         <th>Asignar Modulos</th>
         <th>Editar</th>
         <th>Eliminar</th>

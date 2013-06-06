@@ -17,8 +17,23 @@ echo form_open('',array(
 	{
 		?>
 	<tr>
-		<td><?php echo $valor['nombre_mostrar']; ?>: </td>
-		<td><?php echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));?> </td>
+		<td valign="middle"><?php echo $valor['nombre_mostrar']; ?>: </td>
+		<td valign="middle"><?php 
+			switch($valor['tipo_elemento'])
+			{
+				case 'text':
+					echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));
+					break;
+				
+				case 'select':
+					echo form_dropdown($valor['nombre_campo'],$valor['datos_select']);
+					break;
+				case 'textarea':
+					echo form_textarea($valor['nombre_campo']);
+					break;
+			}
+			
+			?></td>
 	</tr>
 		<?php
 	}

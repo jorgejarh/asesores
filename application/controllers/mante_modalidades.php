@@ -15,13 +15,16 @@ class Mante_modalidades extends CI_Controller {
 	public $campos=array();
 	
 	
-	public function set_campo($nombre_campo,$nombre_mostrar,$reglas="")
+	public function set_campo($nombre_campo,$nombre_mostrar,$reglas="",$tipo_elemento="text",$datos_select=array())
 	{
 		$this->campos[]=array(
 								'nombre_campo'=>$nombre_campo,
 								'nombre_mostrar'=>$nombre_mostrar,
-								'reglas'=>$reglas
+								'reglas'=>$reglas,
+								'tipo_elemento'=>$tipo_elemento,
+								'datos_select'=>$datos_select
 								);
+
 	}
 	
 	function __construct()
@@ -32,7 +35,7 @@ class Mante_modalidades extends CI_Controller {
 		$this->load->model($model);
 		
 		$this->set_campo("nombre_modalidad","Nombre",'required|xss_clean');
-		$this->set_campo("objetivo","Objetivo",'required|xss_clean');	
+		$this->set_campo("objetivo","Objetivo",'required|xss_clean','textarea');	
 		
 
     }

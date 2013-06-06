@@ -4,7 +4,7 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td>Perfiles</td>
+      			<td><?php echo $curricula['curricula']; ?> (Perfiles)</td>
       			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $id_curricula; ?>);">Nuevo</button></td>
       		</tr>
       	</table>

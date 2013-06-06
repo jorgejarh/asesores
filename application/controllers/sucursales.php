@@ -40,7 +40,8 @@ class Sucursales extends CI_Controller {
 		$post=$this->input->post();
 		if($post)
 		{
-						
+			$post['id_usuario']=$this->datos_user['id_usuario'];
+			$post['f_creacion']=date('Y-m-d H:i:s');
 			$guardar=$this->db->insert('conf_sucursal',$post);
 
 			if($guardar)

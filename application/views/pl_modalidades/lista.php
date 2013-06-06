@@ -26,7 +26,8 @@ if($listado)
     <thead>
       <tr>
       	<th>Modalidad</th>
-        <th>Asignar Capacitacion</th>
+        <th>Objetivo</th>
+        <th>Asignar Tema</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -37,7 +38,8 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombre_modalidad'];?></td>
+      	<td><?php echo $valor['nombre_modalidad']; ?></td>
+        <td><?php echo $valor['objetivo'];?></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_capacitaciones/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">

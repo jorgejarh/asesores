@@ -20,6 +20,8 @@ if($listado)
       <tr>
         <th>Sucursal</th>
         <th>Cooperativa</th>
+        <th>Telefono</th>
+        <th>Fax</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -32,6 +34,8 @@ if($listado)
       <tr class="gradeA">
       	<td><?php echo $valor['sucursal'];?></td>
         <td><?php echo $valor['cooperativa'];?></td>
+        <td><?php echo $valor['telefono'];?></td>
+        <td><?php echo $valor['fax'];?></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_sucursal']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_sucursal']; ?>);" ><?php echo img('public/img/cancel.png');?></a></td>
       </tr>

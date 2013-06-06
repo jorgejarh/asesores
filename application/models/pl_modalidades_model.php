@@ -39,7 +39,7 @@ class Pl_modalidades_model extends CI_Model {
 	
 	function lista($id=0)
 	{
-		$this->db->select("a.*, b.nombre_plan, c.nombre_modalidad");
+		$this->db->select("a.*, b.nombre_plan, c.nombre_modalidad, c.objetivo");
 		$this->db->where("a.id_plan = b.id_plan");
 		$this->db->where("a.id_modalidad = c.id_modalidad");
 		$this->db->where("a.id_plan = ".$id);

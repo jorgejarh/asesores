@@ -19,8 +19,8 @@ if($listado)
     <thead>
       <tr>
       	<th>Nombre de la Modalidad</th>
+        <th>Objetivo</th>
         <th>Fecha de creacion</th>
-        <th>Usuario Creador</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -32,9 +32,8 @@ if($listado)
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_modalidad'];?></td>
-        <!--<td><?php echo date('d/m/Y (g:h:s a)',strtotime($valor['f_creacion']));?></td>-->
+        <td><?php echo $valor['objetivo'];?></td>
         <td><?php echo date('d/m/Y',strtotime($valor['f_creacion']));?></td>
-        <td><?php echo $valor['nombre_usuario'];?></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         

@@ -48,16 +48,18 @@ class Cooperativa_model extends CI_Model {
         return $this->db->update('conf_cooperativa', array('logotipo' => "logos/".$arc));
     }
 
-    public function insertar_cooperativa($post=''){
+    public function insertar_cooperativa($post=array()){
+		$datos['id_usuario']=$this->datos_user['id_usuario'];
+		$datos['f_creacion']=date('Y-m-d H:i:s');
         return $this->db->insert('conf_cooperativa',$post);
     }
 
-    public function editar_cooperativa($post='', $id=0){
+    public function editar_cooperativa($post=array(), $id=0){
         return $this->db->update('conf_cooperativa',$post,array('id_cooperativa'=>$id));
     }
 
     public function eliminar($id=0){
-        //$resultado=$this->db->update('usu_usuario', array('estado'=>$this->input->post('activo')),array('id_usuario'=>$id));
-        return $this->db->delete('conf_cooperativa', array('id_cooperativa'=>$id));        
+        $resultado=$this->db->update('conf_cooperativa', array('activo'=>0),array('id_cooperativa'=>$id));
+        //return $this->db->delete('conf_cooperativa', array('id_cooperativa'=>$id));        
     }
 }

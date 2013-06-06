@@ -11,25 +11,6 @@ echo form_open('',array(
 	<tr>
 		<td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
 	</tr>
-    <!--<tr>
-		<td valign="middle">Curricula: </td>
-		<td valign="middle">
-        <select id="id_curricula" name="">
-        	<option value="">Seleccione...</option>
-            <?php
-            if($curriculas)
-			{
-				foreach($curriculas as $valor)
-				{
-					?>
-                    <option value="<?php echo $valor['id_curricula'];?>"><?php echo $valor['curricula'];?></option>
-                    <?php
-				}
-			}
-			?>
-        </select>
-        </td>
-	</tr>-->
 	<input type="hidden" value="<?php echo $id_curricula; ?>" name="id_curricula">
 	<tr>
 		<td valign="middle">Nombre del perfil: </td>
@@ -51,6 +32,9 @@ echo form_open('',array(
 <?php
 echo form_close();
 ?>
+<div class="cargando_">
+
+</div>
 <script type="text/javascript">
 $(document).ready(function(e){
 
@@ -66,23 +50,32 @@ $(document).ready(function(e){
 			return false;
 		}
 
-		//$('input[type=submit]').disable();
+		form=$(this);
+		
+		form.fadeOut('fast',function(){
+			
+			
+			$('.cargando_').fadeIn('fast');
 
-		$.ajax({
-			  url: "<?php echo site_url('perfiles/insertar_perfil');?>",
-			  type:"POST",
-			  data:$(this).serialize(),
-			  success:function(data){
-
-			  		if(data=="ok")
-			  		{
-			  			alert('Registro guardado correctamente.');
-			  			location.reload();
-			  		}else{
-			  			alert(data);
-			  		}
-			  		
-			  }
+				$.ajax({
+					  url: "<?php echo site_url('perfiles/insertar_perfil');?>",
+					  type:"POST",
+					  data:$(this).serialize(),
+					  success:function(data){
+		
+							if(data=="ok")
+							{
+								alert('Registro guardado correctamente.');
+								location.reload();
+							}else{
+								$('.cargando_').fadeOut('fast');
+								form.fadeIn('fast');	
+								alert(data);
+							}
+							
+					  }
+				});
+			
 		});
 
 		return false;

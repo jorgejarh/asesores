@@ -19,11 +19,14 @@ class Perfiles extends CI_Controller {
 		$data['title']="Mantenimiento de Perfiles";
 		$data['template']="sistema";
 		$data['contenido']="perfiles/list_perfiles";
+		$data['curricula']=$this->curricula_model->obtener_curricula($id_curricula);
 		if($id_curricula!=0){
 			$data['listado']=$this->curricula_model->obtener_perfiles_por_id_curricula($id_curricula);
 			$data['id_curricula'] = $id_curricula;
 		}else{
-			$data['listado']=$this->curricula_model->obtener_perfiles();	
+			
+			redirect('portal');
+			//$data['listado']=$this->curricula_model->obtener_perfiles();	
 		}
 		
 		$this->load->view('template',$data);
