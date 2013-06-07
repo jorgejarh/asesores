@@ -1,8 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-
-require_once '../../classes/CreateDocx.inc';
-
 require_once dirname(__FILE__) . '/docx/classes/CreateDocx.inc';
  
 class Docx 
