@@ -67,7 +67,7 @@
 			<p><a href="<?php echo site_url('portal/salir');?>">Salir</a></p>
 			<p class="last_login" style="margin-top:-8px;">Last login: <?php echo date('d/m/Y',strtotime($this->datos_user['ultimo_acceso'])); ?></p>
 		</div>
-		<div id="logo"><h1><a href="#">Asesores</a></h1></div>
+		<div id="logo"><h1><a href="<?php echo site_url('portal');?>">Asesores</a></h1></div>
 		
     </div><!-- end header -->
 	    <div id="content" >

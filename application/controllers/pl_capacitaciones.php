@@ -35,7 +35,7 @@ class Pl_capacitaciones extends CI_Controller {
 		$this->load->model('pl_modalidades_model');
 		
 		$this->set_campo("nombre_capacitacion","Nombre",'required|xss_clean');
-		$this->set_campo("objetivo","Objetivo",'required|xss_clean');
+		$this->set_campo("objetivo","Objetivo",'required|xss_clean','textarea');
     }
 
 	public function index($id_plan_modalidad=0)

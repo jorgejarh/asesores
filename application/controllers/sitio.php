@@ -1,17 +1,26 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Sitio extends CI_Controller {
+	
+	function __construct()
+    {
+        parent::__construct();
+		$this->load->model('sitio_model');
+    }
 	
 	public function index()
 	{
-		redirect('sitio');
-		
+		$data['imagenes']=$this->sitio_model->obtener_imagenes_slider();
 		$data['title']="Entrada al sistema";
-		$data['template']="login";
-		$data['contenido']="login/index";
-		$data['error']=array();
+		$data['vista']="inicio";
+		$this->load->view('contenido_sitio/template/template',$data);
+	}
+	
+	public function login()
+	{
+		$json=array();
 		
-		if($this->input->post('entrar'))
+		if($this->input->post())
 		{
 			// si viene post
 			$datos_post=$this->input->post();
@@ -24,22 +33,18 @@ class Login extends CI_Controller {
 				
 				$this->users_model->actualizar_acceso($buscar_usuario['id_usuario']);
 
-				redirect('portal');
-
+				$json['error']=false;
+				$json['url']=site_url('portal');
 			}else{
 				
-				$data['error'][]="Usuario o Contraseña Invalida";
-				
-				$this->load->view('template',$data);
+				$json['error']=true;
+				$json['mensaje']="Usuario o Contraseña Invalida";
 			}
-
-		}else{
-
-			$this->load->view('template',$data);
+			
+			echo json_encode($json);
 		}
 
 		
-
 	}
 }
 

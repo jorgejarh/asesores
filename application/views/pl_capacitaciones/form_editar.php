@@ -25,6 +25,9 @@ echo form_open('',array(
 			case 'select':
 				echo form_dropdown($valor['nombre_campo'],$valor['datos_select'],$dato[$valor['nombre_campo']]);
 				break;
+			case 'textarea':
+					echo form_textarea($valor['nombre_campo'],$dato[$valor['nombre_campo']]);
+					break;
 		}
 		
 		?> </td>

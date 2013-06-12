@@ -27,6 +27,9 @@ echo form_open('',array(
 				case 'select':
 					echo form_dropdown($valor['nombre_campo'],$valor['datos_select']);
 					break;
+				case 'textarea':
+					echo form_textarea($valor['nombre_campo'],'');
+					break;
 			}
 			
 			?></td>
@@ -38,7 +41,7 @@ echo form_open('',array(
 		<td>Fecha Prevista Inicio:</td>
 		<td> 
         	
-			<?php echo form_input('fecha_prevista', date('Y-m-d'),'id="fecha_pre"'); ?>
+			<?php echo form_input('fecha_prevista', date('Y-m-d'),'id="fecha_pre"  readonly="readonly" '); ?>
             <div class="conte_f">
             	<div class="f_pre d"></div>
             </div>
@@ -48,11 +51,14 @@ echo form_open('',array(
 		<td>Fecha Prevista Final:</td>
 		<td> 
         	
-			<?php echo form_input('fecha_prevista_fin', date('Y-m-d'),'id="fecha_pre_f"'); ?>
+			<?php echo form_input('fecha_prevista_fin', date('Y-m-d'),'id="fecha_pre_f"  readonly="readonly"'); ?>
             <div class="conte_f">
             	<div class="f_pre_f d"></div>
             </div>
 		</td>
+	</tr>
+    <tr>
+		<td colspan="2"><h3 align="center">Contenido desde perfil</h3><hr></td>
 	</tr>
 	<tr>
 		<td>Curricula:</td>
@@ -69,11 +75,20 @@ echo form_open('',array(
 		</td>
 	</tr>
     <tr>
-		<td>Contenido:</td>
+		<td>Contenido de perfil:</td>
 		<td> 
 			<div id="div_result_contenido">
 
 			</div>
+		</td>
+	</tr>
+    <tr>
+		<td colspan="2"><hr></td>
+	</tr>
+    <tr>
+		<td>Contenido de Modulo:</td>
+		<td> 
+			<?php echo form_textarea('contenido','','id="destino_contenido"');?>
 		</td>
 	</tr>
 	<tr>
@@ -110,7 +125,14 @@ echo form_close();
 
 <script type="text/javascript">
 $(document).ready(function(e){
-
+	
+	
+	$('#id_contenido').live('change',function(){
+		
+		$('#destino_contenido').html($(this).val());
+		
+		});
+	
 
 	$('#form_nuevo').submit(function(){
 

@@ -26,6 +26,9 @@ if($listado)
     <thead>
       <tr>
       	<th>Nombre del Modulo</th>
+        <th>Objetivo</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Fin</th>
         <th>Asignar Costos</th>
         <th>Editar</th>
         <th>Eliminar</th>
@@ -38,6 +41,9 @@ if($listado)
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_modulo'];?></td>
+        <td width="200"><?php echo $valor['objetivo_modulo'];?></td>
+        <td><?php echo date('d-m-Y',strtotime($valor['fecha_prevista']));?></td>
+        <td><?php echo date('d-m-Y',strtotime($valor['fecha_prevista_fin']));?></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_costos/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">

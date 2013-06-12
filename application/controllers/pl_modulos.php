@@ -35,7 +35,7 @@ class Pl_modulos extends CI_Controller {
 		$this->load->model('pl_capacitaciones_model');
 		
 		$this->set_campo("nombre_modulo","Nombre",'required|xss_clean');
-		$this->set_campo("objetivo_modulo","Objetivo",'required|xss_clean');
+		$this->set_campo("objetivo_modulo","Objetivo",'required|xss_clean','textarea');
     }
 
 	public function index($id_capacitacion=0)
@@ -115,6 +115,7 @@ class Pl_modulos extends CI_Controller {
 		
 		if($data['dato'])
 		{
+			$data['curriculas']=preparar_select($this->$model->obtener_curriculas(),'id_curricula','curricula');
 			$data['title']=$this->nombre_titulo." - Editar";
 			$this->load->view($this->carpeta_view.'/form_editar',$data);
 		}else{
@@ -200,10 +201,16 @@ class Pl_modulos extends CI_Controller {
 		{
 			$json=array();
 
-			$lista=preparar_select($this->$model->obtener_contenidos($post['id']),'id','nombre');
-			$lista[0]="-Seleccione-";
+			$lista=preparar_select($this->$model->obtener_contenidos($post['id']),'nombre','nombre');
+			
+			foreach($lista as $key=>$valor)
+			{
+				$lista[$key]=cortar_texto($valor,40);
+				
+			}
+			$lista[""]="-Seleccione-";
 			ksort($lista);
-			$json['html']=form_dropdown('id_contenido',$lista,$id,'');
+			$json['html']=form_dropdown('id_contenido',$lista,$id,' id="id_contenido"');
 
 			echo json_encode($json);
 		}

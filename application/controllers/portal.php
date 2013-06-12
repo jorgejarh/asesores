@@ -24,7 +24,8 @@ class Portal extends CI_Controller {
 	public function salir()
 	{
 		$this->session->unset_userdata('user');
-		redirect('login');
+		redirect('sitio');
+		//redirect('login');
 	}
 
 }
