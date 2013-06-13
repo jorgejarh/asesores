@@ -6,38 +6,75 @@ echo form_open('',array(
 							)
 				);
 ?>
-
 <table>
-	<tr>
-		<td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
-	</tr>
-	<tr>
-		<td>Rol: </td>
-		<td><?php echo form_dropdown('id_rol',$roles);?></td>
-	</tr>
-	<tr>
-		<td>Sub Rol: </td>
-        <td><?php echo form_input('subrol', '','class="requerido"');?></td>
-	</tr>
-	<tr>
-		<td colspan="2"><hr></td>
-	</tr>
-    <tr>
-		<td colspan="2"><h3>Permisos</h3></td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<table>
-            	<tr>
-                	<?php
+  <tr>
+    <td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
+  </tr>
+  <tr>
+    <td>Rol: </td>
+    <td><?php echo form_dropdown('id_rol',$roles);?></td>
+  </tr>
+  <tr>
+    <td>Sub Rol: </td>
+    <td><?php echo form_input('subrol', '','class="requerido"');?></td>
+  </tr>
+  <tr>
+    <td colspan="2"><hr></td>
+  </tr>
+  <tr>
+    <td colspan="2"><h3>Permisos</h3></td>
+  </tr>
+  <tr>
+    <td colspan="2"><div class="accordion">
+        <?php
+					if($menus)
+					{
+						$activo=false;
+						foreach($menus as $valor1)
+						{
+							
+							echo '<h3 style="cursor:pointer;">'.form_checkbox('permisos[]',$valor1['id_menu'],$activo)." ".$valor1['nombre_menu']."</h3>";
+							if($valor1['submenu'])
+							{
+								?>
+        <div style="display:none;">
+          <?php
+								foreach ($valor1['submenu'] as $valor2) 
+								{
+									
+									echo '<h4 style="margin-left:15px; font-weight:normal;">'.form_checkbox('permisos[]',$valor2['id_menu'],$activo)." ".$valor2['nombre_menu'].'</h4>';
+									if($valor2['submenu'])
+									{
+										
+										foreach($valor2['submenu'] as $valor3)
+										{
+											echo '<h4 style="margin-left:30px; font-weight:normal;">'.form_checkbox('permisos[]',$valor3['id_menu'],$activo)." ".$valor3['nombre_menu'].'</h4>';
+	
+										}
+									}
+									
+									
+								}
+								?>
+        </div>
+        <?php
+							}
+							
+						}
+					}
+					?>
+      </div>
+      
+      <!--<table>
+        <tr>
+          <?php
 					if($menus)
 					{
 						$activo=false;
 						foreach($menus as $valor1)
 						{
 							?>
-                            <td>
-                            <?php
+          <td><?php
 							echo "<h4>".form_checkbox('permisos[]',$valor1['id_menu'],$activo)." ".$valor1['nombre_menu']."</h4>";
 							if($valor1['submenu'])
 							{
@@ -57,30 +94,25 @@ echo form_open('',array(
 								}
 							}
 							
-							?>
-                            </td>
-                            <?php
+							?></td>
+          <?php
 							
 						}
 					}
 					?>
-                	<td></td>
-                </tr>
-            </table>
-				
-				
-			
-		</td>
-	</tr>
-    <tr>
-		<td colspan="2"><hr></td>
-	</tr>
-	<tr>
-		<td colspan="2" align="center">
-        	<input type="hidden" name="estado" value="1" />
-			<input type="submit" id="save" value="Guardar" />
-		</td>
-	</tr>
+          <td></td>
+        </tr>
+      </table>-->
+      
+      </td>
+  </tr>
+  <tr>
+    <td colspan="2"><hr></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><input type="hidden" name="estado" value="1" />
+      <input type="submit" id="save" value="Guardar" /></td>
+  </tr>
 </table>
 <?php
 echo form_close();
@@ -123,5 +155,22 @@ $(document).ready(function(e){
 	});
 
 });
+
+
+
+$(document).ready(function(){
+  $(".accordion h3:first").addClass("active");
+  $(".accordion div:not(:first)").hide();
+  $(".accordion h3").click(function(){
+	  
+    $(this).next("div").slideToggle("slow")
+    .siblings("div:visible").slideUp("slow");
+    $(this).toggleClass("active");
+    $(this).siblings("h3").removeClass("active");
+	//$(this).find('input[type=checkbox]').click();
+  });
+
+});
+
 
 </script>

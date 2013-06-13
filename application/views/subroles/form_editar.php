@@ -28,7 +28,47 @@ echo form_open('',array(
 	</tr>
 	<tr>
 		<td colspan="2">
-			<table>
+        <div class="accordion">
+        	<?php
+				if($menus)
+				{
+					$activo=false;
+					foreach($menus as $valor1)
+					{
+						
+						$activo=$this->conf_menu_model->existe_permiso($permisos,$valor1['id_menu']);
+
+						echo '<h3 style="cursor:pointer;">'.form_checkbox('permisos[]',$valor1['id_menu'],$activo)." ".$valor1['nombre_menu']."</h3>";
+						if($valor1['submenu'])
+						{
+							?>
+                            <div style="display:none;">
+                            <?php
+							foreach ($valor1['submenu'] as $valor2) 
+							{
+								$activo=$this->conf_menu_model->existe_permiso($permisos,$valor2['id_menu']);
+								echo '<h4 style="margin-left:15px; font-weight:normal;">'.form_checkbox('permisos[]',$valor2['id_menu'],$activo)." ".$valor2['nombre_menu'].'</h4>';
+								if($valor2['submenu'])
+								{
+									
+									foreach($valor2['submenu'] as $valor3)
+									{
+										$activo=$this->conf_menu_model->existe_permiso($permisos,$valor3['id_menu']);
+										echo '<h4 style="margin-left:30px; font-weight:normal;">'.form_checkbox('permisos[]',$valor3['id_menu'],$activo)." ".$valor3['nombre_menu'].'</h4>';
+
+									}
+								}
+							}
+							?>
+                            </div>
+                            <?php
+						}
+						
+					}
+				}
+				?>
+        </div>
+			<!--<table>
             	<tr>
 				<?php
 				if($menus)
@@ -69,7 +109,7 @@ echo form_open('',array(
 				?>
 				
 				</tr>
-            </table>
+            </table>-->
 		</td>
 	</tr>
 	<tr>
@@ -119,6 +159,22 @@ $(document).ready(function(e){
 
 		return false;
 	});
+
+});
+
+
+
+$(document).ready(function(){
+  $(".accordion h3:first").addClass("active");
+  $(".accordion div:not(:first)").hide();
+  $(".accordion h3").click(function(){
+	  
+    $(this).next("div").slideToggle("slow")
+    .siblings("div:visible").slideUp("slow");
+    $(this).toggleClass("active");
+    $(this).siblings("h3").removeClass("active");
+	//$(this).find('input[type=checkbox]').click();
+  });
 
 });
 

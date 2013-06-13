@@ -1,7 +1,0 @@
-<Directory "C:/AppServ/www">
-Options FollowSymLinks
-AllowOverride All
-Order deny,allow
-Allow from all
-Satisfy all
-</Directory>
