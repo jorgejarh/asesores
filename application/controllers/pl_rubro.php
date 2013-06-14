@@ -1,16 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Pl_modulos extends CI_Controller {
+class Pl_rubro extends CI_Controller {
 
 	public $datos_user=array();
 
-	public $carpeta_view="pl_modulos";
+	public $carpeta_view="pl_rubro";
 
-	public $modelo_usar="pl_modulos_model";
+	public $modelo_usar="pl_rubro_model";
 
-	public $nombre_controlador="pl_modulos";
+	public $nombre_controlador="pl_rubro";
 	
-	public $nombre_titulo="Modulos";
+	public $nombre_titulo="Rubros";
 	
 	public $campos=array();
 	
@@ -32,22 +32,22 @@ class Pl_modulos extends CI_Controller {
         $this->datos_user=comprobar_login();
         $model=$this->modelo_usar;
 		$this->load->model($model);
-		$this->load->model('pl_capacitaciones_model');
+		$this->load->model('pl_modulos_model');
 		
-		$this->set_campo("nombre_modulo","Nombre",'required|xss_clean');
-		$this->set_campo("objetivo_modulo","Objetivo",'required|xss_clean','textarea');
+		$this->set_campo("nombre","Nombre",'required|xss_clean');
+		
     }
 
-	public function index($id_capacitacion=0)
+	public function index($id_modulo=0)
 	{
-		$data['capacitacion']=$this->pl_capacitaciones_model->obtener($id_capacitacion);
-		if($data['capacitacion'])
+		$data['modulo']=$this->pl_modulos_model->obtener($id_modulo);
+		if($data['modulo'])
 		{
 			$model=$this->modelo_usar;
 			$data['title']=$this->nombre_titulo;
 			$data['template']="sistema";
 			$data['contenido']=$this->carpeta_view."/lista";
-			$data['listado']=$this->$model->lista($id_capacitacion);
+			$data['listado']=$this->$model->lista($id_modulo);
 			$data['model']=$model;
 			$this->load->view('template',$data);
 		}else{
@@ -64,7 +64,6 @@ class Pl_modulos extends CI_Controller {
 		$data=array();
 		$data['title']=$this->nombre_titulo." - Nuevo";
 		$data['id']=$id;
-		$data['curriculas']=preparar_select($this->$model->obtener_curriculas(),'id_curricula','curricula');
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	
@@ -217,14 +216,6 @@ class Pl_modulos extends CI_Controller {
 			
 	}
 	
-	
-	function ver_presupuesto($id_modulo=0)
-	{
-		$model=$this->modelo_usar;
-		$data['datos']=$this->$model->obtener_presupuesto($id_modulo);
-		$data['titulo']="Presupuesto";
-		$this->load->view($this->carpeta_view.'/ver_presupuesto',$data);
-	}
 	
 
 }

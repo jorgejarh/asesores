@@ -6,14 +6,14 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td><?php echo $capacitacion['nombre_plan']." &gt; ".$capacitacion['nombre_modalidad']." &gt; ".$capacitacion['nombre_capacitacion'];?></td>
-      			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $capacitacion['id_capacitacion']?>);">Nuevo</button></td>
+      			<td><?php echo $modulo['nombre_modulo'];?></td>
+      			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $modulo['id_modulo']?>);">Nuevo</button></td>
       		</tr>
       	</table>
       </h2>
       <div class="bot_atras">
     	<?php
-        echo anchor('pl_capacitaciones/index/'.$capacitacion['id_plan_modalidad'],'<- Regresar');
+        echo anchor('pl_modulos/index/'.$modulo['id_capacitacion'],'<- Regresar');
 		?>
     </div>
       <div class="" style="width:90%; margin:auto;">
@@ -25,12 +25,10 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Nombre del Modulo</th>
-        <th>Objetivo</th>
-        <th width="90">Fecha Inicio</th>
-        <th width="90">Fecha Fin</th>
-         <th>Ver Presupuesto</th>
-        <th>Asignar Costos</th>
+      	<th>Nombre del Rubro</th>
+        <th>Sub Rubros</th>
+        <th>Total</th>
+        <th>Asignar Sub Rubro</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -39,14 +37,26 @@ if($listado)
       <?php
 		foreach($listado as $valor)
 		{
+			$total_rubro=0.00;
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombre_modulo'];?></td>
-        <td ><?php echo $valor['objetivo_modulo'];?></td>
-        <td><?php echo date('d-m-Y',strtotime($valor['fecha_prevista']));?></td>
-        <td><?php echo date('d-m-Y',strtotime($valor['fecha_prevista_fin']));?></td>
-        <td align="center"	class=""><a target="_blank" href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
-        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_rubro/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
+      	<td><?php echo $valor['nombre'];?></td>
+        <td><?php
+			if($valor['sub'])
+			{
+				foreach($valor['sub'] as $sub)
+				{
+					$subtotal=$sub['costo']*$sub['unidades'];
+					echo '<div><a title="Total: $ '.number_format($subtotal,2).'">- '.$sub['nombre'].'</a></div>';
+					$total_rubro+=$subtotal;
+				}
+			}else{
+				echo "-";
+				}
+				
+		?></td>
+       <td>$ <?php echo number_format($total_rubro,2);?></td>
+        <td align="center"	class=""><a href="<?php echo site_url('pl_subrubro/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         

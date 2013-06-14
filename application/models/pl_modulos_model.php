@@ -75,6 +75,56 @@ class Pl_modulos_model extends CI_Model {
 		return $this->db->get_where('cu_perfil_contenido_aspectos',array('id_perfil'=>$id))->result_array();
 	}
 	
+	function obtener_presupuesto($id_modulo=0)
+	{
+		$data=$this->db->get_where('pl_modulos a',array('a.id_modulo'=>$id_modulo,'a.activo'=>1))->row_array();
+		if($data)
+		{
+			$data_capacitacion=$this->db->get_where('pl_capacitaciones a',array('a.id_capacitacion'=>$data['id_capacitacion'],'a.activo'=>1))->row_array();
+			if($data_capacitacion)
+			{
+				$data_modalidad_plan=$this->db->select('b.*,a.id_plan_modalidad, c.*')
+									->where("a.id_modalidad = b.id_modalidad ")
+									->where("a.id_plan = c.id_plan ")
+									->where("b.activo = 1")
+									->where("c.activo = 1")
+									->get_where('pl_modalidades a, mante_modalidades b, pl_planes c',array('a.id_plan_modalidad'=>$data_capacitacion['id_plan_modalidad'],'a.activo'=>1))->row_array();
+				
+				if($data_modalidad_plan)
+				{
+					$data['data_capacitacion']=$data_capacitacion;
+					$data['data_modalidad_plan']=$data_modalidad_plan;
+					
+					unset($data_capacitacion);
+					unset($data_modalidad_plan);
+					
+					$data['rubros']=$this->db->get_where('pl_rubro a',array('a.id_modulo'=>$id_modulo,'a.activo'=>1))->result_array();
+					if($data['rubros'])
+					{
+						foreach($data['rubros'] as $key_ru=>$valor_ru)
+						{
+							$data['rubros'][$key_ru]['sub']=$this->db->get_where('pl_subrubro a',array('a.id_rubro'=>$valor_ru['id_rubro'],'a.activo'=>1))->result_array();
+						}
+					}
+					
+					return $data;
+					/*echo "<pre>";
+					print_r($data);
+					echo "<pre>";*/
+					
+				}else{
+					echo "Modalidad o Plan no encontrado";
+					exit();
+					}
+			}else{
+				echo "Capacitacion no encontrada";
+				exit();
+				}
+		}else{
+			echo "Modulo no encontrado";
+			exit();
+			}
+	}
 	
 	
 }

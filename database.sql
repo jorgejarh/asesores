@@ -1,9 +1,8 @@
 /*
 SQLyog Ultimate v9.02 
-MySQL - 5.0.51b-community-nt-log : Database - asesores01
+MySQL - 5.0.51b-community-nt-log : Database - asesores
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -364,7 +363,7 @@ CREATE TABLE `mante_modalidades` (
 
 /*Data for the table `mante_modalidades` */
 
-insert  into `mante_modalidades`(`id_modalidad`,`nombre_modalidad`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,'Modalidad 11','Objetivos Objetivos 1','2013-06-01 20:40:16',1,0),(2,'Diplomados','Diplomados, Diplomados','2013-06-01 20:54:52',1,1),(3,'Seminarios y Foros','Seminarios y Foros, Seminarios y Foros','2013-06-02 17:05:20',1,1),(4,'Talleres','Talleres, Talleres','2013-06-02 17:05:41',1,1),(5,'Congresos','Congresos, Congresos','2013-06-02 17:05:55',1,1);
+insert  into `mante_modalidades`(`id_modalidad`,`nombre_modalidad`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (2,'Diplomados','Diplomados, Diplomados','2013-06-01 20:54:52',1,1),(3,'Seminarios y Foros','Seminarios y Foros, Seminarios y Foros','2013-06-02 17:05:20',1,1),(4,'Talleres','Talleres, Talleres','2013-06-02 17:05:41',1,1),(5,'Congresos','Congresos, Congresos','2013-06-02 17:05:55',1,1);
 
 /*Table structure for table `mante_subcostos` */
 
@@ -416,11 +415,11 @@ CREATE TABLE `pl_capacitaciones` (
   PRIMARY KEY  (`id_capacitacion`),
   KEY `FK_pl_capacitaciones` (`id_plan_modalidad`),
   CONSTRAINT `FK_pl_capacitaciones` FOREIGN KEY (`id_plan_modalidad`) REFERENCES `pl_modalidades` (`id_plan_modalidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_capacitaciones` */
 
-insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva','2013-06-02 18:19:52',1,1);
+insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva','2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias','2013-06-13 22:33:23',1,1);
 
 /*Table structure for table `pl_modalidades` */
 
@@ -461,11 +460,11 @@ CREATE TABLE `pl_modulos` (
   `f_creacion` datetime default NULL,
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_modulo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos` */
 
-insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`nombre_modulo`,`objetivo_modulo`,`id_contenido`,`fecha_prevista`,`fecha_prevista_fin`,`contenido`,`id_usuario`,`f_creacion`,`activo`) values (1,1,'modulo 122','dddddddd22',0,'2013-06-11','2013-06-11','Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',1,'2013-06-02 19:43:26',1),(2,1,'modulo 1','modulo 1',7,'2013-06-22','2013-06-28',NULL,1,'2013-06-02 22:15:14',1);
+insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`nombre_modulo`,`objetivo_modulo`,`id_contenido`,`fecha_prevista`,`fecha_prevista_fin`,`contenido`,`id_usuario`,`f_creacion`,`activo`) values (1,2,'Gestion mercadologica de las agencias','Gestion mercadologica de las agencias',0,'2013-06-20','2013-06-20','Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',1,'2013-06-13 22:34:18',1),(2,2,'Gestioin mercadologica de las agencias','Gestioin mercadologica de las agencias',0,'2013-06-21','2013-06-21','Contenido 1\r\n',1,'2013-06-13 22:35:05',1),(3,2,'Base normativa para la apertura de agencias','Base normativa para la apertura de agencias',0,'2013-06-26','2013-06-26','contenido 2',1,'2013-06-13 22:35:50',1);
 
 /*Table structure for table `pl_planes` */
 
@@ -486,6 +485,44 @@ CREATE TABLE `pl_planes` (
 /*Data for the table `pl_planes` */
 
 insert  into `pl_planes`(`id_plan`,`nombre_plan`,`f_creacion`,`id_usuario`,`id_estado_plan`,`activo`) values (1,'Plan de capacitacion 2013','2013-06-02 14:14:59',1,2,1);
+
+/*Table structure for table `pl_rubro` */
+
+DROP TABLE IF EXISTS `pl_rubro`;
+
+CREATE TABLE `pl_rubro` (
+  `id_rubro` int(11) NOT NULL auto_increment,
+  `id_modulo` int(11) default NULL,
+  `nombre` varchar(200) default NULL,
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_rubro`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pl_rubro` */
+
+insert  into `pl_rubro`(`id_rubro`,`id_modulo`,`nombre`,`f_creacion`,`id_usuario`,`activo`) values (1,3,'Alimentacion','2013-06-13 23:11:01',1,1),(2,3,'Materiales','2013-06-13 23:12:09',1,1);
+
+/*Table structure for table `pl_subrubro` */
+
+DROP TABLE IF EXISTS `pl_subrubro`;
+
+CREATE TABLE `pl_subrubro` (
+  `id_subrubro` int(11) NOT NULL auto_increment,
+  `id_rubro` int(11) default NULL,
+  `nombre` varchar(200) default NULL,
+  `unidades` int(11) default '0',
+  `costo` decimal(12,2) default '0.00',
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_subrubro`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pl_subrubro` */
+
+insert  into `pl_subrubro`(`id_subrubro`,`id_rubro`,`nombre`,`unidades`,`costo`,`f_creacion`,`id_usuario`,`activo`) values (1,1,'Desayuno',20,'3.00','2013-06-13 23:11:26',1,1),(2,1,'Refrigerio',20,'2.00','2013-06-13 23:11:51',1,1),(3,2,'Folder',20,'0.50','2013-06-13 23:12:28',1,1),(4,2,'Lapiceros',20,'0.10','2013-06-13 23:12:44',1,1),(5,2,'Libreta',20,'5.00','2013-06-13 23:13:02',1,1);
 
 /*Table structure for table `sitio_slider` */
 
@@ -612,7 +649,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk',NULL,'2013-06-11 23:45:08',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,NULL,1,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk',NULL,'2013-06-13 19:57:22',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,NULL,1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

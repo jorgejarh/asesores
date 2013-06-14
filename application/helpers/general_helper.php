@@ -88,4 +88,39 @@ if ( ! function_exists('cortar_texto'))
 }
 
 
+if ( ! function_exists('fecha_es'))
+{
+	function fecha_es($fecha="")
+	{
+		$dia=date("l",strtotime($fecha));
+ 
+		if ($dia=="Monday") $dia="Lunes";
+		if ($dia=="Tuesday") $dia="Martes";
+		if ($dia=="Wednesday") $dia="Miércoles";
+		if ($dia=="Thursday") $dia="Jueves";
+		if ($dia=="Friday") $dia="Viernes";
+		if ($dia=="Saturday") $dia="Sabado";
+		if ($dia=="Sunday") $dia="Domingo";
+		 
+		$mes=date("F",strtotime($fecha));
+		 
+		if ($mes=="January") $mes="Enero";
+		if ($mes=="February") $mes="Febrero";
+		if ($mes=="March") $mes="Marzo";
+		if ($mes=="April") $mes="Abril";
+		if ($mes=="May") $mes="Mayo";
+		if ($mes=="June") $mes="Junio";
+		if ($mes=="July") $mes="Julio";
+		if ($mes=="August") $mes="Agosto";
+		if ($mes=="September") $mes="Setiembre";
+		if ($mes=="October") $mes="Octubre";
+		if ($mes=="November") $mes="Noviembre";
+		if ($mes=="December") $mes="Diciembre";
+
+		$fecha_ex=explode("-",$fecha);
+		
+		return array('dia_nombre'=>$dia,'mes_nombre'=>$mes,'dia'=>$fecha_ex[2],'mes'=>$fecha_ex[1],'anio'=>$fecha_ex[0]);
+	}
+}
+
 ?>
