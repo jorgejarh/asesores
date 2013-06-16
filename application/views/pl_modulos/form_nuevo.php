@@ -30,6 +30,9 @@ echo form_open('',array(
 				case 'textarea':
 					echo form_textarea($valor['nombre_campo'],'');
 					break;
+				case 'multi_select':
+					echo form_multiselect($valor['nombre_campo'],$valor['datos_select']);
+					break;
 			}
 			
 			?></td>

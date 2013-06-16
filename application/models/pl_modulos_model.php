@@ -30,7 +30,24 @@ class Pl_modulos_model extends CI_Model {
 			
 			return $this->db->get_where($this->nombre_tabla,array('a.activo'=>1))->result_array();
 		}else{
-			return $this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
+			
+			$dato=$this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
+			
+			$facilitadores=$this->db->get_where('pl_modulo_facilitador',array($this->id_tabla=>$id))->result_array();
+			
+			if($facilitadores)
+			{
+				foreach($facilitadores as $valor)
+				{
+					$dato['facilitadores[]'][]=$valor['id_facilitador'];
+				}
+			}else{
+				$dato['facilitadores[]']=array();
+				}
+			
+			
+			
+			return $dato;
 			}
 	}
 	
@@ -44,14 +61,36 @@ class Pl_modulos_model extends CI_Model {
 	
 	function actualizar($datos,$id)
 	{
-		return $this->db->update($this->nombre_tabla,$datos,array($this->id_tabla=>$id));
+		
+		$facilitadores=$datos['facilitadores'];
+		unset($datos['facilitadores']);
+		
+		$result= $this->db->update($this->nombre_tabla,$datos,array($this->id_tabla=>$id));
+		
+		$this->db->delete('pl_modulo_facilitador',array('id_modulo'=>$id));
+		
+		foreach($facilitadores as $valor)
+		{
+			$this->db->insert('pl_modulo_facilitador',array('id_modulo'=>$id,'id_facilitador'=>$valor));
+		}
+		
+		return $result;
 	}
 	
 	function nuevo($datos)
 	{
+		$facilitadores=$datos['facilitadores'];
+		unset($datos['facilitadores']);
 		$datos['id_usuario']=$this->datos_user['id_usuario'];
 		$datos['f_creacion']=date('Y-m-d H:i:s');
-		return $this->db->insert($this->nombre_tabla,$datos);
+		$result= $this->db->insert($this->nombre_tabla,$datos);
+		$id=$this->db->insert_id();
+		foreach($facilitadores as $valor)
+		{
+			$this->db->insert('pl_modulo_facilitador',array('id_modulo'=>$id,'id_facilitador'=>$valor));
+		}
+		
+		return $result;
 	}
 	
 	function eliminar($id)
@@ -94,7 +133,7 @@ class Pl_modulos_model extends CI_Model {
 				{
 					$data['data_capacitacion']=$data_capacitacion;
 					$data['data_modalidad_plan']=$data_modalidad_plan;
-					
+					// libero memoria
 					unset($data_capacitacion);
 					unset($data_modalidad_plan);
 					
@@ -106,11 +145,11 @@ class Pl_modulos_model extends CI_Model {
 							$data['rubros'][$key_ru]['sub']=$this->db->get_where('pl_subrubro a',array('a.id_rubro'=>$valor_ru['id_rubro'],'a.activo'=>1))->result_array();
 						}
 					}
+					$data['facilitadores']=$this->db->select('b.*')->where('a.id_facilitador = b.id_facilitador')->get_where('pl_modulo_facilitador a, mante_facilitadores b',array('a.id_modulo'=>$id_modulo))->result_array();
+					$data['lugar']=$this->db->get_where('mante_lugares a',array('a.id_lugar'=>$data['id_lugar'],'a.activo'=>1))->row_array();
+					
 					
 					return $data;
-					/*echo "<pre>";
-					print_r($data);
-					echo "<pre>";*/
 					
 				}else{
 					echo "Modalidad o Plan no encontrado";

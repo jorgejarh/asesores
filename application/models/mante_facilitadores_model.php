@@ -26,6 +26,7 @@ class Mante_facilitadores_model extends CI_Model {
 	{
 		if($id==0)
 		{
+			$this->db->select("*, concat(nombres,' ',apellidos) as nombre_completo",false);
 			return $this->db->get_where($this->nombre_tabla,array('activo'=>1))->result_array();
 		}else{
 			return $this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();

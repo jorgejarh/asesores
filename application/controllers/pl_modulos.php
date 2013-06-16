@@ -33,9 +33,15 @@ class Pl_modulos extends CI_Controller {
         $model=$this->modelo_usar;
 		$this->load->model($model);
 		$this->load->model('pl_capacitaciones_model');
+		$this->load->model('mante_facilitadores_model');
+		$this->load->model('mante_lugares_model');
 		
 		$this->set_campo("nombre_modulo","Nombre",'required|xss_clean');
 		$this->set_campo("objetivo_modulo","Objetivo",'required|xss_clean','textarea');
+		$this->set_campo("facilitadores[]","Facilitadores",'required|xss_clean','multi_select',preparar_select($this->mante_facilitadores_model->obtener(),'id_facilitador','nombre_completo'));
+		$this->set_campo("id_lugar","Lugar",'required|xss_clean','select',preparar_select($this->mante_lugares_model->obtener(),'id_lugar','nombre_lugar'));
+		$this->set_campo("n_participantes","# Partic. Estimados",'required|numeric|xss_clean');
+		
     }
 
 	public function index($id_capacitacion=0)
@@ -82,8 +88,9 @@ class Pl_modulos extends CI_Controller {
 			{
 				$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
 			}
-
-
+			
+			
+			
 			if($this->form_validation->run()==TRUE)
 			{
 				
@@ -112,7 +119,10 @@ class Pl_modulos extends CI_Controller {
 		$model=$this->modelo_usar;
 		$data['model']=$model;			
 		$data['dato']=$this->$model->obtener($id);
-		
+		/*echo "<pre>";
+		print_r($data['dato']);
+		echo "</pre>";
+		exit();*/
 		if($data['dato'])
 		{
 			$data['curriculas']=preparar_select($this->$model->obtener_curriculas(),'id_curricula','curricula');
