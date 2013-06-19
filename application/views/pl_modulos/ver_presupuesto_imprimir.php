@@ -6,19 +6,8 @@
 <script type="text/javascript" language="javascript" src="<?php echo base_url();?>public/js/datatable/media/js/jquery.js"></script>
 <script>
 $(document).ready(function(event){
-	//alert('ss');
-	
-	$('.div_imprimir .opciones_').hide();
-	
-	
-	$('.div_imprimir').hover(function(){
-		
-			$(this).children('.opciones_').toggle('slow');
-		
-		},function(){
-			$(this).children('.opciones_').toggle('slow');
-			});
-	
+	window.print() ;
+	window.close();
 	});
 
 
@@ -63,15 +52,7 @@ p {
 
 <body>
 <div style="width:900px; margin:auto;" align="center">
-  <div style="position:relative; " align="right">
-    <div class="div_imprimir"><?php echo img(array('src'=>'public/img/icono-impresora.jpg','width'=>50));?> 
-      <ul class="opciones_">
-        <li ><a href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$datos['id_modulo']."/web");?>" target="_blank">Desde la web</a></li>
-        <li><a  href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$datos['id_modulo']."/pdf");?>" target="_blank">Exportar a pdf</a></li>
-        <li><a href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$datos['id_modulo']."/docx");?>" target="_blank">Exportar a word</a></li>
-      </ul> 
-    </div>
-  </div>
+  
   <h2 align="center">Presupuesto de eventos de Capacitacion</h2>
   <h3 align="center"><?php echo $datos['data_modalidad_plan']['nombre_plan'];?></h3>
   <table align="center" width="80%" >
