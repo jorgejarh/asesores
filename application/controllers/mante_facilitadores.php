@@ -15,12 +15,13 @@ class Mante_facilitadores extends CI_Controller {
 	public $campos=array();
 	
 	
-	public function set_campo($nombre_campo, $nombre_mostrar, $reglas="")
+	public function set_campo($nombre_campo, $nombre_mostrar, $reglas="", $tipo_input)
 	{
 		$this->campos[]=array(
 								'nombre_campo'=>$nombre_campo,
 								'nombre_mostrar'=>$nombre_mostrar,
-								'reglas'=>$reglas
+								'reglas'=>$reglas,
+								'tipo_input'=>$tipo_input 
 								);
 	}
 	
@@ -28,15 +29,18 @@ class Mante_facilitadores extends CI_Controller {
     {
         parent::__construct();
         $this->datos_user=comprobar_login();
+        $this->load->helper('general_helper');
         $model=$this->modelo_usar;
 		$this->load->model($model);
+		$this->load->model('mante_tipos_facilitadores_model');
 		
-		$this->set_campo("nombres","Nombres",'required|xss_clean');
-		$this->set_campo("apellidos","Apellidos",'required|xss_clean');
-		$this->set_campo("telefono","Tel. Casa",'required|xss_clean');
-		$this->set_campo("t_oficina","Tel. Oficina",'xss_clean');
-		$this->set_campo("celular","Tel. Celular",'required|xss_clean');
-		$this->set_campo("correo","Email",'xss_clean|valid_email');
+		$this->set_campo("nombres","Nombres",'required|xss_clean', 'text');
+		$this->set_campo("apellidos","Apellidos",'required|xss_clean', 'text');
+		$this->set_campo("telefono","Tel. Casa",'required|xss_clean', 'text');
+		$this->set_campo("t_oficina","Tel. Oficina",'xss_clean', 'text');
+		$this->set_campo("celular","Tel. Celular",'required|xss_clean', 'text');
+		$this->set_campo("correo","Email",'xss_clean|valid_email', 'text');
+		$this->set_campo("id_tipo_facilitador", 'Tipo', 'required|xss_clean', 'select');
 
     }
 
@@ -57,6 +61,7 @@ class Mante_facilitadores extends CI_Controller {
 		$model=$this->modelo_usar;
 		$data=array();
 		$data['title']=$this->nombre_titulo." - Nuevo";
+		$data['listado_facilitadores'] = $this->mante_tipos_facilitadores_model->obtener();
 		
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
@@ -109,6 +114,7 @@ class Mante_facilitadores extends CI_Controller {
 		if($data['dato'])
 		{
 			$data['title']=$this->nombre_titulo." - Editar";
+			$data['listado_facilitadores'] = $this->mante_tipos_facilitadores_model->obtener();
 			$this->load->view($this->carpeta_view.'/form_editar',$data);
 		}else{
 			redirect($this->nombre_controlador);

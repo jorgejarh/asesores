@@ -488,11 +488,12 @@ CREATE TABLE `mante_facilitadores` (
   `t_oficina` varchar(20) DEFAULT NULL,
   `celular` varchar(20) DEFAULT NULL,
   `correo` varchar(15) DEFAULT NULL,
+  `id_tipo_facilitador` int(11) DEFAULT NULL,
   `activo` int(11) DEFAULT '1',
   `id_usuario` int(11) DEFAULT NULL,
   `f_creacion` datetime DEFAULT NULL,
   PRIMARY KEY (`id_facilitador`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -501,7 +502,7 @@ CREATE TABLE `mante_facilitadores` (
 
 LOCK TABLES `mante_facilitadores` WRITE;
 /*!40000 ALTER TABLE `mante_facilitadores` DISABLE KEYS */;
-INSERT INTO `mante_facilitadores` VALUES (1,'Jorge Antonio','Rodriguez','123456','123456','132465','jarh@jarh.com',1,NULL,NULL),(2,'Carlos','Hernandez','123456789','123456789','123456789','jarh@jar.com',1,1,'2013-06-11 23:45:54');
+INSERT INTO `mante_facilitadores` VALUES (1,'Jorge Antonio','Rodriguez','123456','123456','132465','jarh@jarh.com',1,1,NULL,NULL),(2,'Carlos','Hernandez','123456789','123456789','123456789','jarh@jar.com',2,1,1,'2013-06-11 23:45:54'),(3,'Jose','Villalta','22356589','','72525658','almen@gmail.com',1,1,1,'2013-06-19 11:56:52'),(4,'Cesar','Augusto','22356589','','23568956','cesc@live.com',3,1,1,'2013-06-19 12:00:11'),(5,'Rosa Elvira','Barrera','25568956','','78452145','rosi@live.com',3,1,1,'2013-06-19 12:33:19');
 /*!40000 ALTER TABLE `mante_facilitadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -633,7 +634,7 @@ CREATE TABLE `mante_tipos_facilitadores` (
   `f_creacion` datetime DEFAULT NULL,
   `activo` int(11) DEFAULT '1',
   PRIMARY KEY (`id_tipo_facilitador`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -642,6 +643,7 @@ CREATE TABLE `mante_tipos_facilitadores` (
 
 LOCK TABLES `mante_tipos_facilitadores` WRITE;
 /*!40000 ALTER TABLE `mante_tipos_facilitadores` DISABLE KEYS */;
+INSERT INTO `mante_tipos_facilitadores` VALUES (1,'Profesionales',1,'2013-06-19 11:04:06',1),(2,'Tecnicos',1,'2013-06-19 11:04:23',1),(3,'Bachilleres',1,'2013-06-19 11:04:40',1);
 /*!40000 ALTER TABLE `mante_tipos_facilitadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1061,7 +1063,7 @@ CREATE TABLE `usu_usuario` (
 
 LOCK TABLES `usu_usuario` WRITE;
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk',NULL,'2013-06-19 10:33:12',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,NULL,1,2,1);
+INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk',NULL,'2013-06-19 11:03:32',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,NULL,1,2,1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1074,4 +1076,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-19 10:37:22
+-- Dump completed on 2013-06-19 12:34:43

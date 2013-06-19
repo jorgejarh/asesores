@@ -121,6 +121,35 @@ if ( ! function_exists('fecha_es'))
 		
 		return array('dia_nombre'=>$dia,'mes_nombre'=>$mes,'dia'=>$fecha_ex[2],'mes'=>$fecha_ex[1],'anio'=>$fecha_ex[0]);
 	}
+
+
+
+	if( ! function_exists('get_un_campo')){
+		/**
+		 * Devueleve un campo en especifico
+		 * @param  [type] $id         [valor del id]
+		 * @param  [type] $campotabla [nombre del campo que contiene id]
+		 * @param  [type] $campo      [nombre del campo que se quiere obtener]
+		 * @param  [type] $tabla      [nombre de la tabla]
+		 * @return [type]             [el tipo de valor que tenga el campo solicitado]
+		 */
+		function get_un_campo($id,$campotabla,$campo,$tabla) {
+     		$CI =& get_instance();
+     		$CI->db->select($campo);
+     		$CI->db->where($campotabla,$id);
+     		$query = $CI->db->get($tabla);
+
+     		if($query->num_rows() > 0) {
+        		$camporetornar = $query->row();
+        		return $camporetornar->$campo;
+     		} else {
+        		return null;
+     		}
+  		}
+	}
+	
+
+
 }
 
 ?>

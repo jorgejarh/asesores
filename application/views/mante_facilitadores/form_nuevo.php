@@ -11,17 +11,43 @@ echo form_open('',array(
 ?>
 
 <table align="center" style="margin:auto;">
+
+
 	<?php
 	foreach($this->campos as $llave=>$valor)
 	{
 		?>
 	<tr>
 		<td><?php echo $valor['nombre_mostrar']; ?>: </td>
-		<td><?php echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));?> </td>
+		<td>
+			<?php
+			switch ($valor['tipo_input']) {
+			 	case 'text':
+			 		echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));
+			 		break;
+			 	
+			 	case 'select':
+			 		$options = array('' => 'Seleccione');
+
+			 		if($listado_facilitadores){
+			 			foreach ($listado_facilitadores as $key => $value) {
+			 				$options[$value['id_tipo_facilitador']] = $value['nombre_tipo_facilitador']; 
+			 			}
+			 		}
+
+					echo form_dropdown($valor['nombre_campo'], $options, 'Seleccione');
+
+			 		break;
+			 } 
+				
+			?> 
+		</td>
 	</tr>
 		<?php
 	}
 	?>
+
+	
 	
 	<tr>
 		<td colspan="2"><hr></td>
