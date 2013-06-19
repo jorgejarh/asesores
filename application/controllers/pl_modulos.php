@@ -82,6 +82,7 @@ class Pl_modulos extends CI_Controller {
 		
 		if($post)
 		{
+			unset($post['a']);
 			$json=array();
 			
 			foreach($this->campos as $llave=>$valor)		
@@ -143,6 +144,8 @@ class Pl_modulos extends CI_Controller {
 		$model=$this->modelo_usar;
 		if($post)
 		{
+			unset($post['a']);
+			
 			$id=$post['id'];
 			unset($post['id']);
 						
@@ -220,7 +223,7 @@ class Pl_modulos extends CI_Controller {
 			}
 			$lista[""]="-Seleccione-";
 			ksort($lista);
-			$json['html']=form_dropdown('id_contenido',$lista,$id,' id="id_contenido"');
+			$json['html']=form_dropdown('id_contenido',$lista,'',' id="id_contenido"');
 
 			echo json_encode($json);
 		}

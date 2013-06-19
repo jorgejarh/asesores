@@ -53,7 +53,8 @@ class Pl_modulos_model extends CI_Model {
 	
 	function lista($id=0)
 	{
-		$this->db->select("a.* ");
+		$this->db->select("a.*, 
+							IFNULL((SELECT SUM(c.unidades*c.costo) FROM pl_rubro b, pl_subrubro c WHERE b.id_rubro = c.id_rubro AND b.id_modulo = a.id_modulo and c.activo = 1 and  b.activo = 1 ),0.00) as sum_total ",false);
 		return $this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_capacitacion'=>$id))->result_array();
 		
 	}

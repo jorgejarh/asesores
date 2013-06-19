@@ -26,9 +26,9 @@ if($listado)
     <thead>
       <tr>
       	<th>Nombre del Modulo</th>
-        <th>Objetivo</th>
         <th width="90">Fecha Inicio</th>
         <th width="90">Fecha Fin</th>
+        <th width="50">Total</th>
          <th>Ver Presupuesto</th>
         <th>Asignar Costos</th>
         <th>Editar</th>
@@ -42,10 +42,21 @@ if($listado)
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_modulo'];?></td>
-        <td ><?php echo $valor['objetivo_modulo'];?></td>
+        
         <td><?php echo date('d-m-Y',strtotime($valor['fecha_prevista']));?></td>
         <td><?php echo date('d-m-Y',strtotime($valor['fecha_prevista_fin']));?></td>
-        <td align="center"	class=""><a target="_blank" href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
+        <td>$ <?php echo $valor['sum_total'];?></td>
+        <td align="center"	class="">
+        <?php
+        if($valor['sum_total']>0)
+		{
+		?>
+        <a target="_blank" href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a>
+        
+        <?php
+		}
+		?>
+        </td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_rubro/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">

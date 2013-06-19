@@ -63,13 +63,16 @@ echo form_open('',array(
     <tr>
 		<td colspan="2"><h3 align="center">Contenido desde perfil</h3><hr></td>
 	</tr>
-	<tr>
+    <tr>
+		<td colspan="2" align="center"><input type="radio" id="cambiar_curr" name="a" /> Curricula  <input type="radio" id="cambiar_adoc" name="a" checked="checked" />ADOC<hr></td>
+	</tr>
+	<tr class="s_curr">
 		<td>Curricula:</td>
 		<td> 
 			<?php $curriculas[0]="-Seleccione-"; ksort($curriculas); echo form_dropdown('',$curriculas,'','id="curricula_select"'); ?>
 		</td>
 	</tr>
-	<tr>
+	<tr class="s_curr">
 		<td>Perfil:</td>
 		<td> 
 			<div id="div_result_perfil">
@@ -77,7 +80,7 @@ echo form_open('',array(
 			</div>
 		</td>
 	</tr>
-    <tr>
+    <tr class="s_curr">
 		<td>Contenido de perfil:</td>
 		<td> 
 			<div id="div_result_contenido">
@@ -85,10 +88,8 @@ echo form_open('',array(
 			</div>
 		</td>
 	</tr>
-    <tr>
-		<td colspan="2"><hr></td>
-	</tr>
-    <tr>
+    
+    <tr class="s_adoc">
 		<td>Contenido de Modulo:</td>
 		<td> 
 			<?php echo form_textarea('contenido','','id="destino_contenido"');?>
@@ -128,6 +129,18 @@ echo form_close();
 
 <script type="text/javascript">
 $(document).ready(function(e){
+	
+	
+	$('#cambiar_curr').click(function(e) {
+        $('.s_adoc').hide();
+		$('.s_curr').show();
+    });
+	
+	$('#cambiar_adoc').click(function(e) {
+        $('.s_curr').hide();
+		$('.s_adoc').show();
+    });
+	$('#cambiar_adoc').click();
 	
 	
 	$('#id_contenido').live('change',function(){
