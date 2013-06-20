@@ -324,7 +324,7 @@ class Pl_modulos extends CI_Controller {
 			
 			// Close and output PDF document
 			// This method has several options, check the source code documentation for more information.
-			$pdf->Output('Detalle_perfil_'.$data['datos']['data_modalidad_plan']['nombre_plan'].'.pdf', 'D');
+			$pdf->Output('Detalle_presupuesto_'.$data['datos']['data_modalidad_plan']['nombre_plan'].'.pdf', 'D');
 			
 			//============================================================+
 			// END OF FILE

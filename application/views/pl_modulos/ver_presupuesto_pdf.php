@@ -8,18 +8,35 @@
 	border:#000 solid 1px;
 	padding:5px;
 }
-p {
+p{
 	margin:5px;
 }
 </style>
 </head>
 
 <body>
-<div style="width:900px; margin:auto;font-size:10px;" align="center">
+<?php 
+    $fecha_i     = fecha_es($datos['fecha_prevista']); 
+    $fecha_f     = fecha_es($datos['fecha_prevista_fin']);
+    $costo_total = 0.00;
+    foreach($datos['rubros'] as $rubros)
+    {
+      $total_rubro=0.00;
+      if($rubros['sub'])
+      {
+        foreach($rubros['sub'] as $subrubro)
+        {
+          $total_rubro+=($subrubro['unidades']*$subrubro['costo']);
+        }
+      }
+      $costo_total+=$total_rubro;
+    } 
+ ?>
+<div style="width:900px; margin:auto;" align="center">
   
-  <h4 align="center">Presupuesto de eventos de Capacitacion</h4>
-  <h5 align="center"><?php echo $datos['data_modalidad_plan']['nombre_plan'];?></h5>
-  <table align="center" width="80%" >
+  <p><b>Presupuesto de eventos de Capacitacion</b></p>
+  <p><b><?php echo $datos['data_modalidad_plan']['nombre_plan'];?></b></p>
+  <table align="center" width="100%" style="font-size:12px;">
     <tr>
       <td align="left" valign="middle"><p><b>Modalidad: </b></p></td>
       <td align="left" valign="middle"><p><?php echo $datos['data_modalidad_plan']['nombre_modalidad'];?></p></td>
@@ -42,56 +59,23 @@ p {
     </tr>
     <tr>
       <td align="left" valign="middle"><p><b>Fecha Prevista: </b></p></td>
-      <td align="left" valign="middle"><p>
-          <?php 
-	  $fecha_i=fecha_es($datos['fecha_prevista']);
-	  $fecha_f=fecha_es($datos['fecha_prevista_fin']);
-	  echo "Del ".$fecha_i['dia']." - ".$fecha_i['mes_nombre']." - ".$fecha_i['anio']." Al ".$fecha_f['dia']." - ".$fecha_f['mes_nombre']." - ".$fecha_f['anio'];?>
-        </p></td>
+      <td align="left" valign="middle"><p><?php echo "Del ".$fecha_i['dia']." - ".$fecha_i['mes_nombre']." - ".$fecha_i['anio']." Al ".$fecha_f['dia']." - ".$fecha_f['mes_nombre']." - ".$fecha_f['anio']; ?></p></td>
     </tr>
     <tr>
       <td align="left" valign="top"><p><b>Facilitador(es): </b></p></td>
-      <td align="left" valign="top"><?php
-      	if($datos['facilitadores'])
-	  	{
-			foreach($datos['facilitadores'] as $valor)
-			{
-				?>
-        <p>- <?php echo $valor['nombres']." ".$valor['apellidos'];?></p>
-        <?php
-			}
-		}
-	  
-	  ?></td>
+      <td align="left" valign="top"><?php if($datos['facilitadores']){ foreach($datos['facilitadores'] as $valor){?>- <?php echo $valor['nombres']." ".$valor['apellidos'];?><br><?php } } ?></td>
     </tr>
     <tr>
       <td align="left" valign="middle"><p><b>Costo Total: </b></p></td>
-      <td align="left" valign="middle"><p>
-          <?php 
-	  $costo_total=0.00;
-	 	foreach($datos['rubros'] as $rubros)
-		{
-			$total_rubro=0.00;
-			if($rubros['sub'])
-			{
-				foreach($rubros['sub'] as $subrubro)
-				{
-					$total_rubro+=($subrubro['unidades']*$subrubro['costo']);
-				}
-			}
-			$costo_total+=$total_rubro;
-		}
-		echo "$ ".number_format($costo_total,2);
-	  ?>
-        </p></td>
+      <td align="left" valign="middle"><p><?php echo "$ ".number_format($costo_total,2); ?></p></td>
     </tr>
     <tr>
       <td align="left" valign="middle"><p><b>Costo Unitario: </b></p></td>
       <td align="left" valign="middle"><p><?php echo "$ ".number_format($costo_total/$datos['n_participantes'],2);?></p></td>
     </tr>
   </table>
-  <h3 align="center"><?php echo "PRESUPUESTO";?></h3>
-  <table width="80%" class="cuadro" cellpadding="0" cellspacing="0" >
+  <p><b><?php echo "PRESUPUESTO";?></b></p>  
+  <table  class="cuadro" cellpadding="0" cellspacing="0" width="100%" style="font-size:12px;">
     <tr>
       <td align="center" valign="middle"><b>Rubros</b></td>
       <td align="center" valign="middle"><b>Unidades</b></td>
@@ -99,7 +83,7 @@ p {
       <td align="center" valign="middle"><b>Total</b></td>
     </tr>
     <?php
-    if($datos['rubros'])
+  if($datos['rubros'])
 	{
 		foreach($datos['rubros'] as $rubros)
 		{
@@ -120,7 +104,7 @@ p {
         </b></td>
       <td align="center" valign="middle">&nbsp;</td>
       <td align="center" valign="middle">&nbsp;</td>
-      <td align="right" valign="middle"><span style="float:left; margin-left:5px;">$</span> <b><?php echo number_format($total_rubro,2);?></b></td>
+      <td align="center" valign="middle"><span style="float:left; margin-left:5px;">$</span> <b><?php echo number_format($total_rubro,2);?></b></td>
     </tr>
     <?php
 			$total_rubro=0.00;
@@ -133,11 +117,11 @@ p {
     <tr>
       <td align="left" valign="middle">&nbsp;&nbsp;
         <?php
-                        echo $subrubro['nombre'];
+                echo $subrubro['nombre'];
                         ?></td>
       <td align="center" valign="middle"><?php echo $subrubro['unidades'];?></td>
-      <td align="right" valign="middle"><span style="float:left;margin-left:5px;">$</span> <?php echo number_format($subrubro['costo'],2);?></td>
-      <td align="right" valign="middle"><span style="float:left; margin-left:5px;">$</span> <?php echo number_format($total_subrubro,2);?></td>
+      <td align="center" valign="middle">$ <?php echo number_format($subrubro['costo'],2);?></td>
+      <td align="center" valign="middle">$ <?php echo number_format($total_subrubro,2);?></td>
     </tr>
     <?php
 				}
