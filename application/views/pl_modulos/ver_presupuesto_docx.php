@@ -32,11 +32,11 @@ p{
       $costo_total+=$total_rubro;
     } 
  ?>
-<div style="width:900px; margin:auto;" align="center" style="font-size:12px;">
+<div style="width:900px; margin:auto;" align="center">
   
   <p><b>Presupuesto de eventos de Capacitacion</b></p>
   <p><b><?php echo $datos['data_modalidad_plan']['nombre_plan'];?></b></p>
-  <table align="center" width="100%" style="font-size:10px;">
+  <table align="center" width="100%" style="font-size:12px;">
     <tr>
       <td align="left" valign="middle"><p><b>Modalidad: </b></p></td>
       <td align="left" valign="middle"><p><?php echo $datos['data_modalidad_plan']['nombre_modalidad'];?></p></td>
@@ -75,7 +75,7 @@ p{
     </tr>
   </table>
   <p><b><?php echo "PRESUPUESTO";?></b></p>  
-  <table  class="cuadro" cellpadding="0" cellspacing="0" width="100%" style="font-size:10px;">
+  <table  class="cuadro" cellpadding="0" cellspacing="0" width="100%" style="font-size:12px;">
     <tr>
       <td align="center" valign="middle"><b>Rubros</b></td>
       <td align="center" valign="middle"><b>Unidades</b></td>
@@ -97,14 +97,14 @@ p{
 			}
 			?>
     <tr>
-      <td align="left" valign="middle"><br><br><b>
+      <td align="left" valign="middle"><b>
         <?php
                 echo $rubros['nombre'];
 				?>
-        </b><br></td>
+        </b></td>
       <td align="center" valign="middle">&nbsp;</td>
       <td align="center" valign="middle">&nbsp;</td>
-      <td align="right" valign="middle"><span style="float:left;margin-left:5px;"><br>$</span><b><?php echo number_format($total_rubro,2);?>&nbsp;&nbsp;&nbsp;</b><br></td>
+      <td align="right" valign="middle"><span style="float:left;margin-left:5px;">$</span><b><?php echo number_format($total_rubro,2);?>&nbsp;&nbsp;</b></td>
     </tr>
     <?php
 			$total_rubro=0.00;
@@ -115,13 +115,13 @@ p{
 					$total_subrubro=($subrubro['unidades']*$subrubro['costo']);
 					?>
     <tr>
-      <td align="left" valign="middle"><br><br>&nbsp;&nbsp;&nbsp;
+      <td align="left" valign="middle">&nbsp;&nbsp;
         <?php
                 echo $subrubro['nombre'];
-                        ?><br></td>
-      <td align="center" valign="middle"><br><br><?php echo $subrubro['unidades'];?><br></td>
-      <td align="right" valign="middle"><span style="float:left;margin-left:5px;"><br>$</span><?php echo number_format($subrubro['costo'],2);?>&nbsp;&nbsp;&nbsp;<br></td>
-      <td align="right" valign="middle"><span style="float:left;margin-left:5px;"><br>$</span><?php echo number_format($total_subrubro,2);?>&nbsp;&nbsp;&nbsp;<br></td>
+                        ?></td>
+      <td align="center" valign="middle"><?php echo $subrubro['unidades'];?></td>
+      <td align="right" valign="middle"><span style="float:left;margin-left:5px;">$</span><?php echo number_format($subrubro['costo'],2);?>&nbsp;&nbsp;</td>
+      <td align="right" valign="middle"><span style="float:left;margin-left:5px;">$</span><?php echo number_format($total_subrubro,2);?>&nbsp;&nbsp;</td>
     </tr>
     <?php
 				}

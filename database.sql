@@ -43,7 +43,7 @@ CREATE TABLE `conf_cooperativa` (
   `id_usuario` int(11) DEFAULT NULL,
   `f_creacion` datetime DEFAULT NULL,
   PRIMARY KEY (`id_cooperativa`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +52,7 @@ CREATE TABLE `conf_cooperativa` (
 
 LOCK TABLES `conf_cooperativa` WRITE;
 /*!40000 ALTER TABLE `conf_cooperativa` DISABLE KEYS */;
-INSERT INTO `conf_cooperativa` VALUES (6,'ACODJAR DE R.L.','Central','2333 7400','2333 7406','gerencia.acodjar@fedecaces.com',NULL,'logos/logo_acodjar.png',1,NULL,NULL),(9,'ACACCIBA','Central','2618 2427',NULL,'gerencia.acacciba@fedecaces.com',NULL,'logos/logo_acacciba.png',1,NULL,NULL),(10,'ACACEMIHA DE R.L.','Central','2272 6527',NULL,'acacemiha@fedecaces.com',NULL,'logos/logo_acacemiha.png',1,NULL,NULL),(19,'ACACES DE R.L.','daf','2288 2103','','info@acaces.com.sv','23',NULL,1,NULL,NULL);
+INSERT INTO `conf_cooperativa` VALUES (6,'ACODJAR DE R.L.','Central','2333 7400','2333 7406','gerencia.acodjar@fedecaces.com',NULL,'logos/logo_acodjar.png',1,NULL,NULL),(9,'ACACCIBA','Central','2618 2427',NULL,'gerencia.acacciba@fedecaces.com',NULL,'logos/logo_acacciba.png',1,NULL,NULL),(10,'ACACEMIHA DE R.L.','Central','2272 6527',NULL,'acacemiha@fedecaces.com',NULL,'logos/logo_acacemiha.png',1,NULL,NULL),(19,'ACACES DE R.L.','daf','2288 2103','','info@acaces.com.sv','23','logos/logo-cooperativo.jpg',1,NULL,NULL),(20,'ACSA','2Calle Ppal.','22568956','22569856','acsa@live.com','12365','logos/descarga.jpg',1,NULL,NULL);
 /*!40000 ALTER TABLE `conf_cooperativa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -493,7 +493,7 @@ CREATE TABLE `mante_facilitadores` (
   `id_usuario` int(11) DEFAULT NULL,
   `f_creacion` datetime DEFAULT NULL,
   PRIMARY KEY (`id_facilitador`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -502,7 +502,7 @@ CREATE TABLE `mante_facilitadores` (
 
 LOCK TABLES `mante_facilitadores` WRITE;
 /*!40000 ALTER TABLE `mante_facilitadores` DISABLE KEYS */;
-INSERT INTO `mante_facilitadores` VALUES (1,'Jorge Antonio','Rodriguez','123456','123456','132465','jarh@jarh.com',0,1,NULL,NULL),(2,'Carlos','Hernandez','123456789','123456789','123456789','jarh@jar.com',0,1,1,'2013-06-11 23:45:54'),(3,'Jose','Villalta','22356589','','72525658','almen@gmail.com',0,1,1,'2013-06-19 11:56:52'),(4,'Cesar','Augusto','22356589','','23568956','cesc@live.com',0,1,1,'2013-06-19 12:00:11'),(5,'Rosa Elvira','Barrera','25568956','','78452145','rosi@live.com',0,1,1,'2013-06-19 12:33:19');
+INSERT INTO `mante_facilitadores` VALUES (1,'Jorge Antonio','Rodriguez','123456','123456','132465','jarh@jarh.com',2,1,NULL,NULL),(2,'Carlos','Hernandez','123456789','123456789','123456789','jarh@jar.com',1,1,1,'2013-06-11 23:45:54'),(3,'Jose','Villalta','22356589','','72525658','almen@gmail.com',3,1,1,'2013-06-19 11:56:52'),(4,'Cesar','Augusto','22356589','','23568956','cesc@live.com',2,1,1,'2013-06-19 12:00:11'),(5,'Rosa Elvira','Barrera','25568956','','78452145','rosi@live.com',3,1,1,'2013-06-19 12:33:19'),(6,'Edwin ','Machado','22325689','','78568956','',1,1,1,'2013-06-20 10:11:18'),(7,'Rafael Alexander','Huezo Guillen','22658956','','78956532','',2,1,1,'2013-06-20 10:13:27');
 /*!40000 ALTER TABLE `mante_facilitadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -577,7 +577,7 @@ CREATE TABLE `mante_rubros` (
   `f_creacion` datetime DEFAULT NULL,
   `activo` int(11) DEFAULT '1',
   PRIMARY KEY (`id_rubro`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -586,7 +586,7 @@ CREATE TABLE `mante_rubros` (
 
 LOCK TABLES `mante_rubros` WRITE;
 /*!40000 ALTER TABLE `mante_rubros` DISABLE KEYS */;
-INSERT INTO `mante_rubros` VALUES (1,'Ventas',1,'2013-06-19 10:34:18',0);
+INSERT INTO `mante_rubros` VALUES (1,'Ventas',1,'2013-06-19 10:34:18',0),(2,'Material Didáctico',1,'2013-06-20 10:18:41',1),(3,'Gastos se-mi Variables',1,'2013-06-20 10:30:38',1),(4,'Gastos Fijos',1,'2013-06-20 10:30:51',1),(5,'Gastos Variables',1,'2013-06-20 10:31:06',1);
 /*!40000 ALTER TABLE `mante_rubros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -634,7 +634,7 @@ CREATE TABLE `mante_tipos_facilitadores` (
   `f_creacion` datetime DEFAULT NULL,
   `activo` int(11) DEFAULT '1',
   PRIMARY KEY (`id_tipo_facilitador`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -643,6 +643,7 @@ CREATE TABLE `mante_tipos_facilitadores` (
 
 LOCK TABLES `mante_tipos_facilitadores` WRITE;
 /*!40000 ALTER TABLE `mante_tipos_facilitadores` DISABLE KEYS */;
+INSERT INTO `mante_tipos_facilitadores` VALUES (1,'Profesional',1,'2013-06-20 09:59:23',1),(2,'Universitario',1,'2013-06-20 10:00:09',1),(3,'Tecnico',1,'2013-06-20 10:00:23',1);
 /*!40000 ALTER TABLE `mante_tipos_facilitadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -664,7 +665,7 @@ CREATE TABLE `pl_capacitaciones` (
   PRIMARY KEY (`id_capacitacion`),
   KEY `FK_pl_capacitaciones` (`id_plan_modalidad`),
   CONSTRAINT `FK_pl_capacitaciones` FOREIGN KEY (`id_plan_modalidad`) REFERENCES `pl_modalidades` (`id_plan_modalidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -673,7 +674,7 @@ CREATE TABLE `pl_capacitaciones` (
 
 LOCK TABLES `pl_capacitaciones` WRITE;
 /*!40000 ALTER TABLE `pl_capacitaciones` DISABLE KEYS */;
-INSERT INTO `pl_capacitaciones` VALUES (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva','2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias','2013-06-13 22:33:23',1,1),(3,3,'Tema 2','Tema 2 Tema 2 Tema 2','2013-06-19 21:11:27',1,1);
+INSERT INTO `pl_capacitaciones` VALUES (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva','2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias','2013-06-13 22:33:23',1,1),(3,3,'Tema 2','Tema 2 Tema 2 Tema 2','2013-06-19 21:11:27',1,1),(4,5,'Técnicas de Investigación','Que el estudiante desarrolle técnicas de Investigación','2013-06-20 10:10:11',1,1);
 /*!40000 ALTER TABLE `pl_capacitaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -696,7 +697,7 @@ CREATE TABLE `pl_modalidades` (
   KEY `FK_pl_modalidades2` (`id_modalidad`),
   CONSTRAINT `FK_pl_modalidades` FOREIGN KEY (`id_plan`) REFERENCES `pl_planes` (`id_plan`),
   CONSTRAINT `FK_pl_modalidades2` FOREIGN KEY (`id_modalidad`) REFERENCES `mante_modalidades` (`id_modalidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -705,7 +706,7 @@ CREATE TABLE `pl_modalidades` (
 
 LOCK TABLES `pl_modalidades` WRITE;
 /*!40000 ALTER TABLE `pl_modalidades` DISABLE KEYS */;
-INSERT INTO `pl_modalidades` VALUES (1,1,2,1,'2013-06-02 16:31:12',1),(2,1,3,1,'2013-06-02 17:22:10',1),(3,1,4,1,'2013-06-02 17:22:14',1),(4,1,5,1,'2013-06-02 17:22:20',1);
+INSERT INTO `pl_modalidades` VALUES (1,1,2,1,'2013-06-02 16:31:12',1),(2,1,3,1,'2013-06-02 17:22:10',1),(3,1,4,1,'2013-06-02 17:22:14',1),(4,1,5,1,'2013-06-02 17:22:20',1),(5,3,2,1,'2013-06-20 10:08:26',1),(6,3,3,1,'2013-06-20 10:08:59',1);
 /*!40000 ALTER TABLE `pl_modalidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -725,7 +726,7 @@ CREATE TABLE `pl_modulo_facilitador` (
   KEY `FK_pl_modulo_facilitador_2` (`id_modulo`),
   CONSTRAINT `FK_pl_modulo_facilitador` FOREIGN KEY (`id_facilitador`) REFERENCES `mante_facilitadores` (`id_facilitador`),
   CONSTRAINT `FK_pl_modulo_facilitador_2` FOREIGN KEY (`id_modulo`) REFERENCES `pl_modulos` (`id_modulo`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -734,7 +735,7 @@ CREATE TABLE `pl_modulo_facilitador` (
 
 LOCK TABLES `pl_modulo_facilitador` WRITE;
 /*!40000 ALTER TABLE `pl_modulo_facilitador` DISABLE KEYS */;
-INSERT INTO `pl_modulo_facilitador` VALUES (6,4,2),(7,1,2),(8,2,1),(9,2,2),(13,3,1),(14,3,2),(15,5,2);
+INSERT INTO `pl_modulo_facilitador` VALUES (6,4,2),(7,1,2),(8,2,1),(9,2,2),(13,3,1),(14,3,2),(15,5,2),(18,6,1),(19,6,2);
 /*!40000 ALTER TABLE `pl_modulo_facilitador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -764,7 +765,7 @@ CREATE TABLE `pl_modulos` (
   KEY `FK_pl_modulos_2` (`id_lugar`),
   CONSTRAINT `FK_pl_modulos` FOREIGN KEY (`id_capacitacion`) REFERENCES `pl_capacitaciones` (`id_capacitacion`),
   CONSTRAINT `FK_pl_modulos_2` FOREIGN KEY (`id_lugar`) REFERENCES `mante_lugares` (`id_lugar`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -773,7 +774,7 @@ CREATE TABLE `pl_modulos` (
 
 LOCK TABLES `pl_modulos` WRITE;
 /*!40000 ALTER TABLE `pl_modulos` DISABLE KEYS */;
-INSERT INTO `pl_modulos` VALUES (1,2,2,'Gestion mercadologica de las agencias','Gestion mercadologica de las agencias',0,'2013-06-16','2013-06-16',NULL,'Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',1,'2013-06-13 22:34:18',1),(2,2,2,'Gestioin mercadologica de las agencias','Gestioin mercadologica de las agencias',0,'2013-06-16','2013-06-16',NULL,'Contenido 1\r\n',1,'2013-06-13 22:35:05',1),(3,2,3,'Base normativa para la apertura de agencias','Base normativa para la apertura de agencias',0,'2013-06-16','2013-06-16',20,'contenido 2',1,'2013-06-13 22:35:50',1),(4,2,3,'NUevo modulo','NUevo modulo',0,'2013-06-16','2013-06-16',NULL,'aaaaaaaaaaa',1,'2013-06-16 15:58:55',1),(5,3,3,'Modulo 1 ','Modulo 1 Modulo 1 ',0,'2013-06-19','2013-06-19',10,'hola',1,'2013-06-19 21:11:56',1);
+INSERT INTO `pl_modulos` VALUES (1,2,2,'Gestion mercadologica de las agencias','Gestion mercadologica de las agencias',0,'2013-06-16','2013-06-16',NULL,'Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',1,'2013-06-13 22:34:18',1),(2,2,2,'Gestioin mercadologica de las agencias','Gestioin mercadologica de las agencias',0,'2013-06-16','2013-06-16',NULL,'Contenido 1\r\n',1,'2013-06-13 22:35:05',1),(3,2,3,'Base normativa para la apertura de agencias','Base normativa para la apertura de agencias',0,'2013-06-16','2013-06-16',20,'contenido 2',1,'2013-06-13 22:35:50',1),(4,2,3,'NUevo modulo','NUevo modulo',0,'2013-06-16','2013-06-16',NULL,'aaaaaaaaaaa',1,'2013-06-16 15:58:55',1),(5,3,3,'Modulo 1 ','Modulo 1 Modulo 1 ',0,'2013-06-19','2013-06-19',10,'hola',1,'2013-06-19 21:11:56',1),(6,4,2,'Hábitos de Lectura','Que el estudiante desarrolle hábitos de lectura',0,'2013-06-20','2013-06-20',100,'Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',1,'2013-06-20 10:15:23',1);
 /*!40000 ALTER TABLE `pl_modulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -794,7 +795,7 @@ CREATE TABLE `pl_planes` (
   PRIMARY KEY (`id_plan`),
   KEY `FK_pl_planes` (`id_estado_plan`),
   CONSTRAINT `FK_pl_planes` FOREIGN KEY (`id_estado_plan`) REFERENCES `mante_estados_planes` (`id_estado_plan`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -803,7 +804,7 @@ CREATE TABLE `pl_planes` (
 
 LOCK TABLES `pl_planes` WRITE;
 /*!40000 ALTER TABLE `pl_planes` DISABLE KEYS */;
-INSERT INTO `pl_planes` VALUES (1,'Plan de capacitacion 2013','2013-06-02 14:14:59',1,2,1),(2,'Plan 2','2013-06-19 21:26:23',1,2,1);
+INSERT INTO `pl_planes` VALUES (1,'Plan de capacitacion 2013','2013-06-02 14:14:59',1,2,1),(2,'Plan 2','2013-06-19 21:26:23',1,2,1),(3,'Plan de Desarrollo Academico','2013-06-20 10:04:28',1,1,1);
 /*!40000 ALTER TABLE `pl_planes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -824,9 +825,9 @@ CREATE TABLE `pl_rubro` (
   PRIMARY KEY (`id_rubro`),
   KEY `FK_pl_rubro` (`id_modulo`),
   KEY `FK_pl_rubro2` (`id_rubro_name`),
-  CONSTRAINT `FK_pl_rubro2` FOREIGN KEY (`id_rubro_name`) REFERENCES `mante_rubros` (`id_rubro`),
-  CONSTRAINT `FK_pl_rubro` FOREIGN KEY (`id_modulo`) REFERENCES `pl_modulos` (`id_modulo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK_pl_rubro` FOREIGN KEY (`id_modulo`) REFERENCES `pl_modulos` (`id_modulo`),
+  CONSTRAINT `FK_pl_rubro2` FOREIGN KEY (`id_rubro_name`) REFERENCES `mante_rubros` (`id_rubro`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -835,7 +836,7 @@ CREATE TABLE `pl_rubro` (
 
 LOCK TABLES `pl_rubro` WRITE;
 /*!40000 ALTER TABLE `pl_rubro` DISABLE KEYS */;
-INSERT INTO `pl_rubro` VALUES (1,2,3,'2013-06-13 23:11:01',1,1),(2,3,3,'2013-06-13 23:12:09',1,1),(3,2,5,'2013-06-19 21:12:06',1,1),(4,3,3,'2013-06-19 22:16:39',1,1);
+INSERT INTO `pl_rubro` VALUES (1,2,3,'2013-06-13 23:11:01',1,1),(2,3,3,'2013-06-13 23:12:09',1,1),(3,2,5,'2013-06-19 21:12:06',1,1),(4,3,3,'2013-06-19 22:16:39',1,1),(5,2,6,'2013-06-20 10:31:28',1,1),(6,3,6,'2013-06-20 10:36:02',1,1);
 /*!40000 ALTER TABLE `pl_rubro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -858,7 +859,7 @@ CREATE TABLE `pl_subrubro` (
   PRIMARY KEY (`id_subrubro`),
   KEY `FK_pl_subrubro` (`id_rubro`),
   CONSTRAINT `FK_pl_subrubro` FOREIGN KEY (`id_rubro`) REFERENCES `pl_rubro` (`id_rubro`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -867,7 +868,7 @@ CREATE TABLE `pl_subrubro` (
 
 LOCK TABLES `pl_subrubro` WRITE;
 /*!40000 ALTER TABLE `pl_subrubro` DISABLE KEYS */;
-INSERT INTO `pl_subrubro` VALUES (1,1,'Desayuno',20,3.00,'2013-06-13 23:11:26',1,1),(2,1,'Refrigerio',20,2.00,'2013-06-13 23:11:51',1,1),(3,2,'Folder',20,0.50,'2013-06-13 23:12:28',1,1),(4,2,'Lapiceros',20,0.10,'2013-06-13 23:12:44',1,1),(5,2,'Libreta',20,5.00,'2013-06-13 23:13:02',1,1),(6,3,'Almuerzo',10,2.00,'2013-06-19 21:12:22',1,1);
+INSERT INTO `pl_subrubro` VALUES (1,1,'Desayuno',20,3.00,'2013-06-13 23:11:26',1,1),(2,1,'Refrigerio',20,2.00,'2013-06-13 23:11:51',1,1),(3,2,'Folder',20,0.50,'2013-06-13 23:12:28',1,1),(4,2,'Lapiceros',20,0.10,'2013-06-13 23:12:44',1,1),(5,2,'Libreta',20,5.00,'2013-06-13 23:13:02',1,1),(6,3,'Almuerzo',10,2.00,'2013-06-19 21:12:22',1,1),(7,5,'Libro de Lectura',100,12.00,'2013-06-20 10:32:28',1,1),(8,5,'Diccionario Enciclopedico',25,6.00,'2013-06-20 10:34:08',1,1),(9,5,'manual investigativo',10,7.00,'2013-06-20 10:35:11',1,1),(10,6,'Energía Electrica',1,40.00,'2013-06-20 10:37:38',1,1),(11,6,'Agua Potable',1,30.00,'2013-06-20 10:38:07',1,1);
 /*!40000 ALTER TABLE `pl_subrubro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1064,7 +1065,7 @@ CREATE TABLE `usu_usuario` (
 
 LOCK TABLES `usu_usuario` WRITE;
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk',NULL,'2013-06-19 20:52:04',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,NULL,1,2,1);
+INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk',NULL,'2013-06-20 09:39:01',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,NULL,NULL,1,2,1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1077,4 +1078,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-19 23:52:43
+-- Dump completed on 2013-06-20 13:38:41

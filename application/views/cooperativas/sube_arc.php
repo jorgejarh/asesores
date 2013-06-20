@@ -56,7 +56,7 @@ echo form_close();
 			});
 
 			$('#form_nuevo').submit(function(){
-				if(arc == ""){
+				/*if(arc == ""){
 					alert("No ha seleccionado ningun archivo")
 					return false;
 				}
@@ -65,7 +65,7 @@ echo form_close();
 					return false;
 				}else{
 					//$('#save').attr("disabled", true);
-				}
+				}*/
 			});
 
 

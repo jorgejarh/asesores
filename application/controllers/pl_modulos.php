@@ -340,7 +340,7 @@ class Pl_modulos extends CI_Controller {
 				$this->output->set_header("Content-Disposition: attachment; filename=".'Detalle_perfil_'.$data['datos']['data_modalidad_plan']['nombre_plan'].".doc");
 				$this->output->set_header('charset=UTF-8');
 				
-				$html='<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.$this->load->view($this->carpeta_view.'/ver_presupuesto_pdf',$data,true);
+				$html='<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.$this->load->view($this->carpeta_view.'/ver_presupuesto_docx',$data,true);
 				
 				$this->output->set_output($html);
 

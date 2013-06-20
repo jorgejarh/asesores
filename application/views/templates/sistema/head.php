@@ -59,7 +59,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/js/fancybox/source/jquery.fancybox.css?v=2.1.4" media="screen" />
 </head>
 <body>
-<div class="container" id="container">
+<div class="container" id="container" style="overflow:visible;" >
     <div  id="header">
     	<div id="profile_info">
 			<img src="<?php echo base_url();?>public/img/avatar.jpg" id="avatar" alt="avatar" />
@@ -70,7 +70,7 @@
 		<div id="logo"><h1><a href="<?php echo site_url('portal');?>">Asesores</a></h1></div>
 		
     </div><!-- end header -->
-	    <div id="content" >
+	    <div id="content">
 	    <div id="top_menu" class="clearfix">
 	    	<ul class="sf-menu"> <!-- DROPDOWN MENU -->
 	    	<li class="current" ><a href="<?php echo site_url('portal');?>">Inicio</a></li>
@@ -186,4 +186,4 @@
 		</ul>
 			
 	    </div>
-		<div id="content_main" class="clearfix">
+		<div id="content_main" class="clearfix" style="overflow:hidden;">
