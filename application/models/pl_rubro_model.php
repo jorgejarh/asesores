@@ -28,18 +28,20 @@ class Pl_rubro_model extends CI_Model {
 		if($id==0)
 		{
 			
-			return $this->db->get_where($this->nombre_tabla,array('a.activo'=>1))->result_array();
+			return $this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1))->result_array();
 		}else{
-			$this->db->select("a.*, b.nombre_modulo");
+			$this->db->select("a.*, b.nombre_modulo,  d.nombre");
 			$this->db->where("a.id_modulo = b.id_modulo");
-			return $this->db->get_where($this->nombre_tabla." a, pl_modulos b",array($this->id_tabla=>$id))->row_array();
+			$this->db->where("a.id_rubro_name = d.id_rubro");
+			return $this->db->get_where($this->nombre_tabla." a, pl_modulos b, mante_rubros c, mante_rubros d",array("a.".$this->id_tabla=>$id))->row_array();
 			}
 	}
 	
 	function lista($id=0)
 	{
-		$this->db->select("a.* ");
-		$datos=$this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_modulo'=>$id))->result_array();
+		$this->db->select("a.* , b.nombre as nombre_rubro");
+		$this->db->where("a.id_rubro_name = b.id_rubro");
+		$datos=$this->db->get_where($this->nombre_tabla." a, mante_rubros b",array('a.activo'=>1,'a.id_modulo'=>$id))->result_array();
 		if($datos)
 		{
 			foreach($datos as $key=>$valor)

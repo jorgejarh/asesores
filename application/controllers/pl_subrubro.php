@@ -10,7 +10,7 @@ class Pl_subrubro extends CI_Controller {
 
 	public $nombre_controlador="pl_subrubro";
 	
-	public $nombre_titulo="Sub - Rubros";
+	public $nombre_titulo="Detalle - Rubros";
 	
 	public $campos=array();
 	

@@ -25,7 +25,7 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Nombre del Sub Rubro</th>
+      	<th>Nombre del Detalle</th>
         <th>Unidades</th>
         <th>Costo X Unidad</th>
         <th>Total</th>

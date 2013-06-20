@@ -138,7 +138,9 @@ class Pl_modulos_model extends CI_Model {
 					unset($data_capacitacion);
 					unset($data_modalidad_plan);
 					
-					$data['rubros']=$this->db->get_where('pl_rubro a',array('a.id_modulo'=>$id_modulo,'a.activo'=>1))->result_array();
+					$this->db->select("a.*, b.nombre");
+					$this->db->where("a.id_rubro_name = b.id_rubro");
+					$data['rubros']=$this->db->get_where('pl_rubro a, mante_rubros b',array('a.id_modulo'=>$id_modulo,'a.activo'=>1))->result_array();
 					if($data['rubros'])
 					{
 						foreach($data['rubros'] as $key_ru=>$valor_ru)

@@ -33,8 +33,9 @@ class Pl_rubro extends CI_Controller {
         $model=$this->modelo_usar;
 		$this->load->model($model);
 		$this->load->model('pl_modulos_model');
+		$this->load->model('mante_rubros_model');
 		
-		$this->set_campo("nombre","Nombre",'required|xss_clean');
+		$this->set_campo("id_rubro_name","Rubro",'required|xss_clean','select',preparar_select($this->mante_rubros_model->obtener(),'id_rubro','nombre'));
 		
     }
 

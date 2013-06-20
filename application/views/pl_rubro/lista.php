@@ -28,7 +28,7 @@ if($listado)
       	<th>Nombre del Rubro</th>
         <th>Sub Rubros</th>
         <th>Total</th>
-        <th>Asignar Sub Rubro</th>
+        <th>Asignar Detalle</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -40,7 +40,7 @@ if($listado)
 			$total_rubro=0.00;
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombre'];?></td>
+      	<td><?php echo $valor['nombre_rubro'];?></td>
         <td><?php
 			if($valor['sub'])
 			{
