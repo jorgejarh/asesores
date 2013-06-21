@@ -49,7 +49,7 @@ echo form_open('',array(
 	<tr>
 		<td>Rol:</td>
 		<td> 
-			<?php echo form_dropdown('id_subrol',$subroles,$dato['id_subrol']); ?>
+			<?php echo form_dropdown('id_subrol',$subroles,$dato['id_subrol'],'id="subrol_"'); ?>
 		</td>
 	</tr>
 	<tr>
@@ -58,7 +58,7 @@ echo form_open('',array(
 			<?php echo form_dropdown('id_cooperativa',$cooperativas,$dato_extra['id_cooperativa'],'id="cooperativa_select"'); ?>
 		</td>
 	</tr>
-	<tr>
+	<tr class="sucur_">
 		<td>Sucursal:</td>
 		<td> 
 			<div id="div_result_sucursal">
@@ -94,6 +94,19 @@ echo form_close();
 </div>
 <script type="text/javascript">
 $(document).ready(function(e){
+
+	$('#subrol_').change(function(){
+		
+			if($(this).val()==2)
+			{
+				$('.sucur_').hide();
+				$('select[name=id_sucursal]').val(0);
+			}else{
+				$('.sucur_').show();
+				
+				}
+		});
+	$('#subrol_').change();
 
 
 	$('#form_nuevo').submit(function(){
