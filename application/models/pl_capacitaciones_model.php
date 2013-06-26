@@ -44,7 +44,37 @@ class Pl_capacitaciones_model extends CI_Model {
 	
 	function lista($id=0)
 	{
-		$this->db->select("a.*, (SELECT COUNT(*) FROM pl_modulos b WHERE b.id_capacitacion = a.id_capacitacion and b.activo = 1) AS num_modulos, IFNULL((SELECT SUM(e.unidades*e.costo) FROM pl_modulos c, pl_rubro d, pl_subrubro e  WHERE e.id_rubro = d.id_rubro AND d.id_modulo = c.id_modulo AND c.id_capacitacion = a.id_capacitacion and e.activo = 1 and c.activo = 1 and  d.activo = 1 ),0.00) AS sum_total ",false);
+		$this->db->select("a.*, 
+								(SELECT COUNT(*) 
+								FROM pl_modulos b 
+								WHERE 
+									b.id_capacitacion = a.id_capacitacion and 
+									b.activo = 1) AS num_modulos, 
+									IFNULL((SELECT SUM(e.unidades*e.costo) 
+											FROM 
+												pl_modulos c, 
+												pl_rubro d, 
+												pl_subrubro e  
+											WHERE 
+												e.id_rubro = d.id_rubro AND 
+												d.id_modulo = c.id_modulo AND 
+												c.id_capacitacion = a.id_capacitacion and 
+												e.activo = 1 and 
+												c.activo = 1 and  
+												d.activo = 1 ),0.00) AS sum_total, 
+									concat(a.nombre_capacitacion,' ($',IFNULL((
+																			SELECT SUM(e.unidades*e.costo) 
+																			FROM 
+																				pl_modulos c, 
+																				pl_rubro d, 
+																				pl_subrubro e  
+																			WHERE 
+																				e.id_rubro = d.id_rubro AND 
+																				d.id_modulo = c.id_modulo AND 
+																				c.id_capacitacion = a.id_capacitacion and 
+																				e.activo = 1 and 
+																				c.activo = 1 and  
+																				d.activo = 1 ),0.00),' )') as nombre_suma ",false);
 		return $this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_plan_modalidad'=>$id))->result_array();
 		
 		
