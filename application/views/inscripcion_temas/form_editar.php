@@ -9,6 +9,15 @@ echo form_open('',array(
 ?>
 
 <table align="center" style="margin:auto;  width:400px;">
+
+	<tr>
+		<td>Tema inscrito</td>
+		<?php 
+		$tema_inscrito = trim( get_un_campo( $dato['id_capacitacion'], 'id_capacitacion', 'nombre_capacitacion', 'pl_capacitaciones' ) );
+		$strlen        = strlen($tema_inscrito); 
+		?>
+		<td><input type="text" readonly="true" value="<?php echo $tema_inscrito; ?>" size="<?php echo $strlen; ?>"></td>
+	</tr>
 	
 	<?php
 	foreach($this->campos as $llave=>$valor)
