@@ -33,20 +33,6 @@ class Inscripcion_temas_model extends CI_Model {
 			
 			$dato=$this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
 			
-			$facilitadores=$this->db->get_where('pl_modulo_facilitador',array($this->id_tabla=>$id))->result_array();
-			
-			if($facilitadores)
-			{
-				foreach($facilitadores as $valor)
-				{
-					$dato['facilitadores[]'][]=$valor['id_facilitador'];
-				}
-			}else{
-				$dato['facilitadores[]']=array();
-				}
-			
-			
-			
 			return $dato;
 			}
 	}

@@ -108,13 +108,13 @@ class Inscripcion_temas extends CI_Controller {
 		$model=$this->modelo_usar;
 		$data['model']=$model;			
 		$data['dato']=$this->$model->obtener($id);
-		/*echo "<pre>";
-		print_r($data['dato']);
-		echo "</pre>";
-		exit();*/
+		
+		
 		if($data['dato'])
 		{
-			$data['curriculas']=preparar_select($this->$model->obtener_curriculas(),'id_curricula','curricula');
+			$this->load->model('pl_planes_model');
+			$data['planes']=preparar_select($this->pl_planes_model->obtener(),'id_plan','nombre_plan');
+			
 			$data['title']=$this->nombre_titulo." - Editar";
 			$this->load->view($this->carpeta_view.'/form_editar',$data);
 		}else{
