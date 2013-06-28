@@ -58,7 +58,17 @@ class Inscripcion_temas extends CI_Controller {
 		$model=$this->modelo_usar;
 		$data=array();
 		$data['title']=$this->nombre_titulo." - Nuevo";
-		$data['planes']=preparar_select($this->pl_planes_model->obtener(),'id_plan','nombre_plan');
+
+		//Quitamos del Array todos aquellos planes de estado diferente a "Abierto"
+		// 2 : Abierto, 3 : Cerrado, 
+		$planes = $this->pl_planes_model->obtener();
+		foreach ($planes as $key => $value) {
+			if( $value['id_estado_plan'] != 2 ){
+				unset( $planes[$key] );
+			}
+		}
+
+		$data['planes']=preparar_select($planes,'id_plan','nombre_plan');
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	

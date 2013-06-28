@@ -63,33 +63,33 @@ class Inscripcion_temas_model extends CI_Model {
 	function actualizar($datos,$id)
 	{
 		
-		$facilitadores=$datos['facilitadores'];
-		unset($datos['facilitadores']);
+		//$facilitadores=$datos['facilitadores'];
+		//unset($datos['facilitadores']);
 		
 		$result= $this->db->update($this->nombre_tabla,$datos,array($this->id_tabla=>$id));
 		
-		$this->db->delete('pl_modulo_facilitador',array('id_modulo'=>$id));
+		//$this->db->delete('pl_modulo_facilitador',array('id_modulo'=>$id));
 		
-		foreach($facilitadores as $valor)
+		/*foreach($facilitadores as $valor)
 		{
 			$this->db->insert('pl_modulo_facilitador',array('id_modulo'=>$id,'id_facilitador'=>$valor));
-		}
+		}*/
 		
 		return $result;
 	}
 	
 	function nuevo($datos)
 	{
-		$facilitadores=$datos['facilitadores'];
-		unset($datos['facilitadores']);
+		//$facilitadores=$datos['facilitadores'];
+		//unset($datos['facilitadores']);
 		$datos['id_usuario']=$this->datos_user['id_usuario'];
 		$datos['f_creacion']=date('Y-m-d H:i:s');
 		$result= $this->db->insert($this->nombre_tabla,$datos);
 		$id=$this->db->insert_id();
-		foreach($facilitadores as $valor)
+		/*foreach($facilitadores as $valor)
 		{
 			$this->db->insert('pl_modulo_facilitador',array('id_modulo'=>$id,'id_facilitador'=>$valor));
-		}
+		}*/
 		
 		return $result;
 	}
