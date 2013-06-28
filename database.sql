@@ -325,7 +325,7 @@ CREATE TABLE `mante_estados_planes` (
 
 /*Data for the table `mante_estados_planes` */
 
-insert  into `mante_estados_planes`(`id_estado_plan`,`nombre_estado`,`activo`,`id_usuario`,`f_creacion`) values (1,'estado 11',1,NULL,NULL),(2,'estado2',1,NULL,NULL),(3,'estado 5',1,1,'2013-06-02 13:54:33');
+insert  into `mante_estados_planes`(`id_estado_plan`,`nombre_estado`,`activo`,`id_usuario`,`f_creacion`) values (2,'Abierto',1,1,'2013-06-02 13:54:33'),(3,'Cerrado',1,1,'2013-06-02 13:54:33');
 
 /*Table structure for table `mante_facilitadores` */
 
@@ -447,6 +447,8 @@ CREATE TABLE `pl_capacitaciones` (
   `id_plan_modalidad` int(11) default NULL,
   `nombre_capacitacion` varchar(100) default NULL,
   `objetivo` varchar(300) default NULL,
+  `n_participantes` int(11) default '1',
+  `precio_venta` decimal(12,2) default '0.00',
   `f_creacion` datetime default NULL,
   `id_usuario` int(11) default NULL,
   `activo` int(11) default '1',
@@ -457,7 +459,7 @@ CREATE TABLE `pl_capacitaciones` (
 
 /*Data for the table `pl_capacitaciones` */
 
-insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva','2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias','2013-06-13 22:33:23',1,1),(3,3,'Tema 2','Tema 2 Tema 2 Tema 2','2013-06-19 21:11:27',1,1);
+insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`n_participantes`,`precio_venta`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva',1,'0.00','2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias',1,'0.00','2013-06-13 22:33:23',1,1),(3,3,'Tema 2','Tema 2 Tema 2 Tema 2',1,'0.00','2013-06-19 21:11:27',1,1);
 
 /*Table structure for table `pl_modalidades` */
 
@@ -513,7 +515,6 @@ CREATE TABLE `pl_modulos` (
   `id_contenido` int(11) default '0',
   `fecha_prevista` date default NULL,
   `fecha_prevista_fin` date default NULL,
-  `n_participantes` int(11) default NULL,
   `contenido` varchar(200) default NULL,
   `id_usuario` int(11) default NULL,
   `f_creacion` datetime default NULL,
@@ -527,7 +528,7 @@ CREATE TABLE `pl_modulos` (
 
 /*Data for the table `pl_modulos` */
 
-insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`id_lugar`,`nombre_modulo`,`objetivo_modulo`,`id_contenido`,`fecha_prevista`,`fecha_prevista_fin`,`n_participantes`,`contenido`,`id_usuario`,`f_creacion`,`activo`) values (1,2,2,'Gestion mercadologica de las agencias','Gestion mercadologica de las agencias',0,'2013-06-16','2013-06-16',NULL,'Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',1,'2013-06-13 22:34:18',1),(2,2,2,'Gestioin mercadologica de las agencias','Gestioin mercadologica de las agencias',0,'2013-06-16','2013-06-16',NULL,'Contenido 1\r\n',1,'2013-06-13 22:35:05',1),(3,2,3,'Base normativa para la apertura de agencias','Base normativa para la apertura de agencias',0,'2013-06-16','2013-06-16',20,'contenido 2',1,'2013-06-13 22:35:50',1),(4,2,3,'NUevo modulo','NUevo modulo',0,'2013-06-16','2013-06-16',NULL,'aaaaaaaaaaa',1,'2013-06-16 15:58:55',1),(5,3,3,'Modulo 1 ','Modulo 1 Modulo 1 ',0,'2013-06-19','2013-06-19',10,'hola',1,'2013-06-19 21:11:56',1);
+insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`id_lugar`,`nombre_modulo`,`objetivo_modulo`,`id_contenido`,`fecha_prevista`,`fecha_prevista_fin`,`contenido`,`id_usuario`,`f_creacion`,`activo`) values (1,2,2,'Gestion mercadologica de las agencias','Gestion mercadologica de las agencias',0,'2013-06-16','2013-06-16','Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',1,'2013-06-13 22:34:18',1),(2,2,2,'Gestioin mercadologica de las agencias','Gestioin mercadologica de las agencias',0,'2013-06-16','2013-06-16','Contenido 1\r\n',1,'2013-06-13 22:35:05',1),(3,2,3,'Base normativa para la apertura de agencias','Base normativa para la apertura de agencias',0,'2013-06-16','2013-06-16','contenido 2',1,'2013-06-13 22:35:50',1),(4,2,3,'NUevo modulo','NUevo modulo',0,'2013-06-16','2013-06-16','aaaaaaaaaaa',1,'2013-06-16 15:58:55',1),(5,3,3,'Modulo 1 ','Modulo 1 Modulo 1 ',0,'2013-06-19','2013-06-19','hola',1,'2013-06-19 21:11:56',1);
 
 /*Table structure for table `pl_planes` */
 
@@ -718,7 +719,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk',NULL,'2013-06-26 19:11:03',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,'',NULL,1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-06-26 19:11:32',1,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk',NULL,'2013-06-27 19:58:36',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,'',NULL,1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-06-26 19:11:32',1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

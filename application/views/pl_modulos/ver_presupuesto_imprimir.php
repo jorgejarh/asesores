@@ -74,7 +74,7 @@ p {
     </tr>
     <tr>
       <td align="left" valign="middle"><p><b># Partic. Estimados: </b></p></td>
-      <td align="left" valign="middle"><p><?php echo $datos['n_participantes'];?></p></td>
+      <td align="left" valign="middle"><p><?php echo $datos['data_capacitacion']['n_participantes'];?></p></td>
     </tr>
     <tr>
       <td align="left" valign="middle"><p><b>Fecha Prevista: </b></p></td>
@@ -123,7 +123,7 @@ p {
     </tr>
     <tr>
       <td align="left" valign="middle"><p><b>Costo Unitario: </b></p></td>
-      <td align="left" valign="middle"><p><?php echo "$ ".number_format($costo_total/$datos['n_participantes'],2);?></p></td>
+      <td align="left" valign="middle"><p><?php echo "$ ".number_format($costo_total/$datos['data_capacitacion']['n_participantes'],2);?></p></td>
     </tr>
   </table>
   <h3 align="center"><?php echo "PRESUPUESTO";?></h3>
