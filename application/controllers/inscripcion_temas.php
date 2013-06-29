@@ -35,8 +35,6 @@ class Inscripcion_temas extends CI_Controller {
 		$this->load->model('pl_modalidades_model');
 		$this->load->model('pl_capacitaciones_model');
 		
-		$this->set_campo("n_personas","Nº de Personas",'required|xss_clean');
-		
     }
 
 	public function index()

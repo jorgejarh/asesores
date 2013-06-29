@@ -63,7 +63,7 @@ class Pl_capacitaciones_model extends CI_Model {
 												c.activo = 1 and  
 												d.activo = 1 ),0.00) AS sum_total, 
 									concat(a.nombre_capacitacion,' ($',IFNULL((
-																			SELECT SUM(e.unidades*e.costo) 
+																			SELECT ROUND(SUM(e.unidades*e.costo) / a.n_participantes,2)
 																			FROM 
 																				pl_modulos c, 
 																				pl_rubro d, 

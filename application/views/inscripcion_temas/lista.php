@@ -26,11 +26,11 @@ if($listado)
     <thead>
       <tr>
       	<th>Nombre del tema</th>
-        <th >Nº de personas</th>
+        
         <th >Total</th>
         
         <th >Fecha de inscripcion</th>
-        <th>Editar</th>
+        <!--<th>Editar</th>-->
         <th>Eliminar</th>
       </tr>
     </thead>
@@ -41,13 +41,13 @@ if($listado)
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_capacitacion'];?></td>
-        <td><?php echo $valor['n_personas'];?></td>
+        
         <td>$ <?php echo number_format($valor['sum_total'],2);?></td>
         
         
         <td><?php echo date('d-m-Y',strtotime($valor['f_creacion']));?></td>
         
-        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <!--<td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>-->
         <td align="center" class="datatable_icono">
         
           <a onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
