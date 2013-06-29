@@ -6,19 +6,8 @@
 <script type="text/javascript" language="javascript" src="<?php echo base_url();?>public/js/datatable/media/js/jquery.js"></script>
 <script>
 $(document).ready(function(event){
-	//alert('ss');
-	
-	$('.div_imprimir .opciones_').hide();
-	
-	
-	$('.div_imprimir').hover(function(){
-		
-			$(this).children('.opciones_').toggle('slow');
-		
-		},function(){
-			$(this).children('.opciones_').toggle('slow');
-			});
-	
+	window.print() ;
+	window.close();
 	});
 
 
@@ -101,15 +90,7 @@ h1,h2,h3,h4
 
 <body>
 <div style="width:900px; margin:auto;" align="center">
-  <div style="position:relative; " align="right">
-    <div class="div_imprimir"><?php echo img(array('src'=>'public/img/icono-impresora.jpg','width'=>50));?> 
-      <ul class="opciones_">
-        <li ><a href="<?php echo site_url('pl_planes/ver_plan/'.$datos['id_plan']."/web");?>" target="_blank">Desde la web</a></li>
-        <!--<li><a  href="<?php echo site_url('pl_planes/ver_plan/'.$datos['id_plan']."/pdf");?>" target="_blank">Exportar a pdf</a></li>-->
-        <li><a href="<?php echo site_url('pl_planes/ver_plan/'.$datos['id_plan']."/excel");?>" target="_blank">Exportar a Excel</a></li>
-      </ul> 
-    </div>
-  </div>
+  
   <h2 align="center"><?php echo $datos['nombre_plan'];?></h2>
     <table align="center" cellpadding="0" cellspacing="0" class="borde_all">
     	<?php

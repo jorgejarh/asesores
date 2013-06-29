@@ -11,6 +11,7 @@ class Sitio extends CI_Controller {
 	public function index()
 	{
 		$data['imagenes']=$this->sitio_model->obtener_imagenes_slider();
+		$data['capacitaciones']=$this->sitio_model->obtener_capacitaciones();
 		$data['title']="Entrada al sistema";
 		$data['vista']="inicio";
 		$this->load->view('contenido_sitio/template/template',$data);

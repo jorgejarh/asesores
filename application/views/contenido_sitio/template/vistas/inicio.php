@@ -63,19 +63,24 @@
         <div class="home_section_left">
             <img src="<?php echo base_url('public/sitio');?>/images/icon1.gif" alt="" title="" class="home_section_icon" border="0">
                             
-                <h2 class="home_title">What we do</h2>
-                <div class="home_subtitle">Consectetur adipisicing elit</div>
+                <h2 class="home_title">Capacitaciones</h2>
+                <div class="home_subtitle">Capacitaciones</div>
     
                 <div class="home_section_thumb">
-                <img src="<?php echo base_url('public/sitio');?>/images/home_section_thumb1.jpg" alt="" title="" border="0">
+                <img src="<?php echo base_url('public/sitio');?>/capacitacion.fw.png" alt="" title="" border="0">
                 </div>
-                <p><span>Lorem ipsum dolor sit ame</span><br>
-                Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. 
-                <br> <br>
-                <span>Lorem ipsum dolor sit ame</span><br>
-                Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. 
-                </p>
-                <a href="" class="more"><img src="<?php echo base_url('public/sitio');?>/images/more.gif" alt="" title="" border="0"></a>
+                <?php
+                if($capacitaciones)
+				{
+					foreach($capacitaciones as $val)
+					{
+						?>
+                        <p><span>- <?php echo $val['nombre_capacitacion'];?></span></p>
+                        <?php
+					}
+				}
+				?>
+                <!--<a href="" class="more"><img src="<?php echo base_url('public/sitio');?>/images/more.gif" alt="" title="" border="0"></a>-->
         <div class="clear"></div>
         </div>
         
@@ -83,38 +88,36 @@
         <div class="home_section_left">
             <img src="<?php echo base_url('public/sitio');?>/images/icon2.gif" alt="" title="" class="home_section_icon" border="0">
                             
-                <h2 class="home_title">Who we are</h2>
-                <div class="home_subtitle">Tempor incididunt ut labore</div>
+                <h2 class="home_title">Asesorias</h2>
+                <div class="home_subtitle">Asesorias</div>
     
                 <div class="home_section_thumb">
-                <img src="<?php echo base_url('public/sitio');?>/images/home_section_thumb2.jpg" alt="" title="" border="0">
+                <img src="<?php echo base_url('public/sitio');?>/asesorias.fw.png" alt="" title="" border="0">
                 </div>
-                <p><span>Lorem ipsum dolor sit ame</span><br>
-                Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. 
-                <br> <br>
-                <span>Lorem ipsum dolor sit ame</span><br>
-                Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. 
-                </p>
-                <a href="" class="more"><img src="<?php echo base_url('public/sitio');?>/images/more.gif" alt="" title="" border="0"></a>
+                <p><span>- Asesoria 1</span></p>
+                <p><span>- Asesoria 1</span></p>
+                <p><span>- Asesoria 1</span></p>
+                <p><span>- Asesoria 1</span></p>
+                <p><span>- Asesoria 1</span></p>
+                <!--<a href="" class="more"><img src="<?php echo base_url('public/sitio');?>/images/more.gif" alt="" title="" border="0"></a>-->
         <div class="clear"></div>
         </div>
         
         <div class="home_section_left">
             <img src="<?php echo base_url('public/sitio');?>/images/icon3.gif" alt="" title="" class="home_section_icon" border="0">
                             
-                <h2 class="home_title">Special services</h2>
-                <div class="home_subtitle">Sed do eiusmod tempor</div>
+                <h2 class="home_title">Consultoarias</h2>
+                <div class="home_subtitle">Consultorias</div>
     
                 <div class="home_section_thumb">
-                <img src="<?php echo base_url('public/sitio');?>/images/home_section_thumb3.jpg" alt="" title="" border="0">
+                <img src="<?php echo base_url('public/sitio');?>/consultorias.fw.png" alt="" title="" border="0">
                 </div>
-                <p><span>Lorem ipsum dolor sit ame</span><br>
-                Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. 
-                <br> <br>
-                <span>Lorem ipsum dolor sit ame</span><br>
-                Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. 
-                </p>
-                <a href="" class="more"><img src="<?php echo base_url('public/sitio');?>/images/more.gif" alt="" title="" border="0"></a>
+                <p><span>- Consultoria 1</span></p>
+                 <p><span>- Consultoria 1</span></p>
+                  <p><span>- Consultoria 1</span></p>
+                   <p><span>- Consultoria 1</span></p>
+                    <p><span>- Consultoria 1</span></p>
+                <!--<a href="" class="more"><img src="<?php echo base_url('public/sitio');?>/images/more.gif" alt="" title="" border="0"></a>-->
         <div class="clear"></div>
         </div>
         

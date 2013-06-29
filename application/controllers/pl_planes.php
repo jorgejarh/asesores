@@ -177,7 +177,7 @@ class Pl_planes extends CI_Controller {
 
 		switch ($imprimir) {
 			case 'web':
-				$this->load->view($this->carpeta_view.'/ver_presupuesto_imprimir',$data);
+				$this->load->view($this->carpeta_view.'/ver_plan_imprimir',$data);
 				break;
 
 			case 'pdf':
@@ -250,7 +250,7 @@ class Pl_planes extends CI_Controller {
 			<p>Please check the source code documentation and other examples for further information.</p>
 			<p style="color:#CC0000;">TO IMPROVE AND EXPAND TCPDF I NEED YOUR SUPPORT, PLEASE <a href="http://sourceforge.net/donate/index.php?group_id=128076">MAKE A DONATION!</a></p>
 			EOD';*/
-			$html = $this->load->view($this->carpeta_view.'/ver_presupuesto_pdf',$data,true);
+			$html = $this->load->view($this->carpeta_view.'/ver_plan_pdf',$data,true);
 			
 			
 			// Print text using writeHTMLCell()
@@ -276,7 +276,21 @@ class Pl_planes extends CI_Controller {
 				$this->output->set_header("Content-Disposition: attachment; filename=".'Detalle_perfil_'.$data['datos']['data_modalidad_plan']['nombre_plan'].".doc");
 				$this->output->set_header('charset=UTF-8');
 				
-				$html='<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.$this->load->view($this->carpeta_view.'/ver_presupuesto_docx',$data,true);
+				$html='<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.$this->load->view($this->carpeta_view.'/ver_plan_docx',$data,true);
+				
+				$this->output->set_output($html);
+
+				break;
+			
+			case 'excel':
+				
+				$this->output->set_content_type('application/application/vnd.ms-excel');
+				$this->output->set_header("Pragma: no-cache");
+				$this->output->set_header("Expires: 0");
+				$this->output->set_header("Content-Disposition: attachment; filename=".'Detalle_perfil_'.$data['datos']['nombre_plan'].".xls");
+				$this->output->set_header('charset=UTF-8');
+				
+				$html='<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.$this->load->view($this->carpeta_view.'/ver_plan_imprimir',$data,true);
 				
 				$this->output->set_output($html);
 
