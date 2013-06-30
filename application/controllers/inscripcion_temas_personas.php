@@ -1,16 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Inscripcion_temas extends CI_Controller {
+class Inscripcion_temas_personas extends CI_Controller {
 
 	public $datos_user=array();
 
-	public $carpeta_view="inscripcion_temas";
+	public $carpeta_view="inscripcion_temas_personas";
 
-	public $modelo_usar="inscripcion_temas_model";
+	public $modelo_usar="inscripcion_temas_personas_model";
 
-	public $nombre_controlador="inscripcion_temas";
+	public $nombre_controlador="inscripcion_temas_personas";
 	
-	public $nombre_titulo="Inscripcion a temas";
+	public $nombre_titulo="Inscribir personas al tema";
 	
 	public $campos=array();
 	
@@ -32,42 +32,45 @@ class Inscripcion_temas extends CI_Controller {
         $this->datos_user=comprobar_login();
         $model=$this->modelo_usar;
 		$this->load->model($model);
-		$this->load->model('pl_modalidades_model');
-		$this->load->model('pl_capacitaciones_model');
+		
+		$this->set_campo("nombres","Nombres",'required|xss_clean');
+		$this->set_campo("apellidos","Apellidos",'required|xss_clean');
+		$this->set_campo("id_sucursal","Sucursal",'required|xss_clean','select',preparar_select($this->$model->obtener_sucursales($this->datos_user['info_s']),'id_sucursal','sucursal'));
+		$this->set_campo("id_cargo","Cargo",'required|xss_clean','select',preparar_select($this->$model->obtener_cargos(),'id_cargo','nombre_cargo'));
 		
     }
 
-	public function index()
+	public function index($id="")
 	{
-		$model=$this->modelo_usar;
-		$data['title']=$this->nombre_titulo;
-		$data['template']="sistema";
-		$data['contenido']=$this->carpeta_view."/lista";
-		$data['listado']=$this->$model->lista($this->datos_user['id_usuario']);
-		$data['model']=$model;
-		$this->load->view('template',$data);
+		$id=iddecode($id);
+		
+		if(is_numeric($id))
+		{
+			$model=$this->modelo_usar;
+			$data['inscripcion']=$this->$model->obtener_inscripcion($id);
+			$data['listado']=$this->$model->lista($id);
+			
+			$data['title']=$this->nombre_titulo;
+			$data['template']="sistema";
+			$data['contenido']=$this->carpeta_view."/lista";
+			
+			$data['model']=$model;
+			$this->load->view('template',$data);
+		}else{
+			redirect('inscripcion_temas');
+			}
+		
+		
 		
 	}
 	
-	public function nuevo()
+	public function nuevo($id=0)
 	{
 		$this->load->model('pl_planes_model');
 		$model=$this->modelo_usar;
 		$data=array();
 		$data['title']=$this->nombre_titulo." - Nuevo";
-
-		//Quitamos del Array todos aquellos planes de estado diferente a "Abierto"
-		// 2 : Abierto, 3 : Cerrado, 
-		$planes = $this->pl_planes_model->obtener();
-		if($planes){
-			foreach ($planes as $key => $value) {
-				if( $value['id_estado_plan'] != 2 ){
-					unset( $planes[$key] );
-				}
-			}
-		}
-		
-		$data['planes']=preparar_select($planes,'id_plan','nombre_plan');
+		$data['id']=$id;
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	
@@ -82,12 +85,11 @@ class Inscripcion_temas extends CI_Controller {
 			unset($post['a']);
 			$json=array();
 			
-			/*foreach($this->campos as $llave=>$valor)		
+			foreach($this->campos as $llave=>$valor)		
 			{
 				$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
-			}*/
+			}
 			
-			$this->form_validation->set_rules('id_capacitacion', 'Tema a inscribir', 'required|xss_clean');
 			
 			
 			if($this->form_validation->run()==TRUE)
@@ -185,49 +187,5 @@ class Inscripcion_temas extends CI_Controller {
 			$resultado= $this->$model->eliminar($id,$post);
 		}
 	}
-	
-	function select_planes($id=0)
-	{
-		$model=$this->modelo_usar;
-		$post=$this->input->post();
-		if($post)
-		{
-			$json=array();
-
-			$lista=preparar_select($this->pl_modalidades_model->lista($post['id']),'id_plan_modalidad','nombre_modalidad');
-			$lista[0]="-Seleccione-";
-			ksort($lista);
-			$json['html']=form_dropdown('',$lista,$id,'id="select_modalidades"');
-
-			echo json_encode($json);
-		}
-			
-	}
-	
-	function select_modalidades($id=0)
-	{
-		$model=$this->modelo_usar;
-		$post=$this->input->post();
-		if($post)
-		{
-			$json=array();
-
-			$lista=preparar_select($this->pl_capacitaciones_model->lista($post['id']),'id_capacitacion','nombre_suma');
-			
-			/*foreach($lista as $key=>$valor)
-			{
-				$lista[$key]=cortar_texto($valor,40);
-				
-			}*/
-			$lista[""]="-Seleccione-";
-			ksort($lista);
-			$json['html']=form_dropdown('id_capacitacion',$lista,'',' id="id_contenido"');
-
-			echo json_encode($json);
-		}
-			
-	}
-	
-
 
 }

@@ -1,3 +1,7 @@
+
+<?php
+//print_r($this->datos_user);
+?>
 <div id="content_main" class="clearfix">
   <div id="main_panel_container" class="left" style="width:900px;">
     <div id="dashboard" style="width:100%;padding-bottom:50px;">
@@ -6,14 +10,14 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td>Mis inscripciones</td>
-      			<td style="text-align:right;"><button onClick="nuevo_registro();">Nueva Inscripcion</button></td>
+      			<td>Inscripcion: <?php echo $inscripcion['nombre_capacitacion'];?></td>
+      			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $inscripcion['id_inscripcion_tema'];?>);">Inscribir persona</button></td>
       		</tr>
       	</table>
       </h2>
       <div class="bot_atras">
     	<?php
-        //echo anchor('pl_capacitaciones/index/'.$capacitacion['id_plan_modalidad'],'<- Regresar');
+        echo anchor('inscripcion_temas','<- Regresar');
 		?>
     </div>
       <div class="" style="width:90%; margin:auto;">
@@ -25,17 +29,16 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Nombre del tema</th>
+      	<th>Apellidos</th>
         
-        <th >Precio por persona</th>
+        <th >Nombres</th>
         
-        <th ># de personas inscritas a este tema</th>
+        <th >Sucursal</th>
         
-        <th >Total a Pagar</th>
-        
-        <th >Asignar personas</th>
+        <th >Cargo</th>
         
         <th >Fecha de inscripcion</th>
+        <th>Editar</th>
         <th>Eliminar</th>
       </tr>
     </thead>
@@ -45,17 +48,17 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombre_capacitacion'];?></td>
+      	<td><?php echo $valor['apellidos'];?></td>
         
-        <td>$ <?php echo number_format($valor['precio_venta'],2);?></td>
+        <td><?php echo $valor['nombres'];?></td>
         
-        <td><?php echo $valor['n_personas'];?></td>
+        <td><?php echo $valor['sucursal'];?></td>
         
-        <td>$ <?php echo number_format(($valor['precio_venta']*$valor['n_personas']),2);?></td>
-        
-        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('inscripcion_temas_personas/index/'.idencode($valor[$this->$model->id_tabla]));?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
+        <td><?php echo $valor['nombre_cargo'];?></td>
         
         <td><?php echo date('d-m-Y',strtotime($valor['f_creacion']));?></td>
+        
+        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         
         <td align="center" class="datatable_icono">
         

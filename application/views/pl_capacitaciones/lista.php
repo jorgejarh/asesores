@@ -45,8 +45,8 @@ if($listado)
       	<td><?php echo $valor['nombre_capacitacion'];?></td>
         <td><?php echo $valor['num_modulos'];?></td>
         <td><?php echo $valor['n_participantes'];?></td>
-        <td>$ <?php echo $valor['sum_total'];?></td>
-        <td>$ <?php echo ($valor['sum_total']/$valor['n_participantes']);?></td>
+        <td>$ <?php echo number_format($valor['sum_total'],2);?></td>
+        <td>$ <?php echo number_format($valor['sum_total']/$valor['n_participantes'],2);?></td>
         <td>$ <?php echo $valor['precio_venta'];?></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>

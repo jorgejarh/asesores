@@ -17,6 +17,7 @@ class Users_model extends CI_Model {
     	
     	if($datos)
     	{
+			$datos['info_s']=$this->db->get_where('usu_coop_suc',array('id_usuario'=>$datos['id_usuario']))->row_array();
     		return $datos;
     	}else{
 
