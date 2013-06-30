@@ -38,7 +38,7 @@ CREATE TABLE `conf_cooperativa` (
 
 /*Data for the table `conf_cooperativa` */
 
-insert  into `conf_cooperativa`(`id_cooperativa`,`cooperativa`,`ubicacion`,`telefono`,`fax`,`email`,`credito_fiscal`,`logotipo`,`activo`,`id_usuario`,`f_creacion`) values (6,'ACODJAR DE R.L.','Central','2333 7400','2333 7406','gerencia.acodjar@fedecaces.com',NULL,'logos/logo_acodjar.png',1,NULL,NULL),(9,'ACACCIBA','Central','2618 2427',NULL,'gerencia.acacciba@fedecaces.com',NULL,'logos/logo_acacciba.png',1,NULL,NULL),(10,'ACACEMIHA DE R.L.','Central','2272 6527',NULL,'acacemiha@fedecaces.com',NULL,'logos/logo_acacemiha.png',1,NULL,NULL),(19,'ACACES DE R.L.','daf','2288 2103','','info@acaces.com.sv','23',NULL,1,NULL,NULL);
+insert  into `conf_cooperativa`(`id_cooperativa`,`cooperativa`,`ubicacion`,`telefono`,`fax`,`email`,`credito_fiscal`,`logotipo`,`activo`,`id_usuario`,`f_creacion`) values (6,'ACODJAR DE R.L.','Central','2333 7400','2333 7406','gerencia.acodjar@fedecaces.com','236548','logos/logo_acodjar.png',1,NULL,NULL),(9,'ACACCIBA','Central','2618 2427','2333 7406','gerencia.acacciba@fedecaces.com','236549','logos/logo_acacciba.png',1,NULL,NULL),(10,'ACACEMIHA DE R.L.','Central','2272 6527','2333 7406','acacemiha@fedecaces.com','236550','logos/logo_acacemiha.png',1,NULL,NULL),(19,'ACACES DE R.L.','daf','2288 2103','2333 7406','info@acaces.com.sv','236551',NULL,1,NULL,NULL);
 
 /*Table structure for table `conf_menu` */
 
@@ -78,7 +78,7 @@ CREATE TABLE `conf_sucursal` (
 
 /*Data for the table `conf_sucursal` */
 
-insert  into `conf_sucursal`(`id_sucursal`,`id_cooperativa`,`sucursal`,`telefono`,`fax`,`id_usuario`,`f_creacion`,`activo`) values (6,6,'San Vicente',NULL,NULL,1,'2013-06-05 21:59:23',1),(7,9,'sucursal 1',NULL,NULL,1,'2013-06-05 21:59:23',1),(8,9,'ddd','22222','333',1,'2013-06-05 21:59:23',1),(9,6,'suu 20',NULL,NULL,1,'2013-06-05 21:59:23',1),(10,6,'suu 20',NULL,NULL,1,'2013-06-05 21:59:23',1),(11,6,'sucursal 10',NULL,NULL,1,'2013-06-05 21:59:23',1);
+insert  into `conf_sucursal`(`id_sucursal`,`id_cooperativa`,`sucursal`,`telefono`,`fax`,`id_usuario`,`f_creacion`,`activo`) values (6,6,'San Vicente','25614589','23654913',1,'2013-06-05 21:59:23',1),(7,9,'San Salvador','23654269','23659613',1,'2013-06-05 21:59:23',1),(8,9,'Santa Ana','23698541','23651963',1,'2013-06-05 21:59:23',1),(9,6,'La Libertad','23695698','26395613',1,'2013-06-05 21:59:23',1),(10,6,'La Union','25647895','23691282',1,'2013-06-05 21:59:23',1),(11,6,'La Paz','25478956','25612569',1,'2013-06-05 21:59:23',1);
 
 /*Table structure for table `cu_curricula` */
 
@@ -97,7 +97,7 @@ CREATE TABLE `cu_curricula` (
 
 /*Data for the table `cu_curricula` */
 
-insert  into `cu_curricula`(`id_curricula`,`curricula`,`objetivo`,`id_usuario`,`estado`,`f_creacion`,`activo`) values (2,'Curricula General',NULL,1,1,NULL,1),(5,'Curricula 2',NULL,1,1,NULL,0),(6,'curricula 3','objetivo curricula',1,1,'2013-06-05 00:00:00',0),(7,'curricula 4','objetivo curricula 4',1,1,'2013-06-05 21:20:36',0),(8,'curricula 4','objetivo curricula 4',1,1,'2013-06-05 21:20:36',0),(9,'55','asdasd',1,1,'2013-06-05 21:20:56',0),(10,'hola','hhhhhhhhhh',1,1,'2013-06-05 21:27:03',0);
+insert  into `cu_curricula`(`id_curricula`,`curricula`,`objetivo`,`id_usuario`,`estado`,`f_creacion`,`activo`) values (2,'Curricula General','Objetivo Curricula General',1,1,NULL,1),(5,'Curricula 2',NULL,1,1,NULL,0),(6,'curricula 3','objetivo curricula',1,1,'2013-06-05 00:00:00',0),(7,'curricula 4','objetivo curricula 4',1,1,'2013-06-05 21:20:36',0),(8,'curricula 4','objetivo curricula 4',1,1,'2013-06-05 21:20:36',0),(9,'55','asdasd',1,1,'2013-06-05 21:20:56',0),(10,'hola','hhhhhhhhhh',1,1,'2013-06-05 21:27:03',0);
 
 /*Table structure for table `cu_perfil` */
 
@@ -286,11 +286,34 @@ CREATE TABLE `inscripcion_temas` (
   PRIMARY KEY  (`id_inscripcion_tema`),
   KEY `FK_inscripcion_temas` (`id_capacitacion`),
   CONSTRAINT `FK_inscripcion_temas` FOREIGN KEY (`id_capacitacion`) REFERENCES `pl_capacitaciones` (`id_capacitacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inscripcion_temas` */
 
-insert  into `inscripcion_temas`(`id_inscripcion_tema`,`id_usuario`,`id_capacitacion`,`f_creacion`,`activo`) values (1,7,2,'2013-06-25 21:34:39',1);
+insert  into `inscripcion_temas`(`id_inscripcion_tema`,`id_usuario`,`id_capacitacion`,`f_creacion`,`activo`) values (2,7,2,'2013-06-29 21:28:15',1);
+
+/*Table structure for table `inscripcion_temas_personas` */
+
+DROP TABLE IF EXISTS `inscripcion_temas_personas`;
+
+CREATE TABLE `inscripcion_temas_personas` (
+  `id_inscripcion_personas` int(11) NOT NULL auto_increment,
+  `id_inscripcion_tema` int(11) NOT NULL,
+  `apellidos` varchar(20) default NULL,
+  `nombres` varchar(20) default NULL,
+  `id_sucursal` int(11) NOT NULL,
+  `id_cargo` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `f_creacion` datetime NOT NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_inscripcion_personas`),
+  KEY `FK_inscripcion_temas_personas` (`id_inscripcion_tema`),
+  CONSTRAINT `FK_inscripcion_temas_personas` FOREIGN KEY (`id_inscripcion_tema`) REFERENCES `inscripcion_temas` (`id_inscripcion_tema`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `inscripcion_temas_personas` */
+
+insert  into `inscripcion_temas_personas`(`id_inscripcion_personas`,`id_inscripcion_tema`,`apellidos`,`nombres`,`id_sucursal`,`id_cargo`,`id_usuario`,`f_creacion`,`activo`) values (4,2,'Hernandez','Jorge',8,3,7,'2013-06-29 21:43:29',1),(5,2,'Rodriguez','Carlos',7,4,7,'2013-06-29 21:43:45',1);
 
 /*Table structure for table `mante_cargos` */
 
@@ -307,7 +330,7 @@ CREATE TABLE `mante_cargos` (
 
 /*Data for the table `mante_cargos` */
 
-insert  into `mante_cargos`(`id_cargo`,`nombre_cargo`,`f_creacion`,`id_usuario`,`activo`) values (1,'Cajeros','2013-06-28 20:34:20',1,1),(2,'Gerente','2013-06-28 20:34:41',1,1),(3,'Secretaria','2013-06-28 20:34:53',1,1),(4,'Gestor de creditos','2013-06-28 20:35:04',1,1),(5,'Otros','2013-06-28 20:35:13',1,1);
+insert  into `mante_cargos`(`id_cargo`,`nombre_cargo`,`f_creacion`,`id_usuario`,`activo`) values (1,'Cajero','2013-06-28 20:34:20',1,1),(2,'Gerente','2013-06-28 20:34:41',1,1),(3,'Secretaria','2013-06-28 20:34:53',1,1),(4,'Gestor de creditos','2013-06-28 20:35:04',1,1),(5,'Otros','2013-06-28 20:35:13',1,1);
 
 /*Table structure for table `mante_costos` */
 
@@ -480,7 +503,7 @@ CREATE TABLE `pl_capacitaciones` (
 
 /*Data for the table `pl_capacitaciones` */
 
-insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`n_participantes`,`precio_venta`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva',1,'0.00','2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias',1,'0.00','2013-06-13 22:33:23',1,1),(3,3,'Tema 2','Tema 2 Tema 2 Tema 2',1,'0.00','2013-06-19 21:11:27',1,1);
+insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`n_participantes`,`precio_venta`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva',1,'0.00','2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias',30,'10.00','2013-06-13 22:33:23',1,1),(3,3,'Tema 2','Tema 2 Tema 2 Tema 2',1,'0.00','2013-06-19 21:11:27',1,1);
 
 /*Table structure for table `pl_modalidades` */
 
@@ -641,11 +664,11 @@ CREATE TABLE `usu_coop_suc` (
   `id_cooperativa` int(11) default NULL,
   `id_sucursal` int(11) default NULL,
   PRIMARY KEY  (`id_usu_coop`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usu_coop_suc` */
 
-insert  into `usu_coop_suc`(`id_usu_coop`,`id_usuario`,`id_cooperativa`,`id_sucursal`) values (3,4,9,0),(4,6,9,0),(5,7,10,0);
+insert  into `usu_coop_suc`(`id_usu_coop`,`id_usuario`,`id_cooperativa`,`id_sucursal`) values (3,4,9,0),(6,7,9,0),(7,7,9,0),(8,6,9,0);
 
 /*Table structure for table `usu_permisos_menu` */
 
@@ -740,7 +763,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Admin-2','12345','12345','dkfjkdsjfk',NULL,'2013-06-28 20:27:11',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'a','','a','a','a',NULL,'',NULL,1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-06-28 20:40:37',1,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-06-29 21:59:21',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','122b738600a0f74f7c331c0ef59bc34c','Carlos Rivera','23659848','75698459',NULL,'','2013-06-29 21:57:12',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-06-29 20:57:18',1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
