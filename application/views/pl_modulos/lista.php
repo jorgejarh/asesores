@@ -6,9 +6,13 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td><?php echo $capacitacion['nombre_plan']." &gt; ".$capacitacion['nombre_modalidad']." &gt; ".$capacitacion['nombre_capacitacion'];?></td>
+      			<td><?php echo $capacitacion['nombre_plan']." &gt; ".$capacitacion['nombre_modalidad'];?></td>
       			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $capacitacion['id_capacitacion']?>);">Nuevo</button></td>
       		</tr>
+          <tr>
+            <td id="nombre_capacitacion" ><div></div><?php echo $capacitacion['nombre_capacitacion']; ?></td>
+            <td></td>
+          </tr>
       	</table>
       </h2>
       <div class="bot_atras">
@@ -135,4 +139,19 @@ function eliminar_registro(id)
 }
 
 </script>
+
+
+
+<style>
+  #nombre_capacitacion /*celda que contiene el nombre de la capacitacion*/
+  {
+    /*font-weight:normal;*/
+    font-size: 17px;
+  }
+  #nombre_capacitacion div /*div que sirve de linea*/
+  {
+    border-top: solid 2px #AAAAAA;
+    margin-bottom: 5px;
+  }
+</style>
 
