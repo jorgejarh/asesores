@@ -66,6 +66,7 @@ class Pl_subrubro extends CI_Controller {
 		$data=array();
 		$data['title']=$this->nombre_titulo." - Nuevo";
 		$data['id']=$id;
+		$data['n_participantes'] = $this->$model->obtener_n_participantes( $id );
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	

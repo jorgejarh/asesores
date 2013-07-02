@@ -10,7 +10,7 @@
       			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $capacitacion['id_capacitacion']?>);">Nuevo</button></td>
       		</tr>
           <tr>
-            <td id="nombre_capacitacion" ><div></div><?php echo $capacitacion['nombre_capacitacion']; ?></td>
+            <td id="nombre_capacitacion" ><?php echo $capacitacion['nombre_capacitacion']; ?></td>
             <td></td>
           </tr>
       	</table>
@@ -145,13 +145,9 @@ function eliminar_registro(id)
 <style>
   #nombre_capacitacion /*celda que contiene el nombre de la capacitacion*/
   {
-    /*font-weight:normal;*/
-    font-size: 17px;
-  }
-  #nombre_capacitacion div /*div que sirve de linea*/
-  {
     border-top: solid 2px #AAAAAA;
-    margin-bottom: 5px;
+    font-size: 17px;
+    padding-top: 5px;
   }
 </style>
 

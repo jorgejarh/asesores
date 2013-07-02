@@ -21,7 +21,15 @@ echo form_open('',array(
 			switch($valor['tipo_elemento'])
 			{
 				case 'text':
-					echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));
+
+					if( $valor['nombre_campo'] == 'unidades' ){
+
+						echo form_input($valor['nombre_campo'], $n_participantes );
+					}else{
+
+						echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));
+					}
+					
 					break;
 				
 				case 'select':
