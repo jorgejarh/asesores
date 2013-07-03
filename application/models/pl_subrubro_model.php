@@ -59,6 +59,16 @@ class Pl_subrubro_model extends CI_Model {
 		return $this->db->update($this->nombre_tabla,array('activo'=>0),array($this->id_tabla=>$id));
 		//return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
 	}
+
+	function obtener_n_participantes( $id_rubro ){
+
+		$this->db->select('pl_capacitaciones.n_participantes');
+		$this->db->where('pl_rubro.id_rubro', $id_rubro);
+		$this->db->from('pl_rubro');
+		$this->db->join('pl_modulos', 'pl_modulos.id_modulo = pl_rubro.id_modulo');
+		$this->db->join('pl_capacitaciones', 'pl_capacitaciones.id_capacitacion = pl_modulos.id_capacitacion');
+		return $query = $this->db->get()->row()->n_participantes;
+	}
 	
 	function obtener_curriculas()
 	{
