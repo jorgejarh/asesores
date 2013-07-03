@@ -123,13 +123,14 @@ h1,h2,h3,h4
                     if($modalidad['temas'])
 					{
 						?>
-                        <table align="center" cellpadding="0" cellspacing="0">
+                        <table align="center" cellpadding="0" cellspacing="0" width="100%">
+                        	
 							<?php
                             foreach($modalidad['temas'] as $tema)
                             {
                                 ?>
                                 <tr>
-                                	<td align="center" valign="middle" class="borde_tema"> <h4><?php echo $tema['nombre_capacitacion'];?> ($ <?php
+                                	<td align="center" valign="middle" class="borde_tema" width="280"> <h4><?php echo $tema['nombre_capacitacion'];?> ($ <?php
                                     $total_tema=0.00;
 									if($tema['modulos'])
 									{
@@ -180,7 +181,7 @@ h1,h2,h3,h4
 														}
 														echo number_format($total_modulo,2);
 														?>)</p></td>
-                                                        <td align="right" valign="middle" class="borde_fecha" ><p><b><?php echo $modulo['fecha_prevista'];?></b></p></td>
+                                                        <td align="right" valign="middle" class="borde_fecha" width="100" ><p><b><?php echo $modulo['fecha_prevista'];?></b></p></td>
                                                 	</tr>
                                                     <?php
 												}

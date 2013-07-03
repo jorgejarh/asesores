@@ -209,7 +209,7 @@ input#post_title{width:925px;margin:0px;border-left:1px solid #a8a8a8;border-top
 
 input[type=text],select
 {
-	/*width: 150px;*/
+	width: 200px;
 }
 
 .cargando_
