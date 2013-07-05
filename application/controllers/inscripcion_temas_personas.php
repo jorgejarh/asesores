@@ -49,10 +49,11 @@ class Inscripcion_temas_personas extends CI_Controller {
 			$model=$this->modelo_usar;
 			$data['inscripcion']=$this->$model->obtener_inscripcion($id);
 			$data['listado']=$this->$model->lista($id);
+			$data['precio_venta'] = $this->$model->obtener_precio_venta($id);
 			
 			$data['title']=$this->nombre_titulo;
 			$data['template']="sistema";
-			$data['contenido']=$this->carpeta_view."/lista";
+			$data['contenido']=$this->carpeta_view."/lista"; 
 			
 			$data['model']=$model;
 			$this->load->view('template',$data);

@@ -10,7 +10,7 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td>Inscripcion: <?php echo $inscripcion['nombre_capacitacion'];?></td>
+      			<td>Inscripcion: <?php echo $inscripcion['nombre_capacitacion']." - precio $".$precio_venta;?></td>
       			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $inscripcion['id_inscripcion_tema'];?>);">Inscribir persona</button></td>
       		</tr>
       	</table>
