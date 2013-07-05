@@ -145,7 +145,7 @@ function eliminar_registro(id)
 <style>
   #nombre_capacitacion /*celda que contiene el nombre de la capacitacion*/
   {
-    border-top: solid 2px #AAAAAA;
+    border-top: solid 2px;
     font-size: 17px;
     padding-top: 5px;
   }
