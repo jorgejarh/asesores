@@ -321,7 +321,10 @@ class Pl_planes extends CI_Controller {
 					$co++;
 				}
 				
-				
+				$objPHPExcel->setActiveSheetIndex(0)->getStyle($columna.$fila)->getFont()->setBold(true);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue($columna.$fila, $datos['nombre_plan']);
+				$fila++;	
+				$fila++;			
 				
 				$objPHPExcel->setActiveSheetIndex(0)->getStyle($columna.$fila)->getFont()->setBold(true);
 				$objPHPExcel->setActiveSheetIndex(0)->setCellValue($columna.$fila, 'Nombre de modalidad');
@@ -506,7 +509,7 @@ class Pl_planes extends CI_Controller {
 				exit;
 
 				
-				
+				/*
 				
 				$this->output->set_content_type('application/application/vnd.ms-excel');
 				$this->output->set_header("Pragma: no-cache");
@@ -516,7 +519,7 @@ class Pl_planes extends CI_Controller {
 				
 				$html='<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />'.$this->load->view($this->carpeta_view.'/ver_plan_imprimir',$data,true);
 				
-				$this->output->set_output($html);
+				$this->output->set_output($html);*/
 
 				break;
 			

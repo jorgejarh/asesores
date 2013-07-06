@@ -110,7 +110,49 @@ h1,h2,h3,h4
       </ul> 
     </div>
   </div>
-  <h2 align="center"><?php echo $datos['nombre_plan'];?></h2>
+  <h2 align="center"><?php echo $datos['nombre_plan'];?> ($ <?php
+  
+  	$total_plan=0.00;
+	if($datos['modalidades'])
+	{
+		foreach($datos['modalidades'] as $modalidad)
+		{
+			
+			if($modalidad['temas'])
+			{
+				foreach($modalidad['temas'] as $tema)
+				{
+					if($tema['modulos'])
+					{
+						foreach($tema['modulos'] as $modulo)
+						{
+							if($modulo['rubros'])
+							{
+								foreach($modulo['rubros'] as $rubro)
+								{
+									if($rubro['detalle'])
+									{
+										foreach($rubro['detalle'] as $detalle)
+										{
+											$total_plan+=($detalle['unidades']*$detalle['costo']);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				
+			}
+				
+		}
+		
+	}
+	
+	echo number_format($total_plan,2);
+  
+  ?>)</h2>
+  	
     <table align="center" cellpadding="0" cellspacing="0" class="borde_all">
     	<?php
         foreach($datos['modalidades'] as $modalidad)
@@ -118,7 +160,38 @@ h1,h2,h3,h4
 			?>
             <tr>
                 <td align="left" valign="middle" class="borde_">
-                	<h3 align="center"><?php echo $modalidad['nombre_modalidad'];?></h3>
+                	<h3 align="center"><?php echo $modalidad['nombre_modalidad'];?> ($ <?php
+                    
+					$total_modalidad=0.00;
+					if($modalidad['temas'])
+					{
+						foreach($modalidad['temas'] as $tema)
+						{
+							if($tema['modulos'])
+							{
+								foreach($tema['modulos'] as $modulo)
+								{
+									if($modulo['rubros'])
+									{
+										foreach($modulo['rubros'] as $rubro)
+										{
+											if($rubro['detalle'])
+											{
+												foreach($rubro['detalle'] as $detalle)
+												{
+													$total_modalidad+=($detalle['unidades']*$detalle['costo']);
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						
+					}
+					echo number_format($total_modalidad,2);
+					
+					?>)</h3>
                     <?php
                     if($modalidad['temas'])
 					{
@@ -181,7 +254,7 @@ h1,h2,h3,h4
 														}
 														echo number_format($total_modulo,2);
 														?>)</p></td>
-                                                        <td align="right" valign="middle" class="borde_fecha" width="100" ><p><b><?php echo $modulo['fecha_prevista'];?></b></p></td>
+                                                        <td align="center" valign="middle" class="borde_fecha" width="200" ><p><b><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista']));?> - <?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista_fin']));?> </b></p></td>
                                                 	</tr>
                                                     <?php
 												}
