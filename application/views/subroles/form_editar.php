@@ -38,7 +38,15 @@ echo form_open('',array(
 						
 						$activo=$this->conf_menu_model->existe_permiso($permisos,$valor1['id_menu']);
 
-						echo '<h3 style="cursor:pointer;">'.form_checkbox('permisos[]',$valor1['id_menu'],$activo)." ".$valor1['nombre_menu']."</h3>";
+						$data1 = array(
+							'name' => 'permisos[]',
+							'id' => $valor1['id_menu'],
+							'value' => $valor1['id_menu'],
+							'checked' => $activo
+							);
+
+
+						echo '<h3 style="cursor:pointer;">'.form_checkbox($data1)." ".$valor1['nombre_menu']."</h3>";
 						if($valor1['submenu'])
 						{
 							?>
@@ -47,14 +55,30 @@ echo form_open('',array(
 							foreach ($valor1['submenu'] as $valor2) 
 							{
 								$activo=$this->conf_menu_model->existe_permiso($permisos,$valor2['id_menu']);
-								echo '<h4 style="margin-left:15px; font-weight:normal;">'.form_checkbox('permisos[]',$valor2['id_menu'],$activo)." ".$valor2['nombre_menu'].'</h4>';
+
+								$data2 = array(
+									'name' => 'permisos[]',
+									'id' => $valor1['id_menu'].'_'.$valor2['id_menu'],
+									'value' => $valor2['id_menu'],
+									'checked' => $activo
+									);
+
+								echo '<h4 style="margin-left:15px; font-weight:normal;">'.form_checkbox($data2)." ".$valor2['nombre_menu'].'</h4>';
 								if($valor2['submenu'])
 								{
 									
 									foreach($valor2['submenu'] as $valor3)
 									{
 										$activo=$this->conf_menu_model->existe_permiso($permisos,$valor3['id_menu']);
-										echo '<h4 style="margin-left:30px; font-weight:normal;">'.form_checkbox('permisos[]',$valor3['id_menu'],$activo)." ".$valor3['nombre_menu'].'</h4>';
+
+										$data3 = array(
+											'name' => 'permisos[]',
+											'id' => $valor1['id_menu'].'_'.$valor2['id_menu'].'_'.$valor3['id_menu'],
+											'value' => $valor3['id_menu'],
+											'checked' => $activo
+											);
+
+										echo '<h4 style="margin-left:30px; font-weight:normal;">'.form_checkbox($data3)." ".$valor3['nombre_menu'].'</h4>';
 
 									}
 								}
@@ -160,7 +184,45 @@ $(document).ready(function(e){
 		return false;
 	});
 
+
 });
+
+
+
+	/* ********************************************** funciones para seleccionar padres ***************************************************** */
+	/**
+	 * Selecciona a todos los ansestros
+	 */
+	$( "input[type=checkbox]" ).click(function(){
+		var id         = $(this).attr('id');
+		var id_array   = id.split("_");
+		var parentesco = determinar_parentesco( id_array );
+
+		if( parentesco == 'hijo' ){
+
+			$('#'+id_array[0]+'_'+id_array[1]).attr('checked', true);
+			$('#'+id_array[0]).attr('checked', true);
+
+		}else if( parentesco == 'padre' ){
+
+			$('#'+id_array[0]).attr('checked', true);
+		}
+	});
+	/* ****************************************************** */
+	/**
+	 * Devuelve el parentesco
+	 */
+	var determinar_parentesco = function( id_array ){
+		var longitud   = id_array.length;
+		var parentesco = new Array();
+
+		parentesco[1] = 'abuelo';
+		parentesco[2] = 'padre';
+		parentesco[3] = 'hijo';
+
+		return parentesco[longitud];
+	}
+	/* ********************************************** funciones para seleccionar padres ***************************************************** */
 
 
 

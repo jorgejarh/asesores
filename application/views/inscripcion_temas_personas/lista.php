@@ -10,9 +10,13 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td>Inscripcion: <?php echo $inscripcion['nombre_capacitacion']." - precio $".$precio_venta;?></td>
+      			<td>Inscripcion: <?php echo $inscripcion['nombre_capacitacion'];?></td>
       			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $inscripcion['id_inscripcion_tema'];?>);">Inscribir persona</button></td>
       		</tr>
+          <tr>
+            <td id="inversion" >inversión por persona $<?php echo $precio_venta; ?></td>
+            <td></td>
+          </tr>
       	</table>
       </h2>
       <div class="bot_atras">
@@ -136,4 +140,14 @@ function eliminar_registro(id)
 }
 
 </script>
+
+
+<style>
+  #inversion /*celda que contiene la inversion*/
+  {
+    border-top: solid 2px;
+    font-size: 17px;
+    padding-top: 5px;
+  }
+</style>
 
