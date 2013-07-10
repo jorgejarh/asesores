@@ -30,7 +30,7 @@ if($listado)
         <th># Partic. Estimados</th>
         <th>Presupuesto Total</th>
         <th>Costo Individual</th>
-        <th>Precio de venta indiv.</th>
+        
         <th>Asignar Modulos</th>
         <th>Editar</th>
         <th>Eliminar</th>
@@ -45,9 +45,9 @@ if($listado)
       	<td><?php echo $valor['nombre_capacitacion'];?></td>
         <td><?php echo $valor['num_modulos'];?></td>
         <td><?php echo $valor['n_participantes'];?></td>
-        <td>$ <?php echo number_format($valor['sum_total'],2);?></td>
-        <td>$ <?php echo number_format($valor['sum_total']/$valor['n_participantes'],2);?></td>
-        <td>$ <?php echo $valor['precio_venta'];?></td>
+        <td>$ <?php $total=obtener_costo_capacitacion($valor[$this->$model->id_tabla]); echo number_format($total,2);?></td>
+        <td>$ <?php echo number_format($total/$valor['n_participantes'],2);?></td>
+        
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">

@@ -176,5 +176,105 @@ function iddecode($string, $key="asesores") {
    return $result;
 }
 
+function obtener_costo_plan($id_plan=0)
+{
+	$CI =& get_instance();
+	
+	$dato=$CI->db->query("SELECT 
+				IFNULL(SUM(g.unidades*g.costo),0.00) as costo
+			  FROM
+				pl_modalidades c,
+				pl_capacitaciones d,
+				pl_modulos e,
+				pl_rubro f,
+				pl_subrubro g 
+			  WHERE c.id_plan =".$id_plan."
+				AND c.id_plan_modalidad = d.id_plan_modalidad 
+				AND e.id_capacitacion = d.id_capacitacion 
+				AND f.id_modulo = e.id_modulo 
+				AND f.id_rubro = g.id_rubro
+				AND c.activo = 1
+				AND d.activo = 1
+				AND e.activo = 1
+				AND f.activo = 1
+				AND g.activo = 1")->row_array();
+	return $dato['costo'];
+	
+}
+
+function obtener_costo_plan_modalidad($id_plan_modalidad=0)
+{
+	$CI =& get_instance();
+	
+	$dato=$CI->db->query("SELECT 
+				IFNULL(SUM(g.unidades*g.costo),0.00) as costo
+			  FROM
+				pl_capacitaciones d,
+				pl_modulos e,
+				pl_rubro f,
+				pl_subrubro g 
+			  WHERE d.id_plan_modalidad = ".$id_plan_modalidad."
+				AND e.id_capacitacion = d.id_capacitacion 
+				AND f.id_modulo = e.id_modulo 
+				AND f.id_rubro = g.id_rubro
+				AND d.activo = 1
+				AND e.activo = 1
+				AND f.activo = 1
+				AND g.activo = 1")->row_array();
+	return $dato['costo'];
+}
+
+function obtener_costo_capacitacion($id_capacitacion=0)
+{
+	$CI =& get_instance();
+	
+	$dato=$CI->db->query("SELECT 
+				IFNULL(SUM(e.unidades*e.costo) ,0.00) as costo
+						FROM 
+							pl_modulos c, 
+							pl_rubro d, 
+							pl_subrubro e  
+						WHERE 
+							e.id_rubro = d.id_rubro AND 
+							d.id_modulo = c.id_modulo AND 
+							c.id_capacitacion = ".$id_capacitacion." and 
+							e.activo = 1 and 
+							c.activo = 1 and  
+							d.activo = 1")->row_array();
+	return $dato['costo'];
+	
+}
+
+function obtener_costo_modulo($id_modulo=0)
+{
+	$CI =& get_instance();
+	
+	$dato=$CI->db->query("SELECT 
+				IFNULL(SUM(c.unidades*c.costo)  ,0.00) as costo
+						FROM 
+							pl_rubro b, 
+							pl_subrubro c 
+						WHERE 
+							b.id_rubro = c.id_rubro AND 
+							b.id_modulo = ".$id_modulo." and 
+							c.activo = 1 and  
+							b.activo = 1")->row_array();
+	return $dato['costo'];
+	
+}
+
+function obtener_precio_modulo($id_modulo=0)
+{
+	$CI =& get_instance();
+	
+	$dato=$CI->db->get_where("pl_modulos",array('id_modulo'=>$id_modulo))->row_array();
+	if($dato['precio_venta'])
+	{
+		return $dato['precio_venta'];
+	}else{
+		return 0.00;
+		}
+	
+}
 
 ?>

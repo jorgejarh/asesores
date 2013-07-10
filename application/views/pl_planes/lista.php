@@ -34,7 +34,7 @@ if($listado)
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_plan'];?></td>
-        <td>$ <?php echo number_format($valor['sum_total'],2);?></td>
+        <td>$ <?php echo number_format(obtener_costo_plan($valor[$this->$model->id_tabla]),2);?></td>
         <td align="center"	class="datatable_icono"><a target="_blank" href="<?php echo site_url('pl_planes/ver_plan/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modalidades/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td><?php echo $valor['nombre_estado'];?></td>

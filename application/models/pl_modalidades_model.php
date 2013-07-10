@@ -39,22 +39,7 @@ class Pl_modalidades_model extends CI_Model {
 	
 	function lista($id=0)
 	{
-		$this->db->select("a.*, b.nombre_plan, c.nombre_modalidad, c.objetivo, IFNULL((SELECT 
-																				SUM(g.unidades*g.costo) 
-																			  FROM
-																				pl_capacitaciones d,
-																				pl_modulos e,
-																				pl_rubro f,
-																				pl_subrubro g 
-																			  WHERE a.id_plan_modalidad = d.id_plan_modalidad 
-																				AND e.id_capacitacion = d.id_capacitacion 
-																				AND f.id_modulo = e.id_modulo 
-																				AND f.id_rubro = g.id_rubro
-																				AND d.activo = 1
-																				AND e.activo = 1
-																				AND f.activo = 1
-																				AND g.activo = 1
-																				),0.00) AS sum_total",false);
+		$this->db->select("a.*, b.nombre_plan, c.nombre_modalidad, c.objetivo",false);
 		$this->db->where("a.id_plan = b.id_plan");
 		$this->db->where("a.id_modalidad = c.id_modalidad");
 		$this->db->where("a.id_plan = ".$id);

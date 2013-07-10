@@ -33,6 +33,7 @@ if($listado)
         <th width="90">Fecha Inicio</th>
         <th width="90">Fecha Fin</th>
         <th width="50">Total</th>
+        <th width="50">Inversion</th>
          <th>Ver Presupuesto</th>
         <th>Asignar Costos</th>
         <th>Editar</th>
@@ -49,10 +50,11 @@ if($listado)
         
         <td><?php echo date('d-m-Y',strtotime($valor['fecha_prevista']));?></td>
         <td><?php echo date('d-m-Y',strtotime($valor['fecha_prevista_fin']));?></td>
-        <td>$ <?php echo $valor['sum_total'];?></td>
+        <td>$ <?php $total=obtener_costo_modulo($valor[$this->$model->id_tabla]); echo $total;?></td>
+        <td>$ <?php echo $valor['precio_venta'];?></td>
         <td align="center"	class="">
         <?php
-        if($valor['sum_total']>0)
+        if($total>0)
 		{
 		?>
         <a target="_blank" href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a>

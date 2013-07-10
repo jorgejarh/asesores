@@ -41,7 +41,7 @@ if($listado)
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_modalidad']; ?></td>
         <td><?php echo $valor['objetivo'];?></td>
-        <td>$ <?php echo number_format($valor['sum_total'],2);?></td>
+        <td>$ <?php echo number_format( obtener_costo_plan_modalidad($valor[$this->$model->id_tabla]),2);?></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_capacitaciones/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">

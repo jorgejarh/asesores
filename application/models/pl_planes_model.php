@@ -27,25 +27,7 @@ class Pl_planes_model extends CI_Model {
 		if($id==0)
 		{
 			
-			$this->db->select("a.*, b.nombre_estado, IFNULL((SELECT 
-										SUM(g.unidades*g.costo) 
-									  FROM
-										pl_modalidades c,
-										pl_capacitaciones d,
-										pl_modulos e,
-										pl_rubro f,
-										pl_subrubro g 
-									  WHERE a.id_plan = c.id_plan
-									  	AND c.id_plan_modalidad = d.id_plan_modalidad 
-										AND e.id_capacitacion = d.id_capacitacion 
-										AND f.id_modulo = e.id_modulo 
-										AND f.id_rubro = g.id_rubro
-										AND c.activo = 1
-										AND d.activo = 1
-										AND e.activo = 1
-										AND f.activo = 1
-										AND g.activo = 1
-										),0.00) AS sum_total",false);
+			$this->db->select("a.*, b.nombre_estado",false);
 			
 			$this->db->where("a.id_estado_plan = b.id_estado_plan");
 			return $this->db->get_where($this->nombre_tabla." a, mante_estados_planes b",array('a.activo'=>1))->result_array();

@@ -96,6 +96,10 @@ h1,h2,h3,h4
 {
 	margin:5px;
 }
+.t td
+{
+	border:#666 1px solid;
+}
 </style>
 </head>
 
@@ -111,174 +115,96 @@ h1,h2,h3,h4
     </div>
   </div>
   <h2 align="center"><?php echo $datos['nombre_plan'];?> ($ <?php
-  
-  	$total_plan=0.00;
-	if($datos['modalidades'])
-	{
-		foreach($datos['modalidades'] as $modalidad)
-		{
-			
-			if($modalidad['temas'])
-			{
-				foreach($modalidad['temas'] as $tema)
-				{
-					if($tema['modulos'])
-					{
-						foreach($tema['modulos'] as $modulo)
-						{
-							if($modulo['rubros'])
-							{
-								foreach($modulo['rubros'] as $rubro)
-								{
-									if($rubro['detalle'])
-									{
-										foreach($rubro['detalle'] as $detalle)
-										{
-											$total_plan+=($detalle['unidades']*$detalle['costo']);
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-				
-			}
-				
-		}
-		
-	}
-	
-	echo number_format($total_plan,2);
+
+	echo number_format(obtener_costo_plan($datos['id_plan']),2);
   
   ?>)</h2>
-  	
-    <table align="center" cellpadding="0" cellspacing="0" class="borde_all">
+<p>&nbsp;</p>  	
+    <table align="center" cellpadding="0" cellspacing="0" class="t">
+    	<tr>
+        	<td align="center" valign="middle"><b>Modalidad</b></td>
+            <td align="center" valign="middle"><b>Costo Modalidad</b></td>
+            <td align="center" valign="middle"><b>Tema</b></td>
+            <td align="center" valign="middle"><b>Costo Tema</b></td>
+            <td align="center" valign="middle"><b>Modulo</b></td>
+            <td align="center" valign="middle"><b>Costo Modulo</b></td>
+            <td align="center" valign="middle" width="120"><b>Fecha inicio</b></td>
+            <td align="center" valign="middle" width="120"><b>Fecha Fin</b></td>
+        </tr>
     	<?php
         foreach($datos['modalidades'] as $modalidad)
 		{
 			?>
             <tr>
-                <td align="left" valign="middle" class="borde_">
-                	<h3 align="center"><?php echo $modalidad['nombre_modalidad'];?> ($ <?php
-                    
-					$total_modalidad=0.00;
-					if($modalidad['temas'])
-					{
-						foreach($modalidad['temas'] as $tema)
-						{
-							if($tema['modulos'])
-							{
-								foreach($tema['modulos'] as $modulo)
-								{
-									if($modulo['rubros'])
-									{
-										foreach($modulo['rubros'] as $rubro)
-										{
-											if($rubro['detalle'])
-											{
-												foreach($rubro['detalle'] as $detalle)
-												{
-													$total_modalidad+=($detalle['unidades']*$detalle['costo']);
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-						
-					}
-					echo number_format($total_modalidad,2);
-					
-					?>)</h3>
+                <td align="left" valign="middle">
+                	<h3 align="center"><?php echo $modalidad['nombre_modalidad'];?></h3>
+                </td>
+                <td align="center" valign="middle">
+                	<?php
+					echo number_format(obtener_costo_plan_modalidad($modalidad['id_plan_modalidad']),2)
+					?>
+                </td>
                     <?php
                     if($modalidad['temas'])
 					{
-						?>
-                        <table align="center" cellpadding="0" cellspacing="0" width="100%">
-                        	
-							<?php
+						$count_tema=count($modalidad['temas']);
+						$van_tema=0;
                             foreach($modalidad['temas'] as $tema)
                             {
+								$van_tema++;
                                 ?>
-                                <tr>
-                                	<td align="center" valign="middle" class="borde_tema" width="280"> <h4><?php echo $tema['nombre_capacitacion'];?> ($ <?php
-                                    $total_tema=0.00;
-									if($tema['modulos'])
-									{
-										foreach($tema['modulos'] as $modulo)
-										{
-											if($modulo['rubros'])
-											{
-												foreach($modulo['rubros'] as $rubro)
-												{
-													if($rubro['detalle'])
-													{
-														foreach($rubro['detalle'] as $detalle)
-														{
-															$total_tema+=($detalle['unidades']*$detalle['costo']);
-														}
-													}
-												}
-											}
-										}
-									}
-									echo number_format($total_tema,2);
-									?>)</h4></td>
-                                    <td align="left" valign="middle">
-                                    	<?php
+                                	<td align="left" valign="middle" > <h4><?php echo $tema['nombre_capacitacion'];?></h4></td>
+                                    <td align="center" valign="middle"><?php echo number_format(obtener_costo_capacitacion($tema['id_capacitacion']),2);?></td>
+                                    	
+										<?php
                                         if($tema['modulos'])
 										{
-											?>
-                                            <table cellpadding="0" cellspacing="0" width="100%">
-                                            	<?php
+											$count_modulo=count($tema['modulos']);
+											$van_modulo=0;
                                                 foreach($tema['modulos'] as $modulo)
 												{
+													$van_modulo++;
+													?>
+                                                		<td align="left" valign="middle" ><p><?php echo $modulo['nombre_modulo'];?></p></td>
+                                                        <td align="center" valign="middle"><?php echo number_format(obtener_costo_modulo($modulo['id_modulo']),2); ?></td>
+                                                        <td align="center" valign="middle"><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista']));?></td>
+                                                        <td align="center" valign="middle"><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista_fin']));?></td>
+                                                    </tr>
+                                                    
+                                                    <?php
+                                                    if($van_modulo!=$count_modulo)
+													{
 													?>
                                                     <tr>
-                                                		<td align="left" valign="middle" class="borde_modulo" ><p><?php echo $modulo['nombre_modulo'];?> ($ <?php
-                                                        $total_modulo=00.00;
-														if($modulo['rubros'])
-														{
-															foreach($modulo['rubros'] as $rubro)
-															{
-																if($rubro['detalle'])
-																{
-																	foreach($rubro['detalle'] as $detalle)
-																	{
-																		$total_modulo+=($detalle['unidades']*$detalle['costo']);
-																	}
-																}
-															}
-														}
-														echo number_format($total_modulo,2);
-														?>)</p></td>
-                                                        <td align="center" valign="middle" class="borde_fecha" width="200" ><p><b><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista']));?> - <?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista_fin']));?> </b></p></td>
-                                                	</tr>
+                                                    	<td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
                                                     <?php
+													}
+													
 												}
-												?>
-                                            </table>
-                                            <?php
 										}
-										?>
-                                    </td>
-                                </tr>
+								
+								if($count_tema!=$van_tema)
+								{
+								?>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+
+                                
                                 <?php
+								}
                             }
-							?>
-                        </table>
-                        <?php
+
 					}
-					?>
-                </td>
-            </tr>    
-            <?php
+
 		}
 		?>
     	
     </table>
+   
 </div>
 </body>
 </html>
