@@ -51,9 +51,10 @@ class Inscripcion_temas_personas_model extends CI_Model {
 
 	function obtener_precio_venta($id=0){
 		$this->db->where('inscripcion_temas.id_inscripcion_tema', $id);
-		$this->db->select('precio_venta');
+		$this->db->select('pl_modulos.precio_venta');
 		$this->db->from('inscripcion_temas');
 		$this->db->join('pl_capacitaciones', 'pl_capacitaciones.id_capacitacion = inscripcion_temas.id_capacitacion');
+		$this->db->join('pl_modulos', 'pl_modulos.id_capacitacion = pl_capacitaciones.id_capacitacion');
 		return $query = $this->db->get()->row()->precio_venta;
 	}
 	

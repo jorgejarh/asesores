@@ -751,7 +751,6 @@ CREATE TABLE `pl_capacitaciones` (
   `nombre_capacitacion` varchar(100) DEFAULT NULL,
   `objetivo` varchar(300) DEFAULT NULL,
   `n_participantes` int(11) DEFAULT '1',
-  `precio_venta` decimal(12,2) DEFAULT '0.00',
   `f_creacion` datetime DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `activo` int(11) DEFAULT '1',
@@ -767,7 +766,7 @@ CREATE TABLE `pl_capacitaciones` (
 
 LOCK TABLES `pl_capacitaciones` WRITE;
 /*!40000 ALTER TABLE `pl_capacitaciones` DISABLE KEYS */;
-INSERT INTO `pl_capacitaciones` VALUES (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva',1,0.00,'2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias',30,10.00,'2013-06-13 22:33:23',1,1),(3,3,'Tema 2','Tema 2 Tema 2 Tema 2',1,0.00,'2013-06-19 21:11:27',1,1);
+INSERT INTO `pl_capacitaciones` VALUES (1,4,'Gestion Crediticia Efectiva','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva',1,'2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias',30,'2013-06-13 22:33:23',1,1),(3,3,'Tema 2','Tema 2 Tema 2 Tema 2',1,'2013-06-19 21:11:27',1,1);
 /*!40000 ALTER TABLE `pl_capacitaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -849,6 +848,7 @@ CREATE TABLE `pl_modulos` (
   `fecha_prevista` date DEFAULT NULL,
   `fecha_prevista_fin` date DEFAULT NULL,
   `contenido` varchar(200) DEFAULT NULL,
+  `precio_venta` decimal(12,2) DEFAULT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `f_creacion` datetime DEFAULT NULL,
   `activo` int(11) DEFAULT '1',
@@ -866,7 +866,7 @@ CREATE TABLE `pl_modulos` (
 
 LOCK TABLES `pl_modulos` WRITE;
 /*!40000 ALTER TABLE `pl_modulos` DISABLE KEYS */;
-INSERT INTO `pl_modulos` VALUES (1,2,2,'Gestion mercadologica de las agencias','Gestion mercadologica de las agencias',0,'2013-06-16','2013-06-16','Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',1,'2013-06-13 22:34:18',1),(2,2,2,'Gestioin mercadologica de las agencias','Gestioin mercadologica de las agencias',0,'2013-06-16','2013-06-16','Contenido 1\r\n',1,'2013-06-13 22:35:05',1),(3,2,3,'Base normativa para la apertura de agencias','Base normativa para la apertura de agencias',0,'2013-06-16','2013-06-16','contenido 2',1,'2013-06-13 22:35:50',1),(4,2,3,'NUevo modulo','NUevo modulo',0,'2013-06-16','2013-06-16','aaaaaaaaaaa',1,'2013-06-16 15:58:55',1),(5,3,3,'Modulo 1 ','Modulo 1 Modulo 1 ',0,'2013-06-19','2013-06-19','hola',1,'2013-06-19 21:11:56',1);
+INSERT INTO `pl_modulos` VALUES (1,2,2,'Gestion mercadologica de las agencias','Gestion mercadologica de las agencias',0,'2013-06-16','2013-06-16','Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',NULL,1,'2013-06-13 22:34:18',1),(2,2,2,'Gestioin mercadologica de las agencias','Gestioin mercadologica de las agencias',0,'2013-06-16','2013-06-16','Contenido 1\r\n',NULL,1,'2013-06-13 22:35:05',1),(3,2,3,'Base normativa para la apertura de agencias','Base normativa para la apertura de agencias',0,'2013-06-16','2013-06-16','contenido 2',NULL,1,'2013-06-13 22:35:50',1),(4,2,3,'NUevo modulo','NUevo modulo',0,'2013-06-16','2013-06-16','aaaaaaaaaaa',NULL,1,'2013-06-16 15:58:55',1),(5,3,3,'Modulo 1 ','Modulo 1 Modulo 1 ',0,'2013-06-19','2013-06-19','hola',NULL,1,'2013-06-19 21:11:56',1);
 /*!40000 ALTER TABLE `pl_modulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1157,7 +1157,7 @@ CREATE TABLE `usu_usuario` (
 
 LOCK TABLES `usu_usuario` WRITE;
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-07-09 01:58:56',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','122b738600a0f74f7c331c0ef59bc34c','Carlos Rivera','23659848','75698459',NULL,'','2013-06-29 21:57:12',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-07-09 01:47:52',1,2,1);
+INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-07-10 01:20:03',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','122b738600a0f74f7c331c0ef59bc34c','Carlos Rivera','23659848','75698459',NULL,'','2013-06-29 21:57:12',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-07-10 01:08:37',1,2,1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1170,4 +1170,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-09  2:03:20
+-- Dump completed on 2013-07-10  1:22:02
