@@ -64,7 +64,11 @@
     	<div id="profile_info">
 			<img src="<?php echo base_url();?>public/img/avatar.jpg" id="avatar" alt="avatar" />
 			<p><strong><?php echo $this->datos_user['nombre_completo']; ?></strong></p>
-			<p><a href="<?php echo site_url('portal/salir');?>">Salir</a></p>
+			<p>
+				<a href="<?php echo site_url('portal/salir');?>">Salir</a>
+				&nbsp;|&nbsp;
+				<a href="javascript:void(0);" onclick="cambiar_pass(<?php echo $this->datos_user['id_usuario']; ?>)">Cambiar contraseña</a><!-- cambiar contraseña -->
+			</p>
 			<p class="last_login" style="margin-top:-8px;">Last login: <?php echo date('d/m/Y',strtotime($this->datos_user['ultimo_acceso'])); ?></p>
 		</div>
 		<div id="logo"><h1><a href="<?php echo site_url('portal');?>">Asesores</a></h1></div>

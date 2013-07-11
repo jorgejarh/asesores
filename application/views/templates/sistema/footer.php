@@ -8,3 +8,21 @@
 
 </body>
 </html>
+
+
+<script>
+	/**
+	 * Llama a la vista utilizada para que el usuario cambie su pass
+	 * @param  int id_usuario 
+	 */
+	var cambiar_pass = function( id_usuario ){
+		$.ajax({
+			url: "<?php echo site_url('users/cambiar_pass_form'); ?>",
+		  	type:"post",
+		  	data:{id_usuario:id_usuario},
+		  	success:function(data){
+		  		$.fancybox(data);
+		  	}
+		});
+	}
+</script>

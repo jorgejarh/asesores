@@ -129,6 +129,45 @@ class Users extends CI_Controller {
 			echo "<h1>Error al actualizar el usuario</h1>";
 		}
 	}
+
+
+	/**
+	 * LLama a la vista para cambiar contraseña
+	 */
+	public function cambiar_pass_form(){
+		
+		$data['title']      = "Cambiar contraseña";
+		$data['id_usuario'] = $this->input->post('id_usuario');
+
+		$this->load->view('users/cambiar_pass', $data);
+	}
+
+	/**
+	 * sirve para cambiar contraseña
+	 */
+	public function cambiar_pass(){
+		$data = array();
+
+		$this->form_validation->set_rules('clave','Contraseña',"required|matches[confirma_clave]|xss_clean|min_length[6]|md5");
+		$this->form_validation->set_message('matches',"Las contraseñas no coinciden");
+
+		if( $this->form_validation->run() ){
+
+			$data['error'] = false;
+			$post          = $this->input->post();
+			
+			$this->users_model->cambiar_pass( $post );
+
+		}else{
+
+			$data['error']   = true;
+			$data['mensaje'] = traer_errores_form();
+		}
+
+		$this->output->set_content_type('application/json')->set_output( json_encode( $data ) );
+	}
+
+
 }
 
 /* End of file welcome.php */

@@ -224,6 +224,18 @@ function obtener_datos_usuario($id)
 		
 		return  $this->actualizar_subrol(array('estado'=>0),$id);
 	}
+
+
+    function cambiar_pass( $post = '' ){
+
+        $id_usuario = $post['id_usuario'];
+        unset( $post['id_usuario'] );
+        unset( $post['confirma_clave'] );
+
+        $this->db->where('id_usuario', $id_usuario);
+        $this->db->update('usu_usuario', $post); 
+    }
+    
 	
 	
 }
