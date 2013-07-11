@@ -47,21 +47,7 @@ class Inscripcion_temas_personas_model extends CI_Model {
 		return $this->db->get_where($this->nombre_tabla." a, pl_capacitaciones b, inscripcion_temas c, conf_sucursal d, mante_cargos e",array('a.id_inscripcion_tema'=>$id,'a.activo'=>1))->result_array();
 		
 	}
-<<<<<<< HEAD
-=======
-
-
-	function obtener_precio_venta($id=0){
-		$this->db->where('inscripcion_temas.id_inscripcion_tema', $id);
-		$this->db->select('pl_modulos.precio_venta');
-		$this->db->from('inscripcion_temas');
-		$this->db->join('pl_capacitaciones', 'pl_capacitaciones.id_capacitacion = inscripcion_temas.id_capacitacion');
-		$this->db->join('pl_modulos', 'pl_modulos.id_capacitacion = pl_capacitaciones.id_capacitacion');
-		return $query = $this->db->get()->row()->precio_venta;
-	}
->>>>>>> 36b43f416a68c32a2185cc65ed3da89acbedeb39
-	
-	
+		
 	function actualizar($datos,$id)
 	{
 		
