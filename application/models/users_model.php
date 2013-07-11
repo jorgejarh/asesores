@@ -130,7 +130,8 @@ function obtener_datos_usuario($id)
 		return $this->db->query("SELECT 
                                     menu.id_menu,
                                     nombre_menu,
-                                    url
+                                    url,
+									target
                                 FROM
                                     usu_subrol AS subrol,
                                     usu_permisos_menu AS permisos,
@@ -151,7 +152,7 @@ function obtener_datos_usuario($id)
 		return $this->db->query("SELECT 
                                     menu.id_menu,
                                     nombre_menu,
-                                    url
+                                    url,target
                                 FROM
                                     usu_subrol AS subrol,
                                     usu_permisos_menu AS permisos,

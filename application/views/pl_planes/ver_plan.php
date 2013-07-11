@@ -114,7 +114,7 @@ h1,h2,h3,h4
       </ul> 
     </div>
   </div>
-  <h2 align="center"><?php echo $datos['nombre_plan'];?> ($ <?php
+  <h2 align="center">Presupuesto <?php echo $datos['nombre_plan'];?> ($ <?php
 
 	echo number_format(obtener_costo_plan($datos['id_plan']),2);
   

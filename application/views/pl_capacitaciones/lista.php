@@ -32,6 +32,7 @@ if($listado)
         <th>Costo Individual</th>
         
         <th>Asignar Modulos</th>
+        <th>Estado</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -49,6 +50,25 @@ if($listado)
         <td>$ <?php echo number_format($total/$valor['n_participantes'],2);?></td>
         
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
+        <td align="center" class="datatable_icono">
+        <?php
+        if($valor['cerrado']==0)
+		{
+			?>
+            Abierto
+            <a onClick="cerrar_capacitacion(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para cerrar este tema"><?php echo img('public/img/cancel.png');?></a>
+            <?php
+		}else{
+			?>
+            Cerrado
+            <a onClick="abrir_capacitacion(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para abrir este tema"><?php echo img('public/img/accept.png');?></a>
+            <?php
+			}
+		?>
+        
+        
+        </td>
+        
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
@@ -116,6 +136,46 @@ function eliminar_registro(id)
 		  url: "<?php echo site_url($this->nombre_controlador.'/eliminar');?>",
 		  type:"POST",
 		  data:{'id':id},
+		  success:function(data){
+		  	
+		  		location.reload();
+		
+		  }
+		  
+		});
+}
+
+function cerrar_capacitacion(id)
+{
+	if(!confirm('¿Seguro que desea cerrar este tema?'))
+	{
+		return false;
+	}
+
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/estado');?>",
+		  type:"POST",
+		  data:{'id':id,'cerrado':'1'},
+		  success:function(data){
+		  	
+		  		location.reload();
+		
+		  }
+		  
+		});
+}
+
+function abrir_capacitacion(id)
+{
+	if(!confirm('¿Seguro que desea abrir este tema?'))
+	{
+		return false;
+	}
+
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/estado');?>",
+		  type:"POST",
+		  data:{'id':id,'cerrado':'0'},
 		  success:function(data){
 		  	
 		  		location.reload();

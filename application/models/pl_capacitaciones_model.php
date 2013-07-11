@@ -42,7 +42,7 @@ class Pl_capacitaciones_model extends CI_Model {
 			}
 	}
 	
-	function lista($id=0)
+	function lista($id=0,$estado='')
 	{
 		$this->db->select("a.*, 
 								(SELECT COUNT(*) 
@@ -52,18 +52,16 @@ class Pl_capacitaciones_model extends CI_Model {
 									b.activo = 1) AS num_modulos, 
 									 
 									concat(a.nombre_capacitacion,' ($',IFNULL((
-																			SELECT ROUND(SUM(e.unidades*e.costo) / a.n_participantes,2)
+																			SELECT ROUND(SUM(c.precio_venta),2)
 																			FROM 
-																				pl_modulos c, 
-																				pl_rubro d, 
-																				pl_subrubro e  
+																				pl_modulos c
 																			WHERE 
-																				e.id_rubro = d.id_rubro AND 
-																				d.id_modulo = c.id_modulo AND 
 																				c.id_capacitacion = a.id_capacitacion and 
-																				e.activo = 1 and 
-																				c.activo = 1 and  
-																				d.activo = 1 ),0.00),' )') as nombre_suma ",false);
+																				c.activo = 1),0.00),' )') as nombre_suma ",false);
+		if($estado=='abiertos')
+		{
+			$this->db->where(array('a.cerrado'=>0));
+		}
 		return $this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_plan_modalidad'=>$id))->result_array();
 		
 		
@@ -87,6 +85,11 @@ class Pl_capacitaciones_model extends CI_Model {
 	function eliminar($id)
 	{
 		return $this->db->update($this->nombre_tabla,array('activo'=>0),array($this->id_tabla=>$id));
+		//return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
+	}
+	function estado($id,$data)
+	{
+		return $this->db->update($this->nombre_tabla,$data,array($this->id_tabla=>$id));
 		//return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
 	}
 	

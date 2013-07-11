@@ -12,9 +12,7 @@
       	</table>
       </h2>
       <div class="bot_atras">
-    	<?php
-        //echo anchor('pl_capacitaciones/index/'.$capacitacion['id_plan_modalidad'],'<- Regresar');
-		?>
+    	
     </div>
       <div class="" style="width:90%; margin:auto;">
       
@@ -47,11 +45,11 @@ if($listado)
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_capacitacion'];?></td>
         
-        <td>$ <?php echo number_format($valor['precio_venta'],2);?></td>
+        <td>$ <?php $total=obtener_precio_capacitacion($valor['id_capacitacion']); echo number_format($total,2);?></td>
         
         <td><?php echo $valor['n_personas'];?></td>
         
-        <td>$ <?php echo number_format(($valor['precio_venta']*$valor['n_personas']),2);?></td>
+        <td>$ <?php echo number_format(($total*$valor['n_personas']),2);?></td>
         
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('inscripcion_temas_personas/index/'.idencode($valor[$this->$model->id_tabla]));?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         

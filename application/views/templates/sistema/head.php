@@ -88,7 +88,7 @@
                         <li>
                         	<!--Esta condicion es para que no redirecciones al login en caso que no haya URL-->
                         	<?php if($valor['url']){ ?>
-								<a href="<?php echo site_url($valor['url']);?>" class="sf-with-ul" ><?php echo $valor['nombre_menu'];?></a>
+								<a target="<?php echo $valor['target'];?>" href="<?php echo site_url($valor['url']);?>" class="sf-with-ul" ><?php echo $valor['nombre_menu'];?></a>
 							<?php }else{ ?>
 								<a href="#" class="sf-with-ul" ><?php echo $valor['nombre_menu'];?></a>
 							<?php } ?>
@@ -100,7 +100,7 @@
 								<li>
 									<!--Esta condicion es para que no redirecciones al login en caso que no haya URL-->
 									<?php if($valor_submenu['url']){ ?>
-										<a href="<?php echo site_url($valor_submenu['url']);?>" class="sf-with-ul" ><?php echo $valor_submenu['nombre_menu'];?></a>
+										<a  target="<?php echo $valor_submenu['target'];?>" href="<?php echo site_url($valor_submenu['url']);?>" class="sf-with-ul" ><?php echo $valor_submenu['nombre_menu'];?></a>
 									<?php }else{ ?>
 										<a href="#" class="sf-with-ul" ><?php echo $valor_submenu['nombre_menu'];?></a>
 									<?php } ?>
@@ -117,7 +117,7 @@
                                             <li>
 												<!--Esta condicion es para que no redirecciones al login en caso que no haya URL-->
 												<?php if($valor_submeu2['url']){ ?>
-													<a href="<?php echo site_url($valor_submeu2['url']);?>" class="sf-with-ul" ><?php echo $valor_submeu2['nombre_menu'];?></a>
+													<a  target="<?php echo $valor_submeu2['target'];?>"  href="<?php echo site_url($valor_submeu2['url']);?>" class="sf-with-ul" ><?php echo $valor_submeu2['nombre_menu'];?></a>
 												<?php }else{ ?>
 													<a href="#" class="sf-with-ul" ><?php echo $valor_submeu2['nombre_menu'];?></a>
 												<?php } ?>

@@ -245,6 +245,22 @@ function obtener_costo_capacitacion($id_capacitacion=0)
 	
 }
 
+function obtener_precio_capacitacion($id_capacitacion=0)
+{
+	$CI =& get_instance();
+	
+	$dato=$CI->db->query("SELECT 
+				IFNULL(SUM(c.precio_venta) ,0.00) as precio
+						FROM 
+							pl_modulos c
+						WHERE 
+							c.id_capacitacion = ".$id_capacitacion." and 
+							c.activo = 1")->row_array();
+	return $dato['precio'];
+	
+}
+
+
 function obtener_costo_modulo($id_modulo=0)
 {
 	$CI =& get_instance();

@@ -212,7 +212,7 @@ class Inscripcion_temas extends CI_Controller {
 		{
 			$json=array();
 
-			$lista=preparar_select($this->pl_capacitaciones_model->lista($post['id']),'id_capacitacion','nombre_suma');
+			$lista=preparar_select($this->pl_capacitaciones_model->lista($post['id'],'abiertos'),'id_capacitacion','nombre_suma');
 			
 			/*foreach($lista as $key=>$valor)
 			{

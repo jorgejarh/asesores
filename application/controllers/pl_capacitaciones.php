@@ -174,5 +174,17 @@ class Pl_capacitaciones extends CI_Controller {
 			$resultado= $this->$model->eliminar($id,$post);
 		}
 	}
+	
+	public function estado()
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		if ($post)
+		{
+			$id=$post['id'];
+			unset($post['id']);
+			$resultado= $this->$model->estado($id,$post);
+		}
+	}
 
 }

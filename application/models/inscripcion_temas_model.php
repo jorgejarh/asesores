@@ -40,7 +40,7 @@ class Inscripcion_temas_model extends CI_Model {
 	function lista($id=0)
 	{
 		
-		$this->db->select("a.*, b.nombre_capacitacion, b.precio_venta , 
+		$this->db->select("a.*, b.nombre_capacitacion, 
 										IFNULL((select count(*) from inscripcion_temas_personas c where c.id_inscripcion_tema = a.id_inscripcion_tema ) ,0) as n_personas",false);
 		
 		$this->db->where("a.id_capacitacion = b.id_capacitacion");
@@ -55,41 +55,24 @@ class Inscripcion_temas_model extends CI_Model {
 	function actualizar($datos,$id)
 	{
 		
-		//$facilitadores=$datos['facilitadores'];
-		//unset($datos['facilitadores']);
-		
 		$result= $this->db->update($this->nombre_tabla,$datos,array($this->id_tabla=>$id));
-		
-		//$this->db->delete('pl_modulo_facilitador',array('id_modulo'=>$id));
-		
-		/*foreach($facilitadores as $valor)
-		{
-			$this->db->insert('pl_modulo_facilitador',array('id_modulo'=>$id,'id_facilitador'=>$valor));
-		}*/
 		
 		return $result;
 	}
 	
 	function nuevo($datos)
 	{
-		//$facilitadores=$datos['facilitadores'];
-		//unset($datos['facilitadores']);
+		
 		$datos['id_usuario']=$this->datos_user['id_usuario'];
 		$datos['f_creacion']=date('Y-m-d H:i:s');
 		$result= $this->db->insert($this->nombre_tabla,$datos);
 		$id=$this->db->insert_id();
-		/*foreach($facilitadores as $valor)
-		{
-			$this->db->insert('pl_modulo_facilitador',array('id_modulo'=>$id,'id_facilitador'=>$valor));
-		}*/
 		
-		return $result;
+		return $id;
 	}
 	
 	function eliminar($id)
 	{
-		//return $this->db->update($this->nombre_tabla,array('activo'=>0),array($this->id_tabla=>$id));
-		
 		$this->db->delete('inscripcion_temas_personas',array($this->id_tabla=>$id));
 		return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
 	}
