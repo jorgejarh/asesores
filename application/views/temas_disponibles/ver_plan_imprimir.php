@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo "Presupuesto";?></title>
+<script type="text/javascript" language="javascript" src="<?php echo base_url();?>public/js/datatable/media/js/jquery.js"></script>
+<script>
+$(document).ready(function(event){
+	window.print() ;
+	window.close();
+	});
+
+
+</script>
+<style>
+.div_imprimir {
+	position:absolute;
+	right:0px;
+	top:0px;
+}
+.div_imprimir .opciones_ {
+	background: #FFF;
+	position:absolute;
+	right:0px;
+	top:0px;
+	list-style:none;
+	text-align:center;
+	padding:0px;
+	margin:0px;
+	width:150px;
+}
+.div_imprimir .opciones_ li {
+	border:1px solid #CCC;
+	padding:5px;
+}
+.div_imprimir .opciones_ li:hover {
+	background:#CCC;
+}
+.div_imprimir .opciones_ li a {
+	text-decoration:none;
+	color:#333;
+}
+.cuadro td {
+	border:#000 solid 1px;
+	padding:5px;
+}
+p {
+	margin:5px;
+}
+
+.borde_all
+{
+	border:1px #000000 solid;
+}
+
+.borde_
+{
+	border-right:1px #000000 solid;
+	border-top:1px #000000 solid;
+	border-left:1px #000000 solid;
+	
+}
+
+.borde_tema
+{
+	border-right:1px #000000 solid;
+	border-top:1px #000000 solid;
+}
+
+.borde_modulo
+{
+	border-top:1px #000000 solid;
+}
+.borde_fecha
+{
+	border-left:1px #000000 solid;
+	border-top:1px #000000 solid;
+}
+table
+{
+	margin:0;
+	padding:0;
+}
+h1,h2,h3,h4
+{
+	margin:5px;
+}
+.t td
+{
+	border:#666 1px solid;
+}
+</style>
+</head>
+
+<body>
+<div style="width:900px; margin:auto;" align="center">
+  
+  <?php
+  
+  	foreach($datos as $key_p=>$datos_plan)
+  	{
+		
+    if($datos_plan['modalidades'])
+	{
+	?>
+  <h2 align="center"><?php echo $datos_plan['nombre_plan'];?></h2>
+<p>&nbsp;</p>  	
+	
+    <table align="center" cellpadding="0" cellspacing="0" class="t">
+    	<tr>
+        	<td align="center" valign="middle"><b>Modalidad</b></td>
+            
+            <td align="center" valign="middle"><b>Tema</b></td>
+            <td align="center" valign="middle"><b>Inversion del Tema</b></td>
+            <td align="center" valign="middle"><b>Modulo</b></td>
+            <td align="center" valign="middle"><b>Inversion del Modulo</b></td>
+            <td align="center" valign="middle" width="120"><b>Fecha inicio</b></td>
+            <td align="center" valign="middle" width="120"><b>Fecha Fin</b></td>
+        </tr>
+    	<?php
+        foreach($datos_plan['modalidades'] as $modalidad)
+		{
+			?>
+            <tr>
+                <td align="left" valign="middle">
+                	<h3 align="center"><?php echo $modalidad['nombre_modalidad'];?></h3>
+                </td>
+               
+                    <?php
+                    if($modalidad['temas'])
+					{
+						$count_tema=count($modalidad['temas']);
+						$van_tema=0;
+                            foreach($modalidad['temas'] as $tema)
+                            {
+								$van_tema++;
+                                ?>
+                                	<td align="left" valign="middle" > <h4><?php echo $tema['nombre_capacitacion'];?></h4></td>
+                                    <td align="center" valign="middle"><?php echo number_format(obtener_precio_capacitacion($tema['id_capacitacion']),2);?></td>
+                                    	
+										<?php
+                                        if($tema['modulos'])
+										{
+											$count_modulo=count($tema['modulos']);
+											$van_modulo=0;
+                                                foreach($tema['modulos'] as $modulo)
+												{
+													$van_modulo++;
+													?>
+                                                		<td align="left" valign="middle" ><p><?php echo $modulo['nombre_modulo'];?></p></td>
+                                                        <td align="center" valign="middle"><?php echo number_format(obtener_precio_modulo($modulo['id_modulo']),2); ?></td>
+                                                        <td align="center" valign="middle"><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista']));?></td>
+                                                        <td align="center" valign="middle"><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista_fin']));?></td>
+                                                    </tr>
+                                                    
+                                                    <?php
+                                                    if($van_modulo!=$count_modulo)
+													{
+													?>
+                                                    <tr>
+                                                    	
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                    <?php
+													}
+													
+												}
+										}
+								
+								if($count_tema!=$van_tema)
+								{
+								?>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                   
+
+                                
+                                <?php
+								}
+                            }
+
+					}
+
+		}
+		?>
+    	
+    </table>
+   <?php
+		}
+	}
+   ?>
+</div>
+</body>
+</html>
