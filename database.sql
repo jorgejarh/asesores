@@ -68,6 +68,7 @@ CREATE TABLE `conf_menu` (
   `nombre_menu` varchar(200) DEFAULT NULL,
   `id_padre` int(11) DEFAULT '0',
   `url` varchar(150) DEFAULT '#',
+  `target` varchar(10) DEFAULT NULL,
   `activo` int(11) DEFAULT '1',
   `orden` int(11) DEFAULT '1',
   PRIMARY KEY (`id_menu`)
@@ -80,7 +81,7 @@ CREATE TABLE `conf_menu` (
 
 LOCK TABLES `conf_menu` WRITE;
 /*!40000 ALTER TABLE `conf_menu` DISABLE KEYS */;
-INSERT INTO `conf_menu` VALUES (1,'Servicios',0,'',1,NULL),(2,'Capacitaciones',1,'',1,NULL),(3,'Curricula',2,'curriculas',1,NULL),(4,'Perfiles',2,'perfiles',0,NULL),(5,'Plan de Capacitaciones',2,'pl_planes',1,NULL),(6,'Asesorias',1,'',1,NULL),(7,'Asesoria 1',6,'',1,NULL),(8,'Consultoria',1,'',1,NULL),(9,'Consultoria 1',8,'',1,NULL),(10,'Reportes',0,'',1,NULL),(11,'Dashboard',10,'',1,NULL),(12,'Pagos',10,'',1,NULL),(13,'Configuracion',0,'',1,NULL),(14,'Gestion Usuarios',13,'',1,NULL),(15,'Internos',14,'usuarios_internos',1,NULL),(16,'Externos',14,'usuarios_externos',1,NULL),(17,'Cooperativas',28,'cooperativas',1,NULL),(18,'Gestion Sistema',13,'',1,NULL),(19,'Roles',14,'roles',1,NULL),(20,'Menu',18,'conf_menu',1,NULL),(21,'Sucursales',28,'sucursales',1,NULL),(26,'roles',14,'roles',0,NULL),(27,'Permisos',14,'subroles',1,NULL),(28,'Gestion Clientes',13,'',1,NULL),(29,'Respaldo',18,'conf_sistema',1,NULL),(30,'Mantenimientos',0,'#',0,NULL),(31,'Gestion de Modalidades',38,'mante_modalidades',1,NULL),(32,'Estados de Planes',38,'mante_estados_plan',1,NULL),(33,'Gestion de facilitadores',38,'mante_facilitadores',1,NULL),(34,'Gestion de Lugares',38,'mante_lugares',1,NULL),(35,'Costos',37,'mante_costos',0,NULL),(36,'Sub Costos',37,'mante_subcostos',0,NULL),(37,'Gestion de Costos',30,'#',0,NULL),(38,'Mantenimientos',13,'',1,1),(39,'Mantenimientos',13,'',0,1),(40,'Sericios a Cooperativas',0,'',1,1),(41,'Inscripción en Linea',40,'inscripcion_temas',1,1),(42,'Mantenimiento de tipos facilitadores',38,'mante_tipos_facilitadores',1,1),(43,'Mantenimiento de Cargos',38,'mante_cargos',1,1),(44,'Mantenimiento de Rubros',38,'mante_rubros',1,1);
+INSERT INTO `conf_menu` VALUES (1,'Servicios',0,'',NULL,1,NULL),(2,'Capacitaciones',1,'',NULL,1,NULL),(3,'Curricula',2,'curriculas',NULL,1,NULL),(4,'Perfiles',2,'perfiles',NULL,0,NULL),(5,'Plan de Capacitaciones',2,'pl_planes',NULL,1,NULL),(6,'Asesorias',1,'',NULL,1,NULL),(7,'Asesoria 1',6,'',NULL,1,NULL),(8,'Consultoria',1,'',NULL,1,NULL),(9,'Consultoria 1',8,'',NULL,1,NULL),(10,'Reportes',0,'',NULL,1,NULL),(11,'Dashboard',10,'',NULL,1,NULL),(12,'Pagos',10,'',NULL,1,NULL),(13,'Configuracion',0,'',NULL,1,NULL),(14,'Gestion Usuarios',13,'',NULL,1,NULL),(15,'Internos',14,'usuarios_internos',NULL,1,NULL),(16,'Externos',14,'usuarios_externos',NULL,1,NULL),(17,'Cooperativas',28,'cooperativas',NULL,1,NULL),(18,'Gestion Sistema',13,'',NULL,1,NULL),(19,'Roles',14,'roles',NULL,1,NULL),(20,'Menu',18,'conf_menu',NULL,1,NULL),(21,'Sucursales',28,'sucursales',NULL,1,NULL),(26,'roles',14,'roles',NULL,0,NULL),(27,'Permisos',14,'subroles',NULL,1,NULL),(28,'Gestion Clientes',13,'',NULL,1,NULL),(29,'Respaldo',18,'conf_sistema',NULL,1,NULL),(30,'Mantenimientos',0,'#',NULL,0,NULL),(31,'Gestion de Modalidades',38,'mante_modalidades',NULL,1,NULL),(32,'Estados de Planes',38,'mante_estados_plan',NULL,1,NULL),(33,'Gestion de facilitadores',38,'mante_facilitadores',NULL,1,NULL),(34,'Gestion de Lugares',38,'mante_lugares',NULL,1,NULL),(35,'Costos',37,'mante_costos',NULL,0,NULL),(36,'Sub Costos',37,'mante_subcostos',NULL,0,NULL),(37,'Gestion de Costos',30,'#',NULL,0,NULL),(38,'Mantenimientos',13,'',NULL,1,1),(39,'Mantenimientos',13,'',NULL,0,1),(40,'Sericios a Cooperativas',0,'',NULL,1,1),(41,'Inscripción en Linea',40,'inscripcion_temas',NULL,1,1),(42,'Mantenimiento de tipos facilitadores',38,'mante_tipos_facilitadores',NULL,1,1),(43,'Mantenimiento de Cargos',38,'mante_cargos',NULL,1,1),(44,'Mantenimiento de Rubros',38,'mante_rubros',NULL,1,1);
 /*!40000 ALTER TABLE `conf_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1157,7 +1158,7 @@ CREATE TABLE `usu_usuario` (
 
 LOCK TABLES `usu_usuario` WRITE;
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-07-10 01:20:03',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','122b738600a0f74f7c331c0ef59bc34c','Carlos Rivera','23659848','75698459',NULL,'','2013-06-29 21:57:12',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-07-10 01:08:37',1,2,1);
+INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-07-13 10:59:03',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','122b738600a0f74f7c331c0ef59bc34c','Carlos Rivera','23659848','75698459',NULL,'','2013-06-29 21:57:12',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-07-10 01:08:37',1,2,1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1170,4 +1171,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-10  1:22:02
+-- Dump completed on 2013-07-13 11:17:45
