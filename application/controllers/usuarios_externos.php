@@ -8,7 +8,7 @@ class Usuarios_externos extends CI_Controller {
 
 	public $modelo_usar="usuarios_externos_model";
 
-	public $nombre_controlador="Usuarios_externos";
+	public $nombre_controlador="usuarios_externos";
 
 	function __construct()
     {

@@ -4,7 +4,7 @@
       <h2 class="ico_mug"><?php echo $perfil['perfil'];?></h2>
       <div class="clearfix" style="width:100%;">
       <div class="bot_atras">
-      <?php echo anchor('perfiles','&lt; - Regresar a Perfiles');?>
+      <?php echo anchor('perfiles/index/'.$perfil['id_curricula'],'&lt; - Regresar a Perfiles');?>
       </div>
       <br />
             

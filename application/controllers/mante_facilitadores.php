@@ -4,7 +4,7 @@ class Mante_facilitadores extends CI_Controller {
 
 	public $datos_user=array();
 
-	public $carpeta_view="Mante_facilitadores";
+	public $carpeta_view="mante_facilitadores";
 
 	public $modelo_usar="mante_facilitadores_model";
 

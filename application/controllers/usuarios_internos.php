@@ -8,7 +8,7 @@ class Usuarios_internos extends CI_Controller {
 
 	public $modelo_usar="usuarios_internos_model";
 
-	public $nombre_controlador="Usuarios_internos";
+	public $nombre_controlador="usuarios_internos";
 
 	function __construct()
     {

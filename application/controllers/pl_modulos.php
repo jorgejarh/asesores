@@ -31,6 +31,7 @@ class Pl_modulos extends CI_Controller {
         parent::__construct();
         $this->datos_user=comprobar_login();
         $model=$this->modelo_usar;
+		
 		$this->load->model($model);
 		$this->load->model('pl_capacitaciones_model');
 		$this->load->model('mante_facilitadores_model');

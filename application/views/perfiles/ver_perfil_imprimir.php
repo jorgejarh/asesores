@@ -7,7 +7,7 @@
 <script>
 $(document).ready(function(event){
 	window.print() ;
-	window.close();
+	//window.close();
 	});
 
 

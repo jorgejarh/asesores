@@ -4,7 +4,7 @@ class Mante_cargos extends CI_Controller {
 
 	public $datos_user=array();
 
-	public $carpeta_view="Mante_cargos";
+	public $carpeta_view="mante_cargos";
 
 	public $modelo_usar="mante_cargos_model";
 
