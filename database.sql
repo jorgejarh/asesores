@@ -57,7 +57,7 @@ CREATE TABLE `conf_menu` (
 
 /*Data for the table `conf_menu` */
 
-insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`,`orden`,`target`) values (1,'Servicios',0,'',1,NULL,NULL),(2,'Capacitaciones',1,'',1,NULL,NULL),(3,'Curricula',2,'curriculas',1,NULL,NULL),(4,'Perfiles',2,'perfiles',0,NULL,NULL),(5,'Plan de Capacitaciones',2,'pl_planes',1,NULL,NULL),(6,'Asesorias',1,'',1,NULL,NULL),(7,'Asesoria 1',6,'',1,NULL,NULL),(8,'Consultoria',1,'',1,NULL,NULL),(9,'Consultoria 1',8,'',1,NULL,NULL),(10,'Reportes',0,'',1,NULL,NULL),(11,'Dashboard',10,'re_planes',1,NULL,NULL),(12,'Pagos',10,'',1,NULL,NULL),(13,'Configuracion',0,'',1,NULL,NULL),(14,'Gestion Usuarios',13,'',1,NULL,NULL),(15,'Internos',14,'usuarios_internos',1,NULL,NULL),(16,'Externos',14,'usuarios_externos',1,NULL,NULL),(17,'Cooperativas',28,'cooperativas',1,NULL,NULL),(18,'Gestion Sistema',13,'',1,NULL,NULL),(19,'Roles',14,'roles',1,NULL,NULL),(20,'Menu',18,'conf_menu',1,NULL,NULL),(21,'Sucursales',28,'sucursales',1,NULL,NULL),(26,'roles',14,'roles',0,NULL,NULL),(27,'Permisos',14,'subroles',1,NULL,NULL),(28,'Gestion Clientes',13,'',1,NULL,NULL),(29,'Respaldo',18,'conf_sistema',1,NULL,NULL),(30,'Mantenimientos',0,'#',0,NULL,NULL),(31,'Gestion de Modalidades',38,'mante_modalidades',1,NULL,NULL),(32,'Estados de Planes',38,'mante_estados_plan',1,NULL,NULL),(33,'Gestion de facilitadores',38,'mante_facilitadores',1,NULL,NULL),(34,'Gestion de Lugares',38,'mante_lugares',1,NULL,NULL),(35,'Costos',37,'mante_costos',0,NULL,NULL),(36,'Sub Costos',37,'mante_subcostos',0,NULL,NULL),(37,'Gestion de Costos',30,'#',0,NULL,NULL),(38,'Mantenimientos',13,'',1,1,NULL),(39,'Mantenimientos',13,'',0,1,NULL),(40,'Sericios a Cooperativas',0,'',1,1,NULL),(41,'Inscripción en Linea',40,'inscripcion_temas',1,1,NULL),(42,'Mantenimiento de tipos facilitadores',38,'mante_tipos_facilitadores',1,1,NULL),(43,'Mantenimiento de Cargos',38,'mante_cargos',1,1,NULL),(44,'Mantenimiento de rubros',38,'mante_rubros',1,1,NULL),(45,'Ver temas disponibles',40,'temas_disponibles',1,1,'_blank'),(46,'Inscripcion',2,'inscripcion',1,1,NULL);
+insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`,`orden`,`target`) values (1,'Servicios',0,'',1,NULL,NULL),(2,'Capacitaciones',1,'',1,NULL,NULL),(3,'Curricula',2,'curriculas',1,NULL,NULL),(4,'Perfiles',2,'perfiles',0,NULL,NULL),(5,'Plan de Capacitaciones',2,'pl_planes',1,NULL,NULL),(6,'Asesorias',1,'',1,NULL,NULL),(7,'Asesoria 1',6,'',1,NULL,NULL),(8,'Consultoria',1,'',1,NULL,NULL),(9,'Consultoria 1',8,'',1,NULL,NULL),(10,'Reportes',0,'',1,NULL,NULL),(11,'Ingresos por cooperativa',10,'re_planes',1,NULL,NULL),(12,'Pagos',10,'',1,NULL,NULL),(13,'Configuracion',0,'',1,NULL,NULL),(14,'Gestion Usuarios',13,'',1,NULL,NULL),(15,'Internos',14,'usuarios_internos',1,NULL,NULL),(16,'Externos',14,'usuarios_externos',1,NULL,NULL),(17,'Cooperativas',28,'cooperativas',1,NULL,NULL),(18,'Gestion Sistema',13,'',1,NULL,NULL),(19,'Roles',14,'roles',1,NULL,NULL),(20,'Menu',18,'conf_menu',1,NULL,NULL),(21,'Sucursales',28,'sucursales',1,NULL,NULL),(26,'roles',14,'roles',0,NULL,NULL),(27,'Permisos',14,'subroles',1,NULL,NULL),(28,'Gestion Clientes',13,'',1,NULL,NULL),(29,'Respaldo',18,'conf_sistema',1,NULL,NULL),(30,'Mantenimientos',0,'#',0,NULL,NULL),(31,'Gestion de Modalidades',38,'mante_modalidades',1,NULL,NULL),(32,'Estados de Planes',38,'mante_estados_plan',1,NULL,NULL),(33,'Gestion de facilitadores',38,'mante_facilitadores',1,NULL,NULL),(34,'Gestion de Lugares',38,'mante_lugares',1,NULL,NULL),(35,'Costos',37,'mante_costos',0,NULL,NULL),(36,'Sub Costos',37,'mante_subcostos',0,NULL,NULL),(37,'Gestion de Costos',30,'#',0,NULL,NULL),(38,'Mantenimientos',13,'',1,1,NULL),(39,'Mantenimientos',13,'',0,1,NULL),(40,'Sericios a Cooperativas',0,'',1,1,NULL),(41,'Inscripción en Linea',40,'inscripcion_temas',1,1,NULL),(42,'Mantenimiento de tipos facilitadores',38,'mante_tipos_facilitadores',1,1,NULL),(43,'Mantenimiento de Cargos',38,'mante_cargos',1,1,NULL),(44,'Mantenimiento de rubros',38,'mante_rubros',1,1,NULL),(45,'Ver temas disponibles',40,'temas_disponibles',1,1,'_blank'),(46,'Inscripcion',2,'inscripcion',1,1,NULL);
 
 /*Table structure for table `conf_sucursal` */
 
@@ -274,6 +274,23 @@ CREATE TABLE `cu_tablas_contenido` (
 
 insert  into `cu_tablas_contenido`(`id_tabla_contenido`,`nombre_tabla`,`id_tabla`,`nombre_contenido`) values (1,'cu_perfil_contenido_aspectos','id_aspecto','Aspectos Generales'),(2,'cu_perfil_contenido_objetivos','id_objetivo','Objetivos'),(3,'cu_perfil_contenido_unidades_competencia',NULL,'Unidades de competencia'),(4,'cu_perfil_contenido_niveles_logro',NULL,'Niveles de logro'),(5,'cu_perfil_contenido_unidades_contenido',NULL,'Unidades de contenido'),(6,'cu_perfil_contenido_sugerencias_metodologicas',NULL,'Sugerencias metodologicas'),(7,'cu_perfil_contenido_recursos',NULL,'Recursos'),(8,'cu_perfil_contenido_b_material_apoyo',NULL,'Bibliografía y material de apoyo');
 
+/*Table structure for table `inscripcion_asistencia` */
+
+DROP TABLE IF EXISTS `inscripcion_asistencia`;
+
+CREATE TABLE `inscripcion_asistencia` (
+  `id_asistencia` int(11) NOT NULL auto_increment,
+  `id_modulo` int(11) NOT NULL,
+  `id_inscripcion_personas` int(11) NOT NULL,
+  `fecha_creacion` datetime NOT NULL,
+  `id_usuario` int(11) default NULL,
+  PRIMARY KEY  (`id_asistencia`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+/*Data for the table `inscripcion_asistencia` */
+
+insert  into `inscripcion_asistencia`(`id_asistencia`,`id_modulo`,`id_inscripcion_personas`,`fecha_creacion`,`id_usuario`) values (12,1,4,'2013-07-27 21:18:41',1);
+
 /*Table structure for table `inscripcion_temas` */
 
 DROP TABLE IF EXISTS `inscripcion_temas`;
@@ -307,7 +324,6 @@ CREATE TABLE `inscripcion_temas_personas` (
   `id_usuario` int(11) NOT NULL,
   `f_creacion` datetime NOT NULL,
   `activo` int(11) default '1',
-  `asistio` int(11) NOT NULL default '0',
   PRIMARY KEY  (`id_inscripcion_personas`),
   KEY `FK_inscripcion_temas_personas` (`id_inscripcion_tema`),
   CONSTRAINT `FK_inscripcion_temas_personas` FOREIGN KEY (`id_inscripcion_tema`) REFERENCES `inscripcion_temas` (`id_inscripcion_tema`)
@@ -315,7 +331,7 @@ CREATE TABLE `inscripcion_temas_personas` (
 
 /*Data for the table `inscripcion_temas_personas` */
 
-insert  into `inscripcion_temas_personas`(`id_inscripcion_personas`,`id_inscripcion_tema`,`apellidos`,`nombres`,`id_sucursal`,`id_cargo`,`id_usuario`,`f_creacion`,`activo`,`asistio`) values (4,2,'Hernandez','Jorge',8,3,7,'2013-06-29 21:43:29',1,1),(5,2,'Rodriguez','Carlos',7,4,7,'2013-06-29 21:43:45',1,0);
+insert  into `inscripcion_temas_personas`(`id_inscripcion_personas`,`id_inscripcion_tema`,`apellidos`,`nombres`,`id_sucursal`,`id_cargo`,`id_usuario`,`f_creacion`,`activo`) values (4,2,'Hernandez','Jorge',8,3,7,'2013-06-29 21:43:29',1),(5,2,'Rodriguez','Carlos',7,4,7,'2013-06-29 21:43:45',1);
 
 /*Table structure for table `mante_cargos` */
 
@@ -766,7 +782,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-07-26 19:33:34',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','122b738600a0f74f7c331c0ef59bc34c','Carlos Rivera','23659848','75698459',NULL,'','2013-06-29 21:57:12',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-07-12 21:17:01',1,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-07-27 21:03:59',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','122b738600a0f74f7c331c0ef59bc34c','Carlos Rivera','23659848','75698459',NULL,'','2013-06-29 21:57:12',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-07-27 20:54:37',1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -32,7 +32,7 @@ class Re_planes extends CI_Controller {
 		$data['title']=$this->nombre_titulo;
 		$data['template']="sistema";
 		$data['contenido']=$this->carpeta_view."/lista";
-		$data['listado']=$this->$model->obtener();
+		$data['cooperativas']=$this->$model->obtener_total_cooperativas();
 		$data['model']=$model;
 		$this->load->view('template',$data);
 

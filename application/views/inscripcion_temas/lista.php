@@ -41,6 +41,7 @@ if($listado)
       <?php
 		foreach($listado as $valor)
 		{
+			//print_r($valor);
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_capacitacion'];?></td>

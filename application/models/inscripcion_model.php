@@ -38,24 +38,27 @@ class Inscripcion_model extends CI_Model {
 		return $this->db->get_where('pl_modulos',array('id_modulo'=>$id_modulo,'activo'=>1))->row_array();
 	}
 	
-	function obtener_personas($id_capacitacion=0)
+	function obtener_personas($id_capacitacion=0,$id_modulo=0)
 	{
-		$this->db->select('b.*');
+		$this->db->select('b.*, (select count(*) from inscripcion_asistencia c where b.id_inscripcion_personas = c.id_inscripcion_personas) as asistio',false);
 		$this->db->where("a.id_inscripcion_tema = b.id_inscripcion_tema");
 		
-		return $this->db->get_where('inscripcion_temas a, inscripcion_temas_personas b',array('a.id_capacitacion'=>$id_capacitacion))->result_array();
+		return $this->db->order_by('b.apellidos')->get_where('inscripcion_temas a, inscripcion_temas_personas b',array('a.id_capacitacion'=>$id_capacitacion))->result_array();
 	}
 	
 	function guardar_asistencia($id_inscripcion_personas=array(),$modulo)
 	{
-		$inscripcion_tema=$this->db->get_where('inscripcion_temas a',array('a.id_capacitacion'=>$modulo['id_capacitacion']))->row_array();
-		
-		$this->db->update('inscripcion_temas_personas',array('asistio'=>0),array('id_inscripcion_tema'=>$inscripcion_tema['id_inscripcion_tema']));
+				
+		$this->db->delete('inscripcion_asistencia',array('id_modulo'=>$modulo['id_modulo']));
 		
 		foreach($id_inscripcion_personas as $valor)
 		{
-			$this->db->update('inscripcion_temas_personas',array('asistio'=>1),array('id_inscripcion_personas'=> $valor));
+			$this->db->insert('inscripcion_asistencia',array('id_modulo'=>$modulo['id_modulo'],
+															'id_inscripcion_personas'=>$valor,
+															'fecha_creacion'=>date('Y-m-d H:i:s'),
+															'id_usuario'=>$this->datos_user['id_usuario']));
 		}
+		
 	}
 	
 	

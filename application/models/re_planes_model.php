@@ -2,52 +2,46 @@
 
 class Re_planes_model extends CI_Model {
 	
-	public $nombre_tabla="mante_costos";
-	
-	public $id_tabla="";
-	
+		
     function __construct()
     {
         parent::__construct();
 		
-		$campos = $this->db->field_data($this->nombre_tabla);
 		
-		foreach ($campos as $campo)
-		{
-			if($campo->primary_key==1)
-			{
-				$this->id_tabla=$campo->name;
-			}
-		}
 		
     }
 	
-    function obtener($id=0)
+	
+	function obtener_total_cooperativas()
 	{
-		if($id==0)
+		
+		$cooperativas=$this->db->select('cooperativa, id_cooperativa')->get('conf_cooperativa')->result_array();
+		
+		foreach($cooperativas as $key_coo=>$valor_coo)
 		{
-			return $this->db->get_where($this->nombre_tabla,array('activo'=>1))->result_array();
-		}else{
-			return $this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
+			$cooperativas[$key_coo]['planes']=$this->db->get_where('pl_planes',array('activo'=>1))->result_array();
+			
+			foreach($cooperativas[$key_coo]['planes'] as $key_pla=>$valor_plan)
+			{
+				$cooperativas[$key_coo]['planes'][$key_pla]['modalidades']=$this->db->select("a.*, b.nombre_modalidad")->where('a.id_modalidad = b.id_modalidad')->get_where('pl_modalidades a, mante_modalidades b',array('a.activo'=>1,'b.activo'=>1,'a.id_plan'=>$valor_plan['id_plan']))->result_array();
+				
+				foreach($cooperativas[$key_coo]['planes'][$key_pla]['modalidades'] as $key_modalidad=>$valor_modalidad)
+				{
+					$cooperativas[$key_coo]['planes'][$key_pla]['modalidades'][$key_modalidad]['temas']=$this->db->get_where('pl_capacitaciones',array('activo'=>1,'id_plan_modalidad'=>$valor_modalidad['id_plan_modalidad']))->result_array();
+					
+					foreach($cooperativas[$key_coo]['planes'][$key_pla]['modalidades'][$key_modalidad]['temas'] as $key_temas=>$valor_tema)
+					{
+						$cooperativas[$key_coo]['planes'][$key_pla]['modalidades'][$key_modalidad]['temas'][$key_temas]['modulos']=$this->db->get_where('pl_modulos',array('activo'=>1,'id_capacitacion'=>$valor_tema['id_capacitacion']))->result_array();
+						
+						
+					}
+					
+				}
+				
 			}
+		}
+		
+		return $cooperativas;
 	}
-	
-	function actualizar($datos,$id)
-	{
-		return $this->db->update($this->nombre_tabla,$datos,array($this->id_tabla=>$id));
-	}
-	
-	function nuevo($datos)
-	{
-		$datos['id_usuario']=$this->datos_user['id_usuario'];
-		$datos['f_creacion']=date('Y-m-d H:i:s');
-		return $this->db->insert($this->nombre_tabla,$datos);
-	}
-	
-	function eliminar($id)
-	{
-		return $this->db->update($this->nombre_tabla,array('activo'=>0),array($this->id_tabla=>$id));
-		//return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
-	}
-	
+   
 }

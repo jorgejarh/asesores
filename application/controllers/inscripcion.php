@@ -95,7 +95,7 @@ class Inscripcion extends CI_Controller {
 			$data['title']="Inscripcion al modulo ".$data['modulo']['nombre_modulo'];
 			$data['template']="sistema";
 			$data['contenido']=$this->carpeta_view."/inscribir_modulo";
-			$data['nombres_personas']=$this->$model->obtener_personas($data['modulo']['id_capacitacion']);
+			$data['nombres_personas']=$this->$model->obtener_personas($data['modulo']['id_capacitacion'],$id_modulo);
 			//print_r($data['nombres_personas']);
 			$data['model']=$model;
 			$this->load->view('template',$data);
