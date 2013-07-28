@@ -63,8 +63,13 @@ class Inscripcion_temas_model extends CI_Model {
 	function nuevo($datos)
 	{
 		
+		$cooperativa=$this->db->get_where('usu_coop_suc',array('id_usuario'=>$this->datos_user['id_usuario']))->row_array();
+		
+		
+		$datos['id_cooperativa']=$cooperativa['id_cooperativa'];
 		$datos['id_usuario']=$this->datos_user['id_usuario'];
 		$datos['f_creacion']=date('Y-m-d H:i:s');
+		
 		$result= $this->db->insert($this->nombre_tabla,$datos);
 		$id=$this->db->insert_id();
 		

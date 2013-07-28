@@ -39,6 +39,7 @@ class Inscripcion_temas extends CI_Controller {
 
 	public function index()
 	{
+				
 		$model=$this->modelo_usar;
 		$data['title']=$this->nombre_titulo;
 		$data['template']="sistema";
