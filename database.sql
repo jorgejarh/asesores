@@ -24,6 +24,38 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `asesores` /*!40100 DEFAULT CHARACTER S
 USE `asesores`;
 
 --
+-- Table structure for table `abonos_cooperativas`
+--
+
+DROP TABLE IF EXISTS `abonos_cooperativas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `abonos_cooperativas` (
+  `id_abono` int(11) NOT NULL AUTO_INCREMENT,
+  `id_cooperativa` int(11) NOT NULL,
+  `id_capacitacion` int(11) NOT NULL,
+  `abono` decimal(12,2) NOT NULL,
+  `f_creacion` datetime NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `activo` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_abono`),
+  KEY `id_cooperativa` (`id_cooperativa`),
+  KEY `id_capacitacion` (`id_capacitacion`),
+  CONSTRAINT `abonos_cooperativas_ibfk_1` FOREIGN KEY (`id_cooperativa`) REFERENCES `conf_cooperativa` (`id_cooperativa`),
+  CONSTRAINT `abonos_cooperativas_ibfk_2` FOREIGN KEY (`id_capacitacion`) REFERENCES `pl_capacitaciones` (`id_capacitacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `abonos_cooperativas`
+--
+
+LOCK TABLES `abonos_cooperativas` WRITE;
+/*!40000 ALTER TABLE `abonos_cooperativas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `abonos_cooperativas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `conf_cooperativa`
 --
 
@@ -465,8 +497,8 @@ CREATE TABLE `inscripcion_temas` (
   KEY `FK_inscripcion_temas` (`id_capacitacion`),
   KEY `id_cooperativa` (`id_cooperativa`),
   KEY `id_cooperativa_2` (`id_cooperativa`),
-  CONSTRAINT `inscripcion_temas_ibfk_1` FOREIGN KEY (`id_cooperativa`) REFERENCES `conf_cooperativa` (`id_cooperativa`),
-  CONSTRAINT `FK_inscripcion_temas` FOREIGN KEY (`id_capacitacion`) REFERENCES `pl_capacitaciones` (`id_capacitacion`)
+  CONSTRAINT `FK_inscripcion_temas` FOREIGN KEY (`id_capacitacion`) REFERENCES `pl_capacitaciones` (`id_capacitacion`),
+  CONSTRAINT `inscripcion_temas_ibfk_1` FOREIGN KEY (`id_cooperativa`) REFERENCES `conf_cooperativa` (`id_cooperativa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1190,7 +1222,7 @@ CREATE TABLE `usu_usuario` (
 
 LOCK TABLES `usu_usuario` WRITE;
 /*!40000 ALTER TABLE `usu_usuario` DISABLE KEYS */;
-INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-07-28 16:56:27',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','122b738600a0f74f7c331c0ef59bc34c','Carlos Rivera','23659848','75698459',NULL,'','2013-06-29 21:57:12',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-07-28 14:18:10',1,2,1);
+INSERT INTO `usu_usuario` VALUES (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-07-28 21:16:00',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','122b738600a0f74f7c331c0ef59bc34c','Carlos Rivera','23659848','75698459',NULL,'','2013-06-29 21:57:12',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-07-28 22:01:03',1,2,1);
 /*!40000 ALTER TABLE `usu_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1203,4 +1235,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-28 19:20:49
+-- Dump completed on 2013-07-29  0:09:48
