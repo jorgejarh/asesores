@@ -450,4 +450,21 @@ function obtener_total_por_cooperativa($id_cooperativa=0)
 }
 
 
+
+function obtener_monto_pagado_por_cooperativa( $id_cooperativa = 0 )
+{
+	$CI =& get_instance();
+	$total=0;
+
+	$abonos=$CI->db->get_where('abonos_cooperativas', array( 'id_cooperativa'=>$id_cooperativa,'activo'=>1 ) )->result_array(); 
+	if( $abonos )
+	{
+		foreach ($abonos as $abono) {
+			$total = $total + $abono['abono'];
+		}
+	}
+	return $total;
+}
+
+
 ?>

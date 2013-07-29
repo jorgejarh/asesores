@@ -28,9 +28,14 @@
         <table width="100%">
         	<tr>
             	<td width="40%"><h3><?php echo $cooperativa['cooperativa'];?></h3></td>
-                <td width="20%" align="center"><b>$ <?php echo obtener_total_por_cooperativa($cooperativa['id_cooperativa']);?></b></td>
-                <td width="20%" align="center"><b>0.00</b></td>
-                <td width="20%" align="center"><b>0.00</b></td>
+                <?php
+                  $total_por_cooperativa        = obtener_total_por_cooperativa($cooperativa['id_cooperativa']);
+                  $monto_pagado_por_cooperativa = obtener_monto_pagado_por_cooperativa( $cooperativa['id_cooperativa'] );
+                  $deuda_neta                   = ( $total_por_cooperativa - $monto_pagado_por_cooperativa );
+                ?>
+                <td width="20%" align="center"><b>$ <?php echo $total_por_cooperativa;?></b></td>
+                <td width="20%" align="center"><b>$ <?php echo $monto_pagado_por_cooperativa;?></b></td>
+                <td width="20%" align="center"><b>$ <?php echo $deuda_neta; ?></b></td>
             </tr>
         </table>
         </div>
