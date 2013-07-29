@@ -293,4 +293,161 @@ function obtener_precio_modulo($id_modulo=0)
 	
 }
 
+
+function obtener_total_por_modulo($id_capacitacion=0, $id_modulo=0,$id_cooperativa=0)
+{
+	$CI =& get_instance();
+	$CI->db->where('a.activo',1);
+	$CI->db->where('id_cooperativa',$id_cooperativa);
+	$CI->db->where('a.id_capacitacion',$id_capacitacion);
+	$inscripciones=$CI->db->get("inscripcion_temas a")->result_array();
+	$total=0;
+	foreach($inscripciones as $incripcion)
+	{
+		$personas_asistidas=$CI->db->select('count(*) as asistencia')->where('a.id_inscripcion_personas = b.id_inscripcion_personas')->get_where('inscripcion_temas_personas a, inscripcion_asistencia b',array('b.id_modulo'=>$id_modulo,'a.id_inscripcion_tema'=>$incripcion['id_inscripcion_tema']))->row_array();
+		
+		$total=$total+($personas_asistidas['asistencia']*obtener_precio_modulo($id_modulo));
+		
+		
+	}
+	
+	return $total;
+	
+}
+
+function obtener_total_por_capacitacion($id_capacitacion=0,$id_cooperativa=0)
+{
+	$CI =& get_instance();
+	$CI->db->where('a.activo',1);
+	$CI->db->where('id_cooperativa',$id_cooperativa);
+	$CI->db->where('a.id_capacitacion',$id_capacitacion);
+	$inscripciones=$CI->db->get("inscripcion_temas a")->result_array();
+	$total=0;
+	foreach($inscripciones as $incripcion)
+	{
+		$personas_asistidas=$CI->db->select('b.*')->where('a.id_inscripcion_personas = b.id_inscripcion_personas')->get_where('inscripcion_temas_personas a, inscripcion_asistencia b',array('a.id_inscripcion_tema'=>$incripcion['id_inscripcion_tema']))->result_array();
+		
+		foreach($personas_asistidas as $valor_a)
+		{
+			$total=$total+(1*obtener_precio_modulo($valor_a['id_modulo']));
+		}
+		
+		
+		
+		
+	}
+	
+	return $total;
+	
+}
+
+function obtener_total_por_modalidad($id_plan_modalidad=0,$id_cooperativa=0)
+{
+	$CI =& get_instance();
+	$total=0;
+	
+	
+	$capacitaciones=$CI->db->get_where('pl_capacitaciones',array('activo'=>1,'id_plan_modalidad'=>$id_plan_modalidad))->result_array();
+	
+	foreach($capacitaciones as $capacitacion)
+	{
+		$inscripciones=$CI->db->get_where("inscripcion_temas a",array('a.activo'=>1,'a.id_cooperativa'=>$id_cooperativa, 'a.id_capacitacion'=>$capacitacion['id_capacitacion']))->result_array();
+	
+		foreach($inscripciones as $incripcion)
+		{
+			$personas_asistidas=$CI->db->select('b.*')->where('a.id_inscripcion_personas = b.id_inscripcion_personas')->get_where('inscripcion_temas_personas a, inscripcion_asistencia b',array('a.id_inscripcion_tema'=>$incripcion['id_inscripcion_tema']))->result_array();
+			
+			foreach($personas_asistidas as $valor_a)
+			{
+				$total=$total+(1*obtener_precio_modulo($valor_a['id_modulo']));
+			}	
+			
+		}
+	}
+	
+	
+	
+	return $total;
+	
+}
+
+
+function obtener_total_por_plan($id_plan=0,$id_cooperativa=0)
+{
+	$CI =& get_instance();
+	$total=0;
+	
+	
+	$modalidades=$CI->db->get_where('pl_modalidades',array('activo'=>1,'id_plan'=>$id_plan))->result_array();
+	
+	foreach($modalidades as $modalidad)
+	{
+		$capacitaciones=$CI->db->get_where('pl_capacitaciones',array('activo'=>1,'id_plan_modalidad'=>$modalidad['id_plan_modalidad']))->result_array();
+	
+		foreach($capacitaciones as $capacitacion)
+		{
+			$inscripciones=$CI->db->get_where("inscripcion_temas a",array('a.activo'=>1,'a.id_cooperativa'=>$id_cooperativa, 'a.id_capacitacion'=>$capacitacion['id_capacitacion']))->result_array();
+		
+			foreach($inscripciones as $incripcion)
+			{
+				$personas_asistidas=$CI->db->select('b.*')->where('a.id_inscripcion_personas = b.id_inscripcion_personas')->get_where('inscripcion_temas_personas a, inscripcion_asistencia b',array('a.id_inscripcion_tema'=>$incripcion['id_inscripcion_tema']))->result_array();
+				
+				foreach($personas_asistidas as $valor_a)
+				{
+					$total=$total+(1*obtener_precio_modulo($valor_a['id_modulo']));
+				}	
+				
+			}
+		}
+		
+	}
+	
+	return $total;
+	
+}
+
+
+function obtener_total_por_cooperativa($id_cooperativa=0)
+{
+	$CI =& get_instance();
+	$total=0;
+	
+	$planes=$CI->db->get_where('pl_planes',array('activo'=>1))->result_array();
+	
+	foreach($planes as $plan)
+	{
+		
+		$modalidades=$CI->db->get_where('pl_modalidades',array('activo'=>1,'id_plan'=>$plan['id_plan']))->result_array();
+	
+		foreach($modalidades as $modalidad)
+		{
+			$capacitaciones=$CI->db->get_where('pl_capacitaciones',array('activo'=>1,'id_plan_modalidad'=>$modalidad['id_plan_modalidad']))->result_array();
+		
+			foreach($capacitaciones as $capacitacion)
+			{
+				$inscripciones=$CI->db->get_where("inscripcion_temas a",array('a.activo'=>1,'a.id_cooperativa'=>$id_cooperativa, 'a.id_capacitacion'=>$capacitacion['id_capacitacion']))->result_array();
+			
+				foreach($inscripciones as $incripcion)
+				{
+					$personas_asistidas=$CI->db->select('b.*')->where('a.id_inscripcion_personas = b.id_inscripcion_personas')->get_where('inscripcion_temas_personas a, inscripcion_asistencia b',array('a.id_inscripcion_tema'=>$incripcion['id_inscripcion_tema']))->result_array();
+					
+					foreach($personas_asistidas as $valor_a)
+					{
+						$total=$total+(1*obtener_precio_modulo($valor_a['id_modulo']));
+					}	
+					
+				}
+			}
+			
+		}
+		
+	}
+	
+	
+	
+	return $total;
+	
+}
+
+
 ?>

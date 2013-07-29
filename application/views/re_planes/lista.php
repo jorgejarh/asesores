@@ -28,7 +28,7 @@
         <table width="100%">
         	<tr>
             	<td width="40%"><h3><?php echo $cooperativa['cooperativa'];?></h3></td>
-                <td width="20%" align="center"><b>0.00</b></td>
+                <td width="20%" align="center"><b>$ <?php echo obtener_total_por_cooperativa($cooperativa['id_cooperativa']);?></b></td>
                 <td width="20%" align="center"><b>0.00</b></td>
                 <td width="20%" align="center"><b>0.00</b></td>
             </tr>
@@ -43,7 +43,7 @@
                 	<table width="100%">
                         <tr>
                             <td width="40%"><h4 style="margin-left:10px;"><?php echo $planes['nombre_plan'];?></h4></td>
-                            <td width="20%" align="center"><b>0.00</b></td>
+                            <td width="20%" align="center"><b>$ <?php echo obtener_total_por_plan($planes['id_plan'],$cooperativa['id_cooperativa']);?></b></td>
                             <td width="20%" align="center"><b>0.00</b></td>
                             <td width="20%" align="center"><b>0.00</b></td>
                         </tr>
@@ -59,7 +59,7 @@
                     <table width="100%">
                         <tr>
                             <td width="40%"><h4 style="margin-left:20px;"><?php echo $modalidad['nombre_modalidad'];?></h4></td>
-                            <td width="20%" align="center"><b>0.00</b></td>
+                            <td width="20%" align="center"><b>$ <?php echo obtener_total_por_modalidad($modalidad['id_plan_modalidad'],$cooperativa['id_cooperativa']);?></b></td>
                             <td width="20%" align="center"><b>0.00</b></td>
                             <td width="20%" align="center"><b>0.00</b></td>
                         </tr>
@@ -75,7 +75,7 @@
                             	<table width="100%">
                                     <tr>
                                         <td width="40%"><h4 style="margin-left:30px;"><?php echo $tema['nombre_capacitacion'];?></h4></td>
-                                        <td width="20%" align="center"><b>0.00</b></td>
+                                        <td width="20%" align="center"><b>$ <?php echo obtener_total_por_capacitacion($tema['id_capacitacion'],$cooperativa['id_cooperativa']);?></b></td>
                                         <td width="20%" align="center"><b>0.00</b></td>
                                         <td width="20%" align="center"><b>0.00</b></td>
                                     </tr>
@@ -91,7 +91,7 @@
                                 <table width="100%">
                                     <tr>
                                         <td width="40%"><b style="margin-left:40px; display:block;"><?php echo $modulo['nombre_modulo'];?></b></td>
-                                        <td width="20%" align="center"><b>0.00</b></td>
+                                        <td width="20%" align="center"><b>$ <?php echo obtener_total_por_modulo($tema['id_capacitacion'],$modulo['id_modulo'],$cooperativa['id_cooperativa']);?></b></td>
                                         <td width="20%" align="center"><b>0.00</b></td>
                                         <td width="20%" align="center"><b>0.00</b></td>
                                     </tr>

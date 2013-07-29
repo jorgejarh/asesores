@@ -33,6 +33,21 @@ class Re_planes_model extends CI_Model {
 					{
 						$cooperativas[$key_coo]['planes'][$key_pla]['modalidades'][$key_modalidad]['temas'][$key_temas]['modulos']=$this->db->get_where('pl_modulos',array('activo'=>1,'id_capacitacion'=>$valor_tema['id_capacitacion']))->result_array();
 						
+						foreach($cooperativas[$key_coo]['planes'][$key_pla]['modalidades'][$key_modalidad]['temas'][$key_temas]['modulos'] as $key_modulo=>$valor_modulo)
+						{							
+							//obtener_total_por_modulo($valor_tema['id_capacitacion'],$valor_modulo['id_modulo'],$valor_coo['id_cooperativa']);
+							/*$cantidad_inscritos=$this->db->select('a.* , (SELECT 
+																	COUNT(*) 
+																  FROM
+																	inscripcion_temas_personas b 
+																  WHERE a.id_inscripcion_tema = b.id_inscripcion_tema) AS inscritos
+																  ',false)
+														->get_where('inscripcion_asistencia a',array(''))
+														->result_array();*/
+							
+							//$cooperativas[$key_coo]['planes'][$key_pla]['modalidades'][$key_modalidad]['temas'][$key_temas]['modulos'][$key_modulo]['cantidad_inscritos']
+						}
+						
 						
 					}
 					
