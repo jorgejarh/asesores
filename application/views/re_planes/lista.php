@@ -44,13 +44,13 @@
             foreach($cooperativa['planes'] as $planes)
 			{
 				?>
-                <div class="padre_">
+                <div class="padre_" style="margin-left:10px;" >
                 	<table width="100%">
                         <tr>
-                            <td width="40%"><h4 style="margin-left:10px;"><?php echo $planes['nombre_plan'];?></h4></td>
+                            <td width="40%"><h4 ><?php echo $planes['nombre_plan'];?></h4></td>
                             <td width="20%" align="center"><b>$ <?php echo obtener_total_por_plan($planes['id_plan'],$cooperativa['id_cooperativa']);?></b></td>
-                            <td width="20%" align="center"><b>0.00</b></td>
-                            <td width="20%" align="center"><b>0.00</b></td>
+                            <td width="20%" align="center"><!--<b>0.00</b>--></td>
+                            <td width="20%" align="center"><!--<b>0.00</b>--></td>
                         </tr>
                     </table>
 				
@@ -60,13 +60,13 @@
                     foreach($planes['modalidades'] as $modalidad)
 					{
 					?>
-                    <div class="padre_">
+                    <div class="padre_" style="margin-left:20px;">
                     <table width="100%">
                         <tr>
-                            <td width="40%"><h4 style="margin-left:20px;"><?php echo $modalidad['nombre_modalidad'];?></h4></td>
+                            <td width="40%"><h4 ><?php echo $modalidad['nombre_modalidad'];?></h4></td>
                             <td width="20%" align="center"><b>$ <?php echo obtener_total_por_modalidad($modalidad['id_plan_modalidad'],$cooperativa['id_cooperativa']);?></b></td>
-                            <td width="20%" align="center"><b>0.00</b></td>
-                            <td width="20%" align="center"><b>0.00</b></td>
+                            <td width="20%" align="center"><!--<b>0.00</b>--></td>
+                            <td width="20%" align="center"><!--<b>0.00</b>--></td>
                         </tr>
                     </table>
 					
@@ -76,13 +76,13 @@
 						foreach($modalidad['temas'] as $tema)
 						{
 						?>
-                        	<div class="padre_">
+                        	<div class="padre_" style="margin-left:30px;">
                             	<table width="100%">
                                     <tr>
-                                        <td width="40%"><h4 style="margin-left:30px;"><?php echo $tema['nombre_capacitacion'];?></h4></td>
+                                        <td width="40%"><h4 ><?php echo $tema['nombre_capacitacion'];?></h4></td>
                                         <td width="20%" align="center"><b>$ <?php echo obtener_total_por_capacitacion($tema['id_capacitacion'],$cooperativa['id_cooperativa']);?></b></td>
-                                        <td width="20%" align="center"><b>0.00</b></td>
-                                        <td width="20%" align="center"><b>0.00</b></td>
+                                        <td width="20%" align="center"><!--<b>0.00</b>--></td>
+                                        <td width="20%" align="center"><!--<b>0.00</b>--></td>
                                     </tr>
                                 </table>
 							
@@ -92,13 +92,13 @@
 								foreach($tema['modulos'] as $modulo)
 								{
 								?>
-                                <div class="padre_">
+                                <div class="padre_" style="margin-left:40px; ">
                                 <table width="100%">
                                     <tr>
-                                        <td width="40%"><b style="margin-left:40px; display:block;"><?php echo $modulo['nombre_modulo'];?></b></td>
+                                        <td width="40%"><b style="display:block;"><?php echo $modulo['nombre_modulo'];?></b></td>
                                         <td width="20%" align="center"><b>$ <?php echo obtener_total_por_modulo($tema['id_capacitacion'],$modulo['id_modulo'],$cooperativa['id_cooperativa']);?></b></td>
-                                        <td width="20%" align="center"><b>0.00</b></td>
-                                        <td width="20%" align="center"><b>0.00</b></td>
+                                        <td width="20%" align="center"><!--<b>0.00</b>--></td>
+                                        <td width="20%" align="center"><!--<b>0.00</b>--></td>
                                     </tr>
                                 </table>
 									
@@ -145,20 +145,39 @@
 {
 	padding:0px;
 	cursor:pointer;
-}
+	padding-left:15px;
+	background-image:url(<?php echo base_url();?>public/img/flecha_acordeon_normal.fw.png);
+	background-position:left;
+	background-repeat:no-repeat;
+} 
 .padre_:hover
 {
-	background:#CCC;
+	background-color:#CCC;
 }
 .hijo_
 {
 	display:none;
 }
+
+.padre_.active
+{
+		background-image:url(<?php echo base_url();?>public/img/flecha_acordeon_activo.fw.png);
+
+}
+
 </style>
 <script type="text/javascript">
 $(document).ready(function(e) {
     
 	$('.padre_').click(function(e) {
+		
+		if($(this).hasClass('active'))
+		{
+			$(this).removeClass('active');
+		}else{
+			$(this).addClass('active');
+			}
+		
         //alert('ss');
 		$(this).next('.hijo_').toggle('fast');
     });
