@@ -13,7 +13,7 @@ class Cooperativa_model extends CI_Model {
 		{
         	return $this->db->get_where('conf_cooperativa',array('id_cooperativa'=>$id))->row_array();
 		}else{
-			return $this->db->get('conf_cooperativa')->result_array();
+			return $this->db->get_where('conf_cooperativa',array('activo'=>1))->result_array();
 			}
     }
 	
@@ -23,7 +23,7 @@ class Cooperativa_model extends CI_Model {
 		{
         	return $this->db->select('a.*,b.cooperativa')->get_where('conf_sucursal a, conf_cooperativa b','a.id_sucursal = '.$id.' and a.id_cooperativa = b.id_cooperativa')->row_array();
 		}else{
-        	return $this->db->select('a.*,b.cooperativa')->get_where('conf_sucursal a, conf_cooperativa b','a.id_cooperativa = b.id_cooperativa')->result_array();
+        	return $this->db->select('a.*,b.cooperativa')->get_where('conf_sucursal a, conf_cooperativa b','a.id_cooperativa = b.id_cooperativa and a.activo 1= 1')->result_array();
 			}
 			
     }
@@ -59,7 +59,7 @@ class Cooperativa_model extends CI_Model {
     }
 
     public function eliminar($id=0){
-        $resultado=$this->db->update('conf_cooperativa', array('activo'=>0),array('id_cooperativa'=>$id));
+        return $resultado=$this->db->update('conf_cooperativa', array('activo'=>0),array('id_cooperativa'=>$id));
         //return $this->db->delete('conf_cooperativa', array('id_cooperativa'=>$id));        
     }
 }

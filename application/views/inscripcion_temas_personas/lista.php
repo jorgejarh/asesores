@@ -33,6 +33,7 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
+      	<th>DUI</th>
       	<th>Apellidos</th>
         
         <th >Nombres</th>
@@ -52,6 +53,8 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
+      	<td><?php echo $valor['dui'];?></td>
+
       	<td><?php echo $valor['apellidos'];?></td>
         
         <td><?php echo $valor['nombres'];?></td>

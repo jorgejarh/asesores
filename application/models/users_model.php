@@ -113,7 +113,7 @@ function obtener_datos_usuario($id)
 
     function obtener_cooperativas()
     {
-        return $this->db->get('conf_cooperativa')->result_array();
+        return $this->db->get_where('conf_cooperativa',array('activo'=>1))->result_array();
     }
     function obtener_sucursales($id_cooperativa)
     {

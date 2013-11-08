@@ -260,7 +260,6 @@ function obtener_precio_capacitacion($id_capacitacion=0)
 	
 }
 
-
 function obtener_costo_modulo($id_modulo=0)
 {
 	$CI =& get_instance();

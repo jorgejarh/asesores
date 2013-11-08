@@ -32,7 +32,7 @@ class Inscripcion_temas_personas extends CI_Controller {
         $this->datos_user=comprobar_login();
         $model=$this->modelo_usar;
 		$this->load->model($model);
-		
+		$this->set_campo("dui","DUI",'required|xss_clean');
 		$this->set_campo("nombres","Nombres",'required|xss_clean');
 		$this->set_campo("apellidos","Apellidos",'required|xss_clean');
 		$this->set_campo("id_sucursal","Sucursal",'required|xss_clean','select',preparar_select($this->$model->obtener_sucursales($this->datos_user['info_s']),'id_sucursal','sucursal'));
@@ -47,9 +47,10 @@ class Inscripcion_temas_personas extends CI_Controller {
 		if(is_numeric($id))
 		{
 			$model=$this->modelo_usar;
+			
 			$data['inscripcion']=$this->$model->obtener_inscripcion($id);
 			$data['listado']=$this->$model->lista($id);
-			$data['precio_venta'] = obtener_precio_capacitacion($id);
+			$data['precio_venta'] = obtener_precio_capacitacion($data['inscripcion']['id_capacitacion']);
 			
 			$data['title']=$this->nombre_titulo;
 			$data['template']="sistema";

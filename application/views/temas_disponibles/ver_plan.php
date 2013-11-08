@@ -128,7 +128,7 @@ h1,h2,h3,h4
     	<tr>
         	<td align="center" valign="middle"><b>Modalidad</b></td>
             
-            <td align="center" valign="middle"><b>Tema</b></td>
+            <td align="center" valign="middle"><b>Nombre</b></td>
             <td align="center" valign="middle"><b>Inversion del tema</b></td>
             <td align="center" valign="middle"><b>Modulo</b></td>
             <td align="center" valign="middle"><b>Inversion del Modulo</b></td>

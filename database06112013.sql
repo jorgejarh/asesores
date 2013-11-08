@@ -31,9 +31,11 @@ CREATE TABLE `abonos_cooperativas` (
   PRIMARY KEY  (`id_abono`),
   KEY `id_cooperativa` (`id_cooperativa`),
   KEY `id_capacitacion` (`id_capacitacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `abonos_cooperativas` */
+
+insert  into `abonos_cooperativas`(`id_abono`,`id_cooperativa`,`id_capacitacion`,`abono`,`f_creacion`,`id_usuario`,`activo`) values (4,9,2,'10.00','2013-10-27 21:40:58',1,1);
 
 /*Table structure for table `conf_cooperativa` */
 
@@ -51,13 +53,12 @@ CREATE TABLE `conf_cooperativa` (
   `activo` int(11) default '1',
   `id_usuario` int(11) default NULL,
   `f_creacion` datetime default NULL,
-  `gerente` longtext,
   PRIMARY KEY  (`id_cooperativa`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 /*Data for the table `conf_cooperativa` */
 
-insert  into `conf_cooperativa`(`id_cooperativa`,`cooperativa`,`ubicacion`,`telefono`,`fax`,`email`,`credito_fiscal`,`logotipo`,`activo`,`id_usuario`,`f_creacion`,`gerente`) values (6,'ACODJAR DE R.L.','Central','2333 7400','2333 7406','gerencia.acodjar@fedecaces.com','236548','logos/logo_acodjar.png',1,NULL,NULL,NULL),(9,'ACACCIBA','Central','2618 2427','2333 7406','gerencia.acacciba@fedecaces.com','236549','logos/logo_acacciba.png',1,NULL,NULL,NULL),(10,'ACACEMIHA DE R.L.','Central','2272 6527','2333 7406','acacemiha@fedecaces.com','236550','logos/logo_acacemiha.png',1,NULL,NULL,NULL),(19,'ACACES DE R.L.','daf','2288 2103','2333 7406','info@acaces.com.sv','236551','logos/logo-cooperativo02.jpg',1,NULL,NULL,NULL);
+insert  into `conf_cooperativa`(`id_cooperativa`,`cooperativa`,`ubicacion`,`telefono`,`fax`,`email`,`credito_fiscal`,`logotipo`,`activo`,`id_usuario`,`f_creacion`) values (6,'ACODJAR DE R.L.','Central','2333 7400','2333 7406','gerencia.acodjar@fedecaces.com','236548','logos/logo_acodjar.png',1,NULL,NULL),(9,'ACACCIBA','Central','2618 2427','2333 7406','gerencia.acacciba@fedecaces.com','236549','logos/logo_acacciba.png',1,NULL,NULL),(10,'ACACEMIHA DE R.L.','Central','2272 6527','2333 7406','acacemiha@fedecaces.com','236550','logos/logo_acacemiha.png',1,NULL,NULL),(19,'ACACES DE R.L.','daf','2288 2103','2333 7406','info@acaces.com.sv','236551',NULL,1,NULL,NULL);
 
 /*Table structure for table `conf_menu` */
 
@@ -113,11 +114,11 @@ CREATE TABLE `cu_curricula` (
   `f_creacion` datetime default NULL,
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_curricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cu_curricula` */
 
-insert  into `cu_curricula`(`id_curricula`,`curricula`,`objetivo`,`id_usuario`,`estado`,`f_creacion`,`activo`) values (2,'Curricula General','Objetivo Curricula General',1,1,'2013-06-05 21:20:36',1),(11,'Sistema de Formación Curricular del SCFF','',1,1,'2013-07-25 16:16:25',1);
+insert  into `cu_curricula`(`id_curricula`,`curricula`,`objetivo`,`id_usuario`,`estado`,`f_creacion`,`activo`) values (2,'Curricula General','Objetivo Curricula General',1,1,NULL,1),(5,'Curricula 2',NULL,1,1,NULL,0),(6,'curricula 3','objetivo curricula',1,1,'2013-06-05 00:00:00',0),(7,'curricula 4','objetivo curricula 4',1,1,'2013-06-05 21:20:36',0),(8,'curricula 4','objetivo curricula 4',1,1,'2013-06-05 21:20:36',0),(9,'55','asdasd',1,1,'2013-06-05 21:20:56',0),(10,'hola','hhhhhhhhhh',1,1,'2013-06-05 21:27:03',0);
 
 /*Table structure for table `cu_perfil` */
 
@@ -137,11 +138,11 @@ CREATE TABLE `cu_perfil` (
   PRIMARY KEY  (`id_perfil`),
   KEY `fk_cu_perfil_cu_curricula1` (`id_curricula`),
   CONSTRAINT `FK_cu_perfil` FOREIGN KEY (`id_curricula`) REFERENCES `cu_curricula` (`id_curricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cu_perfil` */
 
-insert  into `cu_perfil`(`id_perfil`,`id_curricula`,`perfil`,`aspectos_generales`,`objetivos`,`duracion`,`fecha`,`id_usuario`,`f_creacion`,`activo`) values (1,2,'Cajero',NULL,NULL,NULL,'2013-01-29',1,'2013-06-05 21:33:28',1),(8,11,'DIRECTIVOS',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:24:50',1),(9,11,'GERENTES GENERALES',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:27:31',1),(10,11,'GERENTE DE RECURSOS HUMANOS',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:28:51',1),(11,11,'CONTADORES GENERALES',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:30:05',1),(12,11,'CAJEROS (AS)',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:30:59',1),(13,11,'ANALISTA DE CRÉDITOS',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:32:32',1),(14,11,'GESTOR DE COBROS',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:33:59',1),(15,11,'REFERENTE REMESAS Y RED ACTIVA',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:35:24',1),(16,11,'EJECUTIVO DE MERCADEO',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:50:32',1),(17,11,'REFERENTE TÉCNICO DE INFORMATICA',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:51:21',1),(18,11,'ASISTENTES - SECRETARIAS',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:52:27',1),(19,11,'AUXILIAR CONTABLE',NULL,NULL,NULL,'2013-07-25',1,'2013-07-25 16:53:30',1);
+insert  into `cu_perfil`(`id_perfil`,`id_curricula`,`perfil`,`aspectos_generales`,`objetivos`,`duracion`,`fecha`,`id_usuario`,`f_creacion`,`activo`) values (1,2,'Cajero',NULL,NULL,NULL,'2013-01-29',NULL,NULL,1),(4,2,'OFICIALES DE CREDITO',NULL,NULL,NULL,'0000-00-00',NULL,NULL,1),(5,5,'Perfil 1',NULL,NULL,NULL,'2013-06-05',NULL,NULL,1),(6,2,'Otro perfil',NULL,NULL,NULL,'2013-06-05',1,'2013-06-05 21:33:28',1),(7,2,'perfil 50',NULL,NULL,NULL,'2013-06-05',1,'2013-06-05 21:38:59',1);
 
 /*Table structure for table `cu_perfil_contenido_aspectos` */
 
@@ -154,11 +155,11 @@ CREATE TABLE `cu_perfil_contenido_aspectos` (
   PRIMARY KEY  (`id`),
   KEY `FK_cu_perfil_contenido_aspectos` (`id_perfil`),
   CONSTRAINT `FK_cu_perfil_contenido_aspectos` FOREIGN KEY (`id_perfil`) REFERENCES `cu_perfil` (`id_perfil`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cu_perfil_contenido_aspectos` */
 
-insert  into `cu_perfil_contenido_aspectos`(`id`,`nombre`,`id_perfil`) values (7,'Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',1);
+insert  into `cu_perfil_contenido_aspectos`(`id`,`nombre`,`id_perfil`) values (7,'Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa',1),(8,'ASPECTO 1',4);
 
 /*Table structure for table `cu_perfil_contenido_b_material_apoyo` */
 
@@ -254,11 +255,11 @@ CREATE TABLE `cu_perfil_contenido_unidades_competencia` (
   PRIMARY KEY  (`id`),
   KEY `FK_cu_perfil_contenido_unidades_competencia` (`id_perfil`),
   CONSTRAINT `FK_cu_perfil_contenido_unidades_competencia` FOREIGN KEY (`id_perfil`) REFERENCES `cu_perfil` (`id_perfil`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cu_perfil_contenido_unidades_competencia` */
 
-insert  into `cu_perfil_contenido_unidades_competencia`(`id`,`nombre`,`id_perfil`) values (2,'Conoce la filosofía organizacional de la cooperativa',1),(3,'Domina información básica de los servicios que presta la cooperativa',1),(4,'Identifica las personas encargadas de brindar detalles sobre los servicios que proporciona la cooperativa a fin de orientar adecuadamente a los usuarios que consulten',1),(5,'Identificar las entidades clientes de la cooperativa de quienes se puede aceptar pago por parte de los usuarios',1),(6,'Dispone de información actualizada sobre las tasas de interés de la cooperativa',1),(7,'Analísis Financiero',13);
+insert  into `cu_perfil_contenido_unidades_competencia`(`id`,`nombre`,`id_perfil`) values (2,'Conoce la filosofía organizacional de la cooperativa',1),(3,'Domina información básica de los servicios que presta la cooperativa',1),(4,'Identifica las personas encargadas de brindar detalles sobre los servicios que proporciona la cooperativa a fin de orientar adecuadamente a los usuarios que consulten',1),(5,'Identificar las entidades clientes de la cooperativa de quienes se puede aceptar pago por parte de los usuarios',1),(6,'Dispone de información actualizada sobre las tasas de interés de la cooperativa',1);
 
 /*Table structure for table `cu_perfil_contenido_unidades_contenido` */
 
@@ -304,9 +305,11 @@ CREATE TABLE `inscripcion_asistencia` (
   `fecha_creacion` datetime NOT NULL,
   `id_usuario` int(11) default NULL,
   PRIMARY KEY  (`id_asistencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inscripcion_asistencia` */
+
+insert  into `inscripcion_asistencia`(`id_asistencia`,`id_modulo`,`id_inscripcion_personas`,`fecha_creacion`,`id_usuario`) values (24,3,6,'2013-07-28 18:51:32',1),(25,3,5,'2013-07-28 18:51:32',1),(26,1,6,'2013-07-28 18:51:53',1);
 
 /*Table structure for table `inscripcion_temas` */
 
@@ -326,7 +329,7 @@ CREATE TABLE `inscripcion_temas` (
 
 /*Data for the table `inscripcion_temas` */
 
-insert  into `inscripcion_temas`(`id_inscripcion_tema`,`id_usuario`,`id_capacitacion`,`f_creacion`,`activo`,`id_cooperativa`) values (3,4,4,'2013-07-23 11:42:40',1,NULL),(5,7,4,'2013-11-07 21:42:06',1,9);
+insert  into `inscripcion_temas`(`id_inscripcion_tema`,`id_usuario`,`id_capacitacion`,`f_creacion`,`activo`,`id_cooperativa`) values (2,7,2,'2013-06-29 21:28:15',1,9),(5,7,2,'2013-07-28 18:45:31',1,9);
 
 /*Table structure for table `inscripcion_temas_personas` */
 
@@ -335,7 +338,6 @@ DROP TABLE IF EXISTS `inscripcion_temas_personas`;
 CREATE TABLE `inscripcion_temas_personas` (
   `id_inscripcion_personas` int(11) NOT NULL auto_increment,
   `id_inscripcion_tema` int(11) NOT NULL,
-  `dui` varchar(20) default NULL,
   `apellidos` varchar(20) default NULL,
   `nombres` varchar(20) default NULL,
   `id_sucursal` int(11) NOT NULL,
@@ -346,11 +348,11 @@ CREATE TABLE `inscripcion_temas_personas` (
   PRIMARY KEY  (`id_inscripcion_personas`),
   KEY `FK_inscripcion_temas_personas` (`id_inscripcion_tema`),
   CONSTRAINT `FK_inscripcion_temas_personas` FOREIGN KEY (`id_inscripcion_tema`) REFERENCES `inscripcion_temas` (`id_inscripcion_tema`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inscripcion_temas_personas` */
 
-insert  into `inscripcion_temas_personas`(`id_inscripcion_personas`,`id_inscripcion_tema`,`dui`,`apellidos`,`nombres`,`id_sucursal`,`id_cargo`,`id_usuario`,`f_creacion`,`activo`) values (1,5,'58745896-1','Rodriguez','carlos',8,2,7,'2013-11-07 22:13:40',1);
+insert  into `inscripcion_temas_personas`(`id_inscripcion_personas`,`id_inscripcion_tema`,`apellidos`,`nombres`,`id_sucursal`,`id_cargo`,`id_usuario`,`f_creacion`,`activo`) values (4,2,'Hernandez','Jorge',8,3,7,'2013-06-29 21:43:29',1),(5,2,'Rodriguez','Carlos',7,4,7,'2013-06-29 21:43:45',1),(6,2,'Amaya','Carlos',8,2,7,'2013-07-28 18:14:25',1),(7,5,'Gonzales','Maria',7,3,7,'2013-07-28 18:45:45',1);
 
 /*Table structure for table `mante_cargos` */
 
@@ -702,11 +704,11 @@ CREATE TABLE `usu_coop_suc` (
   `id_cooperativa` int(11) default NULL,
   `id_sucursal` int(11) default NULL,
   PRIMARY KEY  (`id_usu_coop`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usu_coop_suc` */
 
-insert  into `usu_coop_suc`(`id_usu_coop`,`id_usuario`,`id_cooperativa`,`id_sucursal`) values (6,7,9,0),(7,7,9,0),(9,4,6,0),(10,6,9,0);
+insert  into `usu_coop_suc`(`id_usu_coop`,`id_usuario`,`id_cooperativa`,`id_sucursal`) values (3,4,9,0),(6,7,9,0),(7,7,9,0),(8,6,9,0);
 
 /*Table structure for table `usu_permisos_menu` */
 
@@ -801,7 +803,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-11-07 22:22:16',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-11-07 21:39:09',1,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-11-06 21:51:47',0,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'usu3','123','Usuario 3','','',NULL,NULL,NULL,1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','122b738600a0f74f7c331c0ef59bc34c','Carlos Rivera','23659848','75698459',NULL,'','2013-06-29 21:57:12',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-07-28 18:05:30',1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

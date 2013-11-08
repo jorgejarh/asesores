@@ -19,6 +19,11 @@ echo form_open('',array(
 		<td valign="middle">Ubicaci&oacute;n: </td>
 		<td valign="middle"><textarea id="ubicacion" name="ubicacion" cols="25" rows="5"><?php echo $dato['ubicacion']; ?></textarea></td>
 	</tr>
+    <tr>
+		<td>Gerente: </td>
+		<td><input value= "<?php echo $dato['gerente']; ?>" type="text" id="gerente" name="gerente" /></td>
+	</tr>
+
 	<tr>
 		<td valign="middle">Tel&eacute;fono: </td>
 		<td valign="middle"><input value="<?php echo $dato['telefono'] ?>" type="text" id="telefono" name="telefono"  size="30" /></td>

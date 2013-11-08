@@ -28,7 +28,7 @@ if($listado)
       	<th>Modalidad</th>
         <th>Objetivo</th>
         <th>Total</th>
-        <th>Asignar Tema</th>
+        <th>Asignar</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>

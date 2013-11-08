@@ -20,11 +20,12 @@ if($listado)
       <tr>
       	<th>Nombres</th>
         <th>Apellidos</th>
-        <th>Telefono</th>
         <th>Tel. Oficina</th>
         <th>Tel. Celular</th>
         <th>Email</th>
         <th>Tipo</th>
+        <th>Asigar Profesion</th>
+        <th>Asigar Especialidad</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -37,11 +38,12 @@ if($listado)
       <tr class="gradeA">
       	<td><?php echo $valor['nombres'];?></td>
       	<td><?php echo $valor['apellidos'];?></td>
-       <td><?php echo $valor['telefono'];?></td>
        <td><?php echo $valor['t_oficina'];?></td>
        <td><?php echo $valor['celular'];?></td>
        <td><?php echo $valor['correo'];?></td>
        <td><?php  echo  get_un_campo($valor['id_tipo_facilitador'],'id_tipo_facilitador', 'nombre_tipo_facilitador', 'mante_tipos_facilitadores');?></td>
+        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         

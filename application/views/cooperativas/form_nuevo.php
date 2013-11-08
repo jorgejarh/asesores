@@ -23,6 +23,10 @@ echo form_open_multipart('cooperativas/do_upload',array(
 		<td valign="middle">Ubicaci&oacute;n: </td>
 		<td valign="middle"><textarea id="ubicacion" name="ubicacion" cols="25" rows="5" /></td>
 	</tr>
+    <tr>
+		<td valign="middle">Gerente: </td>
+		<td valign="middle"><input type="text" id="gerente" name="gerente"  size="30" /></td>
+	</tr>
 	<tr>
 		<td valign="middle">Tel&eacute;fono: </td>
 		<td valign="middle"><input type="text" id="telefono" name="telefono"  size="30" /></td>

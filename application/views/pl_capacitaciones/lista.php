@@ -25,12 +25,12 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Tema</th>
-        <th>Num. de Modulos</th>
-        <th># Partic. Estimados</th>
+      	<th><?php echo $plan_modalidad['nombre_modalidad'];?></th>
+        <th>Objetivo</th>
+        <th># de Modulos</th>
+        <th># Par. Estimados</th>
         <th>Presupuesto Total</th>
         <th>Costo Individual</th>
-        
         <th>Asignar Modulos</th>
         <th>Estado</th>
         <th>Editar</th>
@@ -44,6 +44,7 @@ if($listado)
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_capacitacion'];?></td>
+        <td><?php echo $valor['objetivo'];?></td>
         <td><?php echo $valor['num_modulos'];?></td>
         <td><?php echo $valor['n_participantes'];?></td>
         <td>$ <?php $total=obtener_costo_capacitacion($valor[$this->$model->id_tabla]); echo number_format($total,2);?></td>
