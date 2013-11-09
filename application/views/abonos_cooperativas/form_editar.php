@@ -15,6 +15,7 @@
 		<td>Seleccione un Tema:</td>
 		<td><div id="div_result_temas"></div></td>
 	</tr>
+
 	<tr>
 		<td>Abono: </td>
 		<td><?php echo form_input('abono', $dato['abono']); ?> </td>
