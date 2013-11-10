@@ -354,6 +354,58 @@ class Pl_modulos extends CI_Controller {
 		}
 	}
 	
+	public function temas($id=0)
+	{
+		$model=$this->modelo_usar;
+		$data['model']=$model;			
+		$data['dato']=$this->$model->obtener($id);
+		if($data['dato'])
+		{
+			$data['curriculas']=preparar_select($this->$model->obtener_curriculas(),'id_curricula','curricula');
+			$data['title']=$this->nombre_titulo." - Asignar Temas";
+			$this->load->view($this->carpeta_view.'/temas',$data);
+		}
 
+		
+	}
+	
+	public function actualizar_temas()
+	{
+		$model=$this->modelo_usar;
+		$data['model']=$model;			
+		$post=$this->input->post();
+		if($post)
+		{
+			$id=$post['id'];
+			if($post['tem'])
+			{
+				
+				
+				foreach($post['tem'] as $in=>$tem)
+				{
+					if(trim($tem)=="")
+					{
+						unset($post['tem'][$in]);
+					}
+				}
+				
+				$temas=json_encode($post['tem']);
+				
+			}else{
+				$temas=json_encode(array());
+				}
+			$datos=array('temas'=>$temas);
+			
+			$resultado=$this->$model->actualizar($datos,$id);
+		}
+		$json['error']=false;
+		
+		echo json_encode($json);
+		
+	}
+	
+	
+	
+	
 
 }

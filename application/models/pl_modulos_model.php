@@ -61,9 +61,15 @@ class Pl_modulos_model extends CI_Model {
 	
 	function actualizar($datos,$id)
 	{
+		if(isset($datos['facilitadores']))
+		{
+			$facilitadores=$datos['facilitadores'];
+			unset($datos['facilitadores']);
+		}else{
+			$facilitadores=array();
+			}
 		
-		$facilitadores=$datos['facilitadores'];
-		unset($datos['facilitadores']);
+		
 		
 		$result= $this->db->update($this->nombre_tabla,$datos,array($this->id_tabla=>$id));
 		

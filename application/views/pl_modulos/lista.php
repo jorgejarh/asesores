@@ -30,11 +30,13 @@ if($listado)
     <thead>
       <tr>
       	<th>Nombre del Modulo</th>
+        <th>Objetivo</th>
         <th width="90">Fecha Inicio</th>
         <th width="90">Fecha Fin</th>
         <th width="50">Total</th>
         <th width="50">Inversion</th>
          <th>Ver Presupuesto</th>
+         <th>Asignar Tema</th>
         <th>Asignar Costos</th>
         <th>Editar</th>
         <th>Eliminar</th>
@@ -47,7 +49,7 @@ if($listado)
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_modulo'];?></td>
-        
+        <td><?php echo $valor['objetivo_modulo'];?></td>
         <td><?php echo date('d-m-Y',strtotime($valor['fecha_prevista']));?></td>
         <td><?php echo date('d-m-Y',strtotime($valor['fecha_prevista_fin']));?></td>
         <td>$ <?php $total=obtener_costo_modulo($valor[$this->$model->id_tabla]); echo $total;?></td>
@@ -63,6 +65,7 @@ if($listado)
 		}
 		?>
         </td>
+        <td align="center"	class="datatable_icono"><a onclick="temas(<?php echo $valor[$this->$model->id_tabla]?>);" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_rubro/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
@@ -139,6 +142,25 @@ function eliminar_registro(id)
 		  
 		});
 }
+
+
+function temas(id)
+{
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/temas');?>/"+id,
+		  type:"POST",
+		  success:function(data){
+
+		  	$.fancybox({
+				content:data,
+				autoHeight:true
+				});
+		  }
+		  
+		});
+}
+
+
 
 </script>
 

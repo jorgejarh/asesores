@@ -80,7 +80,7 @@ p {
       <td align="left" valign="middle"><p><?php echo $datos['data_modalidad_plan']['nombre_modalidad'];?></p></td>
     </tr>
     <tr>
-      <td align="left" valign="middle"><p><b>Tema: </b></p></td>
+      <td align="left" valign="middle"><p><b>Nombre: </b></p></td>
       <td align="left" valign="middle"><p><?php echo $datos['data_capacitacion']['nombre_capacitacion'];?></p></td>
     </tr>
     <tr>
