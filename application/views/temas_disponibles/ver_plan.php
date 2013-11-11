@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo "Presupuesto";?></title>
+<title><?php echo "Planes Disponibles";?></title>
 <script type="text/javascript" language="javascript" src="<?php echo base_url();?>public/js/datatable/media/js/jquery.js"></script>
 <script>
 $(document).ready(function(event){
@@ -132,8 +132,9 @@ h1,h2,h3,h4
             <td align="center" valign="middle"><b>Inversion del tema</b></td>
             <td align="center" valign="middle"><b>Modulo</b></td>
             <td align="center" valign="middle"><b>Inversion del Modulo</b></td>
-            <td align="center" valign="middle" width="120"><b>Fecha inicio</b></td>
-            <td align="center" valign="middle" width="120"><b>Fecha Fin</b></td>
+            <td align="center" valign="middle" width="100"><b>Temas</b></td>
+            <td align="center" valign="middle" width="90"><b>Fecha inicio</b></td>
+            <td align="center" valign="middle" width="90"><b>Fecha Fin</b></td>
         </tr>
     	<?php
         foreach($datos_plan['modalidades'] as $modalidad)
@@ -166,7 +167,23 @@ h1,h2,h3,h4
 													$van_modulo++;
 													?>
                                                 		<td align="left" valign="middle" ><p><?php echo $modulo['nombre_modulo'];?></p></td>
+                                                       
                                                         <td align="center" valign="middle"><?php echo number_format(obtener_precio_modulo($modulo['id_modulo']),2); ?></td>
+                                                         <td align="left" valign="middle" >
+                                                        <?php
+                                                        $temas_modulo=json_decode($modulo['temas']);
+														if($temas_modulo)
+														{
+															foreach($temas_modulo as $tem)
+															{
+																?>
+																 <div><p>-<?php echo $tem;?></p></div>
+																<?php
+															}
+														}
+														
+														?> 
+                                                        </td>
                                                         <td align="center" valign="middle"><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista']));?></td>
                                                         <td align="center" valign="middle"><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista_fin']));?></td>
                                                     </tr>

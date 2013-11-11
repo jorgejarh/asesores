@@ -102,6 +102,17 @@
 			}
 			
 		}
+		
+		function archivos(id_contenido,id_perfil,id)
+		{
+			$.fancybox({
+				href: "<?php echo site_url('perfiles/editar_archivos');?>/"+id_contenido+"/"+id_perfil+"/"+id,
+				type:'iframe',
+				width		: '30%',
+				height		: '70%',
+				});
+		}
+		
 	   </script>
       </div>
     </div>
@@ -139,9 +150,6 @@ $(document).ready(function(){
 
 </script>
 <style type="text/css">
-
-
-
 .accordion h3
 {
 	border:1px #CCC solid;

@@ -39,7 +39,10 @@ class Inscripcion_temas_personas extends CI_Controller {
 		$this->set_campo("id_cargo","Cargo",'required|xss_clean','select',preparar_select($this->$model->obtener_cargos(),'id_cargo','nombre_cargo'));
 		
     }
-
+	
+	
+	
+	
 	public function index($id="")
 	{
 		$id=iddecode($id);
@@ -76,6 +79,9 @@ class Inscripcion_temas_personas extends CI_Controller {
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	
+	
+	
+	
 	public function insertar()
 	{
 		$model=$this->modelo_usar;
@@ -87,30 +93,40 @@ class Inscripcion_temas_personas extends CI_Controller {
 			unset($post['a']);
 			$json=array();
 			
-			foreach($this->campos as $llave=>$valor)		
+			
+			$inscrito=$this->$model->validar_inscrito($post['dui'],$post['id_inscripcion_tema']);
+			
+			if(!$inscrito)
 			{
-				$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
-			}
-			
-			
-			
-			if($this->form_validation->run()==TRUE)
-			{
+				foreach($this->campos as $llave=>$valor)		
+				{
+					$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
+				}
 				
-				//$json['mensaje']=print_r($post,true);
-
-				$resultado=$this->$model->nuevo($post);
-
-				$json['error']=false;
-
-
+				
+				
+				if($this->form_validation->run()==TRUE)
+				{
+					
+					//$json['mensaje']=print_r($post,true);
+	
+					$resultado=$this->$model->nuevo($post);
+	
+					$json['error']=false;
+	
+	
+				}else{
+	
+					$json['error']=true;
+					$json['mensaje']=traer_errores_form();
+				}
 			}else{
-
+				
 				$json['error']=true;
-				$json['mensaje']=traer_errores_form();
-			}
-
-
+				$json['mensaje']='<div class="warning" class="info_div"><span class="ico_error">La persona con DUI '.$post['dui'].' ya esta inscrita</dv>';
+				
+				}
+			
 			echo json_encode($json);
 
 		}

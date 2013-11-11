@@ -104,4 +104,18 @@ class Inscripcion_temas_personas_model extends CI_Model {
 		return $this->db->get_where('mante_cargos a',array('a.activo'=>1))->result_array();
 	}
 	
+	
+	function validar_inscrito($dui='',$id_inscripcion=0)
+	{
+		$datos=$this->db->get_where('inscripcion_temas_personas',array('dui'=>$dui,'id_inscripcion_tema'=>$id_inscripcion))->row_array();
+		
+		if($datos)
+		{
+			return true;
+		}else{
+			return false;
+			}
+		
+	}
+	
 }

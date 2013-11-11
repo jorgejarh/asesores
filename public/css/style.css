@@ -249,3 +249,8 @@ textarea
 	width:157px;
 	height:70px;
 }
+
+a
+{
+	cursor:pointer;
+}

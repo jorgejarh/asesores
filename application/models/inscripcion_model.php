@@ -40,23 +40,54 @@ class Inscripcion_model extends CI_Model {
 	
 	function obtener_personas($id_capacitacion=0,$id_modulo=0)
 	{
-		$this->db->select('b.*, (select count(*) from inscripcion_asistencia c where c.id_modulo = '.$id_modulo.' and b.id_inscripcion_personas = c.id_inscripcion_personas) as asistio',false);
 		$this->db->where("a.id_inscripcion_tema = b.id_inscripcion_tema");
+		$inscripciones=$this->db->get_where('inscripcion_temas a, inscripcion_temas_personas b',array('a.id_capacitacion'=>$id_capacitacion))->result_array();
 		
-		return $this->db->order_by('b.apellidos')->get_where('inscripcion_temas a, inscripcion_temas_personas b',array('a.id_capacitacion'=>$id_capacitacion))->result_array();
-	}
-	
-	function guardar_asistencia($id_inscripcion_personas=array(),$modulo)
-	{
-				
-		$this->db->delete('inscripcion_asistencia',array('id_modulo'=>$modulo['id_modulo']));
-		
-		foreach($id_inscripcion_personas as $valor)
+		foreach($inscripciones as $valor)
 		{
-			$this->db->insert('inscripcion_asistencia',array('id_modulo'=>$modulo['id_modulo'],
-															'id_inscripcion_personas'=>$valor,
+			$persona=$this->db->get_where('inscripcion_asistencia',array('id_modulo'=>$id_modulo,'id_inscripcion_personas'=>$valor['id_inscripcion_personas']))->row_array();
+			if($persona)
+			{
+				
+			}else{
+				
+				$this->db->insert('inscripcion_asistencia',array('id_modulo'=>$id_modulo,
+															'id_inscripcion_personas'=>$valor['id_inscripcion_personas'],
 															'fecha_creacion'=>date('Y-m-d H:i:s'),
 															'id_usuario'=>$this->datos_user['id_usuario']));
+				
+				}
+		}
+		unset($inscripciones);
+		$this->db->select('b.*, c.*',false);
+		$this->db->where("a.id_inscripcion_tema = b.id_inscripcion_tema");
+		$this->db->where(" b.id_inscripcion_personas = c.id_inscripcion_personas",false,false);
+		return $this->db->order_by('b.apellidos')->get_where('inscripcion_temas a, inscripcion_temas_personas b, inscripcion_asistencia c',array('a.id_capacitacion'=>$id_capacitacion))->result_array();
+	}
+	
+	function guardar_asistencia($post=array(),$modulo)
+	{
+		
+		//print_r($post);
+		if(isset($post['id_asistencia']))
+		{
+			foreach($post['id_asistencia'] as $key=>$valor)
+			{
+				$this->db->update('inscripcion_asistencia',array('id_modulo'=>$modulo['id_modulo'],
+															'asistio'=>$post['asistio'][$key],
+															'aprobado'=>$post['aprobado'][$key],
+															'nota'=>$post['nota'][$key],
+															'fecha_creacion'=>date('Y-m-d H:i:s'),
+															'id_usuario'=>$this->datos_user['id_usuario']
+															),
+															array(
+															'id_asistencia'=>$valor
+															)
+									
+								);
+							
+				
+			}
 		}
 		
 	}

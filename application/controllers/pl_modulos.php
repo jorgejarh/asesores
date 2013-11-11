@@ -361,7 +361,6 @@ class Pl_modulos extends CI_Controller {
 		$data['dato']=$this->$model->obtener($id);
 		if($data['dato'])
 		{
-			$data['curriculas']=preparar_select($this->$model->obtener_curriculas(),'id_curricula','curricula');
 			$data['title']=$this->nombre_titulo." - Asignar Temas";
 			$this->load->view($this->carpeta_view.'/temas',$data);
 		}

@@ -12,6 +12,15 @@
     <tr>
       <th><b>No. </b></th>
       <th><b>Descripcion</b></th>
+      <?php
+      if($tipo_contenido['archivos']==1)
+	  {
+		  ?>
+          
+       <th><b>Archivos</b></th>
+		  <?php
+		 }
+	  ?>
       <th><b>Editar</b></th>
       <th><b>Eliminar </b></th>
     </tr>
@@ -25,8 +34,17 @@
     <tr class="gradeA">
       <td><?php echo $con;?></td>
       <td align="left" style="text-align:left;"><?php echo $valor['nombre'];?></td>
-      <td class="datatable_icono"><a style="cursor:pointer;" onClick="editar(<?php echo $tipo_contenido['id_tabla_contenido'];?>,<?php echo $id_perfil;?>,<?php echo $valor['id'];?>);"><?php echo img('public/img/edit.png');?></a></td>
-      <td class="datatable_icono"><a style="cursor:pointer;"  onClick="del(<?php echo $tipo_contenido['id_tabla_contenido'];?>,<?php echo $id_perfil;?>,<?php echo $valor['id'];?>,'<?php echo $tipo_contenido['nombre_tabla'];?>');"><?php echo img('public/img/cancel.png');?></a></td>
+      <?php
+      if($tipo_contenido['archivos']==1)
+	  {
+		  ?>
+       		<td class="datatable_icono" align="center"><a style="cursor:pointer;" onClick="archivos(<?php echo $tipo_contenido['id_tabla_contenido'];?>,<?php echo $id_perfil;?>,<?php echo $valor['id'];?>);"><?php echo img('public/img/ico_posts.png');?></a></td>
+		  <?php
+		 }
+	  ?>
+      
+      <td class="datatable_icono"  align="center"><a style="cursor:pointer;" onClick="editar(<?php echo $tipo_contenido['id_tabla_contenido'];?>,<?php echo $id_perfil;?>,<?php echo $valor['id'];?>);"><?php echo img('public/img/edit.png');?></a></td>
+      <td class="datatable_icono"  align="center"><a style="cursor:pointer;"  onClick="del(<?php echo $tipo_contenido['id_tabla_contenido'];?>,<?php echo $id_perfil;?>,<?php echo $valor['id'];?>,'<?php echo $tipo_contenido['nombre_tabla'];?>');"><?php echo img('public/img/cancel.png');?></a></td>
     </tr>
     <?php
 		}

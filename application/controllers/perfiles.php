@@ -166,7 +166,6 @@ class Perfiles extends CI_Controller {
 		$post=$this->input->post();
 		if($post)
 		{
-			//$resultado=$this->db->insert($post['tabla'],array('nombre'=>$post['nombre'],'id_perfil'=>$post['id_perfil']));
 			$resultado = $this->perfiles_model->insertar_contenido($post);
 			if($resultado)
 			{
@@ -380,6 +379,96 @@ class Perfiles extends CI_Controller {
 		$this->output->set_header("Content-Disposition: inline; filename=perfil.doc");*/
 		
 		
+	}
+	
+	
+	public function editar_archivos($id,$id_perfl,$id_datos)
+	{
+		
+		if($id!=0)
+		{
+			$data['tipo_contenido']=$this->curricula_model->obtener_tipos_contenido($id);
+			
+			if($data['tipo_contenido'])
+			{
+				
+				/*echo "<pre>";
+				print_r($_FILES);
+				echo "</pre>";*/
+				$docs=array();
+				
+				if($this->input->post('archi_normal'))
+				{
+					foreach($this->input->post('archi_normal') as $val_archivo)
+					{
+						$docs[]=$val_archivo;
+					}
+				}
+				
+				if($this->input->post('eli_ar'))
+				{
+					foreach($this->input->post('eli_ar') as $val_archivo)
+					{
+						@unlink('./public/archivos_perfiles/'.$val_archivo);
+					}
+				}
+								
+				if($_FILES)
+				{
+					$config['upload_path'] = './public/archivos_perfiles/';
+					$config['allowed_types'] = 'jpg|jpeg|gif|xls|xlsx|doc|docx|png';
+			
+					$this->load->library('upload', $config);
+					
+					$data['errores']=array();
+					$data['documentos']=array();
+					foreach($_FILES as $key=>$valor)
+					{
+						
+						if($valor['name']!="")
+						{
+							if ( !$this->upload->do_upload($key))
+							{
+								$data['errores'][] =array('archivo'=>$valor['name'],'error'=>$this->upload->display_errors());
+								/*echo "<pre>";
+								print_r($data['error']);
+								echo "</pre>";*/
+							}
+							else
+							{
+								$data['documentos'][] = $this->upload->data();
+								/*echo "<pre>";
+								print_r($data['documentos']);
+								echo "</pre>";*/
+							}
+						}
+						
+						foreach($data['documentos'] as $doc)
+						{
+							//print_r($doc);
+							$docs[]=$doc['file_name'];
+						}
+						
+						/*echo "<pre>";
+						print_r($docs);
+						echo "</pre>";*/
+					}
+				}
+				
+				if($docs)
+				{
+					$datos['archivos']=json_encode($docs);
+					$datos['tabla']=$data['tipo_contenido']['nombre_tabla'];
+					$datos['id']=$id_datos;
+					$resultado = $this->perfiles_model->editar_y_actualizar_archivo($datos);
+				}
+				
+				$data['dato']=$this->curricula_model->obtener_contenido($data['tipo_contenido']['nombre_tabla'],$id_datos);
+				$data['id_perfil']=$id_perfl;
+				$this->load->view('perfiles/archivos',$data);
+			}
+			
+		}
 	}
 	
 }

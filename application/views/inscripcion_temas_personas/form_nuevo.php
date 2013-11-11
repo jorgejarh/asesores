@@ -107,7 +107,7 @@ $(document).ready(function(e){
 		return false;
 	});
 	
-	
+	$('input[name=dui').mask("99999999-9");
 	
 });
 

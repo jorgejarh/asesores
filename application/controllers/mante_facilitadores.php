@@ -172,5 +172,104 @@ class Mante_facilitadores extends CI_Controller {
 			$resultado= $this->$model->eliminar($id,$post);
 		}
 	}
+	
+	
+	public function profesiones($id=0)
+	{
+		$model=$this->modelo_usar;
+		$data['model']=$model;			
+		$data['dato']=$this->$model->obtener($id);
+		if($data['dato'])
+		{
+			$data['title']=$this->nombre_titulo." - Asignar Profesiones";
+			$this->load->view($this->carpeta_view.'/profesiones',$data);
+		}
+
+		
+	}
+	
+	public function actualizar_profesiones()
+	{
+		$model=$this->modelo_usar;
+		$data['model']=$model;			
+		$post=$this->input->post();
+		if($post)
+		{
+			$id=$post['id'];
+			if($post['tem'])
+			{
+				
+				
+				foreach($post['tem'] as $in=>$tem)
+				{
+					if(trim($tem)=="")
+					{
+						unset($post['tem'][$in]);
+					}
+				}
+				
+				$temas=json_encode($post['tem']);
+				
+			}else{
+				$temas=json_encode(array());
+				}
+			$datos=array('profesiones'=>$temas);
+			
+			$resultado=$this->$model->actualizar($datos,$id);
+		}
+		$json['error']=false;
+		
+		echo json_encode($json);
+		
+	}
+	
+	public function especialidades($id=0)
+	{
+		$model=$this->modelo_usar;
+		$data['model']=$model;			
+		$data['dato']=$this->$model->obtener($id);
+		if($data['dato'])
+		{
+			$data['title']=$this->nombre_titulo." - Asignar Especialidades";
+			$this->load->view($this->carpeta_view.'/especialidades',$data);
+		}
+
+		
+	}
+	
+	public function actualizar_especialidades()
+	{
+		$model=$this->modelo_usar;
+		$data['model']=$model;			
+		$post=$this->input->post();
+		if($post)
+		{
+			$id=$post['id'];
+			if($post['tem'])
+			{
+				
+				
+				foreach($post['tem'] as $in=>$tem)
+				{
+					if(trim($tem)=="")
+					{
+						unset($post['tem'][$in]);
+					}
+				}
+				
+				$temas=json_encode($post['tem']);
+				
+			}else{
+				$temas=json_encode(array());
+				}
+			$datos=array('especialidades'=>$temas);
+			
+			$resultado=$this->$model->actualizar($datos,$id);
+		}
+		$json['error']=false;
+		
+		echo json_encode($json);
+		
+	}
 
 }

@@ -24,7 +24,7 @@ if($listado)
         <th>Tel. Celular</th>
         <th>Email</th>
         <th>Tipo</th>
-        <th>Asigar Profesion</th>
+        <th>Asigar Profesión</th>
         <th>Asigar Especialidad</th>
         <th>Editar</th>
         <th>Eliminar</th>
@@ -42,8 +42,8 @@ if($listado)
        <td><?php echo $valor['celular'];?></td>
        <td><?php echo $valor['correo'];?></td>
        <td><?php  echo  get_un_campo($valor['id_tipo_facilitador'],'id_tipo_facilitador', 'nombre_tipo_facilitador', 'mante_tipos_facilitadores');?></td>
-        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <td align="center" class="datatable_icono"><a onClick="profesiones(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_posts.png');?></a></td>
+        <td align="center" class="datatable_icono"><a onClick="especialidades(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_posts.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
@@ -119,6 +119,40 @@ function eliminar_registro(id)
 		  
 		});
 }
+
+function profesiones(id)
+{
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/profesiones');?>/"+id,
+		  type:"POST",
+		  success:function(data){
+
+		  	$.fancybox({
+				content:data,
+				autoHeight:true
+				});
+		  }
+		  
+		});
+}
+
+function especialidades(id)
+{
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/especialidades');?>/"+id,
+		  type:"POST",
+		  success:function(data){
+
+		  	$.fancybox({
+				content:data,
+				autoHeight:true
+				});
+		  }
+		  
+		});
+}
+
+
 
 </script>
 

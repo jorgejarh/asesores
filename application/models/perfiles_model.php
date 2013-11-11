@@ -24,7 +24,11 @@ class Perfiles_model extends CI_Model {
 	public function editar_y_actualizar_contenido($post=array()){
 		return $this->db->update($post['tabla'],array('nombre'=>$post['nombre']),array('id'=>$post['id']));
 	}
-
+	
+	public function editar_y_actualizar_archivo($post=array()){
+		return $this->db->update($post['tabla'],array('archivos'=>$post['archivos']),array('id'=>$post['id']));
+	}
+	
 	public function eliminar_contenido($post=array()){
 		//return $this->db->update($post['tabla'],array('activo'=>0),array('id'=>$post['id']));
 		return $this->db->delete($post['tabla'],array('id'=>$post['id']));
