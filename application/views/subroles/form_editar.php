@@ -42,7 +42,8 @@ echo form_open('',array(
 							'name' => 'permisos[]',
 							'id' => $valor1['id_menu'],
 							'value' => $valor1['id_menu'],
-							'checked' => $activo
+							'checked' => $activo,
+							'class'=>'check'
 							);
 
 
@@ -50,7 +51,7 @@ echo form_open('',array(
 						if($valor1['submenu'])
 						{
 							?>
-                            <div style="display:none;">
+                            <div class="div_a" style="display:none;">
                             <?php
 							foreach ($valor1['submenu'] as $valor2) 
 							{
@@ -60,13 +61,16 @@ echo form_open('',array(
 									'name' => 'permisos[]',
 									'id' => $valor1['id_menu'].'_'.$valor2['id_menu'],
 									'value' => $valor2['id_menu'],
-									'checked' => $activo
+									'checked' => $activo,
+									'class'=>'check'
 									);
 
 								echo '<h4 style="margin-left:15px; font-weight:normal;">'.form_checkbox($data2)." ".$valor2['nombre_menu'].'</h4>';
 								if($valor2['submenu'])
 								{
-									
+									?>
+                                    <div class="sub_m">
+                                    <?php
 									foreach($valor2['submenu'] as $valor3)
 									{
 										$activo=$this->conf_menu_model->existe_permiso($permisos,$valor3['id_menu']);
@@ -75,12 +79,16 @@ echo form_open('',array(
 											'name' => 'permisos[]',
 											'id' => $valor1['id_menu'].'_'.$valor2['id_menu'].'_'.$valor3['id_menu'],
 											'value' => $valor3['id_menu'],
-											'checked' => $activo
+											'checked' => $activo,
+											'class'=>'check'
 											);
 
 										echo '<h4 style="margin-left:30px; font-weight:normal;">'.form_checkbox($data3)." ".$valor3['nombre_menu'].'</h4>';
 
 									}
+									?>
+                                    </div>
+                                    <?php
 								}
 							}
 							?>
@@ -92,48 +100,7 @@ echo form_open('',array(
 				}
 				?>
         </div>
-			<!--<table>
-            	<tr>
-				<?php
-				if($menus)
-				{
-					$activo=false;
-					foreach($menus as $valor1)
-					{
-						?>
-                            <td>
-                            <?php
-						$activo=$this->conf_menu_model->existe_permiso($permisos,$valor1['id_menu']);
-
-						echo "<h4>".form_checkbox('permisos[]',$valor1['id_menu'],$activo)." ".$valor1['nombre_menu']."</h4>";
-						if($valor1['submenu'])
-						{
-							
-							foreach ($valor1['submenu'] as $valor2) 
-							{
-								$activo=$this->conf_menu_model->existe_permiso($permisos,$valor2['id_menu']);
-								echo '<h4 style="margin-left:15px; font-weight:normal;">'.form_checkbox('permisos[]',$valor2['id_menu'],$activo)." ".$valor2['nombre_menu'].'</h4>';
-								if($valor2['submenu'])
-								{
-									
-									foreach($valor2['submenu'] as $valor3)
-									{
-										$activo=$this->conf_menu_model->existe_permiso($permisos,$valor3['id_menu']);
-										echo '<h4 style="margin-left:30px; font-weight:normal;">'.form_checkbox('permisos[]',$valor3['id_menu'],$activo)." ".$valor3['nombre_menu'].'</h4>';
-
-									}
-								}
-							}
-						}
-						?>
-                            </td>
-                            <?php
-					}
-				}
-				?>
-				
-				</tr>
-            </table>-->
+			
 		</td>
 	</tr>
 	<tr>
@@ -184,7 +151,38 @@ $(document).ready(function(e){
 		return false;
 	});
 
-
+	
+	
+	
+	$('.check').click(function(e) {
+        
+		var check_padre=0;
+		$(this).parent('h4').parent('.sub_m').find('input[type=checkbox]').each(function(index, element) {
+            
+			if($(this).is(':checked'))
+			{
+				check_padre=check_padre+1;
+			}
+			
+			//$(this).css('border','red 1px solid');
+        });
+		
+		alert(check_padre);
+		if(check_padre==0)
+		{
+			$(this).parent('h4').parent('.sub_m').prev('h4').children('input[type=checkbox]').removeAttr("checked");
+			$(this).parent('h4').parent('.sub_m').parent('.div_a').prev('h3').children('input[type=checkbox]').removeAttr("checked");
+			
+		}else{
+			$(this).parent('h4').parent('.sub_m').prev('h4').children('input[type=checkbox]').prop("checked","checked");
+			$(this).parent('h4').parent('.sub_m').parent('.div_a').prev('h3').children('input[type=checkbox]').prop("checked","checked");
+			}
+		
+    });
+	
+	
+	
+	
 });
 
 
@@ -193,6 +191,8 @@ $(document).ready(function(e){
 	/**
 	 * Selecciona a todos los ansestros
 	 */
+	 
+	 /*
 	$( "input[type=checkbox]" ).click(function(){
 		var id         = $(this).attr('id');
 		var id_array   = id.split("_");
@@ -208,11 +208,15 @@ $(document).ready(function(e){
 			$('#'+id_array[0]).attr('checked', true);
 		}
 	});
+	*/
+	
 	/* ****************************************************** */
 	/**
 	 * Devuelve el parentesco
 	 */
-	var determinar_parentesco = function( id_array ){
+	 
+	 
+	/*var determinar_parentesco = function( id_array ){
 		var longitud   = id_array.length;
 		var parentesco = new Array();
 
@@ -221,18 +225,18 @@ $(document).ready(function(e){
 		parentesco[3] = 'hijo';
 
 		return parentesco[longitud];
-	}
+	}*/
 	/* ********************************************** funciones para seleccionar padres ***************************************************** */
 
 
 
 $(document).ready(function(){
   $(".accordion h3:first").addClass("active");
-  $(".accordion div:not(:first)").hide();
+  $(".accordion div.div_a:not(:first)").hide();
   $(".accordion h3").click(function(){
 	  
-    $(this).next("div").slideToggle("slow")
-    .siblings("div:visible").slideUp("slow");
+    $(this).next("div.div_a").slideToggle("slow")
+    .siblings("div.div_a:visible").slideUp("slow");
     $(this).toggleClass("active");
     $(this).siblings("h3").removeClass("active");
 	//$(this).find('input[type=checkbox]').click();
