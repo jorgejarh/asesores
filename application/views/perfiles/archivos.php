@@ -104,16 +104,19 @@ echo form_open_multipart('',array(
 			{
 				foreach($archivos as $val)
 				{
-			?>
-          <p>
-          	<a href="<?php echo base_url('public/archivos_perfiles/'.$val);?>" target="_blank"><?php echo $val;?></a>
-            <input type="hidden" name="archi_normal[]" value="<?php echo $val;?>" />
-            <?php echo img(array(
-							'src'=>'public/img/cancel.png',
-							'class'=>'elim_tema',
-							'archi'=>$val
-							));?></p>
-          <?php
+					if($val)
+					{
+					?>
+				  <p>
+					<a href="<?php echo base_url('public/archivos_perfiles/'.$val);?>" target="_blank"><?php echo $val;?></a>
+					<input type="hidden" name="archi_normal[]" value="<?php echo $val;?>" />
+					<?php echo img(array(
+									'src'=>'public/img/cancel.png',
+									'class'=>'elim_tema',
+									'archi'=>$val
+									));?></p>
+				  <?php
+					}
 				}
 			}
 		   ?>

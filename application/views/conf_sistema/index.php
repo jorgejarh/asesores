@@ -12,7 +12,8 @@
       	<p>
       		Descarge un respaldo de la base de datos
       	</p>
-<button onClick="descargar_respaldo();">Respaldo de datos</button>
+<!--<button onClick="descargar_respaldo();"><a href="<?php echo site_url('respaldo_datos');?>">Respaldo de datos</a></button>-->
+<button ><a style="color:#FFF;" target="_blank" href="<?php echo site_url('respaldo_datos');?>">Respaldo de datos</a></button>
 
 
 <script type="text/javascript">

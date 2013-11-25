@@ -25,8 +25,8 @@ class Respaldo_datos extends CI_Controller {
 		
 		$prefs = array(
                 'ignore'      => array(),           // List of tables to omit from the backup
-                'format'      => 'txt',             // gzip, zip, txt
-                //'filename'    => date('d-m-Y').'_asesores.sql',    // File name - NEEDED ONLY WITH ZIP FILES
+                'format'      => 'zip',             // gzip, zip, txt
+                'filename'    => 'respaldo_datos_'.date('d_m_Y').'.sql',    // File name - NEEDED ONLY WITH ZIP FILES
                 'add_drop'    => TRUE,              // Whether to add DROP TABLE statements to backup file
                 'add_insert'  => TRUE,              // Whether to add INSERT data to backup file
                 'newline'     => "\n"               // Newline character used in backup file
@@ -39,11 +39,13 @@ class Respaldo_datos extends CI_Controller {
 		
 		// Load the file helper and write the file to your server
 		$this->load->helper('file');
-		write_file('respaldo_datos.zip', $backup);
+		write_file('respaldo_datos_'.date('d_m_Y').'.zip', $backup);
 		
 		// Load the download helper and send the file to your desktop
 		$this->load->helper('download');
-		force_download('respaldo_datos.zip', $backup); 
+		force_download('respaldo_datos_'.date('d_m_Y').'.zip', $backup); 
+		
+		delete_file('respaldo_datos_'.date('d_m_Y').'.zip');
 	}
 }
 

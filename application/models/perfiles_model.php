@@ -34,6 +34,11 @@ class Perfiles_model extends CI_Model {
 		return $this->db->delete($post['tabla'],array('id'=>$post['id']));
 	}
 	
+	public function eliminar_archivo($archivo,$tabla,$id)
+	{
+		$this->db->query("update ".$tabla." set archivos=REPLACE(archivos,'".$archivo."','') where id=".$id);
+		//return $this->db->update($post['tabla'],array('archivos'=>$post['archivos']),array('id'=>$post['id']));
+	}
 
 }
 

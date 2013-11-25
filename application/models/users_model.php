@@ -11,7 +11,8 @@ class Users_model extends CI_Model {
     {
     	$datos=$this->db->get_where('usu_usuario',array(
     										'usuario'=>$user,
-    										'clave'=>$password
+    										'clave'=>$password,
+											'estado'=>1
     											)
     						)->row_array();
     	

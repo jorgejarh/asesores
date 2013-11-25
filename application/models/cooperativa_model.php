@@ -23,7 +23,7 @@ class Cooperativa_model extends CI_Model {
 		{
         	return $this->db->select('a.*,b.cooperativa')->get_where('conf_sucursal a, conf_cooperativa b','a.id_sucursal = '.$id.' and a.id_cooperativa = b.id_cooperativa')->row_array();
 		}else{
-        	return $this->db->select('a.*,b.cooperativa')->get_where('conf_sucursal a, conf_cooperativa b','a.id_cooperativa = b.id_cooperativa and a.activo 1= 1')->result_array();
+        	return $this->db->select('a.*,b.cooperativa')->get_where('conf_sucursal a, conf_cooperativa b','a.id_cooperativa = b.id_cooperativa and a.activo = 1')->result_array();
 			}
 			
     }

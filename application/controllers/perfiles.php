@@ -411,6 +411,7 @@ class Perfiles extends CI_Controller {
 					{
 						@unlink('./public/archivos_perfiles/'.$val_archivo);
 					}
+					$resultado = $this->perfiles_model->eliminar_archivo($val_archivo,$data['tipo_contenido']['nombre_tabla'],$id_datos);
 				}
 								
 				if($_FILES)

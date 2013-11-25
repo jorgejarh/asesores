@@ -41,14 +41,14 @@ if($listado)
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_usuario']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
           <?php
-						if($valor['estado']==1)
+						if($valor['estado']==0)
 						{
 							?>
-          <a onClick="eliminar_registro(<?php echo $valor['id_usuario']; ?>,0);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a>
+          <a onClick="eliminar_registro(<?php echo $valor['id_usuario']; ?>,1);" title="Clic para Activar"><?php echo img('public/img/cancel.png');?></a>
           <?php
 						} else{
 							?>
-          <a onClick="eliminar_registro(<?php echo $valor['id_usuario']; ?>,1);" title="Clic para Activar"><?php echo img('public/img/accept.png');?></a>
+          <a onClick="eliminar_registro(<?php echo $valor['id_usuario']; ?>,0);" title="Clic para Desactivar"><?php echo img('public/img/accept.png');?></a>
           <?php
 						}
 					;?></td>
