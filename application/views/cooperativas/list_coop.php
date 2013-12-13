@@ -19,7 +19,7 @@
 					      <tr>
 					      	<th>Logo</th>
 					        <th>Cooperativa</th>
-					        <th>Ubicaci&oacute;n</th>
+					        <th>Gerente</th>
 					        <th>Tel&eacute;fono</th>
 					        <th>Fax</th>
 					        <th>Email</th>
@@ -65,7 +65,7 @@
 		      					</div>
 		      					</td>
 						        <td><?php echo $valor['cooperativa'];?></td>
-						        <td><?php echo $valor['ubicacion'];?></td>
+						        <td><?php echo $valor['gerente'];?></td>
 						        <td><?php echo $valor['telefono'];?></td>
 						        <td><?php echo $valor['fax'];?></td>
 						        <td><?php echo $valor['email'];?></td>

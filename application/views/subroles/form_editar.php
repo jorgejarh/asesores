@@ -167,7 +167,7 @@ $(document).ready(function(e){
 			//$(this).css('border','red 1px solid');
         });
 		
-		alert(check_padre);
+		//alert(check_padre);
 		if(check_padre==0)
 		{
 			$(this).parent('h4').parent('.sub_m').prev('h4').children('input[type=checkbox]').removeAttr("checked");

@@ -19,7 +19,7 @@ if($listado)
     <thead>
       <tr>
       	<th>Nombre de la Modalidad</th>
-        <th>Objetivo</th>
+        <th>Descripci&oacute;n</th>
         <th>Fecha de creacion</th>
         <th>Editar</th>
         <th>Eliminar</th>

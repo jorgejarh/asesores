@@ -35,7 +35,7 @@ class Mante_modalidades extends CI_Controller {
 		$this->load->model($model);
 		
 		$this->set_campo("nombre_modalidad","Nombre",'required|xss_clean');
-		$this->set_campo("objetivo","Objetivo",'required|xss_clean','textarea');	
+		$this->set_campo("objetivo","Descripción",'required|xss_clean','textarea');	
 		
 
     }

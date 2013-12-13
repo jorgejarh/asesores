@@ -26,7 +26,7 @@ if($listado)
     <thead>
       <tr>
       	<th>Modalidad</th>
-        <th>Objetivo</th>
+        <th>Descripción</th>
         <th>Total</th>
         <th>Asignar</th>
         <th>Editar</th>
