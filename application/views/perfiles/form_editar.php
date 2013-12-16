@@ -11,28 +11,14 @@ echo form_open('',array(
 	<tr>
 		<td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
 	</tr>
-	<!--<tr>
-		<td valign="middle">Curricula: </td>
-		<td valign="middle">
-        <select id="id_curricula" name="id_curricula" class="requerido">
-        	<option value="false">Seleccione...</option>
-            <?php
-            if($curriculas)
-			{
-				foreach($curriculas as $valor)
-				{
-					?>
-                    <option  <?php if($valor['id_curricula']==$dato['id_curricula']){ echo 'selected="selected"';}?> value="<?php echo $valor['id_curricula'];?>"><?php echo $valor['curricula'];?></option>
-                    <?php
-				}
-			}
-			?>
-        </select>
-        </td>
-	</tr>-->
+	
 	<tr>
 		<td valign="middle">Nombre del perfil: </td>
-		<td valign="middle"><input type="text" id="perfil" name="perfil" value="<?php echo $dato['perfil'];?>" class="requerido"/></td>
+		<td valign="middle">
+         <?php
+        echo form_dropdown('id_cargo', $cargos,$dato['id_cargo']);
+		?>
+        </td>
 	</tr>
     <tr>
 		<td valign="middle">Fecha: </td>

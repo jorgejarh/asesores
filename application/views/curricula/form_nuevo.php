@@ -16,7 +16,7 @@ echo form_open('',array(
 		<td valign="middle"><input type="text" id="curricula" name="curricula" class="requerido"/></td>
 	</tr>
 	<tr>
-		<td valign="middle">Objetivo: </td>
+		<td valign="middle">Descripción: </td>
 		<td valign="middle"><textarea name="objetivo" id="" cols="25" rows="5"></textarea></td>
 	</tr>
     <tr>

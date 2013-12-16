@@ -27,7 +27,6 @@ if($listado)
         <th>Fecha</th>
         <th>Ver Perfil</th>
         <th>Asignar Contenido</th>
-        
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -38,7 +37,7 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['perfil'];?></td>
+      	<td><?php echo $valor['nombre_cargo'];?></td>
         <td align="center"><?php echo date("d/m/Y",strtotime($valor['fecha']));?></td>
         <td align="center"	class="datatable_icono"><a target="_blank" href="<?php echo site_url('perfiles/ver_perfil/'.$valor['id_perfil']);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('perfiles/asignar/'.$valor['id_perfil']);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>

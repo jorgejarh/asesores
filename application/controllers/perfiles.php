@@ -10,7 +10,7 @@ class Perfiles extends CI_Controller {
 
         $this->datos_user=comprobar_login();
         $this->load->model('perfiles_model');
-
+		$this->load->model('mante_cargos_model');
     }
 
 	public function index($id_curricula=0)
@@ -37,7 +37,7 @@ class Perfiles extends CI_Controller {
 	{
 		$data=array();
 		$data['id_curricula'] = $id_curricula;
-		$data['curriculas']=$this->curricula_model->obtener_curricula();
+		$data['cargos']=preparar_select($this->mante_cargos_model->obtener(),'id_cargo','nombre_cargo');
 		
 		$this->load->view('perfiles/form_nuevo',$data);
 	}
@@ -67,7 +67,7 @@ class Perfiles extends CI_Controller {
 		
 		$data['dato']=$this->curricula_model->obtener_perfiles($id);
 		
-		$data['curriculas']=$this->curricula_model->obtener_curricula();
+		$data['cargos']=preparar_select($this->mante_cargos_model->obtener(),'id_cargo','nombre_cargo');
 		
 		$this->load->view('perfiles/form_editar',$data);
 	}

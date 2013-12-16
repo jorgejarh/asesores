@@ -34,7 +34,7 @@ class Curricula_model extends CI_Model {
     	if($id_curricula!=0)
 		{
 			$this->db->where(array('a.activo'=>1));
-        	return $this->db->select('a.*,b.curricula')->get_where('cu_perfil a, cu_curricula b','a.id_curricula = '.$id_curricula.' and a.id_curricula = b.id_curricula')->result_array();
+        	return $this->db->select('a.*,b.curricula, c.nombre_cargo')->get_where('cu_perfil a, cu_curricula b, mante_cargos c','a.id_curricula = '.$id_curricula.' and a.id_curricula = b.id_curricula and c.id_cargo = a.id_cargo')->result_array();
 		}
     }
 	

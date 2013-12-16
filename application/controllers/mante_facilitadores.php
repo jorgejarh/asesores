@@ -40,6 +40,7 @@ class Mante_facilitadores extends CI_Controller {
 		$this->set_campo("t_oficina","Tel. Oficina",'xss_clean', 'text');
 		$this->set_campo("celular","Tel. Celular",'required|xss_clean', 'text');
 		$this->set_campo("correo","Email",'xss_clean|valid_email', 'text');
+		$this->set_campo("correo","Email",'xss_clean|valid_email', 'text');
 		$this->set_campo("id_tipo_facilitador", 'Tipo', 'required|xss_clean', 'select');
 
     }

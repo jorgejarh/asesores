@@ -14,7 +14,11 @@ echo form_open('',array(
 	<input type="hidden" value="<?php echo $id_curricula; ?>" name="id_curricula">
 	<tr>
 		<td valign="middle">Nombre del perfil: </td>
-		<td valign="middle"><input type="text" id="perfil" name="perfil" class="requerido"/></td>
+		<td valign="middle">
+        <?php
+        echo form_dropdown('id_cargo', $cargos);
+		?>
+        </td>
 	</tr>
     <tr>
 		<td valign="middle">Fecha: </td>

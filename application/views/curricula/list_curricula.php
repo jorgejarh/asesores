@@ -19,7 +19,7 @@ if($listado)
     <thead>
       <tr>
         <th>Curricula</th>
-        <th>Objetivo</th>
+        <th>Descripción</th>
 		<th>Asignar Perfiles</th>
         <th>Editar Nombre</th>
         <th>Eliminar</th>
