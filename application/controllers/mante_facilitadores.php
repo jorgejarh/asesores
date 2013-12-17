@@ -40,8 +40,6 @@ class Mante_facilitadores extends CI_Controller {
 		$this->set_campo("t_oficina","Tel. Oficina",'xss_clean', 'text');
 		$this->set_campo("celular","Tel. Celular",'required|xss_clean', 'text');
 		$this->set_campo("correo","Email",'xss_clean|valid_email', 'text');
-		$this->set_campo("correo","Email",'xss_clean|valid_email', 'text');
-		$this->set_campo("id_tipo_facilitador", 'Tipo', 'required|xss_clean', 'select');
 
     }
 
@@ -62,7 +60,6 @@ class Mante_facilitadores extends CI_Controller {
 		$model=$this->modelo_usar;
 		$data=array();
 		$data['title']=$this->nombre_titulo." - Nuevo";
-		$data['listado_facilitadores'] = $this->mante_tipos_facilitadores_model->obtener();
 		
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
@@ -115,7 +112,6 @@ class Mante_facilitadores extends CI_Controller {
 		if($data['dato'])
 		{
 			$data['title']=$this->nombre_titulo." - Editar";
-			$data['listado_facilitadores'] = $this->mante_tipos_facilitadores_model->obtener();
 			$this->load->view($this->carpeta_view.'/form_editar',$data);
 		}else{
 			redirect($this->nombre_controlador);
@@ -180,8 +176,12 @@ class Mante_facilitadores extends CI_Controller {
 		$model=$this->modelo_usar;
 		$data['model']=$model;			
 		$data['dato']=$this->$model->obtener($id);
+		
 		if($data['dato'])
 		{
+			$this->load->model("mante_profesiones_model");
+			$data['profesiones']=preparar_select($this->mante_profesiones_model->obtener(),'id_profesion','nombre_profesion');
+			$data['profesiones_actuales']=$this->$model->obtener_profesiones($id);
 			$data['title']=$this->nombre_titulo." - Asignar Profesiones";
 			$this->load->view($this->carpeta_view.'/profesiones',$data);
 		}
@@ -197,26 +197,14 @@ class Mante_facilitadores extends CI_Controller {
 		if($post)
 		{
 			$id=$post['id'];
-			if($post['tem'])
+			if(isset($post['id_profesion']))
 			{
-				
-				
-				foreach($post['tem'] as $in=>$tem)
-				{
-					if(trim($tem)=="")
-					{
-						unset($post['tem'][$in]);
-					}
-				}
-				
-				$temas=json_encode($post['tem']);
-				
+				$resultado=$this->$model->actualizar_profesiones($post['id_profesion'],$id);
+								
 			}else{
-				$temas=json_encode(array());
+				$resultado=$this->$model->actualizar_profesiones(array(),$id);
 				}
-			$datos=array('profesiones'=>$temas);
 			
-			$resultado=$this->$model->actualizar($datos,$id);
 		}
 		$json['error']=false;
 		
@@ -231,6 +219,9 @@ class Mante_facilitadores extends CI_Controller {
 		$data['dato']=$this->$model->obtener($id);
 		if($data['dato'])
 		{
+			$this->load->model("mante_especialidades_model");
+			$data['especialidades']=preparar_select($this->mante_especialidades_model->obtener(),'id_especialidad','nombre_especialidad');
+			$data['especialidades_actuales']=$this->$model->obtener_especalidades($id);
 			$data['title']=$this->nombre_titulo." - Asignar Especialidades";
 			$this->load->view($this->carpeta_view.'/especialidades',$data);
 		}
@@ -243,29 +234,20 @@ class Mante_facilitadores extends CI_Controller {
 		$model=$this->modelo_usar;
 		$data['model']=$model;			
 		$post=$this->input->post();
+		
 		if($post)
 		{
 			$id=$post['id'];
-			if($post['tem'])
+			
+			if(isset($post['id_especialidad']))
 			{
 				
-				
-				foreach($post['tem'] as $in=>$tem)
-				{
-					if(trim($tem)=="")
-					{
-						unset($post['tem'][$in]);
-					}
-				}
-				
-				$temas=json_encode($post['tem']);
-				
+				$resultado=$this->$model->actualizar_especialidades($post['id_especialidad'],$id);
+								
 			}else{
-				$temas=json_encode(array());
+				$resultado=$this->$model->actualizar_especialidades(array(),$id);
 				}
-			$datos=array('especialidades'=>$temas);
 			
-			$resultado=$this->$model->actualizar($datos,$id);
 		}
 		$json['error']=false;
 		

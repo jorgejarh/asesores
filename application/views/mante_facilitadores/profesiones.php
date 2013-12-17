@@ -1,6 +1,3 @@
-<?php
-$temas=json_decode($dato['profesiones']);
-?>
 <h3 align="center"><?php echo $title;?></h3>
 <hr>
 <?php
@@ -17,12 +14,14 @@ echo form_open('',array(
         <a onclick="agregar_tem();" style="cursor:pointer;">+ Agregar Profesión</a>
         <div class="temas_textos" style="min-height:200px;">
         	<?php
-            if($temas)
+            if($profesiones_actuales)
 			{
-				foreach($temas as $val)
+				foreach($profesiones_actuales as $val)
 				{
 			?>
-            <p><input name="tem[]" type="text" value="<?php echo $val;?>" /> <?php echo img(array(
+            <p><?php echo form_dropdown('id_profesion[]',$profesiones,$val['id_profesion'],' ');?> 
+            
+             <?php echo img(array(
 																'src'=>'public/img/cancel.png',
 																'class'=>'elim_tema'
 																));?></p>
@@ -50,7 +49,9 @@ echo form_open('',array(
 <?php
 echo form_close();
 ?>
- <div style="display:none;" class="tem_nuevo"><p><input name="tem[]" type="text" /> <?php echo img(array(
+ <div style="display:none;" class="tem_nuevo"><p>
+ <?php echo form_dropdown('id_profesion[]',$profesiones);?>
+  <?php echo img(array(
 																'src'=>'public/img/cancel.png',
 																'class'=>'elim_tema'
 																));?></p></div>

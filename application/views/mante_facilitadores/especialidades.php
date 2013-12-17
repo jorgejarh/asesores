@@ -1,6 +1,3 @@
-<?php
-$temas=json_decode($dato['especialidades']);
-?>
 <h3 align="center"><?php echo $title;?></h3>
 <hr>
 <?php
@@ -17,12 +14,14 @@ echo form_open('',array(
         <a onclick="agregar_tem();" style="cursor:pointer;">+ Agregar Especialidad</a>
         <div class="temas_textos" style="min-height:200px;">
         	<?php
-            if($temas)
+            if($especialidades_actuales)
 			{
-				foreach($temas as $val)
+				foreach($especialidades_actuales as $val)
 				{
 			?>
-            <p><input name="tem[]" type="text" value="<?php echo $val;?>" /> <?php echo img(array(
+            <p><?php echo form_dropdown('id_especialidad[]',$especialidades,$val['id_especialidad'],' ');?> 
+            
+             <?php echo img(array(
 																'src'=>'public/img/cancel.png',
 																'class'=>'elim_tema'
 																));?></p>
@@ -50,7 +49,9 @@ echo form_open('',array(
 <?php
 echo form_close();
 ?>
- <div style="display:none;" class="tem_nuevo"><p><input name="tem[]" type="text" /> <?php echo img(array(
+ <div style="display:none;" class="tem_nuevo"><p>
+ <?php echo form_dropdown('id_especialidad[]',$especialidades);?>
+ <?php echo img(array(
 																'src'=>'public/img/cancel.png',
 																'class'=>'elim_tema'
 																));?></p></div>

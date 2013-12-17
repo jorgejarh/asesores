@@ -18,13 +18,7 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Nombres</th>
-        <th>Apellidos</th>
-        <th>Tel. Oficina</th>
-        <th>Tel. Celular</th>
-        <th>Email</th>
-        <th>Asigar Profesión</th>
-        <th>Asigar Especialidad</th>
+      	<th>Profesion</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -35,13 +29,8 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombres'];?></td>
-      	<td><?php echo $valor['apellidos'];?></td>
-       <td><?php echo $valor['t_oficina'];?></td>
-       <td><?php echo $valor['celular'];?></td>
-       <td><?php echo $valor['correo'];?></td>
-        <td align="center" class="datatable_icono"><a onClick="profesiones(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_posts.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="especialidades(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_posts.png');?></a></td>
+      	<td><?php echo $valor['nombre_profesion'];?></td>
+       
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
@@ -117,40 +106,6 @@ function eliminar_registro(id)
 		  
 		});
 }
-
-function profesiones(id)
-{
-	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/profesiones');?>/"+id,
-		  type:"POST",
-		  success:function(data){
-
-		  	$.fancybox({
-				content:data,
-				autoHeight:true
-				});
-		  }
-		  
-		});
-}
-
-function especialidades(id)
-{
-	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/especialidades');?>/"+id,
-		  type:"POST",
-		  success:function(data){
-
-		  	$.fancybox({
-				content:data,
-				autoHeight:true
-				});
-		  }
-		  
-		});
-}
-
-
 
 </script>
 
