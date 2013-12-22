@@ -10,7 +10,7 @@ class Mante_modalidades_docs extends CI_Controller {
 
 	public $nombre_controlador="mante_modalidades_docs";
 	
-	public $nombre_titulo="Gestion de Documentos - Modalidades";
+	public $nombre_titulo="Gestion de Documentos - ";
 	
 	public $campos=array();
 	
@@ -34,19 +34,41 @@ class Mante_modalidades_docs extends CI_Controller {
         $model=$this->modelo_usar;
 		$this->load->model($model);
 		
-		$this->set_campo("nombre_modalidad","Nombre",'required|xss_clean');
-		$this->set_campo("objetivo","Descripción",'required|xss_clean','textarea');	
-		
-
     }
 
-	public function index()
+	public function index($id_modalidad)
 	{
 		$model=$this->modelo_usar;
-		$data['title']=$this->nombre_titulo;
+		$post=$this->input->post();
+		$error=array();
+		if($post)
+		{
+			if($post['nombre_doc']!="")
+			{
+				$config['upload_path'] = './public/archivos_modalidades/';
+				$config['allowed_types'] = '*';
+				$this->load->library('upload', $config);
+				
+				if($this->upload->do_upload('archivo_doc'))
+				{
+					$archivo= $this->upload->data();
+					$this->$model->nuevo(array('id_modalidad'=>$id_modalidad,'nombre_doc'=>$post['nombre_doc'],'archivo'=>$archivo['orig_name']));
+					redirect($this->nombre_controlador.'/index/'.$id_modalidad);
+				}else{
+					 $error[]= $this->upload->display_errors('<div>','</div>');
+					}
+			}else{
+				$error[]="<div>EL nombre del archivo es requerido.</div>";
+				}
+		}
+		
+		$this->load->model("mante_modalidades_model");
+		$data["modalidad"]=$this->mante_modalidades_model->obtener($id_modalidad);
+		$data['error']=$error;
+		$data['title']=$this->nombre_titulo." ".$data["modalidad"]['nombre_modalidad'];
 		$data['template']="sistema";
 		$data['contenido']=$this->carpeta_view."/lista";
-		$data['listado']=$this->$model->obtener();
+		$data['listado']=$this->$model->obtener($id_modalidad);
 		$data['model']=$model;
 		$this->load->view('template',$data);
 

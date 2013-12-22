@@ -2,7 +2,7 @@
 
 class Mante_modalidades_docs_model extends CI_Model {
 	
-	public $nombre_tabla="mante_modalidades";
+	public $nombre_tabla="mante_modalidades_docs";
 	
 	public $id_tabla="";
 	
@@ -22,16 +22,13 @@ class Mante_modalidades_docs_model extends CI_Model {
 		
     }
 	
-    function obtener($id=0)
+    function obtener($id_modalidad)
 	{
-		if($id==0)
-		{
-			$this->db->select("a.*, b.nombre_completo as nombre_usuario");
-			$this->db->where("a.id_usuario = b.id_usuario");
-			return $this->db->get_where($this->nombre_tabla." a, usu_usuario b",array('a.activo'=>1))->result_array();
-		}else{
-			return $this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
-			}
+		
+		$this->db->select("a.*, b.nombre_completo as nombre_usuario");
+		$this->db->where("a.id_usuario = b.id_usuario and a.id_modalidad = ".$id_modalidad);
+		return $this->db->get_where($this->nombre_tabla." a, usu_usuario b",array('a.activo'=>1))->result_array();
+		
 	}
 	
 	function actualizar($datos,$id)

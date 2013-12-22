@@ -9,6 +9,45 @@
       		</tr>
       	</table>
       </h2>
+      <div class="bot_atras">
+      	<?php
+        echo anchor('mante_modalidades','&lt;- Regresar');
+		?>
+    	
+      </div>
+      <?php
+      if($error)
+		{
+			?>
+            <div style="color:#900; text-align:center;">
+            <?php
+			foreach($error as $e)
+			{
+				echo $e;
+			}
+			?>
+            </div>
+            <?php
+		}
+		?>
+      <div class="form_nuevo_archivo" align="center">
+      <h4 align="center">Nuevo Documento</h4>
+      	<?php
+        echo form_open_multipart();
+		?>
+        <table>
+        	<tr>
+            	<td>Nombre:</td>
+                <td><?php echo form_input(array('name'=>'nombre_doc'));?></td>
+                <td>Archivo:</td>
+                <td><?php echo form_upload(array('name'=>'archivo_doc'));?></td>
+                <td><button>Enviar</button></td>
+            </tr>
+        </table>
+        <?php
+		echo form_close();
+		?>
+      </div>
       <div class="" style="width:90%; margin:auto;">
       
         <?php
@@ -18,11 +57,9 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Nombre de la Modalidad</th>
-        <th>Descripci&oacute;n</th>
+      	<th>Nombre</th>
+        <th>Documento</th>
         <th>Fecha de creacion</th>
-        <th>Agregar Documentos</th>
-        <th>Editar</th>
         <th>Eliminar</th>
       </tr>
     </thead>
@@ -32,13 +69,10 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombre_modalidad'];?></td>
-        <td><?php echo $valor['objetivo'];?></td>
-        <td><?php echo date('d/m/Y',strtotime($valor['f_creacion']));?></td>
-        <td align="center" class="datatable_icono"><a href="<?php echo site_url('mante_modalidades_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+      	<td align="center"><?php echo $valor['nombre_doc'];?></td>
+        <td align="center"><?php echo anchor( base_url('public/archivos_modalidades/'.$valor['archivo']),$valor['archivo'],array('target'=>'_blank'));?></td>
+        <td align="center"><?php echo date('d/m/Y',strtotime($valor['f_creacion']));?></td>
         <td align="center" class="datatable_icono">
-        
           <a onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
           </td>
       </tr>
@@ -68,29 +102,9 @@ if($listado)
 
 function nuevo_registro()
 {
-	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/nuevo');?>",
-		  type:"POST",
-		  success:function(data){
-
-		  	$.fancybox(data);
-		  }
-		  
-		});
+	$('.form_nuevo_archivo').toggle('slow');
 }
 
-function editar_registro(id)
-{
-	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/editar');?>/"+id,
-		  type:"POST",
-		  success:function(data){
-
-		  	$.fancybox(data);
-		  }
-		  
-		});
-}
 
 function eliminar_registro(id)
 {
@@ -113,4 +127,13 @@ function eliminar_registro(id)
 }
 
 </script>
-
+<style type="text/css">
+.form_nuevo_archivo
+{
+	margin-top:20px;
+	margin-bottom:20px;
+	display:none;
+	border:#666 solid 1px;
+	padding:10px;
+}
+</style>
