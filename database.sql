@@ -505,6 +505,25 @@ CREATE TABLE `mante_modalidades` (
 
 insert  into `mante_modalidades`(`id_modalidad`,`nombre_modalidad`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,'Modalidad 11','Objetivos Objetivos 1','2013-06-01 20:40:16',1,0),(2,'Diplomados','Diplomados, Diplomados','2013-06-01 20:54:52',1,1),(3,'Seminarios y Foros','Seminarios y Foros, Seminarios y Foros','2013-06-02 17:05:20',1,1),(4,'Talleres','Talleres, Talleres','2013-06-02 17:05:41',1,1),(5,'Congresos','Congresos, Congresos','2013-06-02 17:05:55',1,1);
 
+/*Table structure for table `mante_modalidades_docs` */
+
+DROP TABLE IF EXISTS `mante_modalidades_docs`;
+
+CREATE TABLE `mante_modalidades_docs` (
+  `id_doc` int(11) NOT NULL auto_increment,
+  `id_modalidad` int(11) NOT NULL,
+  `nombre_doc` varchar(100) NOT NULL,
+  `archivo` longtext,
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_doc`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `mante_modalidades_docs` */
+
+insert  into `mante_modalidades_docs`(`id_doc`,`id_modalidad`,`nombre_doc`,`archivo`,`f_creacion`,`id_usuario`,`activo`) values (2,5,'Archivo 1','kkkkkkkkkkkkkkkkk.txt','2013-12-22 15:00:16',1,1),(3,5,'ffffffffff','654.txt','2013-12-22 15:09:42',1,1);
+
 /*Table structure for table `mante_profesion_x_facilitador` */
 
 DROP TABLE IF EXISTS `mante_profesion_x_facilitador`;
@@ -514,7 +533,7 @@ CREATE TABLE `mante_profesion_x_facilitador` (
   `id_facilitador` int(11) NOT NULL,
   `id_profesion` int(11) NOT NULL,
   PRIMARY KEY  (`id_profesion_x_facilitador`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_profesion_x_facilitador` */
 
@@ -602,6 +621,8 @@ CREATE TABLE `pl_capacitaciones` (
   `objetivo` varchar(300) default NULL,
   `cerrado` int(11) default '0',
   `n_participantes` int(11) default '1',
+  `n_participantes_no` int(11) default '1',
+  `n_participantes_ex` int(11) default '1',
   `f_creacion` datetime default NULL,
   `id_usuario` int(11) default NULL,
   `activo` int(11) default '1',
@@ -612,7 +633,7 @@ CREATE TABLE `pl_capacitaciones` (
 
 /*Data for the table `pl_capacitaciones` */
 
-insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`cerrado`,`n_participantes`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'V congreso de mujeres','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva',0,20,'2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias',0,30,'2013-06-13 22:33:23',1,1),(3,3,'Valuos - casos practicos de campo','Tema 2 Tema 2 Tema 2',1,20,'2013-06-19 21:11:27',1,1),(4,1,'Gestion de recuperacion exitosa','Capacitacion 1',0,20,'2013-07-01 21:18:19',1,1),(5,2,'Presentacion de codigo de buenas Practicas','Seminario 1',0,30,'2013-07-01 21:19:11',1,1),(6,5,'Capacitacion 1','Capacitacion 1',0,20,'2013-07-26 19:39:07',1,1);
+insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`cerrado`,`n_participantes`,`n_participantes_no`,`n_participantes_ex`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'V congreso de mujeres','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva',0,20,1,1,'2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias',0,30,3,3,'2013-06-13 22:33:23',1,1),(3,3,'Valuos - casos practicos de campo','Tema 2 Tema 2 Tema 2',1,20,1,1,'2013-06-19 21:11:27',1,1),(4,1,'Gestion de recuperacion exitosa','Capacitacion 1',0,20,1,1,'2013-07-01 21:18:19',1,1),(5,2,'Presentacion de codigo de buenas Practicas','Seminario 1',0,30,1,1,'2013-07-01 21:19:11',1,1),(6,5,'Capacitacion 1','Capacitacion 1',0,20,1,1,'2013-07-26 19:39:07',1,1);
 
 /*Table structure for table `pl_modalidades` */
 
@@ -874,7 +895,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-12-16 22:46:59',1,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-11-10 18:53:21',0,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-12-22 13:46:07',1,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-12-21 23:15:00',1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
