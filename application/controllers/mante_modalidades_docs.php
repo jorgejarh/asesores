@@ -1,21 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Pl_capacitaciones extends CI_Controller {
+class Mante_modalidades_docs extends CI_Controller {
 
 	public $datos_user=array();
 
-	public $carpeta_view="pl_capacitaciones";
+	public $carpeta_view="mante_modalidades_docs";
 
-	public $modelo_usar="pl_capacitaciones_model";
+	public $modelo_usar="mante_modalidades_docs_model";
 
-	public $nombre_controlador="pl_capacitaciones";
+	public $nombre_controlador="mante_modalidades_docs";
 	
-	public $nombre_titulo="Capacitaciones";
+	public $nombre_titulo="Gestion de Documentos - Modalidades";
 	
 	public $campos=array();
 	
 	
-		public function set_campo($nombre_campo,$nombre_mostrar,$reglas="",$tipo_elemento="text",$datos_select=array())
+	public function set_campo($nombre_campo,$nombre_mostrar,$reglas="",$tipo_elemento="text",$datos_select=array())
 	{
 		$this->campos[]=array(
 								'nombre_campo'=>$nombre_campo,
@@ -24,6 +24,7 @@ class Pl_capacitaciones extends CI_Controller {
 								'tipo_elemento'=>$tipo_elemento,
 								'datos_select'=>$datos_select
 								);
+
 	}
 	
 	function __construct()
@@ -32,43 +33,31 @@ class Pl_capacitaciones extends CI_Controller {
         $this->datos_user=comprobar_login();
         $model=$this->modelo_usar;
 		$this->load->model($model);
-		$this->load->model('pl_modalidades_model');
 		
-		$this->set_campo("nombre_capacitacion","Nombre",'required|xss_clean');
-		$this->set_campo("objetivo","Objetivo",'required|xss_clean','textarea');
-		$this->set_campo("n_participantes","# Partic. Cooperativas afiliadas",'required|numeric|xss_clean');
-		$this->set_campo("n_participantes_no","# Partic. Cooperativas no afiliadas",'required|numeric|xss_clean');
-		$this->set_campo("n_participantes_ex","# Partic. Extranjeros",'required|numeric|xss_clean');
+		$this->set_campo("nombre_modalidad","Nombre",'required|xss_clean');
+		$this->set_campo("objetivo","Descripción",'required|xss_clean','textarea');	
 		
-		
+
     }
 
-	public function index($id_plan_modalidad=0)
+	public function index()
 	{
-		$data['plan_modalidad']=$this->pl_modalidades_model->obtener($id_plan_modalidad);
-		if($data['plan_modalidad'])
-		{
-			$model=$this->modelo_usar;
-			$data['title']=$this->nombre_titulo;
-			$data['template']="sistema";
-			$data['contenido']=$this->carpeta_view."/lista";
-			$data['listado']=$this->$model->lista($id_plan_modalidad);
-			$data['model']=$model;
-			$this->load->view('template',$data);
-		}else{
-			
-			redirect('portal');
-			}
-		
+		$model=$this->modelo_usar;
+		$data['title']=$this->nombre_titulo;
+		$data['template']="sistema";
+		$data['contenido']=$this->carpeta_view."/lista";
+		$data['listado']=$this->$model->obtener();
+		$data['model']=$model;
+		$this->load->view('template',$data);
 
 	}
 	
-	public function nuevo($id=0)
+	public function nuevo()
 	{
 		$model=$this->modelo_usar;
 		$data=array();
 		$data['title']=$this->nombre_titulo." - Nuevo";
-		$data['id']=$id;
+		
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	
@@ -114,7 +103,7 @@ class Pl_capacitaciones extends CI_Controller {
 	public function editar($id=0)
 	{
 		$model=$this->modelo_usar;
-		$data['model']=$model;			
+		$data['model']=$model;
 		$data['dato']=$this->$model->obtener($id);
 		
 		if($data['dato'])
@@ -175,18 +164,6 @@ class Pl_capacitaciones extends CI_Controller {
 			$id=$post['id'];
 			unset($post['id']);
 			$resultado= $this->$model->eliminar($id,$post);
-		}
-	}
-	
-	public function estado()
-	{
-		$model=$this->modelo_usar;
-		$post=$this->input->post();
-		if ($post)
-		{
-			$id=$post['id'];
-			unset($post['id']);
-			$resultado= $this->$model->estado($id,$post);
 		}
 	}
 

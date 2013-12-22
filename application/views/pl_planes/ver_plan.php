@@ -125,6 +125,7 @@ h1,h2,h3,h4
         	<td align="center" valign="middle"><b>Modalidad</b></td>
             <td align="center" valign="middle"><b>Costo Modalidad</b></td>
             <td align="center" valign="middle"><b>Nombre</b></td>
+            <td align="center" valign="middle"><b>Objetivo</b></td>
             <td align="center" valign="middle"><b>Costo Tema</b></td>
             <td align="center" valign="middle"><b>Modulo</b></td>
             <td align="center" valign="middle"><b>Costo Modulo</b></td>
@@ -154,6 +155,7 @@ h1,h2,h3,h4
 								$van_tema++;
                                 ?>
                                 	<td align="left" valign="middle" > <h4><?php echo $tema['nombre_capacitacion'];?></h4></td>
+                                    <td align="left" valign="middle" > <p><?php echo $tema['objetivo'];?></p></td>
                                     <td align="center" valign="middle"><?php echo number_format(obtener_costo_capacitacion($tema['id_capacitacion']),2);?></td>
                                     	
 										<?php
