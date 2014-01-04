@@ -72,11 +72,11 @@ CREATE TABLE `conf_menu` (
   `orden` int(11) default '1',
   `target` varchar(10) default NULL,
   PRIMARY KEY  (`id_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 
 /*Data for the table `conf_menu` */
 
-insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`,`orden`,`target`) values (1,'Servicios',0,'',1,NULL,NULL),(2,'Capacitaciones',1,'',1,NULL,NULL),(3,'Curricula',2,'curriculas',1,NULL,NULL),(4,'Perfiles',2,'perfiles',0,NULL,NULL),(5,'Plan de Capacitaciones',2,'pl_planes',1,NULL,NULL),(6,'Asesorias',1,'',1,NULL,NULL),(7,'Asesoria 1',6,'',1,NULL,NULL),(8,'Consultoria',1,'',1,NULL,NULL),(9,'Consultoria 1',8,'',1,NULL,NULL),(10,'Reportes',0,'',1,NULL,NULL),(11,'Ingresos por cooperativa',10,'re_planes',1,NULL,NULL),(12,'Pagos',10,'',1,NULL,NULL),(13,'Configuracion',0,'',1,NULL,NULL),(14,'Gestion Usuarios',13,'',1,NULL,NULL),(15,'Internos',14,'usuarios_internos',1,NULL,NULL),(16,'Externos',14,'usuarios_externos',1,NULL,NULL),(17,'Cooperativas',28,'cooperativas',1,NULL,NULL),(18,'Gestion Sistema',13,'',1,NULL,NULL),(19,'Roles',14,'roles',1,NULL,NULL),(20,'Menu',18,'conf_menu',1,NULL,NULL),(21,'Sucursales',28,'sucursales',1,NULL,NULL),(26,'roles',14,'roles',0,NULL,NULL),(27,'Permisos',14,'subroles',1,NULL,NULL),(28,'Gestion Clientes',13,'',1,NULL,NULL),(29,'Respaldo',18,'conf_sistema',1,NULL,NULL),(30,'Mantenimientos',0,'#',0,NULL,NULL),(31,'Gestion de Modalidades',38,'mante_modalidades',1,NULL,NULL),(32,'Estados de Planes',38,'mante_estados_plan',1,NULL,NULL),(33,'Gestion de facilitadores',38,'mante_facilitadores',1,NULL,NULL),(34,'Gestion de Lugares',38,'mante_lugares',1,NULL,NULL),(35,'Costos',37,'mante_costos',0,NULL,NULL),(36,'Sub Costos',37,'mante_subcostos',0,NULL,NULL),(37,'Gestion de Costos',30,'#',0,NULL,NULL),(38,'Mantenimientos',13,'',1,1,NULL),(39,'Mantenimientos',13,'',0,1,NULL),(40,'Sericios a Cooperativas',0,'',1,1,NULL),(41,'Inscripción en Linea',40,'inscripcion_temas',1,1,NULL),(42,'Mantenimiento de tipos facilitadores',38,'mante_tipos_facilitadores',0,1,NULL),(43,'Mantenimiento de Cargos',38,'mante_cargos',1,1,NULL),(44,'Mantenimiento de rubros',38,'mante_rubros',1,1,NULL),(45,'Ver temas disponibles',40,'temas_disponibles',1,1,'_blank'),(46,'Inscripcion',2,'inscripcion',1,1,NULL),(47,'Abonos por cooperativa',2,'abonos_cooperativas',1,1,NULL),(48,'Mantenimiento de Profesiones',38,'mante_profesiones',1,1,NULL),(49,'Mantenimiento de Especialidades ',38,'mante_especialidades',1,1,NULL);
+insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`,`orden`,`target`) values (1,'Servicios',0,'',1,NULL,NULL),(2,'Capacitaciones',1,'',1,NULL,NULL),(3,'Curricula',2,'curriculas',1,NULL,NULL),(4,'Perfiles',2,'perfiles',0,NULL,NULL),(5,'Plan de Capacitaciones',2,'pl_planes',1,NULL,NULL),(6,'Asesorias',1,'',1,NULL,NULL),(7,'Asesoria 1',6,'',1,NULL,NULL),(8,'Consultoria',1,'',1,NULL,NULL),(9,'Consultoria 1',8,'',1,NULL,NULL),(10,'Reportes',0,'',1,NULL,NULL),(11,'Ingresos por cooperativa',10,'re_planes',1,NULL,NULL),(12,'Pagos',10,'',1,NULL,NULL),(13,'Configuracion',0,'',1,NULL,NULL),(14,'Gestion Usuarios',13,'',1,NULL,NULL),(15,'Internos',14,'usuarios_internos',1,NULL,NULL),(16,'Externos',14,'usuarios_externos',1,NULL,NULL),(17,'Cooperativas',28,'cooperativas',1,NULL,NULL),(18,'Gestion Sistema',13,'',1,NULL,NULL),(19,'Roles',14,'roles',1,NULL,NULL),(20,'Menu',18,'conf_menu',1,NULL,NULL),(21,'Sucursales',28,'sucursales',1,NULL,NULL),(26,'roles',14,'roles',0,NULL,NULL),(27,'Permisos',14,'subroles',1,NULL,NULL),(28,'Gestion Clientes',13,'',1,NULL,NULL),(29,'Respaldo',18,'conf_sistema',1,NULL,NULL),(30,'Mantenimientos',0,'#',0,NULL,NULL),(31,'Gestion de Modalidades',38,'mante_modalidades',1,NULL,NULL),(32,'Estados de Planes',38,'mante_estados_plan',1,NULL,NULL),(33,'Gestion de facilitadores',38,'mante_facilitadores',1,NULL,NULL),(34,'Gestion de Lugares',38,'mante_lugares',1,NULL,NULL),(35,'Costos',37,'mante_costos',0,NULL,NULL),(36,'Sub Costos',37,'mante_subcostos',0,NULL,NULL),(37,'Gestion de Costos',30,'#',0,NULL,NULL),(38,'Mantenimientos',13,'',1,1,NULL),(39,'Mantenimientos',13,'',0,1,NULL),(40,'Sericios a Cooperativas',0,'',1,1,NULL),(41,'Inscripción en Linea',40,'inscripcion_temas',1,1,NULL),(42,'Mantenimiento de tipos facilitadores',38,'mante_tipos_facilitadores',0,1,NULL),(43,'Mantenimiento de Cargos',38,'mante_cargos',1,1,NULL),(44,'Mantenimiento de rubros',38,'mante_rubros',1,1,NULL),(45,'Ver temas disponibles',40,'temas_disponibles',1,1,'_blank'),(46,'Inscripcion',2,'inscripcion',1,1,NULL),(47,'Abonos por cooperativa',2,'abonos_cooperativas',1,1,NULL),(48,'Mantenimiento de Profesiones',38,'mante_profesiones',1,1,NULL),(49,'Mantenimiento de Especialidades ',38,'mante_especialidades',1,1,NULL),(50,'Evaluar capacitaciones',2,'evaluar_capacitaciones',1,1,NULL),(51,'Tipos de Evaluacion',38,'mante_tipos_evaluacion',1,1,NULL);
 
 /*Table structure for table `conf_sucursal` */
 
@@ -315,7 +315,7 @@ CREATE TABLE `inscripcion_asistencia` (
 
 /*Data for the table `inscripcion_asistencia` */
 
-insert  into `inscripcion_asistencia`(`id_asistencia`,`id_modulo`,`id_inscripcion_personas`,`nota`,`asistio`,`aprobado`,`fecha_creacion`,`id_usuario`) values (9,7,1,'7.00',0,0,'2013-11-10 22:23:08',1),(10,7,2,'8.00',1,1,'2013-11-10 22:23:08',1),(11,7,3,'8.50',1,1,'2013-11-10 22:23:08',1),(12,7,4,'9.00',0,1,'2013-11-10 22:23:08',1);
+insert  into `inscripcion_asistencia`(`id_asistencia`,`id_modulo`,`id_inscripcion_personas`,`nota`,`asistio`,`aprobado`,`fecha_creacion`,`id_usuario`) values (9,7,1,'0.00',0,0,'2014-01-03 21:36:06',1),(10,7,2,'0.00',1,1,'2014-01-03 21:36:06',1),(11,7,3,'0.00',1,1,'2014-01-03 21:36:06',1),(12,7,4,'0.00',1,1,'2014-01-03 21:36:06',1);
 
 /*Table structure for table `inscripcion_temas` */
 
@@ -593,6 +593,23 @@ CREATE TABLE `mante_subcostos` (
 
 insert  into `mante_subcostos`(`id_subcosto`,`id_costo`,`nombre_subcosto`,`activo`,`id_usuario`,`f_creacion`) values (1,3,'sub costo 1',1,NULL,NULL);
 
+/*Table structure for table `mante_tipo_evaluacion` */
+
+DROP TABLE IF EXISTS `mante_tipo_evaluacion`;
+
+CREATE TABLE `mante_tipo_evaluacion` (
+  `id_tipo_evaluacion` int(11) NOT NULL auto_increment,
+  `nombre_tipo_evaluacion` longtext,
+  `activo` int(11) NOT NULL default '1',
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  PRIMARY KEY  (`id_tipo_evaluacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `mante_tipo_evaluacion` */
+
+insert  into `mante_tipo_evaluacion`(`id_tipo_evaluacion`,`nombre_tipo_evaluacion`,`activo`,`f_creacion`,`id_usuario`) values (1,'Examen',1,'2014-01-03 21:10:49',1),(2,'Tarea Escrita',1,'2014-01-03 21:11:03',1),(3,'Laboratorio',1,'2014-01-03 21:25:41',1);
+
 /*Table structure for table `mante_tipos_facilitadores` */
 
 DROP TABLE IF EXISTS `mante_tipos_facilitadores`;
@@ -634,6 +651,25 @@ CREATE TABLE `pl_capacitaciones` (
 /*Data for the table `pl_capacitaciones` */
 
 insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`cerrado`,`n_participantes`,`n_participantes_no`,`n_participantes_ex`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'V congreso de mujeres','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva',0,20,1,1,'2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias',0,30,3,3,'2013-06-13 22:33:23',1,1),(3,3,'Valuos - casos practicos de campo','Tema 2 Tema 2 Tema 2',1,20,1,1,'2013-06-19 21:11:27',1,1),(4,1,'Gestion de recuperacion exitosa','Capacitacion 1',0,20,1,1,'2013-07-01 21:18:19',1,1),(5,2,'Presentacion de codigo de buenas Practicas','Seminario 1',0,30,1,1,'2013-07-01 21:19:11',1,1),(6,5,'Capacitacion 1','Capacitacion 1',0,20,1,1,'2013-07-26 19:39:07',1,1);
+
+/*Table structure for table `pl_capacitaciones_eval` */
+
+DROP TABLE IF EXISTS `pl_capacitaciones_eval`;
+
+CREATE TABLE `pl_capacitaciones_eval` (
+  `id_eval_x_cap` int(11) NOT NULL auto_increment,
+  `id_capacitacion` int(11) NOT NULL,
+  `id_tipo_evaluacion` int(11) NOT NULL,
+  `porcentaje` decimal(18,2) NOT NULL default '0.00',
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) NOT NULL default '1',
+  PRIMARY KEY  (`id_eval_x_cap`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pl_capacitaciones_eval` */
+
+insert  into `pl_capacitaciones_eval`(`id_eval_x_cap`,`id_capacitacion`,`id_tipo_evaluacion`,`porcentaje`,`f_creacion`,`id_usuario`,`activo`) values (1,2,1,'10.00','2014-01-03 23:40:06',1,1),(2,2,3,'20.00','2014-01-03 23:42:02',1,1),(6,2,1,'20.00','2014-01-04 00:22:37',1,1);
 
 /*Table structure for table `pl_modalidades` */
 
@@ -815,11 +851,11 @@ CREATE TABLE `usu_permisos_menu` (
   KEY `FK_usu_permisos_menu2` (`id_subrol`),
   CONSTRAINT `FK_usu_permisos_menu` FOREIGN KEY (`id_menu`) REFERENCES `conf_menu` (`id_menu`),
   CONSTRAINT `FK_usu_permisos_menu2` FOREIGN KEY (`id_subrol`) REFERENCES `usu_subrol` (`id_subrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=340 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=417 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usu_permisos_menu` */
 
-insert  into `usu_permisos_menu`(`id_permiso`,`id_subrol`,`id_menu`) values (229,2,40),(230,2,41),(231,2,45),(232,3,40),(233,3,41),(234,3,45),(303,1,1),(304,1,2),(305,1,3),(306,1,5),(307,1,46),(308,1,47),(309,1,6),(310,1,7),(311,1,8),(312,1,9),(313,1,10),(314,1,11),(315,1,12),(316,1,13),(317,1,14),(318,1,15),(319,1,16),(320,1,19),(321,1,27),(322,1,18),(323,1,20),(324,1,29),(325,1,28),(326,1,17),(327,1,21),(328,1,38),(329,1,31),(330,1,32),(331,1,33),(332,1,34),(333,1,43),(334,1,44),(335,1,48),(336,1,49),(337,1,40),(338,1,41),(339,1,45);
+insert  into `usu_permisos_menu`(`id_permiso`,`id_subrol`,`id_menu`) values (229,2,40),(230,2,41),(231,2,45),(232,3,40),(233,3,41),(234,3,45),(378,1,1),(379,1,2),(380,1,3),(381,1,5),(382,1,46),(383,1,47),(384,1,50),(385,1,6),(386,1,7),(387,1,8),(388,1,9),(389,1,10),(390,1,11),(391,1,12),(392,1,13),(393,1,14),(394,1,15),(395,1,16),(396,1,19),(397,1,27),(398,1,18),(399,1,20),(400,1,29),(401,1,28),(402,1,17),(403,1,21),(404,1,38),(405,1,31),(406,1,32),(407,1,33),(408,1,34),(409,1,43),(410,1,44),(411,1,48),(412,1,49),(413,1,51),(414,1,40),(415,1,41),(416,1,45);
 
 /*Table structure for table `usu_rol` */
 
@@ -895,7 +931,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2013-12-22 13:46:07',1,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-12-21 23:15:00',1,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-01-03 19:48:02',1,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-12-21 23:15:00',1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
