@@ -5,7 +5,7 @@ echo form_open('',array(
 					'id'=>'form_nuevo'
 						),
 					array(
-					'id_capacitacion'=>$id
+					'id_modulo'=>$id
 						)
 				);
 ?>
@@ -105,7 +105,7 @@ $(document).ready(function(e){
 				   error:function()
 				  {
 					 alert("Error al procesar, Intente de nuevo"); 
-					 //location.reload();
+					 location.reload();
 				  }
 			});
 

@@ -22,6 +22,15 @@ class Pl_modulos_model extends CI_Model {
 		
     }
 	
+	function obtener_sum_porcentaje($id_capacitacion=0)
+	{
+		
+		$resultado=$this->db->select("SUM(a.porcentaje) as suma ",false)->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_capacitacion'=>$id_capacitacion))->row_array();
+		
+		return $resultado["suma"];
+		
+	}
+	
     function obtener($id=0)
 	{
 		

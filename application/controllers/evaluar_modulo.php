@@ -1,20 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Evaluar_capacitaciones extends CI_Controller {
+class Evaluar_modulo extends CI_Controller {
 
 	public $datos_user=array();
 
-	public $carpeta_view="evaluar_capacitaciones";
+	public $carpeta_view="evaluar_modulo";
 
-	public $modelo_usar="evaluar_capacitaciones_model";
+	public $modelo_usar="evaluar_modulo_model";
 
-	public $nombre_controlador="evaluar_capacitaciones";
+	public $nombre_controlador="evaluar_modulo";
 	
-	public $nombre_titulo="Evaluar Capacitaciones";
+	public $nombre_titulo="Evaluar Modulo";
 	
 	public $campos=array();
-	
-	
 	
 	
 	function __construct()
@@ -52,15 +50,27 @@ class Evaluar_capacitaciones extends CI_Controller {
 	
 	public function obtener_capacitaciones()
 	{
-		echo "<p>Seleccione una capacitación</p>";
+		echo "<p>Seleccione un tema</p>";
 		$model=$this->modelo_usar;
 		$listado=preparar_select($this->$model->obtener_capacitaciones($this->input->post('id_plan_modalidad')),'id_capacitacion','nombre_capacitacion');
+		$listado[0]=".: Seleccione:.";
 		  ksort($listado);
 		echo form_dropdown('',$listado,0,'id="id_capacitacion"');
-		echo '<div><button onclick="evaluar_capacitacion();">Evaluar capacitacion</button></div>';
 	}
 	
-	public function inscribir_modulo($id_modulo=0)
+	
+	public function obtener_modulos()
+	{
+		echo "<p>Seleccione el modulo a evaluar</p>";
+		$model=$this->modelo_usar;
+		$listado=preparar_select($this->$model->obtener_modulos($this->input->post('id_capacitacion')),'id_modulo','nombre_modulo');
+		/*$listado[0]=".: Seleccione:.";
+		  ksort($listado);*/
+		echo form_dropdown('',$listado,0,'id="id_modulo"');
+		echo '<div><button onclick="evaluar_modulo();">Evaluar modulo</button></div>';
+	}
+	
+	public function evaluar($id_modulo=0)
 	{
 		$model=$this->modelo_usar;
 		
@@ -70,26 +80,20 @@ class Evaluar_capacitaciones extends CI_Controller {
 		{
 			$data['mensaje']="";
 			
-			$post=$this->input->post();
+			$notas=$this->input->post('notas');
 			
-			if($post)
+			if($notas)
 			{
-				$this->$model->guardar_asistencia($post,$data['modulo']);
-				
-				$data['mensaje']="Datos Guardados.";
+				$this->$model->guardar_notas($notas);
+				$data['mensaje']="Notas Actualizadas Correctamente.";
 			}
 			
-			if(isset($post['id_personas']))
-			{
-				
-				
-			}
 			
-			$data['title']="Inscripcion al modulo ".$data['modulo']['nombre_modulo'];
+			$data['title']="Evaluación al modulo ".$data['modulo']['nombre_modulo'];
 			$data['template']="sistema";
-			$data['contenido']=$this->carpeta_view."/inscribir_modulo";
+			$data['contenido']=$this->carpeta_view."/evaluar_modulo";
 			$data['nombres_personas']=$this->$model->obtener_personas($data['modulo']['id_capacitacion'],$id_modulo);
-			
+			$data['evaluaciones']=$this->$model->obtener_evaluaciones($id_modulo);
 			$data['model']=$model;
 			$this->load->view('template',$data);
 			
@@ -100,6 +104,5 @@ class Evaluar_capacitaciones extends CI_Controller {
 		
 		
 	}
-	
 	
 }

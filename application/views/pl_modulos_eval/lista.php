@@ -6,18 +6,14 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td><?php echo $capacitacion['nombre_plan']." &gt; ".$capacitacion['nombre_modalidad'];?></td>
-      			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $capacitacion['id_capacitacion']?>);">Nuevo</button></td>
+      			<td><?php echo $modulo['nombre_modulo'];?></td>
+      			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $modulo['id_modulo']?>);">Nuevo</button></td>
       		</tr>
-          <tr>
-            <td id="nombre_capacitacion" ><?php echo $capacitacion['nombre_capacitacion']; ?></td>
-            <td></td>
-          </tr>
       	</table>
       </h2>
-      <div class="bot_atras">
+       <div class="bot_atras">
     	<?php
-        echo anchor('pl_capacitaciones/index/'.$capacitacion['id_plan_modalidad'],'<- Regresar');
+        echo anchor('pl_modulos/index/'.$modulo['id_capacitacion'],'<- Regresar');
 		?>
     </div>
       <div class="" style="width:90%; margin:auto;">

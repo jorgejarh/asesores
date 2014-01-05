@@ -42,10 +42,25 @@ class Pl_modulos extends CI_Controller {
 		$this->set_campo("facilitadores[]","Facilitadores",'required|xss_clean','multi_select',preparar_select($this->mante_facilitadores_model->obtener(),'id_facilitador','nombre_completo'));
 		$this->set_campo("id_lugar","Lugar",'required|xss_clean','select',preparar_select($this->mante_lugares_model->obtener(),'id_lugar','nombre_lugar'));
 		$this->set_campo("precio_venta","Inversion",'required|numeric|xss_clean');
-		
+		$this->set_campo("porcentaje","Porcentaje de evaluación",'required|numeric|xss_clean|is_natural_no_zero|callback_validar_porcentaje_capacitacion');
 		
     }
-
+	
+	
+	public function validar_porcentaje_capacitacion($str)
+	{
+		$model=$this->modelo_usar;
+		$suma_porcentaje=$this->$model->obtener_sum_porcentaje($this->input->post("id_capacitacion"));
+		
+		if(($suma_porcentaje+$str)>100 || $str==0)
+		{
+			$this->form_validation->set_message('validar_porcentaje_capacitacion', 'La suma del %s no debe pasar del 100%');
+			return FALSE;
+		}else{
+			return TRUE;
+			}
+	}
+	
 	public function index($id_capacitacion=0)
 	{
 		$data['capacitacion']=$this->pl_capacitaciones_model->obtener($id_capacitacion);
