@@ -38,6 +38,7 @@ if($listado)
         <th>Asignar Costos</th>
         <th>Asignar Evaluaciones</th>
         <th>Porcentaje</th>
+        <th>¿Puede Evaluar?</th>
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -68,6 +69,22 @@ if($listado)
         
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos_eval/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center"><?php echo $valor['porcentaje'];?> %</td>
+         <td align="center" class="datatable_icono">
+        <?php
+        if($valor['puede_evaluar']==1)
+		{
+			?>
+            <a onClick="puede_evaluar(<?php echo $valor[$this->$model->id_tabla]; ?>,0);" title=""><?php echo img('public/img/accept.png');?></a>
+            <?php
+		}else{
+			?>
+            <a onClick="puede_evaluar(<?php echo $valor[$this->$model->id_tabla]; ?>,1);" title=""><?php echo img('public/img/cancel.png');?></a>
+            <?php
+			}
+		?>
+        
+        
+        </td>
         <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
@@ -161,6 +178,22 @@ function temas(id)
 		});
 }
 
+
+function puede_evaluar(id,num)
+{
+	
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/puede_evaluar');?>",
+		  type:"POST",
+		  data:{'id':id,'puede_evaluar':num},
+		  success:function(data){
+		  		
+		  		location.reload();
+		
+		  }
+		  
+		});
+}
 
 
 </script>

@@ -25,7 +25,7 @@ class Evaluar_modulo_model extends CI_Model {
 	
 	function obtener_modulos($id_capacitacion=0)
 	{
-		return $this->db->get_where('pl_modulos',array('id_capacitacion'=>$id_capacitacion,'activo'=>1))->result_array();
+		return $this->db->get_where('pl_modulos',array('id_capacitacion'=>$id_capacitacion,'activo'=>1,'puede_evaluar'=>1))->result_array();
 	}
 	
 	function obtener_modulo($id_modulo=0)

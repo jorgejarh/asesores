@@ -86,7 +86,12 @@ $(document).ready(function(e) {
 
 function evaluar_modulo()
 {
-	window.location="<?php echo site_url($this->nombre_controlador.'/evaluar');?>/"+$('#id_modulo').val();
+	if(!$('#id_modulo').val())
+	{
+		alert("Debe seleccionar un modulo");
+	}else{
+		window.location="<?php echo site_url($this->nombre_controlador.'/evaluar');?>/"+$('#id_modulo').val();
+	}
 }
 
 </script> 

@@ -418,7 +418,18 @@ class Pl_modulos extends CI_Controller {
 		
 	}
 	
-	
+	function puede_evaluar()
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		if ($post)
+		{
+			$id=$post['id'];
+			unset($post['id']);
+			$resultado= $this->$model->puede_evaluar($id,$post);
+			
+		}
+	}
 	
 	
 

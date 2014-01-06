@@ -67,6 +67,11 @@ class Pl_modulos_model extends CI_Model {
 		
 	}
 	
+	function puede_evaluar($id,$data)
+	{
+		return $this->db->update($this->nombre_tabla,$data,array($this->id_tabla=>$id));
+	}
+	
 	
 	function actualizar($datos,$id)
 	{
