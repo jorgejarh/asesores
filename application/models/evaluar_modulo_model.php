@@ -25,7 +25,8 @@ class Evaluar_modulo_model extends CI_Model {
 	
 	function obtener_modulos($id_capacitacion=0)
 	{
-		return $this->db->get_where('pl_modulos',array('id_capacitacion'=>$id_capacitacion,'activo'=>1,'puede_evaluar'=>1))->result_array();
+		//return $this->db->get_where('pl_modulos',array('id_capacitacion'=>$id_capacitacion,'activo'=>1,'puede_evaluar'=>1))->result_array();
+		return $this->db->get_where('pl_modulos',array('id_capacitacion'=>$id_capacitacion,'activo'=>1))->result_array();
 	}
 	
 	function obtener_modulo($id_modulo=0)
@@ -75,17 +76,17 @@ class Evaluar_modulo_model extends CI_Model {
 	
 	function obtener_nota($id_modulo,$id_inscripcion_personas,$id_eval_x_mod)
 	{
-		$nota=$this->db->where("id_modulo = ".$id_modulo." and id_inscripcion_persona = ".$id_inscripcion_personas." and id_eval_x_mod = ".$id_eval_x_mod." ")->get("pl_modulos_notas")->row_array();
+		$nota=$this->db->select("a.*, b.porcentaje")->where("a.id_eval_x_mod = b.id_eval_x_mod and a.id_modulo = ".$id_modulo." and a.id_inscripcion_persona = ".$id_inscripcion_personas." and a.id_eval_x_mod = ".$id_eval_x_mod." ")->get("pl_modulos_notas a, pl_modulos_eval b")->row_array();
 		return $nota;
 	}
 	
 	
 	function obtener_evaluaciones($id_modulo=0)
 	{
-		return $this->db->select("a.*, b.nombre_tipo_evaluacion",false)->where("a.id_tipo_evaluacion = b.id_tipo_evaluacion and a.id_modulo=".$id_modulo." ")->order_by("a.id_eval_x_mod")->get('pl_modulos_eval a, mante_tipo_evaluacion b')->result_array();
+		return $this->db->select("a.*, b.nombre_tipo_evaluacion",false)->where("a.id_tipo_evaluacion = b.id_tipo_evaluacion and a.id_modulo=".$id_modulo." and a.activo = 1 ")->order_by("a.id_eval_x_mod")->get('pl_modulos_eval a, mante_tipo_evaluacion b')->result_array();
 	}
 	
-	function guardar_notas($notas=array())
+	function guardar_notas($notas=array(),$campo_id,$id_modulo)
 	{
 		if(is_array($notas))
 		{
@@ -94,6 +95,7 @@ class Evaluar_modulo_model extends CI_Model {
 				$this->db->update("pl_modulos_notas",array('nota'=>$nota),array('id_nota_x_modulo'=>$key));
 			}
 		}
+		$this->db->update("pl_modulos",array('puede_evaluar'=>0),array($campo_id=>$id_modulo));
 		
 	}
 	

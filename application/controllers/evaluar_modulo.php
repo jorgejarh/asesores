@@ -84,8 +84,10 @@ class Evaluar_modulo extends CI_Controller {
 			
 			if($notas)
 			{
-				$this->$model->guardar_notas($notas);
+				$this->load->model("pl_modulos_model");
+				$this->$model->guardar_notas($notas,$this->pl_modulos_model->id_tabla,$id_modulo);
 				$data['mensaje']="Notas Actualizadas Correctamente.";
+				$data['modulo']=$this->$model->obtener_modulo($id_modulo);
 			}
 			
 			

@@ -64,6 +64,17 @@ class Pl_modulos_eval_model extends CI_Model {
 			return false;
 			}
 	}
+	
+	function validar_existente_editar($id_tipo_evaluacion,$id_modulo,$id=0)
+	{
+		$resultado=$this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_modulo'=>$id_modulo,'a.id_tipo_evaluacion'=>$id_tipo_evaluacion,$this->id_tabla." !="=>$id))->row_array();
+		if($resultado)
+		{
+			return true;
+		}else{
+			return false;
+			}
+	}
 		
 	function nuevo($datos)
 	{
@@ -79,6 +90,9 @@ class Pl_modulos_eval_model extends CI_Model {
 		return $this->db->update($this->nombre_tabla,array('activo'=>0),array($this->id_tabla=>$id));
 		//return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
 	}
-	
+	function actualizar($datos,$id)
+	{
+		return $this->db->update($this->nombre_tabla,$datos,array($this->id_tabla=>$id));
+	}
 		
 }

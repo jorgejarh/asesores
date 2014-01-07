@@ -94,4 +94,6 @@ function evaluar_modulo()
 	}
 }
 
+
+
 </script> 

@@ -46,7 +46,18 @@ class Mante_tipos_evaluacion_model extends CI_Model {
 	
 	function eliminar($id)
 	{
-		return $this->db->update($this->nombre_tabla,array('activo'=>0),array($this->id_tabla=>$id));
+		$resultado=$this->db->get_where('pl_modulos_eval',array('id_tipo_evaluacion'=>$id))->result_array();
+		
+		if($resultado)
+		{
+			foreach($resultado as $valor)
+			{
+				$this->db->delete('pl_modulos_notas',array('id_eval_x_mod'=>$valor['id_eval_x_mod']));
+			}
+		}
+		$this->db->delete('pl_modulos_eval',array('id_tipo_evaluacion'=>$id));
+		
+		return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
 	}
 	
 }

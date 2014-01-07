@@ -4,7 +4,7 @@
 echo form_open('',array(
 							'id'=>'form_nuevo'
 								),
-					array('id'=>$dato[$this->$model->id_tabla])
+					array('id'=>$dato[$this->$model->id_tabla],'id_modulo'=>$dato['id_modulo'])
 				);
 ?>
 
@@ -38,60 +38,7 @@ echo form_open('',array(
 		<?php
 	}
 	?>
-    <tr>
-		<td>Fecha Prevista Inicio:</td>
-		<td> 
-        	
-			<?php echo form_input('fecha_prevista', $dato['fecha_prevista'],'id="fecha_pre"  readonly="readonly" '); ?>
-            <div class="conte_f">
-            	<div class="f_pre d"></div>
-            </div>
-		</td>
-	</tr>
-    <tr>
-		<td>Fecha Prevista Final:</td>
-		<td> 
-        	
-			<?php echo form_input('fecha_prevista_fin', $dato['fecha_prevista_fin'],'id="fecha_pre_f"  readonly="readonly"'); ?>
-            <div class="conte_f">
-            	<div class="f_pre_f d"></div>
-            </div>
-		</td>
-	</tr>
-    <tr>
-		<td colspan="2"><h3 align="center">Contenido desde perfil</h3><hr></td>
-	</tr>
-    <tr>
-		<td colspan="2" align="center"><input type="radio" id="cambiar_curr" name="a" /> Curricula  <input type="radio" id="cambiar_adoc" name="a" checked="checked" />ADOC<hr></td>
-	</tr>
-	<tr class="s_curr">
-		<td>Curricula:</td>
-		<td> 
-			<?php $curriculas[0]="-Seleccione-"; ksort($curriculas); echo form_dropdown('',$curriculas,'','id="curricula_select"'); ?>
-		</td>
-	</tr>
-	<tr class="s_curr">
-		<td>Perfil:</td>
-		<td> 
-			<div id="div_result_perfil">
-
-			</div>
-		</td>
-	</tr>
-    <tr class="s_curr">
-		<td>Contenido de perfil:</td>
-		<td> 
-			<div id="div_result_contenido">
-
-			</div>
-		</td>
-	</tr>
-    <tr class="s_adoc">
-		<td>Contenido de Modulo:</td>
-		<td> 
-			<?php echo form_textarea('contenido',$dato['contenido'],'id="destino_contenido"');?>
-		</td>
-	</tr>
+    
 	<tr>
 		<td colspan="2"><hr></td>
 	</tr>
@@ -129,28 +76,6 @@ echo form_close();
 <script type="text/javascript">
 $(document).ready(function(e){
 	
-	
-	
-	$('#cambiar_curr').click(function(e) {
-        $('.s_adoc').hide();
-		$('.s_curr').show();
-    });
-	
-	$('#cambiar_adoc').click(function(e) {
-        $('.s_curr').hide();
-		$('.s_adoc').show();
-    });
-	$('#cambiar_adoc').click();
-	
-	
-	$('#id_contenido').live('change',function(){
-		
-		$('#destino_contenido').html($(this).val());
-		
-		});
-	
-	
-
 	$('#form_nuevo').submit(function(){
 
 		form=$(this);
@@ -165,7 +90,7 @@ $(document).ready(function(e){
 				  dataType:"json",
 				  data:$(this).serialize(),
 				  success:function(data){
-
+					  
 				  		if(data.error)
 				  		{
 				  			$('#div_error').html(data.mensaje);
@@ -182,7 +107,7 @@ $(document).ready(function(e){
 				   error:function()
 				  {
 					 alert("Error al procesar, Intente de nuevo"); 
-					 location.reload();
+					 //location.reload();
 				  }
 			});
 
@@ -190,73 +115,6 @@ $(document).ready(function(e){
 
 		return false;
 	});
-	
-	
-	
-	$('#curricula_select').change(function(event){
-
-		$('#div_result_sucursal').fadeOut('fast');
-		$.ajax({
-				  url: "<?php echo site_url($this->nombre_controlador.'/select_curricula');?>",
-				  type:"POST",
-				  dataType:"json",
-				  data:{id:$(this).val()},
-				  success:function(data){
-
-				  		$('#div_result_perfil').html(data.html);
-				  		$('#div_result_perfil').fadeIn('fast');
-						
-						$('#perfiles_select').change();
-				  		
-				  }
-			});
-
-	});
-	
-	$('#perfiles_select').live('change',function(event){
-
-		$('#div_result_sucursal').fadeOut('fast');
-		$.ajax({
-				  url: "<?php echo site_url($this->nombre_controlador.'/select_perfil');?>",
-				  type:"POST",
-				  dataType:"json",
-				  data:{id:$(this).val()},
-				  success:function(data){
-
-				  		$('#div_result_contenido').html(data.html);
-				  		$('#div_result_contenido').fadeIn('fast');
-				  		
-				  }
-			});
-
-	});
-	
-	
-	$( ".f_pre" ).datepicker({
-		 altField: "#fecha_pre",
-		altFormat: "yy-mm-dd"
-		});
-	
-	$( ".f_pre_f" ).datepicker({
-		 altField: "#fecha_pre_f",
-		altFormat: "yy-mm-dd"
-		});
-	
-	$( ".f_pre" ).hide();
-	$( ".f_pre_f" ).hide();
-	
-	$( ".ui-datepicker-calendar a" ).live('click',function(){
-			$( ".f_pre" ).hide();
-			$( ".f_pre_f" ).hide();
-		});
-	
-	$('#fecha_pre').click(function(){
-		$( ".f_pre" ).show();
-		});
-	$('#fecha_pre_f').click(function(){
-		$( ".f_pre_f" ).show();
-		});
-	
 	
 });
 

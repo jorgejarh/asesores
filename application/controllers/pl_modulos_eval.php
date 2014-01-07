@@ -46,6 +46,14 @@ class Pl_modulos_eval extends CI_Controller {
 	{
 		$model=$this->modelo_usar;
 		$suma_porcentaje=$this->$model->obtener_sum_porcentaje($this->input->post("id_modulo"));
+		
+		if($this->input->post('id'))
+		{
+			
+			$data['dato']=$this->$model->obtener($this->input->post('id'));
+			$suma_porcentaje=$suma_porcentaje-$data['dato']['porcentaje'];
+		}
+		
 		if(($suma_porcentaje+$str)>100 || $str==0)
 		{
 			$this->form_validation->set_message('validar_porcentaje', 'La suma del %s no debe pasar del 100%');
@@ -58,7 +66,13 @@ class Pl_modulos_eval extends CI_Controller {
 	public function validar_evaluacion_existente($str)
 	{
 		$model=$this->modelo_usar;
-		$existe=$this->$model->validar_existente($str,$this->input->post("id_modulo"));
+		if($this->input->post('id'))
+		{
+			$existe=$this->$model->validar_existente_editar($str,$this->input->post("id_modulo"),$this->input->post('id'));
+		}else{
+			$existe=$this->$model->validar_existente($str,$this->input->post("id_modulo"));
+			}
+		
 		if($existe)
 		{
 			$this->form_validation->set_message('validar_evaluacion_existente', 'Este tipo de evaluacion ya existe');
@@ -111,8 +125,6 @@ class Pl_modulos_eval extends CI_Controller {
 				$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
 			}
 			
-			
-			
 			if($this->form_validation->run()==TRUE)
 			{
 
@@ -133,6 +145,60 @@ class Pl_modulos_eval extends CI_Controller {
 		}
 
 	}
+	
+	public function editar($id=0)
+	{
+		$model=$this->modelo_usar;
+		$data['model']=$model;			
+		$data['dato']=$this->$model->obtener($id);
+		
+		if($data['dato'])
+		{
+			$data['title']=$this->nombre_titulo." - Editar";
+			$this->load->view($this->carpeta_view.'/form_editar',$data);
+		}else{
+			redirect($this->nombre_controlador);
+
+		}
+
+		
+	}
+	
+	
+	public function actualizar()
+	{
+		$post=$this->input->post();
+		$model=$this->modelo_usar;
+		if($post)
+		{
+			$id=$post['id'];
+			unset($post['id']);
+						
+			$json=array();
+			
+			foreach($this->campos as $llave=>$valor)		
+			{
+				$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
+			}
+			
+			if($this->form_validation->run()==TRUE)
+			{
+				$resultado=$this->$model->actualizar($post,$id);
+
+				$json['error']=false;
+
+
+			}else{
+
+				$json['error']=true;
+				$json['mensaje']=traer_errores_form();
+			}
+
+
+			echo json_encode($json);
+		}
+	}
+	
 	
 	public function eliminar()
 	{

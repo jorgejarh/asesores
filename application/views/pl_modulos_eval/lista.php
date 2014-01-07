@@ -27,6 +27,7 @@ if($listado)
       <tr>
       	<th>Evaluación</th>
         <th>Porcentaje</th>
+        <th>Editar</th>
         <th>Eliminar</th>
       </tr>
     </thead>
@@ -38,6 +39,7 @@ if($listado)
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_tipo_evaluacion'];?></td>
         <td align="center"><?php echo $valor['porcentaje'];?> %</td>
+        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
           <a onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
