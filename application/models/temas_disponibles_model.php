@@ -18,7 +18,7 @@ class Temas_disponibles_model extends CI_Model {
 		
 		
 		
-			$data=$this->db->get_where('pl_planes a',array('a.activo'=>1))->result_array();
+			$data=$this->db->get_where('pl_planes a',array('a.activo'=>1,'id_estado_plan'=>2))->result_array();
 			if($data)
 			{//11
 				

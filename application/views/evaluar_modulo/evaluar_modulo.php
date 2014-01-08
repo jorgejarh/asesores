@@ -1,15 +1,22 @@
 <div id="content_main" class="clearfix">
   <div id="main_panel_container" class="left" style="width:900px;">
     <div id="dashboard" style="width:100%;padding-bottom:50px;">
-      <h2 class="ico_mug">
+      <h2 class="ico_mug" style="font-size:15px;">
         <table style="width:100%;">
           <tr>
             <td><?php echo $title; ?></td>
           </tr>
         </table>
       </h2>
-      <div class="" style="width:90%; margin:auto;" align="center">
-      
+      <div class="" style="width:90%; margin:auto;" align="center" >
+      		<div id="notas">
+            <div class="info_">
+            	<p align="left"><b>Plan:</b> <?php echo $modalidad['nombre_plan'];?></p>
+            	<p align="left"><b>Modalidad:</b> <?php echo $modalidad['nombre_modalidad'];?></p>
+            	<p align="left"><b>Capacitación:</b> <?php echo $capacitacion['nombre_capacitacion'];?></p>
+                <p align="left"><b>Modulo:</b> <?php echo $modulo['nombre_modulo'];?></p>
+                <p align="left"><b>Registro de notas</b></p>
+            </div>
       		<?php
             if($nombres_personas)
 			{
@@ -19,7 +26,7 @@
 			?>
             <table align="center" width="95%">
             	<tr>
-                	<td align="center" valign="middle"><b>Nombre de la persona</b></td>
+                	<td align="left" valign="middle"><b>Nombre de la persona</b></td>
                     <?php
                     foreach($evaluaciones as $una_evaluacion)
 					{
@@ -78,20 +85,23 @@
 				?>
             </table>
             <br />
+            
+            <?php
+			echo form_close();
+			?>
+            </div>
             <?php
             if($modulo['puede_evaluar']==1)
 			{
 				?>
                  <div align="center"><input type="submit" value="Guardar" onclick="return validar_enviar();" /></div>
                 <?php
-			}
-			?>
-           
-            
-			<?php
-			
-			echo form_close();
-			
+			}else{
+				?>
+                <div align="center"><button onClick="imprimir_slect('notas');">Imprimir</button></div>
+                <?php
+				}
+				
 			}else{
 				?>
                 <h1>No hay Personas inscritas a este modulo</h1>
@@ -139,7 +149,15 @@ jQuery(function($){
 });
 
 
+
+
 </script> 
+
+<script type="text/javascript">
+function imprimir_slect(muestra)
+{var ficha=document.getElementById(muestra);var ventimp=window.open(' ','popimpr');ventimp.document.write(ficha.innerHTML);ventimp.document.close();ventimp.print();ventimp.close();}
+</script>
+
 <style>
 .tr_table:hover
 {
@@ -153,5 +171,10 @@ jQuery(function($){
 .texto_nota
 {
 	width:50px!important;
+}
+
+.info_
+{
+	display:none;
 }
 </style>
