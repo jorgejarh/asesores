@@ -169,8 +169,8 @@ h1,h2,h3,h4
 													?>
                                                 		<td align="left" valign="middle" ><p><?php echo $modulo['nombre_modulo'];?></p></td>
                                                         <td align="center" valign="middle"><?php echo number_format(obtener_costo_modulo($modulo['id_modulo']),2); ?></td>
-                                                        <td align="center" valign="middle"><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista']));?></td>
-                                                        <td align="center" valign="middle"><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista_fin']));?></td>
+                                                        <td align="center" valign="middle"><?php echo date('d/m/Y',strtotime($modulo['fecha_prevista']));?></td>
+                                                        <td align="center" valign="middle"><?php echo date('d/m/Y',strtotime($modulo['fecha_prevista_fin']));?></td>
                                                     </tr>
                                                     
                                                     <?php

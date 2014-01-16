@@ -91,11 +91,7 @@ class Inscripcion extends CI_Controller {
 				$data['mensaje']="Datos Guardados.";
 			}
 			
-			if(isset($post['id_personas']))
-			{
-				
-				
-			}
+			
 			
 			$data['title']="Inscripcion al modulo ".$data['modulo']['nombre_modulo'];
 			$data['template']="sistema";

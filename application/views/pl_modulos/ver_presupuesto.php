@@ -25,38 +25,38 @@ $(document).ready(function(event){
 </script>
 <style>
 .div_imprimir {
-	position:absolute;
-	right:0px;
-	top:0px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
 }
 .div_imprimir .opciones_ {
 	background: #FFF;
-	position:absolute;
-	right:0px;
-	top:0px;
-	list-style:none;
-	text-align:center;
-	padding:0px;
-	margin:0px;
-	width:150px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	list-style: none;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	width: 150px;
 }
 .div_imprimir .opciones_ li {
-	border:1px solid #CCC;
-	padding:5px;
+	border: 1px solid #CCC;
+	padding: 5px;
 }
 .div_imprimir .opciones_ li:hover {
-	background:#CCC;
+	background: #CCC;
 }
 .div_imprimir .opciones_ li a {
-	text-decoration:none;
-	color:#333;
+	text-decoration: none;
+	color: #333;
 }
 .cuadro td {
-	border:#000 solid 1px;
-	padding:5px;
+	border: #000 solid 1px;
+	padding: 5px;
 }
 p {
-	margin:5px;
+	margin: 5px;
 }
 </style>
 </head>
@@ -64,12 +64,12 @@ p {
 <body>
 <div style="width:900px; margin:auto;" align="center">
   <div style="position:relative; " align="right">
-    <div class="div_imprimir"><?php echo img(array('src'=>'public/img/icono-impresora.jpg','width'=>50));?> 
+    <div class="div_imprimir"><?php echo img(array('src'=>'public/img/icono-impresora.jpg','width'=>50));?>
       <ul class="opciones_">
         <li ><a href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$datos['id_modulo']."/web");?>" target="_blank">Desde la web</a></li>
         <li><a  href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$datos['id_modulo']."/pdf");?>" target="_blank">Exportar a pdf</a></li>
         <li><a href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$datos['id_modulo']."/docx");?>" target="_blank">Exportar a word</a></li>
-      </ul> 
+      </ul>
     </div>
   </div>
   <h2 align="center">Presupuesto de eventos de Capacitacion</h2>
@@ -93,7 +93,9 @@ p {
     </tr>
     <tr>
       <td align="left" valign="middle"><p><b># Partic. Estimados: </b></p></td>
-      <td align="left" valign="middle"><p><?php echo $datos['data_capacitacion']['n_participantes'];?></p></td>
+      <td align="left" valign="middle"><p>
+          <?php $participantes=$datos['data_capacitacion']['n_participantes']+$datos['data_capacitacion']['n_participantes_no']+$datos['data_capacitacion']['n_participantes_ex']; echo $participantes;?>
+        </p></td>
     </tr>
     <tr>
       <td align="left" valign="middle"><p><b>Fecha Prevista: </b></p></td>
@@ -197,15 +199,71 @@ p {
     <?php
 				}
 			}
-			
-			
-			
-			
 		}
 	}
 	?>
   </table>
-</div>
+  <div style="margin-top:40px;">
+  	 <h2 align="center">RESULTADOS FINANCIEROS ESTIMADOS</h2>
+     <table width="80%" class="cuadro">
+     	<tr>
+        	<td align="center"><b>Detalle</b></td>
+            <td align="center"><b>Valor</b></td>
+        </tr>
+     	<tr>
+        	<td align="left"><p>Número estimado de Participantes de Cooperativas Afiliadas</p></td>
+            <td align="center"><p><?php echo $datos['data_capacitacion']['n_participantes'];?></p></td>
+        </tr>
+        <tr>
+        	<td align="left"><p>Número de participantes de cooperativas no afiliadas  </p></td>
+            <td align="center"><p><?php echo $datos['data_capacitacion']['n_participantes_no'];?></p></td>
+        </tr>
+        <tr>
+        	<td align="left"><p>Número de participantes extyranjeros  confirmados al evento  </p></td>
+            <td align="center"><p><?php echo $datos['data_capacitacion']['n_participantes_ex'];?></p></td>
+        </tr>
+        <tr>
+        	<td align="left"><p>Costo del Evento a cooperativas afiliadas  </p></td>
+            <td align="center"><p>$ <?php echo $datos['precio_venta'];?></p></td>
+        </tr>
+        <tr>
+        	<td align="left"><p>Costo del Evento a cooperativas no afiliadas </p></td>
+            <td align="center"><p>$ <?php echo $datos['precio_venta_no'];?></p></td>
+        </tr>
+        <tr>
+        	<td align="left"><p>Costo del Evento a Internacionales  </p></td>
+            <td align="center"><p>$ <?php echo $datos['precio_venta_ex'];?></p></td>
+        </tr>
+        <tr>
+        	<td align="left" colspan="2"><b>RESULTADOS ESTIMADOS DEL EVENTO</b></td>
+           
+        </tr>
+        <tr>
+        	<td align="left"><p>Ingreso Proyectado de participantes de cooperativas afiliadas </p></td>
+            <td align="center"><p>$ <?php $total_afiliados=$datos['data_capacitacion']['n_participantes']*$datos['precio_venta']; echo formato_dinero($total_afiliados);?></p></td>
+        </tr>
+        <tr>
+        	<td align="left"><p>Ingreso Proyectado de participantes de cooperativas no afiliadas </p></td>
+            <td align="center"><p>$ <?php $total_no_afiliados=$datos['data_capacitacion']['n_participantes_no']*$datos['precio_venta_no']; echo formato_dinero($total_no_afiliados);?></p></td>
+        </tr>
+        <tr>
+        	<td align="left"><p>Ingreso Proyectado de Extranjeros  </p></td>
+            <td align="center"><p>$ <?php $total_extranjeros=$datos['data_capacitacion']['n_participantes_ex']*$datos['precio_venta_ex']; echo formato_dinero($total_extranjeros);?></p></td>
+        </tr>
+        <tr>
+        	<td align="left"><p>Total ingresos Proyectados </p></td>
+            <td align="center"><p>$ <?php $total_proyectado=$total_afiliados+$total_no_afiliados+$total_extranjeros; echo formato_dinero($total_proyectado);?></p></td>
+        </tr>
+         <tr>
+        	<td align="left"><p>Menos Costos del Evento</p></td>
+            <td align="center"><p>$ <?php echo formato_dinero($costo_total);?></p></td>
+        </tr>
+         <tr>
+        	<td align="left"><p>Resultado Economico del Evento </p></td>
+            <td align="center"><p>$ <?php echo formato_dinero($total_proyectado-$costo_total);?></p></td>
+        </tr>
+     </table>
+  </div>
 </div>
 </body>
 </html>

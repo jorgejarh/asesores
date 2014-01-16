@@ -76,7 +76,6 @@ class Inscripcion_model extends CI_Model {
 				$this->db->update('inscripcion_asistencia',array('id_modulo'=>$modulo['id_modulo'],
 															'asistio'=>$post['asistio'][$key],
 															'aprobado'=>$post['aprobado'][$key],
-															'nota'=>$post['nota'][$key],
 															'fecha_creacion'=>date('Y-m-d H:i:s'),
 															'id_usuario'=>$this->datos_user['id_usuario']
 															),

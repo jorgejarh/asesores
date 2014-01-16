@@ -45,7 +45,7 @@ if($listado)
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_capacitacion'];?></td>
         <td><?php echo $valor['num_modulos'];?></td>
-        <td><?php echo $valor['n_participantes'];?></td>
+        <td><?php echo $valor['n_participantes']+$valor['n_participantes_no']+$valor['n_participantes_ex'];?></td>
         <td>$ <?php $total=obtener_costo_capacitacion($valor[$this->$model->id_tabla]); echo number_format($total,2);?></td>
         <td>$ <?php echo number_format($total/$valor['n_participantes'],2);?></td>
         

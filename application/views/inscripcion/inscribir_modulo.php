@@ -33,15 +33,13 @@
 				?>
                 <tr class="tr_table">
                 	<td align="center" valign="middle"><?php echo $valor['apellidos'].", ".$valor['nombres'];?> <input type="hidden" name="id_asistencia[<?php echo $van;?>]" value="<?php  echo $valor['id_asistencia'];?>" /></td>
-                    <!--<td align="center" valign="middle"><input type="hidden" name="asistio[<?php echo $van;?>]" value="0" /><input  <?php if($valor['asistio']==1){ echo 'checked="checked"'; } ?> type="checkbox" value="1" name="asistio[<?php echo $van;?>]" /></td>-->
+                    
                     
                     <td align="center" valign="middle"><input type="hidden" name="asistio[<?php echo $van;?>]" value="0" /><input  <?php if($valor['asistio']==1){ echo 'checked="checked"'; } ?> type="checkbox" value="1" name="asistio[<?php echo $van;?>]" /></td>
                     
                     <td align="center" valign="middle"><input type="hidden" name="aprobado[<?php echo $van;?>]" value="0" /><input  <?php if($valor['aprobado']==1){ echo 'checked="checked"'; } ?> type="checkbox" value="1" name="aprobado[<?php echo $van;?>]" />
-                    <input type="hidden" name="nota[<?php echo $van;?>]" value="0" />
+                   
                     </td>
-                    
-                   <!--<td align="center" valign="middle"><input class="texto_nota" type="text" name="nota[<?php echo $van;?>]" value="<?php echo $valor['nota'];?>" /></td>-->
                 </tr>
                 <?php
 					$van++;

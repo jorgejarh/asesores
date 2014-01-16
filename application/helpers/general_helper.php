@@ -465,5 +465,10 @@ function obtener_monto_pagado_por_cooperativa( $id_cooperativa = 0 )
 	return $total;
 }
 
+function formato_dinero($cantidad)
+{
+	return number_format($cantidad,2);
+}
+
 
 ?>

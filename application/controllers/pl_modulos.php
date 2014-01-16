@@ -41,7 +41,9 @@ class Pl_modulos extends CI_Controller {
 		$this->set_campo("objetivo_modulo","Objetivo",'required|xss_clean','textarea');
 		$this->set_campo("facilitadores[]","Facilitadores",'required|xss_clean','multi_select',preparar_select($this->mante_facilitadores_model->obtener(),'id_facilitador','nombre_completo'));
 		$this->set_campo("id_lugar","Lugar",'required|xss_clean','select',preparar_select($this->mante_lugares_model->obtener(),'id_lugar','nombre_lugar'));
-		$this->set_campo("precio_venta","Inversion",'required|numeric|xss_clean');
+		$this->set_campo("precio_venta","Inversion para afiliados $",'required|numeric|xss_clean');
+		$this->set_campo("precio_venta_no","Inversion para no afiliados $",'required|numeric|xss_clean');
+		$this->set_campo("precio_venta_ex","Inversion para extranjeros $",'required|numeric|xss_clean');
 		$this->set_campo("porcentaje","Porcentaje de evaluación",'required|numeric|xss_clean|is_natural_no_zero|callback_validar_porcentaje_capacitacion');
 		
     }

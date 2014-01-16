@@ -232,12 +232,16 @@ $(document).ready(function(e){
 	
 	$( ".f_pre" ).datepicker({
 		 altField: "#fecha_pre",
-		altFormat: "yy-mm-dd"
+		altFormat: "yy-mm-dd",
+		changeMonth: true,
+      changeYear: true
 		});
 	
 	$( ".f_pre_f" ).datepicker({
 		 altField: "#fecha_pre_f",
-		altFormat: "yy-mm-dd"
+		altFormat: "yy-mm-dd",
+		changeMonth: true,
+      changeYear: true
 		});
 	
 	$( ".f_pre" ).hide();

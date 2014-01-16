@@ -53,11 +53,11 @@ CREATE TABLE `conf_cooperativa` (
   `f_creacion` datetime default NULL,
   `gerente` longtext,
   PRIMARY KEY  (`id_cooperativa`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Data for the table `conf_cooperativa` */
 
-insert  into `conf_cooperativa`(`id_cooperativa`,`cooperativa`,`ubicacion`,`telefono`,`fax`,`email`,`credito_fiscal`,`logotipo`,`activo`,`id_usuario`,`f_creacion`,`gerente`) values (6,'ACODJAR DE R.L.','Central','2333 7400','2333 7406','gerencia.acodjar@fedecaces.com','236548','logos/logo_acodjar.png',1,NULL,NULL,NULL),(9,'ACACCIBA','Central','2618 2427','2333 7406','gerencia.acacciba@fedecaces.com','236549','logos/logo_acacciba.png',1,NULL,NULL,NULL),(10,'ACACEMIHA DE R.L.','Central','2272 6527','2333 7406','acacemiha@fedecaces.com','236550','logos/logo_acacemiha.png',1,NULL,NULL,NULL),(19,'ACACES DE R.L.','daf','2288 2103','2333 7406','info@acaces.com.sv','236551','logos/logo-cooperativo02.jpg',1,NULL,NULL,NULL);
+insert  into `conf_cooperativa`(`id_cooperativa`,`cooperativa`,`ubicacion`,`telefono`,`fax`,`email`,`credito_fiscal`,`logotipo`,`activo`,`id_usuario`,`f_creacion`,`gerente`) values (1,'Ninguna','Ninguna','77304729','','jarh@jarh.com','123456',NULL,1,NULL,NULL,'-'),(6,'ACODJAR DE R.L.','Central','2333 7400','2333 7406','gerencia.acodjar@fedecaces.com','236548','logos/logo_acodjar.png',1,NULL,NULL,NULL),(9,'ACACCIBA','Central','2618 2427','2333 7406','gerencia.acacciba@fedecaces.com','236549','logos/logo_acacciba.png',1,NULL,NULL,NULL),(10,'ACACEMIHA DE R.L.','Central','2272 6527','2333 7406','acacemiha@fedecaces.com','236550','logos/logo_acacemiha.png',1,NULL,NULL,NULL),(19,'ACACES DE R.L.','daf','2288 2103','2333 7406','info@acaces.com.sv','236551','logos/logo-cooperativo02.jpg',1,NULL,NULL,NULL);
 
 /*Table structure for table `conf_menu` */
 
@@ -305,8 +305,7 @@ CREATE TABLE `inscripcion_asistencia` (
   `id_asistencia` int(11) NOT NULL auto_increment,
   `id_modulo` int(11) NOT NULL,
   `id_inscripcion_personas` int(11) NOT NULL,
-  `nota` decimal(4,2) default '0.00',
-  `asistio` int(11) default '0',
+  `asistio` int(11) default '1',
   `aprobado` int(11) NOT NULL default '0',
   `fecha_creacion` datetime NOT NULL,
   `id_usuario` int(11) default NULL,
@@ -315,7 +314,7 @@ CREATE TABLE `inscripcion_asistencia` (
 
 /*Data for the table `inscripcion_asistencia` */
 
-insert  into `inscripcion_asistencia`(`id_asistencia`,`id_modulo`,`id_inscripcion_personas`,`nota`,`asistio`,`aprobado`,`fecha_creacion`,`id_usuario`) values (9,7,1,'0.00',0,0,'2014-01-03 21:36:06',1),(10,7,2,'0.00',1,1,'2014-01-03 21:36:06',1),(11,7,3,'0.00',1,1,'2014-01-03 21:36:06',1),(12,7,4,'0.00',1,1,'2014-01-03 21:36:06',1);
+insert  into `inscripcion_asistencia`(`id_asistencia`,`id_modulo`,`id_inscripcion_personas`,`asistio`,`aprobado`,`fecha_creacion`,`id_usuario`) values (9,7,1,1,0,'2014-01-15 20:39:18',1),(10,7,2,1,1,'2014-01-15 20:39:18',1),(11,7,3,1,1,'2014-01-15 20:39:18',1),(12,7,4,1,1,'2014-01-15 20:39:18',1);
 
 /*Table structure for table `inscripcion_temas` */
 
@@ -604,11 +603,11 @@ CREATE TABLE `mante_tipo_evaluacion` (
   `f_creacion` datetime default NULL,
   `id_usuario` int(11) default NULL,
   PRIMARY KEY  (`id_tipo_evaluacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_tipo_evaluacion` */
 
-insert  into `mante_tipo_evaluacion`(`id_tipo_evaluacion`,`nombre_tipo_evaluacion`,`activo`,`f_creacion`,`id_usuario`) values (1,'Examen',1,'2014-01-03 21:10:49',1),(2,'Tarea Escrita',1,'2014-01-03 21:11:03',1),(3,'Laboratorio',1,'2014-01-03 21:25:41',1);
+insert  into `mante_tipo_evaluacion`(`id_tipo_evaluacion`,`nombre_tipo_evaluacion`,`activo`,`f_creacion`,`id_usuario`) values (1,'Examen',1,'2014-01-03 21:10:49',1),(4,'Laboratorio',1,'2014-01-06 22:25:53',1),(5,'Tarea Escrita',1,'2014-01-06 22:26:07',1),(6,'Asistencia',1,'2014-01-06 22:26:15',1);
 
 /*Table structure for table `mante_tipos_facilitadores` */
 
@@ -687,11 +686,11 @@ CREATE TABLE `pl_modulo_facilitador` (
   KEY `FK_pl_modulo_facilitador_2` (`id_modulo`),
   CONSTRAINT `FK_pl_modulo_facilitador` FOREIGN KEY (`id_facilitador`) REFERENCES `mante_facilitadores` (`id_facilitador`),
   CONSTRAINT `FK_pl_modulo_facilitador_2` FOREIGN KEY (`id_modulo`) REFERENCES `pl_modulos` (`id_modulo`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulo_facilitador` */
 
-insert  into `pl_modulo_facilitador`(`id_modulo_facilitador`,`id_modulo`,`id_facilitador`) values (7,1,2),(8,2,1),(9,2,2),(22,9,2),(25,8,2),(26,5,2),(27,6,1),(29,7,1),(30,7,2);
+insert  into `pl_modulo_facilitador`(`id_modulo_facilitador`,`id_modulo`,`id_facilitador`) values (8,2,1),(9,2,2),(22,9,2),(25,8,2),(27,6,1),(29,7,1),(30,7,2),(31,5,2),(33,3,1),(34,1,2);
 
 /*Table structure for table `pl_modulos` */
 
@@ -703,6 +702,8 @@ CREATE TABLE `pl_modulos` (
   `id_lugar` int(11) default NULL,
   `nombre_modulo` varchar(100) default NULL,
   `precio_venta` decimal(12,2) default '0.00',
+  `precio_venta_no` decimal(12,2) default '0.00',
+  `precio_venta_ex` decimal(12,2) default '0.00',
   `objetivo_modulo` varchar(300) default NULL,
   `id_contenido` int(11) default '0',
   `fecha_prevista` date default NULL,
@@ -723,7 +724,7 @@ CREATE TABLE `pl_modulos` (
 
 /*Data for the table `pl_modulos` */
 
-insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`id_lugar`,`nombre_modulo`,`precio_venta`,`objetivo_modulo`,`id_contenido`,`fecha_prevista`,`fecha_prevista_fin`,`contenido`,`temas`,`porcentaje`,`puede_evaluar`,`id_usuario`,`f_creacion`,`activo`) values (1,2,2,'Gestion mercadologica de las agencias','10.00','Gestion mercadologica de las agencias',0,'2013-06-16','2013-06-16','Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa','[]','20.00',1,1,'2013-06-13 22:34:18',1),(2,2,2,'Gestioin mercadologica de las agencias','20.00','Gestioin mercadologica de las agencias',0,'2013-06-16','2013-06-16','Contenido 1\r\n','[]','0.00',1,1,'2013-06-13 22:35:05',0),(3,2,3,'Base normativa para la apertura de agencias','40.00','Base normativa para la apertura de agencias',0,'2013-07-10','2013-07-10','contenido 2','[]','10.00',1,1,'2013-06-13 22:35:50',1),(4,2,3,'NUevo modulo','10.00','NUevo modulo',0,'2013-06-16','2013-06-16','aaaaaaaaaaa','[]','0.00',1,1,'2013-06-16 15:58:55',0),(5,3,3,'Casos de estudio en terreno','20.00','Modulo 1 Modulo 1 ',0,'2013-07-26','2013-07-26','hola','[]','0.00',1,1,'2013-06-19 21:11:56',1),(6,1,2,'V congreso de mujeres','30.00','Modulo 1',0,'2013-07-26','2013-07-26','Modulo 1','[]','0.00',1,1,'2013-07-01 21:13:20',1),(7,4,3,'Modulo 1. Aspectos legales y normativos relacionados a la mora y a la cobranza','10.00','modulo 1',0,'2014-01-04','2014-01-04','modulo 1','[]','100.00',1,1,'2013-07-01 21:18:36',1),(8,5,2,'Presentacion de codigo de buenas Practicas','40.00','Modulo 1',0,'2013-07-26','2013-07-26','Modulo 1','[]','0.00',1,1,'2013-07-01 21:19:24',1),(9,6,2,'Modulo 1','10.00','Modulo 1',0,'2013-07-19','2013-07-19','Contenido','[]','0.00',1,1,'2013-07-26 19:40:23',1);
+insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`id_lugar`,`nombre_modulo`,`precio_venta`,`precio_venta_no`,`precio_venta_ex`,`objetivo_modulo`,`id_contenido`,`fecha_prevista`,`fecha_prevista_fin`,`contenido`,`temas`,`porcentaje`,`puede_evaluar`,`id_usuario`,`f_creacion`,`activo`) values (1,2,2,'Gestion mercadologica de las agencias','10.00','0.00','0.00','Gestion mercadologica de las agencias',0,'2013-06-16','2013-06-16','Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa','[]','50.00',1,1,'2013-06-13 22:34:18',1),(2,2,2,'Gestioin mercadologica de las agencias','20.00','0.00','0.00','Gestioin mercadologica de las agencias',0,'2013-06-16','2013-06-16','Contenido 1\r\n','[]','0.00',1,1,'2013-06-13 22:35:05',0),(3,2,3,'Base normativa para la apertura de agencias','40.00','50.00','60.00','Base normativa para la apertura de agencias',0,'2013-07-10','2013-07-10','contenido 2','[]','50.00',1,1,'2013-06-13 22:35:50',1),(4,2,3,'NUevo modulo','10.00','0.00','0.00','NUevo modulo',0,'2013-06-16','2013-06-16','aaaaaaaaaaa','[]','0.00',1,1,'2013-06-16 15:58:55',0),(5,3,3,'Casos de estudio en terreno','10.00','20.00','30.00','Modulo 1 Modulo 1 ',0,'2013-07-26','2013-07-26','hola','[]','100.00',1,1,'2013-06-19 21:11:56',1),(6,1,2,'V congreso de mujeres','30.00','0.00','0.00','Modulo 1',0,'2013-07-26','2013-07-26','Modulo 1','[]','0.00',1,1,'2013-07-01 21:13:20',1),(7,4,3,'Modulo 1. Aspectos legales y normativos relacionados a la mora y a la cobranza','10.00','0.00','0.00','modulo 1',0,'2014-01-04','2014-01-04','modulo 1','[]','100.00',0,1,'2013-07-01 21:18:36',1),(8,5,2,'Presentacion de codigo de buenas Practicas','40.00','0.00','0.00','Modulo 1',0,'2013-07-26','2013-07-26','Modulo 1','[]','0.00',1,1,'2013-07-01 21:19:24',1),(9,6,2,'Modulo 1','10.00','0.00','0.00','Modulo 1',0,'2013-07-19','2013-07-19','Contenido','[]','0.00',1,1,'2013-07-26 19:40:23',1);
 
 /*Table structure for table `pl_modulos_eval` */
 
@@ -738,11 +739,11 @@ CREATE TABLE `pl_modulos_eval` (
   `id_usuario` int(11) default NULL,
   `activo` int(11) NOT NULL default '1',
   PRIMARY KEY  (`id_eval_x_mod`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_eval` */
 
-insert  into `pl_modulos_eval`(`id_eval_x_mod`,`id_modulo`,`id_tipo_evaluacion`,`porcentaje`,`f_creacion`,`id_usuario`,`activo`) values (9,1,1,'50.00','2014-01-04 20:22:16',1,1),(11,1,3,'20.00','2014-01-04 20:22:35',1,1),(12,1,2,'20.00','2014-01-04 20:22:55',1,0),(13,1,2,'30.00','2014-01-04 20:56:37',1,1),(14,7,1,'50.00','2014-01-04 23:11:46',1,1),(15,7,2,'40.00','2014-01-04 23:11:54',1,1),(16,7,3,'10.00','2014-01-04 23:12:08',1,1);
+insert  into `pl_modulos_eval`(`id_eval_x_mod`,`id_modulo`,`id_tipo_evaluacion`,`porcentaje`,`f_creacion`,`id_usuario`,`activo`) values (17,7,1,'20.00','2014-01-06 22:30:56',1,1),(18,7,4,'30.00','2014-01-06 22:34:09',1,1),(19,7,6,'20.00','2014-01-06 22:34:16',1,1),(20,7,5,'30.00','2014-01-06 22:34:30',1,1);
 
 /*Table structure for table `pl_modulos_notas` */
 
@@ -755,11 +756,11 @@ CREATE TABLE `pl_modulos_notas` (
   `id_eval_x_mod` int(11) NOT NULL,
   `nota` decimal(18,2) NOT NULL,
   PRIMARY KEY  (`id_nota_x_modulo`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_notas` */
 
-insert  into `pl_modulos_notas`(`id_nota_x_modulo`,`id_modulo`,`id_inscripcion_persona`,`id_eval_x_mod`,`nota`) values (1,7,3,14,'0.00'),(2,7,3,15,'0.00'),(3,7,3,16,'0.00'),(4,7,4,14,'5.00'),(5,7,4,15,'6.00'),(6,7,4,16,'0.00'),(7,7,1,14,'0.00'),(8,7,1,15,'0.00'),(9,7,1,16,'8.00'),(10,7,2,14,'0.00'),(11,7,2,15,'0.00'),(12,7,2,16,'0.00');
+insert  into `pl_modulos_notas`(`id_nota_x_modulo`,`id_modulo`,`id_inscripcion_persona`,`id_eval_x_mod`,`nota`) values (13,7,3,17,'9.00'),(14,7,3,18,'9.00'),(15,7,3,19,'9.00'),(16,7,3,20,'9.00'),(17,7,4,17,'5.00'),(18,7,4,18,'9.00'),(19,7,4,19,'4.00'),(20,7,4,20,'7.00'),(21,7,1,17,'6.00'),(22,7,1,18,'8.00'),(23,7,1,19,'8.00'),(24,7,1,20,'7.00'),(25,7,2,17,'4.00'),(26,7,2,18,'8.00'),(27,7,2,19,'9.00'),(28,7,2,20,'9.00');
 
 /*Table structure for table `pl_planes` */
 
@@ -839,7 +840,7 @@ CREATE TABLE `sitio_slider` (
 
 /*Data for the table `sitio_slider` */
 
-insert  into `sitio_slider`(`id_slider`,`nombre_imagen`,`texto_aparecer`,`nombre_archivo`) values (1,'Imagen 1','Imagen, Texto Imagen, Texto Imagen, Texto Imagen, Texto Imagen, Texto ','slider_1.jpg'),(2,'Imagen 2','Imagen, Texto Imagen, Texto Imagen, Texto Imagen, Texto Imagen, Texto ','slider_2.png'),(3,'Imagen 3','Imagen, Texto Imagen, Texto Imagen, Texto Imagen, Texto Imagen, Texto ','slider_3.gif'),(4,'Imagen 4','Imagen, Texto Imagen, Texto Imagen, Texto Imagen, Texto Imagen, Texto ','slider_4.jpg');
+insert  into `sitio_slider`(`id_slider`,`nombre_imagen`,`texto_aparecer`,`nombre_archivo`) values (1,'Imagen 1','Capacitación - Asesoría - Consultoría','i2.fw.png'),(2,'Imagen 2','Capacitación - Asesoría - Consultoría','i3.fw.png'),(3,'Imagen 3','Capacitación - Asesoría - Consultoría','i4.fw.png'),(4,'Imagen 4','Capacitación - Asesoría - Consultoría','i5.fw.png');
 
 /*Table structure for table `usu_coop_suc` */
 
@@ -950,7 +951,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-01-05 21:02:57',1,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-12-21 23:15:00',1,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-01-15 22:15:21',1,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2013-12-21 23:15:00',1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

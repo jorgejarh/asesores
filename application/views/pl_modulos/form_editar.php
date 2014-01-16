@@ -39,23 +39,26 @@ echo form_open('',array(
 	}
 	?>
     <tr>
-		<td>Fecha Prevista Inicio:</td>
+		<td>Fecha Prevista Inicio:  
+        </td>
 		<td> 
         	
-			<?php echo form_input('fecha_prevista', $dato['fecha_prevista'],'id="fecha_pre"  readonly="readonly" '); ?>
+			<?php echo form_input('fecha_prevista', date('Y-m-d',strtotime($dato['fecha_prevista'])),'id="fecha_pre"  readonly="readonly" '); ?>
             <div class="conte_f">
             	<div class="f_pre d"></div>
             </div>
+           
 		</td>
 	</tr>
     <tr>
 		<td>Fecha Prevista Final:</td>
 		<td> 
         	
-			<?php echo form_input('fecha_prevista_fin', $dato['fecha_prevista_fin'],'id="fecha_pre_f"  readonly="readonly"'); ?>
+			<?php echo form_input('fecha_prevista_fin', date('Y-m-d',strtotime($dato['fecha_prevista_fin'])),'id="fecha_pre_f"  readonly="readonly"'); ?>
             <div class="conte_f">
             	<div class="f_pre_f d"></div>
             </div>
+         
 		</td>
 	</tr>
     <tr>
@@ -234,12 +237,18 @@ $(document).ready(function(e){
 	
 	$( ".f_pre" ).datepicker({
 		 altField: "#fecha_pre",
-		altFormat: "yy-mm-dd"
+		altFormat: "yy-mm-dd",
+		changeMonth: true,
+      changeYear: true
 		});
+	
+	
 	
 	$( ".f_pre_f" ).datepicker({
 		 altField: "#fecha_pre_f",
-		altFormat: "yy-mm-dd"
+		altFormat: "yy-mm-dd",
+		changeMonth: true,
+      changeYear: true
 		});
 	
 	$( ".f_pre" ).hide();
@@ -258,6 +267,8 @@ $(document).ready(function(e){
 		});
 	
 	
+	$('#fecha_pre').val('<?php echo date('Y-m-d',strtotime($dato['fecha_prevista']));?>');
+	$('#fecha_pre_f').val('<?php echo date('Y-m-d',strtotime($dato['fecha_prevista_fin']));?>');
 });
 
 
