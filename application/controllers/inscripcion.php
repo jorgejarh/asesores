@@ -15,7 +15,16 @@ class Inscripcion extends CI_Controller {
 	public $campos=array();
 	
 	
-	
+	public function set_campo($nombre_campo,$nombre_mostrar,$reglas="",$tipo_elemento="text",$datos_select=array())
+	{
+		$this->campos[]=array(
+								'nombre_campo'=>$nombre_campo,
+								'nombre_mostrar'=>$nombre_mostrar,
+								'reglas'=>$reglas,
+								'tipo_elemento'=>$tipo_elemento,
+								'datos_select'=>$datos_select
+								);
+	}
 	
 	function __construct()
     {
@@ -23,6 +32,12 @@ class Inscripcion extends CI_Controller {
         $this->datos_user=comprobar_login();
         $model=$this->modelo_usar;
 		$this->load->model($model);
+		
+		$this->set_campo("dui","DUI",'required|xss_clean');
+		$this->set_campo("nombres","Nombres",'required|xss_clean');
+		$this->set_campo("apellidos","Apellidos",'required|xss_clean');
+		$this->set_campo("id_sucursal","Sucursal",'required|xss_clean','select',preparar_select($this->$model->obtener_sucursales($this->datos_user['info_s']),'id_sucursal','sucursal'));
+		$this->set_campo("id_cargo","Cargo",'required|xss_clean','select',preparar_select($this->$model->obtener_cargos(),'id_cargo','nombre_cargo'));
 
     }
 
@@ -109,5 +124,14 @@ class Inscripcion extends CI_Controller {
 		
 	}
 	
+	public function nueva_persona()
+	{
+		$this->load->model('pl_planes_model');
+		$model=$this->modelo_usar;
+		$data=array();
+		$data['title']=$this->nombre_titulo." - Nuevo";
+		$data['id']=$id;
+		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
+	}
 	
 }

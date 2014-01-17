@@ -22,7 +22,7 @@
                 	<td align="center" valign="middle"><b>Nombre de la persona</b></td>
                     <td align="center" valign="middle"><b>Preinscrito</b></td>
                     <td align="center" valign="middle"><b>Inscribir</b></td>
-                    <!--<td align="center" valign="middle"><b>Nota</b></td>-->
+                   
                 </tr>
                 <?php
 				$son=count($nombres_personas);
@@ -51,7 +51,13 @@
 			<?php
 			
 			echo form_close();
-			
+			?>
+            
+            <button onClick="nueva_persona();">Inscribir Persona</button>
+            
+            <div class="form_user" style="display:none;"></div>
+            
+            <?php
 			}else{
 				?>
                 <h1>No hay Personas inscritas a este modulo</h1>
@@ -80,10 +86,24 @@ $(document).ready(function(e) {
 	?>
 	
 	$('.texto_nota').mask("99.99");
+
+
 	
 });
 
-
+function nueva_persona()
+{
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/nueva_persona');?>",
+		  type:"POST",
+		  success:function(data){
+			  
+			  	$('.form_user').html(data);
+		  		$('.form_user').toggle();
+		  }
+		  
+		});
+}
 </script> 
 <style>
 .tr_table:hover
