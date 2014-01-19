@@ -84,7 +84,9 @@ $(document).ready(function(e){
 				  			$('.cargando_').fadeOut('fast');
 				  			form.fadeIn('fast');
 				  		}else{
-
+							$('.cargando_').fadeOut('fast');
+							crear_tr(data.datos.apellidos, data.datos.nombres, data.datos.id_asistencia, data.datos.nombre_cooperativa, data.datos.nombre_sucursal, data.datos.nombre_cargo);
+							
 				  			//$.fancybox(data.mensaje);
 
 				  			//location.reload();

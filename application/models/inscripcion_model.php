@@ -59,15 +59,25 @@ class Inscripcion_model extends CI_Model {
 				}
 		}
 		unset($inscripciones);
-		$this->db->select('b.*, c.*',false);
+		$this->db->select('b.*, 
+							c.*, 
+							(select cooperativa from conf_cooperativa z where z.id_cooperativa = a.id_cooperativa limit 1) as nombre_cooperativa,
+							(select sucursal from conf_sucursal y where y.id_sucursal = b.id_sucursal limit 1) as nombre_sucursal,
+							(select nombre_cargo from mante_cargos x where x.id_cargo = b.id_cargo limit 1) as nombre_cargo',false);
 		$this->db->where("a.id_inscripcion_tema = b.id_inscripcion_tema");
 		$this->db->where(" b.id_inscripcion_personas = c.id_inscripcion_personas",false,false);
-		return $this->db->order_by('b.apellidos')->get_where('inscripcion_temas a, inscripcion_temas_personas b, inscripcion_asistencia c',array('a.id_capacitacion'=>$id_capacitacion))->result_array();
+		return $this->db->order_by('b.apellidos')
+					->get_where('inscripcion_temas a, inscripcion_temas_personas b, inscripcion_asistencia c',array('a.id_capacitacion'=>$id_capacitacion))
+					->result_array();
 	}
 	
 	function obtener_una_persona($id_inscripcion_persona=0,$id_capacitacion=0)
 	{
-		$this->db->select('b.*, c.*',false);
+		$this->db->select('b.*, 
+							c.*, 
+							(select cooperativa from conf_cooperativa z where z.id_cooperativa = a.id_cooperativa limit 1) as nombre_cooperativa,
+							(select sucursal from conf_sucursal y where y.id_sucursal = b.id_sucursal limit 1) as nombre_sucursal,
+							(select nombre_cargo from mante_cargos x where x.id_cargo = b.id_cargo limit 1) as nombre_cargo',false);
 		$this->db->where("a.id_inscripcion_tema = b.id_inscripcion_tema");
 		$this->db->where(" b.id_inscripcion_personas = c.id_inscripcion_personas",false,false);
 		$this->db->where(" c.id_inscripcion_personas = ".$id_inscripcion_persona,false,false);
