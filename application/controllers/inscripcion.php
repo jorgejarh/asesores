@@ -32,12 +32,15 @@ class Inscripcion extends CI_Controller {
         $this->datos_user=comprobar_login();
         $model=$this->modelo_usar;
 		$this->load->model($model);
+		$this->load->model("cooperativa_model");
+		$this->load->model("mante_cargos_model");
 		
 		$this->set_campo("dui","DUI",'required|xss_clean');
 		$this->set_campo("nombres","Nombres",'required|xss_clean');
 		$this->set_campo("apellidos","Apellidos",'required|xss_clean');
-		$this->set_campo("id_sucursal","Sucursal",'required|xss_clean','select',preparar_select($this->$model->obtener_sucursales($this->datos_user['info_s']),'id_sucursal','sucursal'));
-		$this->set_campo("id_cargo","Cargo",'required|xss_clean','select',preparar_select($this->$model->obtener_cargos(),'id_cargo','nombre_cargo'));
+		$this->set_campo("id_cooperativa","Cooperativa",'required|xss_clean','select',preparar_select($this->cooperativa_model->obtener_cooperativa(),'id_cooperativa','cooperativa'));
+		$this->set_campo("id_sucursal","Sucursal",'xss_clean','select',array('0'=>'Ninguna'));
+		$this->set_campo("id_cargo","Cargo",'required|xss_clean','select',preparar_select($this->mante_cargos_model->obtener(),'id_cargo','nombre_cargo'));
 
     }
 
@@ -106,8 +109,6 @@ class Inscripcion extends CI_Controller {
 				$data['mensaje']="Datos Guardados.";
 			}
 			
-			
-			
 			$data['title']="Inscripcion al modulo ".$data['modulo']['nombre_modulo'];
 			$data['template']="sistema";
 			$data['contenido']=$this->carpeta_view."/inscribir_modulo";
@@ -124,14 +125,93 @@ class Inscripcion extends CI_Controller {
 		
 	}
 	
-	public function nueva_persona()
+	public function nueva_persona($id_capacitacion=0,$id_modulo=0)
 	{
 		$this->load->model('pl_planes_model');
 		$model=$this->modelo_usar;
 		$data=array();
 		$data['title']=$this->nombre_titulo." - Nuevo";
-		$data['id']=$id;
+		$data['id']=$id_capacitacion;
+		$data['id_modulo']=$id_modulo;
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
+	}
+	
+	public function sucursales($id_cooperativa=0)
+	{
+		$lista=array();
+		$lista[0]="Ninguna";
+		$sucursales=$this->cooperativa_model->obtener_sucursales_x_cooperativas($id_cooperativa);
+		
+		foreach($sucursales as $indice=>$valor)
+		{
+			$lista[$valor['id_sucursal']]=$valor["sucursal"];
+		}
+		foreach($lista as $key=>$val)
+		{
+			echo '<option value="'.$key.'">'.$val.'</option>';
+		}
+	}
+	
+	public function insertar($id_modulo=0)
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		
+		
+		if($post)
+		{
+			unset($post['a']);
+			$json=array();
+			
+			$this->load->model("inscripcion_temas_model");
+			
+			$inscripcion_tema=$this->inscripcion_temas_model->obtener_inscripcion($post);
+			
+			$post['id_inscripcion_tema']=$inscripcion_tema['id_inscripcion_tema'];
+			unset($post['id_cooperativa']);
+			$id_capacitacion=$post['id_capacitacion'];
+			unset($post['id_capacitacion']);			
+			$inscrito=$this->$model->validar_inscrito($post['dui'],$post['id_inscripcion_tema']);
+			
+			if(!$inscrito)
+			{
+				foreach($this->campos as $llave=>$valor)		
+				{
+					$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
+				}
+				
+				if($this->form_validation->run()==TRUE)
+				{
+					
+					//$json['mensaje']=print_r($post,true);
+					$this->load->model("inscripcion_temas_personas_model");
+					
+					$resultado=$this->inscripcion_temas_personas_model->nuevo($post);
+					
+					$inscripcion_persona=$this->inscripcion_temas_personas_model->obtener($resultado);
+					
+					$data['nombres_personas']=$this->$model->obtener_personas($id_capacitacion,$id_modulo);
+					
+					$json['datos']=$this->$model->obtener_una_persona($inscripcion_persona['id_inscripcion_personas'],$id_capacitacion);
+					
+					$json['error']=false;
+	
+	
+				}else{
+	
+					$json['error']=true;
+					$json['mensaje']=traer_errores_form();
+				}
+			}else{
+				
+				$json['error']=true;
+				$json['mensaje']='<div class="warning" class="info_div"><span class="ico_error">La persona con DUI '.$post['dui'].' ya esta inscrita</dv>';
+				
+				}
+			
+			echo json_encode($json);
+
+		}
 	}
 	
 }

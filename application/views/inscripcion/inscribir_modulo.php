@@ -94,7 +94,7 @@ $(document).ready(function(e) {
 function nueva_persona()
 {
 	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/nueva_persona');?>",
+		  url: "<?php echo site_url($this->nombre_controlador.'/nueva_persona/'.$modulo['id_capacitacion'].'/'.$modulo['id_modulo']);?>",
 		  type:"POST",
 		  success:function(data){
 			  

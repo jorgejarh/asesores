@@ -5,7 +5,7 @@ echo form_open('',array(
 					'id'=>'form_nuevo'
 						),
 					array(
-					
+					'id_capacitacion'=>$id
 						)
 				);
 ?>
@@ -17,7 +17,25 @@ echo form_open('',array(
 		?>
 	<tr>
 		<td><?php echo $valor['nombre_mostrar']; ?>: </td>
-		<td><?php echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));?> </td>
+		<td><?php 
+			switch($valor['tipo_elemento'])
+			{
+				case 'text':
+					echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));
+					break;
+				
+				case 'select':
+					echo form_dropdown($valor['nombre_campo'],$valor['datos_select']);
+					break;
+				case 'textarea':
+					echo form_textarea($valor['nombre_campo'],'');
+					break;
+				case 'multi_select':
+					echo form_multiselect($valor['nombre_campo'],$valor['datos_select']);
+					break;
+			}
+			
+			?></td>
 	</tr>
 		<?php
 	}
@@ -54,7 +72,7 @@ $(document).ready(function(e){
 			$('.cargando_').fadeIn('fast');
 
 			$.ajax({
-				  url: "<?php echo site_url($this->nombre_controlador.'/insertar');?>",
+				  url: "<?php echo site_url($this->nombre_controlador.'/insertar/'.$id_modulo);?>",
 				  type:"POST",
 				  dataType:"json",
 				  data:$(this).serialize(),
@@ -69,8 +87,33 @@ $(document).ready(function(e){
 
 				  			//$.fancybox(data.mensaje);
 
-				  			location.reload();
+				  			//location.reload();
 				  		}
+				  		
+				  },
+				   error:function()
+				  {
+					 alert("Error al procesar, Intente de nuevo"); 
+					 //location.reload();
+				  }
+			});
+
+		});
+
+		return false;
+	});
+	
+	$('select[name=id_cooperativa]').change(function(e) {
+        id_cooperativa=$(this).val();
+		
+		$.ajax({
+				  url: "<?php echo site_url($this->nombre_controlador.'/sucursales');?>/"+id_cooperativa,
+				  type:"POST",
+				  dataType:"html",
+				  data:$(this).serialize(),
+				  success:function(data){
+
+				  		$('select[name=id_sucursal]').html(data);
 				  		
 				  },
 				   error:function()
@@ -79,11 +122,8 @@ $(document).ready(function(e){
 					 location.reload();
 				  }
 			});
-
-		});
-
-		return false;
-	});
+		
+    });
 
 });
 

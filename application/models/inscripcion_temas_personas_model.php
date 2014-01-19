@@ -62,9 +62,7 @@ class Inscripcion_temas_personas_model extends CI_Model {
 		$datos['f_creacion']=date('Y-m-d H:i:s');
 		$result= $this->db->insert($this->nombre_tabla,$datos);
 		$id=$this->db->insert_id();
-		
-		
-		return $result;
+		return $id;
 	}
 	
 	function eliminar($id)

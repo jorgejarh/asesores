@@ -76,10 +76,41 @@ class Inscripcion_temas_model extends CI_Model {
 		return $id;
 	}
 	
+	function nuevo_inscripcion($datos)
+	{
+		$datos['f_creacion']=date('Y-m-d H:i:s');
+		
+		$result= $this->db->insert($this->nombre_tabla,$datos);
+		$id=$this->db->insert_id();
+		
+		return $id;
+	}
+	
 	function eliminar($id)
 	{
 		$this->db->delete('inscripcion_temas_personas',array($this->id_tabla=>$id));
 		return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
 	}
+	
+	function obtener_inscripcion($datos)
+	{
+		$dato=$this->db->get_where($this->nombre_tabla,array('id_capacitacion'=>$datos['id_capacitacion'],'id_cooperativa'=>$datos['id_cooperativa']))->row_array();
+		
+		if(!$dato)
+		{
+			$usuario=$this->db->get_where("usu_coop_suc",array("id_cooperativa"=>$datos['id_cooperativa']))->row_array();
+			if(!$usuario)
+			{
+				$id_user=0;
+			}else{
+				$id_user=$usuario['id_usuario'];
+				}
+			$id=$this->nuevo_inscripcion(array('id_usuario'=>$id_user,'id_capacitacion'=>$datos['id_capacitacion'],'id_cooperativa'=>$datos['id_cooperativa']));
+			$dato=$this->obtener($id);
+		}
+		
+		return $dato;
+	}
+	
 	
 }

@@ -62,4 +62,9 @@ class Cooperativa_model extends CI_Model {
         return $resultado=$this->db->update('conf_cooperativa', array('activo'=>0),array('id_cooperativa'=>$id));
         //return $this->db->delete('conf_cooperativa', array('id_cooperativa'=>$id));        
     }
+	
+	public function obtener_sucursales_x_cooperativas($id_cooperativa=0)
+	{
+		return $this->db->select('a.*')->get_where('conf_sucursal a','a.activo = 1 and a.id_cooperativa = '.$id_cooperativa.' ')->result_array();
+	}
 }

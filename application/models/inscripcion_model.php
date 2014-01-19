@@ -65,6 +65,15 @@ class Inscripcion_model extends CI_Model {
 		return $this->db->order_by('b.apellidos')->get_where('inscripcion_temas a, inscripcion_temas_personas b, inscripcion_asistencia c',array('a.id_capacitacion'=>$id_capacitacion))->result_array();
 	}
 	
+	function obtener_una_persona($id_inscripcion_persona=0,$id_capacitacion=0)
+	{
+		$this->db->select('b.*, c.*',false);
+		$this->db->where("a.id_inscripcion_tema = b.id_inscripcion_tema");
+		$this->db->where(" b.id_inscripcion_personas = c.id_inscripcion_personas",false,false);
+		$this->db->where(" c.id_inscripcion_personas = ".$id_inscripcion_persona,false,false);
+		return $this->db->order_by('b.apellidos')->get_where('inscripcion_temas a, inscripcion_temas_personas b, inscripcion_asistencia c',array('a.id_capacitacion'=>$id_capacitacion))->row_array();
+	}
+	
 	function guardar_asistencia($post=array(),$modulo)
 	{
 		
@@ -91,5 +100,18 @@ class Inscripcion_model extends CI_Model {
 		
 	}
 	
+	
+	function validar_inscrito($dui='',$id_inscripcion=0)
+	{
+		$datos=$this->db->get_where('inscripcion_temas_personas',array('dui'=>$dui,'id_inscripcion_tema'=>$id_inscripcion))->row_array();
+		
+		if($datos)
+		{
+			return true;
+		}else{
+			return false;
+			}
+		
+	}
 	
 }
