@@ -53,7 +53,9 @@
 			echo form_close();
 			?>
             
-            <button onClick="nueva_persona();">Inscribir Persona</button> <button onClick="imprimir_asistencia();">Imprimir Asistencia</button> <button onClick="opinion_perticipantes();">Opinion de Participantes</button>
+            <button onClick="nueva_persona();">Inscribir Persona</button> <button onClick="imprimir_asistencia();">Imprimir Asistencia</button> 
+            <button onClick="opinion();">Opinion de Participantes</button> 
+            
             
             <div class="form_user" style="display:none;"></div>
             
@@ -133,6 +135,10 @@
 </div>
 <script type="text/javascript">
 
+function opinion()
+{
+	window.location="<?php echo site_url("opinion/index/".$modulo['id_modulo']);?>";
+}
 
 function imprimir_asistencia()
 {
