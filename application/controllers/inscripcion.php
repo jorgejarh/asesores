@@ -214,4 +214,44 @@ class Inscripcion extends CI_Controller {
 		}
 	}
 	
+	public function calificar($id_modulo=0)
+	{
+		$this->load->model('mante_resultados_model');
+		$this->load->model('mante_aspectos_model');
+		$model=$this->modelo_usar;
+		$data=array();
+		$data['title']="Calificar Modulo";
+		$data['resultados']=$this->mante_resultados_model->obtener();
+		foreach($data['resultados'] as $key=>$val)
+		{
+			$data['resultados'][$key]['aspectos']=$this->mante_aspectos_model->lista($val['id_mante_cat_resultado']);
+		}
+		$data['id_modulo']=$id_modulo;
+		$this->load->view($this->carpeta_view.'/calificar',$data);
+	}
+	
+	public function enviar_calificacion()
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		
+		if($post)
+		{
+			unset($post['a']);
+			$json=array();
+			
+			$id_modulo=$post["id_modulo"];
+			$this->$model->guardar_calificacion($post['calificacion'],$id_modulo);
+					
+			$json['error']=false;
+			echo json_encode($json);
+
+		}
+	}
+	
+	public function ver_resultados($id_modulo=0)
+	{
+		
+	}
+	
 }
