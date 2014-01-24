@@ -251,6 +251,30 @@ class Inscripcion extends CI_Controller {
 	
 	public function ver_resultados($id_modulo=0)
 	{
+		$data=array();
+		$this->load->model("pl_modulos_model");
+		$this->load->model("mante_facilitadores_model");
+		$this->load->model("mante_resultados_model");
+		$this->load->model("mante_aspectos_model");
+		$data['modulo']=$this->pl_modulos_model->obtener($id_modulo);
+		if($data['modulo'])
+		{
+			$data['modulo']['nombres_facilitadores']=array();
+			foreach($data['modulo']['facilitadores[]'] as $val)
+			{
+				$data['modulo']['nombres_facilitadores'][]=$this->mante_facilitadores_model->obtener($val);
+			}
+			
+			$data['resultados']=$this->mante_resultados_model->obtener();
+			
+			foreach($data['resultados'] as $key=>$val)
+			{
+				$data['resultados'][$key]['aspectos']=$this->mante_aspectos_model->obtener_por_modulo($id_modulo,$val['id_mante_cat_resultado']);
+			}
+			
+			
+			$this->load->view($this->carpeta_view.'/ver_resultados',$data);
+		}
 		
 	}
 	

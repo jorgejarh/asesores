@@ -407,11 +407,11 @@ CREATE TABLE `mante_cat_resultado_aspectos` (
   `f_creacion` datetime default NULL,
   `id_usuario` int(11) default NULL,
   PRIMARY KEY  (`id_aspectos_considerar`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_cat_resultado_aspectos` */
 
-insert  into `mante_cat_resultado_aspectos`(`id_aspectos_considerar`,`id_mante_cat_resultado`,`nombre`,`activo`,`f_creacion`,`id_usuario`) values (1,1,'Dominio del tema que impartió',1,'2014-01-21 00:05:50',1),(2,2,'Se alcanzaron los Objetivos',1,'2014-01-22 22:07:00',1),(3,3,'Los participantes se mostraron interesados',1,'2014-01-22 22:07:41',1),(4,4,'La calidad de trabajo del coordinador',1,'2014-01-22 22:08:27',1);
+insert  into `mante_cat_resultado_aspectos`(`id_aspectos_considerar`,`id_mante_cat_resultado`,`nombre`,`activo`,`f_creacion`,`id_usuario`) values (1,1,'Dominio del tema que impartió',1,'2014-01-21 00:05:50',1),(2,2,'Se alcanzaron los Objetivos',1,'2014-01-22 22:07:00',1),(3,3,'Los participantes se mostraron interesados',1,'2014-01-22 22:07:41',1),(4,4,'La calidad de trabajo del coordinador',1,'2014-01-22 22:08:27',1),(5,1,'Preparo sus sesiones',1,'2014-01-23 20:43:42',1),(6,3,'Compartieron sus conocimientos y experiencias',1,'2014-01-23 21:21:25',1),(7,1,'Fomento la participación del grupo',1,'2014-01-23 22:30:34',1),(8,1,'Se expreso con claridad',1,'2014-01-23 22:31:18',1),(9,1,'Cumplió con los tiempos programados',1,'2014-01-23 22:31:51',1),(10,1,'Supervisó el trabajo en equipo',1,'2014-01-23 22:33:08',1),(11,2,'El conocimiento adquirido es aplicable en su rol',1,'2014-01-23 22:35:26',1),(12,2,'El tema se desarrolló de forma teórico - práctico',1,'2014-01-23 22:36:31',1),(13,2,'Los Contenidos se abordaron con secuencia logica',1,'2014-01-23 22:37:06',1);
 
 /*Table structure for table `mante_costos` */
 
@@ -774,11 +774,11 @@ CREATE TABLE `pl_modulos_calificacion` (
   `id_usuario` int(11) default NULL,
   `f_creacion` datetime default NULL,
   PRIMARY KEY  (`id_calificacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_calificacion` */
 
-insert  into `pl_modulos_calificacion`(`id_calificacion`,`id_modulo`,`id_aspecto`,`nota`,`id_usuario`,`f_creacion`) values (5,7,4,'4.00',1,'2014-01-22 23:38:33'),(6,7,3,'5.00',1,'2014-01-22 23:38:33'),(7,7,2,'4.00',1,'2014-01-22 23:38:33'),(8,7,1,'3.00',1,'2014-01-22 23:38:33');
+insert  into `pl_modulos_calificacion`(`id_calificacion`,`id_modulo`,`id_aspecto`,`nota`,`id_usuario`,`f_creacion`) values (25,7,1,'3.00',1,'2014-01-23 22:37:53'),(26,7,5,'4.00',1,'2014-01-23 22:37:53'),(27,7,7,'2.00',1,'2014-01-23 22:37:53'),(28,7,8,'5.00',1,'2014-01-23 22:37:53'),(29,7,9,'5.00',1,'2014-01-23 22:37:53'),(30,7,10,'4.00',1,'2014-01-23 22:37:53'),(31,7,2,'4.00',1,'2014-01-23 22:37:53'),(32,7,11,'3.00',1,'2014-01-23 22:37:53'),(33,7,12,'5.00',1,'2014-01-23 22:37:53'),(34,7,13,'2.00',1,'2014-01-23 22:37:53'),(35,7,3,'4.00',1,'2014-01-23 22:37:53'),(36,7,6,'3.00',1,'2014-01-23 22:37:53'),(37,7,4,'5.00',1,'2014-01-23 22:37:53');
 
 /*Table structure for table `pl_modulos_eval` */
 
@@ -1026,7 +1026,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-01-22 22:04:05',1,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2014-01-16 21:57:05',1,2,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-01-23 18:38:11',1,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2014-01-16 21:57:05',1,2,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

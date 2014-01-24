@@ -26,7 +26,7 @@ class Mante_aspectos_model extends CI_Model {
 	{
 		if($id==0)
 		{
-			return $this->db->order_by($this->id_tabla,'DESC')->get_where($this->nombre_tabla,array('activo'=>1))->result_array();
+			return $this->db->order_by($this->id_tabla,'ASC')->get_where($this->nombre_tabla,array('activo'=>1))->result_array();
 		}else{
 			return $this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
 			}
@@ -35,7 +35,7 @@ class Mante_aspectos_model extends CI_Model {
 	function lista($id=0)
 	{
 		
-		return $this->db->order_by($this->id_tabla,'DESC')->get_where($this->nombre_tabla,array('activo'=>1,'id_mante_cat_resultado'=>$id))->result_array();
+		return $this->db->order_by($this->id_tabla,'ASC')->get_where($this->nombre_tabla,array('activo'=>1,'id_mante_cat_resultado'=>$id))->result_array();
 		
 	}
 	
@@ -55,6 +55,14 @@ class Mante_aspectos_model extends CI_Model {
 	function eliminar($id)
 	{
 		return $this->db->update($this->nombre_tabla,array('activo'=>0),array($this->id_tabla=>$id));
+	}
+	
+	function obtener_por_modulo($id_modulo=0,$id_mante_cat_resultado)
+	{
+		return $this->db->order_by("a.".$this->id_tabla,'ASC')
+						->where("b.id_aspecto = a.id_aspectos_considerar and b.id_modulo = ".$id_modulo)
+						->get_where($this->nombre_tabla." a, pl_modulos_calificacion b ",array('a.activo'=>1,'a.id_mante_cat_resultado'=>$id_mante_cat_resultado))
+						->result_array();
 	}
 	
 }

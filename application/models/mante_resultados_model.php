@@ -26,7 +26,7 @@ class Mante_resultados_model extends CI_Model {
 	{
 		if($id==0)
 		{
-			return $this->db->order_by($this->id_tabla,'DESC')->get_where($this->nombre_tabla,array('activo'=>1))->result_array();
+			return $this->db->order_by($this->id_tabla,'ASC')->get_where($this->nombre_tabla,array('activo'=>1))->result_array();
 		}else{
 			return $this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
 			}
