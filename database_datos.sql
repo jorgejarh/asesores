@@ -537,7 +537,7 @@ CREATE TABLE `mante_modalidades` (
 
 /*Data for the table `mante_modalidades` */
 
-insert  into `mante_modalidades`(`id_modalidad`,`nombre_modalidad`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (2,'Diplomados','Diplomados, Diplomados','2013-06-01 20:54:52',1,1),(3,'Seminarios y Foros','Seminarios y Foros, Seminarios y Foros','2013-06-02 17:05:20',1,1),(4,'Talleres','Talleres, Talleres','2013-06-02 17:05:41',1,1),(5,'Congresos','Congresos, Congresos','2013-06-02 17:05:55',1,1);
+insert  into `mante_modalidades`(`id_modalidad`,`nombre_modalidad`,`objetivo`,`f_creacion`,`id_usuario`,`activo`) values (1,'Modalidad 11','Objetivos Objetivos 1','2013-06-01 20:40:16',1,0),(2,'Diplomados','Diplomados, Diplomados','2013-06-01 20:54:52',1,1),(3,'Seminarios y Foros','Seminarios y Foros, Seminarios y Foros','2013-06-02 17:05:20',1,1),(4,'Talleres','Talleres, Talleres','2013-06-02 17:05:41',1,1),(5,'Congresos','Congresos, Congresos','2013-06-02 17:05:55',1,1);
 
 /*Table structure for table `mante_modalidades_docs` */
 
@@ -1027,33 +1027,6 @@ CREATE TABLE `usu_usuario` (
 /*Data for the table `usu_usuario` */
 
 insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-01-23 18:38:11',1,1,1),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2014-01-16 21:57:05',1,2,1);
-
-/* Procedure structure for procedure `borrar_datos` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `borrar_datos` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `borrar_datos`()
-BEGIN
-	DELETE FROM abonos_cooperativas;
-	DELETE FROM inscripcion_asistencia;
-	DELETE FROM inscripcion_temas;
-	DELETE FROM inscripcion_temas_personas;
-	DELETE FROM mante_modalidades_docs;
-	DELETE FROM pl_capacitaciones;
-	DELETE FROM pl_modalidades;
-	DELETE FROM pl_modulo_facilitador;
-	DELETE FROM pl_subrubro;
-	DELETE FROM pl_rubro;
-	DELETE FROM pl_modulos;
-	DELETE FROM pl_modulos_calificacion;
-	DELETE FROM pl_modulos_eval;
-	DELETE FROM pl_modulos_notas;
-	DELETE FROM pl_opiniones;
-	DELETE FROM pl_planes;
-    END */$$
-DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

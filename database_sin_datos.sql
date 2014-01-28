@@ -314,8 +314,6 @@ CREATE TABLE `inscripcion_asistencia` (
 
 /*Data for the table `inscripcion_asistencia` */
 
-insert  into `inscripcion_asistencia`(`id_asistencia`,`id_modulo`,`id_inscripcion_personas`,`asistio`,`aprobado`,`fecha_creacion`,`id_usuario`) values (9,7,1,1,0,'2014-01-15 20:39:18',1),(10,7,2,1,1,'2014-01-15 20:39:18',1),(11,7,3,1,1,'2014-01-15 20:39:18',1),(12,7,4,1,1,'2014-01-15 20:39:18',1),(18,7,5,1,0,'2014-01-17 22:54:33',1),(25,7,6,1,0,'2014-01-17 23:20:44',1),(26,7,7,1,0,'2014-01-17 23:25:47',1),(27,7,8,1,0,'2014-01-17 23:28:13',1),(28,7,9,1,0,'2014-01-18 21:53:41',1),(29,7,10,1,0,'2014-01-18 21:54:47',1),(30,7,11,1,0,'2014-01-18 23:21:49',1);
-
 /*Table structure for table `inscripcion_temas` */
 
 DROP TABLE IF EXISTS `inscripcion_temas`;
@@ -333,8 +331,6 @@ CREATE TABLE `inscripcion_temas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inscripcion_temas` */
-
-insert  into `inscripcion_temas`(`id_inscripcion_tema`,`id_usuario`,`id_capacitacion`,`f_creacion`,`activo`,`id_cooperativa`) values (3,4,4,'2013-07-23 11:42:40',1,9),(5,7,4,'2013-11-07 21:42:06',1,9),(6,4,4,'2014-01-17 22:32:29',1,6),(7,0,4,'2014-01-17 22:41:59',1,1);
 
 /*Table structure for table `inscripcion_temas_personas` */
 
@@ -358,8 +354,6 @@ CREATE TABLE `inscripcion_temas_personas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inscripcion_temas_personas` */
-
-insert  into `inscripcion_temas_personas`(`id_inscripcion_personas`,`id_inscripcion_tema`,`dui`,`apellidos`,`nombres`,`id_sucursal`,`id_cargo`,`aprobado`,`id_usuario`,`f_creacion`,`activo`) values (1,5,'58745896-1','Rodriguez','carlos',8,2,0,7,'2013-11-07 22:13:40',1),(2,5,'65651651-6','Rodriguez Hernandez','Jorge Antonio',8,4,0,7,'2013-11-10 20:23:13',1),(3,5,'16165198-1','Amaya','Rolando',8,5,0,7,'2013-11-10 20:23:39',1),(4,5,'52065695-1','Perez','Jorge',7,1,0,7,'2013-11-10 20:23:53',1),(5,6,'65651598-7','Ayala Benitez','Juan Mario',10,2,0,1,'2014-01-17 22:53:54',1),(6,6,'16165338-8','Rodriguez H','Jose Luis',9,2,0,1,'2014-01-17 23:14:33',1),(7,6,'55465695-4','Henrriquez','Carlos Fernando',11,1,0,1,'2014-01-17 23:25:47',1),(8,6,'56551598-4','Gomez','Antonio E',10,4,0,1,'2014-01-17 23:28:12',1),(9,3,'57558598-3','Zelaya','Tereza',7,2,0,1,'2014-01-18 21:53:41',1),(10,3,'77888598-3','Guerra','Maria',7,3,0,1,'2014-01-18 21:54:47',1),(11,3,'53216889-6','Melendez','Carlos H',8,1,0,1,'2014-01-18 23:21:49',1);
 
 /*Table structure for table `mante_cargos` */
 
@@ -556,8 +550,6 @@ CREATE TABLE `mante_modalidades_docs` (
 
 /*Data for the table `mante_modalidades_docs` */
 
-insert  into `mante_modalidades_docs`(`id_doc`,`id_modalidad`,`nombre_doc`,`archivo`,`f_creacion`,`id_usuario`,`activo`) values (2,5,'Archivo 1','kkkkkkkkkkkkkkkkk.txt','2013-12-22 15:00:16',1,1),(3,5,'ffffffffff','654.txt','2013-12-22 15:09:42',1,1);
-
 /*Table structure for table `mante_profesion_x_facilitador` */
 
 DROP TABLE IF EXISTS `mante_profesion_x_facilitador`;
@@ -684,8 +676,6 @@ CREATE TABLE `pl_capacitaciones` (
 
 /*Data for the table `pl_capacitaciones` */
 
-insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`cerrado`,`n_participantes`,`n_participantes_no`,`n_participantes_ex`,`f_creacion`,`id_usuario`,`activo`) values (1,4,'V congreso de mujeres','Gestion Crediticia EfectivaGestion Crediticia EfectivaGestion Crediticia Efectiva',0,20,1,1,'2013-06-02 18:19:52',1,1),(2,3,'Gestion estrategica de agencias','Gestion estrategica de agencias',0,30,3,3,'2013-06-13 22:33:23',1,1),(3,3,'Valuos - casos practicos de campo','Tema 2 Tema 2 Tema 2',1,20,1,1,'2013-06-19 21:11:27',1,1),(4,1,'Gestion de recuperacion exitosa','Capacitacion 1',0,20,1,1,'2013-07-01 21:18:19',1,1),(5,2,'Presentacion de codigo de buenas Practicas','Seminario 1',0,30,1,1,'2013-07-01 21:19:11',1,1),(6,5,'Capacitacion 1','Capacitacion 1',0,20,1,1,'2013-07-26 19:39:07',1,1);
-
 /*Table structure for table `pl_modalidades` */
 
 DROP TABLE IF EXISTS `pl_modalidades`;
@@ -706,8 +696,6 @@ CREATE TABLE `pl_modalidades` (
 
 /*Data for the table `pl_modalidades` */
 
-insert  into `pl_modalidades`(`id_plan_modalidad`,`id_plan`,`id_modalidad`,`id_usuario`,`f_creacion`,`activo`) values (1,1,2,1,'2013-06-02 16:31:12',1),(2,1,3,1,'2013-06-02 17:22:10',1),(3,1,4,1,'2013-06-02 17:22:14',1),(4,1,5,1,'2013-06-02 17:22:20',1),(5,2,2,1,'2013-07-26 19:35:31',1);
-
 /*Table structure for table `pl_modulo_facilitador` */
 
 DROP TABLE IF EXISTS `pl_modulo_facilitador`;
@@ -724,8 +712,6 @@ CREATE TABLE `pl_modulo_facilitador` (
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulo_facilitador` */
-
-insert  into `pl_modulo_facilitador`(`id_modulo_facilitador`,`id_modulo`,`id_facilitador`) values (8,2,1),(9,2,2),(22,9,2),(25,8,2),(27,6,1),(29,7,1),(30,7,2),(31,5,2),(33,3,1),(34,1,2);
 
 /*Table structure for table `pl_modulos` */
 
@@ -760,8 +746,6 @@ CREATE TABLE `pl_modulos` (
 
 /*Data for the table `pl_modulos` */
 
-insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`id_lugar`,`nombre_modulo`,`precio_venta`,`precio_venta_no`,`precio_venta_ex`,`objetivo_modulo`,`id_contenido`,`fecha_prevista`,`fecha_prevista_fin`,`contenido`,`temas`,`porcentaje`,`puede_evaluar`,`id_usuario`,`f_creacion`,`activo`,`es_calificado`) values (1,2,2,'Gestion mercadologica de las agencias','10.00','0.00','0.00','Gestion mercadologica de las agencias',0,'2013-06-16','2013-06-16','Área de Formación: Filosofía Institucional y Servicios que presta la cooperativa','[]','50.00',1,1,'2013-06-13 22:34:18',1,0),(2,2,2,'Gestioin mercadologica de las agencias','20.00','0.00','0.00','Gestioin mercadologica de las agencias',0,'2013-06-16','2013-06-16','Contenido 1\r\n','[]','0.00',1,1,'2013-06-13 22:35:05',0,0),(3,2,3,'Base normativa para la apertura de agencias','40.00','50.00','60.00','Base normativa para la apertura de agencias',0,'2013-07-10','2013-07-10','contenido 2','[]','50.00',1,1,'2013-06-13 22:35:50',1,0),(4,2,3,'NUevo modulo','10.00','0.00','0.00','NUevo modulo',0,'2013-06-16','2013-06-16','aaaaaaaaaaa','[]','0.00',1,1,'2013-06-16 15:58:55',0,0),(5,3,3,'Casos de estudio en terreno','10.00','20.00','30.00','Modulo 1 Modulo 1 ',0,'2013-07-26','2013-07-26','hola','[]','100.00',1,1,'2013-06-19 21:11:56',1,0),(6,1,2,'V congreso de mujeres','30.00','0.00','0.00','Modulo 1',0,'2013-07-26','2013-07-26','Modulo 1','[]','0.00',1,1,'2013-07-01 21:13:20',1,0),(7,4,3,'Modulo 1. Aspectos legales y normativos relacionados a la mora y a la cobranza','10.00','0.00','0.00','modulo 1',0,'2014-01-04','2014-01-04','modulo 1','[]','100.00',1,1,'2013-07-01 21:18:36',1,1),(8,5,2,'Presentacion de codigo de buenas Practicas','40.00','0.00','0.00','Modulo 1',0,'2013-07-26','2013-07-26','Modulo 1','[]','0.00',1,1,'2013-07-01 21:19:24',1,0),(9,6,2,'Modulo 1','10.00','0.00','0.00','Modulo 1',0,'2013-07-19','2013-07-19','Contenido','[]','0.00',1,1,'2013-07-26 19:40:23',1,0);
-
 /*Table structure for table `pl_modulos_calificacion` */
 
 DROP TABLE IF EXISTS `pl_modulos_calificacion`;
@@ -777,8 +761,6 @@ CREATE TABLE `pl_modulos_calificacion` (
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_calificacion` */
-
-insert  into `pl_modulos_calificacion`(`id_calificacion`,`id_modulo`,`id_aspecto`,`nota`,`id_usuario`,`f_creacion`) values (25,7,1,'3.00',1,'2014-01-23 22:37:53'),(26,7,5,'4.00',1,'2014-01-23 22:37:53'),(27,7,7,'2.00',1,'2014-01-23 22:37:53'),(28,7,8,'5.00',1,'2014-01-23 22:37:53'),(29,7,9,'5.00',1,'2014-01-23 22:37:53'),(30,7,10,'4.00',1,'2014-01-23 22:37:53'),(31,7,2,'4.00',1,'2014-01-23 22:37:53'),(32,7,11,'3.00',1,'2014-01-23 22:37:53'),(33,7,12,'5.00',1,'2014-01-23 22:37:53'),(34,7,13,'2.00',1,'2014-01-23 22:37:53'),(35,7,3,'4.00',1,'2014-01-23 22:37:53'),(36,7,6,'3.00',1,'2014-01-23 22:37:53'),(37,7,4,'5.00',1,'2014-01-23 22:37:53');
 
 /*Table structure for table `pl_modulos_eval` */
 
@@ -797,8 +779,6 @@ CREATE TABLE `pl_modulos_eval` (
 
 /*Data for the table `pl_modulos_eval` */
 
-insert  into `pl_modulos_eval`(`id_eval_x_mod`,`id_modulo`,`id_tipo_evaluacion`,`porcentaje`,`f_creacion`,`id_usuario`,`activo`) values (17,7,1,'20.00','2014-01-06 22:30:56',1,1),(18,7,4,'30.00','2014-01-06 22:34:09',1,1),(19,7,6,'20.00','2014-01-06 22:34:16',1,1),(20,7,5,'30.00','2014-01-06 22:34:30',1,1);
-
 /*Table structure for table `pl_modulos_notas` */
 
 DROP TABLE IF EXISTS `pl_modulos_notas`;
@@ -813,8 +793,6 @@ CREATE TABLE `pl_modulos_notas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_notas` */
-
-insert  into `pl_modulos_notas`(`id_nota_x_modulo`,`id_modulo`,`id_inscripcion_persona`,`id_eval_x_mod`,`nota`) values (13,7,3,17,'9.00'),(14,7,3,18,'9.00'),(15,7,3,19,'9.00'),(16,7,3,20,'9.00'),(17,7,4,17,'5.00'),(18,7,4,18,'9.00'),(19,7,4,19,'4.00'),(20,7,4,20,'7.00'),(21,7,1,17,'6.00'),(22,7,1,18,'8.00'),(23,7,1,19,'8.00'),(24,7,1,20,'7.00'),(25,7,2,17,'4.00'),(26,7,2,18,'8.00'),(27,7,2,19,'9.00'),(28,7,2,20,'9.00'),(29,7,5,17,'0.00'),(30,7,5,18,'0.00'),(31,7,5,19,'0.00'),(32,7,5,20,'0.00'),(33,7,8,17,'0.00'),(34,7,8,18,'0.00'),(35,7,8,19,'0.00'),(36,7,8,20,'0.00'),(37,7,10,17,'0.00'),(38,7,10,18,'0.00'),(39,7,10,19,'0.00'),(40,7,10,20,'0.00'),(41,7,7,17,'0.00'),(42,7,7,18,'0.00'),(43,7,7,19,'0.00'),(44,7,7,20,'0.00'),(45,7,11,17,'0.00'),(46,7,11,18,'0.00'),(47,7,11,19,'0.00'),(48,7,11,20,'0.00'),(49,7,6,17,'0.00'),(50,7,6,18,'0.00'),(51,7,6,19,'0.00'),(52,7,6,20,'0.00'),(53,7,9,17,'0.00'),(54,7,9,18,'0.00'),(55,7,9,19,'0.00'),(56,7,9,20,'0.00');
 
 /*Table structure for table `pl_opiniones` */
 
@@ -835,8 +813,6 @@ CREATE TABLE `pl_opiniones` (
 
 /*Data for the table `pl_opiniones` */
 
-insert  into `pl_opiniones`(`id_opinion`,`id_modulo`,`mas_gusto`,`menos_gusto`,`sugerencia`,`areas_capacitado`,`f_creacion`,`id_usuario`,`activo`) values (1,7,'Bien','Nada','Mas tiempo','Publicidad','2014-01-19 23:14:47',1,1);
-
 /*Table structure for table `pl_planes` */
 
 DROP TABLE IF EXISTS `pl_planes`;
@@ -854,8 +830,6 @@ CREATE TABLE `pl_planes` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_planes` */
-
-insert  into `pl_planes`(`id_plan`,`nombre_plan`,`f_creacion`,`id_usuario`,`id_estado_plan`,`activo`) values (1,'Plan de capacitacion 2013','2013-06-02 14:14:59',1,2,1),(2,'Plan de capacitacion 2012','2013-06-19 21:26:23',1,2,1);
 
 /*Table structure for table `pl_rubro` */
 
@@ -877,8 +851,6 @@ CREATE TABLE `pl_rubro` (
 
 /*Data for the table `pl_rubro` */
 
-insert  into `pl_rubro`(`id_rubro`,`id_rubro_name`,`id_modulo`,`f_creacion`,`id_usuario`,`activo`) values (1,2,3,'2013-06-13 23:11:01',1,1),(2,3,3,'2013-06-13 23:12:09',1,1),(3,2,5,'2013-06-19 21:12:06',1,1),(4,3,3,'2013-06-19 22:16:39',1,1),(5,2,6,'2013-07-01 21:13:28',1,1),(6,3,7,'2013-07-01 21:18:42',1,1),(7,2,8,'2013-07-01 21:19:29',1,1),(8,2,9,'2013-07-26 19:40:35',1,1),(9,2,2,'2013-07-26 19:43:42',1,1),(10,3,2,'2013-07-26 19:44:09',1,1),(11,3,1,'2013-07-26 19:44:26',1,1),(12,3,4,'2013-07-26 19:44:48',1,1);
-
 /*Table structure for table `pl_subrubro` */
 
 DROP TABLE IF EXISTS `pl_subrubro`;
@@ -898,8 +870,6 @@ CREATE TABLE `pl_subrubro` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_subrubro` */
-
-insert  into `pl_subrubro`(`id_subrubro`,`id_rubro`,`nombre`,`unidades`,`costo`,`f_creacion`,`id_usuario`,`activo`) values (1,1,'Desayuno',20,'3.00','2013-06-13 23:11:26',1,1),(2,1,'Refrigerio',20,'2.00','2013-06-13 23:11:51',1,1),(3,2,'Folder',20,'0.50','2013-06-13 23:12:28',1,1),(4,2,'Lapiceros',20,'0.10','2013-06-13 23:12:44',1,1),(5,2,'Libreta',20,'5.00','2013-06-13 23:13:02',1,1),(6,3,'Almuerzo',10,'2.00','2013-06-19 21:12:22',1,1),(7,5,'Refrigerio',20,'2.00','2013-07-01 21:13:47',1,1),(8,6,'Cuadernos',20,'3.00','2013-07-01 21:18:52',1,1),(9,7,'Almuerzos',30,'2.00','2013-07-01 21:19:41',1,1),(10,8,'Desayuno',20,'1.00','2013-07-26 19:40:52',1,1),(11,8,'Refrijerio',20,'1.00','2013-07-26 19:41:12',1,1),(12,9,'Almuerzo',30,'2.00','2013-07-26 19:43:55',1,1),(13,10,'Folleto',30,'1.00','2013-07-26 19:44:18',1,1),(14,11,'Lapiceros',30,'0.50','2013-07-26 19:44:39',1,1),(15,12,'Folder',30,'0.50','2013-07-26 19:44:59',1,1),(16,12,'Cuadernos',30,'1.00','2013-07-26 19:45:07',1,1);
 
 /*Table structure for table `sitio_slider` */
 
@@ -1038,18 +1008,19 @@ DELIMITER $$
 BEGIN
 	DELETE FROM abonos_cooperativas;
 	DELETE FROM inscripcion_asistencia;
-	DELETE FROM inscripcion_temas;
 	DELETE FROM inscripcion_temas_personas;
+	DELETE FROM inscripcion_temas;
 	DELETE FROM mante_modalidades_docs;
-	DELETE FROM pl_capacitaciones;
-	DELETE FROM pl_modalidades;
-	DELETE FROM pl_modulo_facilitador;
 	DELETE FROM pl_subrubro;
 	DELETE FROM pl_rubro;
-	DELETE FROM pl_modulos;
+	DELETE FROM pl_modulo_facilitador;
 	DELETE FROM pl_modulos_calificacion;
 	DELETE FROM pl_modulos_eval;
 	DELETE FROM pl_modulos_notas;
+	DELETE FROM pl_modulos;
+	DELETE FROM pl_capacitaciones;
+	DELETE FROM pl_modalidades;
+	
 	DELETE FROM pl_opiniones;
 	DELETE FROM pl_planes;
     END */$$
