@@ -46,6 +46,10 @@ echo form_open('',array(
 	<tr>
 		<td colspan="2"><hr></td>
 	</tr>
+     <tr>
+		<td>Exigir Contraseña Nueva: </td>
+		<td><?php echo form_checkbox('exigir', '1', $dato['exigir']);?></td>
+	</tr>
 	<tr>
 		<td>Rol:</td>
 		<td> 

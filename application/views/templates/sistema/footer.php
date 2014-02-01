@@ -5,11 +5,9 @@
 		<p class="right">© <?php echo date('Y');?> </p>
 	</div><!-- end #footer -->
 </div><!-- end container -->
-
-</body>
-</html>
-
-
+<?php
+$usuario=comprobar_login();
+?>
 <script>
 	/**
 	 * Llama a la vista utilizada para que el usuario cambie su pass
@@ -25,4 +23,36 @@
 		  	}
 		});
 	}
+	
+<?php
+if($usuario['exigir']==1)
+{
+	?>
+	$(document).ready(function(e) {
+        $.ajax({
+			url: "<?php echo site_url('users/cambiar_contrasena'); ?>",
+		  	type:"post",
+		  	success:function(data){
+		  		$.fancybox(
+					{
+						closeBtn:false,
+						content:data,
+						closeClick:false,
+						close:false
+					}
+				);
+		  	}
+		});
+    });
+	
+	<?php
+}
+?>
+
+
 </script>
+
+</body>
+</html>
+
+

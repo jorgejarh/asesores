@@ -38,7 +38,7 @@ class Pl_modulos extends CI_Controller {
 		$this->load->model('mante_lugares_model');
 		
 		$this->set_campo("nombre_modulo","Nombre",'required|xss_clean');
-		$this->set_campo("objetivo_modulo","Objetivo",'required|xss_clean','textarea');
+		$this->set_campo("objetivo_modulo","Descripción",'required|xss_clean','textarea');
 		$this->set_campo("facilitadores[]","Facilitadores",'required|xss_clean','multi_select',preparar_select($this->mante_facilitadores_model->obtener(),'id_facilitador','nombre_completo'));
 		$this->set_campo("id_lugar","Lugar",'required|xss_clean','select',preparar_select($this->mante_lugares_model->obtener(),'id_lugar','nombre_lugar'));
 		$this->set_campo("precio_venta","Inversion para afiliados $",'required|numeric|xss_clean');

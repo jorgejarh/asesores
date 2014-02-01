@@ -178,6 +178,17 @@ $(document).ready(function(e){
 			$(this).parent('h4').parent('.sub_m').parent('.div_a').prev('h3').children('input[type=checkbox]').prop("checked","checked");
 			}
 		
+		// para los hijos
+		
+		if($(this).is(':checked'))
+		{
+			$(this).parent().next('div').find('.check').prop("checked","checked");
+		}else{
+			$(this).parent().next('div').find('.check').removeAttr("checked");
+			}
+		
+		
+		
     });
 	
 	

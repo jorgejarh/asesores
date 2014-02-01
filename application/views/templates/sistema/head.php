@@ -59,6 +59,18 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/js/fancybox/source/jquery.fancybox.css?v=2.1.4" media="screen" />
 </head>
 <body>
+<!--
+<?php
+echo "################################################################";
+echo "upload_max_filesize"."=".ini_get('upload_max_filesize');
+echo ",";
+echo "post_max_size"."=".ini_get('post_max_size');
+echo ",";
+echo "max_input_time"."=".ini_get('max_input_time');
+echo ",";
+echo "################################################################";
+?>
+-->
 <div class="container" id="container" style="overflow:visible;" >
     <div  id="header">
     	<div id="profile_info">

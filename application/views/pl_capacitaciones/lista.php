@@ -47,8 +47,15 @@ if($listado)
         <td><?php echo $valor['num_modulos'];?></td>
         <td><?php echo $valor['n_participantes']+$valor['n_participantes_no']+$valor['n_participantes_ex'];?></td>
         <td>$ <?php $total=obtener_costo_capacitacion($valor[$this->$model->id_tabla]); echo number_format($total,2);?></td>
-        <td>$ <?php echo number_format($total/$valor['n_participantes'],2);?></td>
-        
+        <td>$ <?php 
+		if($valor['n_participantes']!=0)
+		{
+			echo number_format($total/$valor['n_participantes'],2);
+		}else{
+			echo "0.00";
+			}
+			?></td>
+       
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono">
         <?php

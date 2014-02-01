@@ -163,14 +163,19 @@ function obtener_datos_usuario($id)
                                     AND permisos.id_subrol = subrol.id_subrol
                                     AND menu.id_menu = permisos.id_menu
                                     AND activo = 1
-                                    AND id_padre = ".$id_menu)->result_array();
+                                    AND id_padre = ".$id_menu." order by menu.orden ASC")->result_array();
 	}
 	
 	
 	function actualizar_subrol($post,$id=0)
 	{
-
-        $permisos=$post['permisos'];
+		if(isset($post['permisos']))
+		{
+			$permisos=$post['permisos'];
+		}else{
+			$permisos=array();
+			}
+        
         unset($post['permisos']);
 
 		if($id==0)
@@ -237,6 +242,15 @@ function obtener_datos_usuario($id)
         $this->db->update('usu_usuario', $post); 
     }
     
+	function cambiar_contrasena( $post=array() ){
+
+        $id_usuario = $post['id_usuario'];
+        unset( $post['id_usuario'] );
+
+        $this->db->where('id_usuario', $id_usuario);
+        $this->db->update('usu_usuario', $post); 
+    }
+	
 	
 	
 }

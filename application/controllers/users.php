@@ -167,6 +167,61 @@ class Users extends CI_Controller {
 		$this->output->set_content_type('application/json')->set_output( json_encode( $data ) );
 	}
 
+	
+	public function cambiar_contrasena()
+	{
+		$data['title']      = "Cambiar contraseña";
+		
+		
+		$this->load->view('users/cambiar_contrasena', $data);
+	}
+	
+	public function cambiar_contrasena_proceso()
+	{
+		$user=comprobar_login();
+		$this->form_validation->set_rules('clave_actual','Contraseña Actual',"required|callback_validar_clave_actual|xss_clean");
+		$this->form_validation->set_rules('clave_nueva','Contraseña Nueva',"required|matches[clave_nueva2]|xss_clean|min_length[6]|md5");
+		$this->form_validation->set_message('matches',"La Nueva Contraseña no coincide");
+		
+		if( $this->form_validation->run() ){
+			
+			
+			
+			$data['error'] = false;
+			$post          = $this->input->post();
+			$datos['id_usuario']=$user['id_usuario'];
+			$datos['clave']=$post['clave_nueva'];
+			$datos['exigir']=0;
+			$this->users_model->cambiar_contrasena( $datos );
+			$user['clave']=$datos['clave'];
+			$user['exigir']=0;
+			$this->session->set_userdata('user',$user);
+
+		}else{
+
+			$data['error']   = true;
+			$data['mensaje'] = traer_errores_form();
+		}
+
+		$this->output->set_content_type('application/json')->set_output( json_encode( $data ) );
+		
+	}
+	
+	public function validar_clave_actual($str)
+	{
+		$user=comprobar_login();
+		
+		if (md5($str) != $user['clave'])
+		{
+			$this->form_validation->set_message('validar_clave_actual', 'La Contraseña Actual No es Correcta');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+	
 
 }
 

@@ -43,6 +43,10 @@
                 <td><?php echo form_upload(array('name'=>'archivo_doc'));?></td>
                 <td><button>Enviar</button></td>
             </tr>
+            <tr>
+            	<td colspan="5">Tamaño maximo del archivo: 7 MB</td>
+                
+            </tr>
         </table>
         <?php
 		echo form_close();

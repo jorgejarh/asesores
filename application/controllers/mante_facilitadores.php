@@ -36,13 +36,29 @@ class Mante_facilitadores extends CI_Controller {
 		
 		$this->set_campo("nombres","Nombres",'required|xss_clean', 'text');
 		$this->set_campo("apellidos","Apellidos",'required|xss_clean', 'text');
-		$this->set_campo("telefono","Tel. Casa",'required|xss_clean', 'text');
+		$this->set_campo("telefono","Tel. Casa",'callback_validar_telefonos|xss_clean', 'text');
 		$this->set_campo("t_oficina","Tel. Oficina",'xss_clean', 'text');
-		$this->set_campo("celular","Tel. Celular",'required|xss_clean', 'text');
+		$this->set_campo("celular","Tel. Celular",'xss_clean', 'text');
 		$this->set_campo("correo","Email",'xss_clean|valid_email', 'text');
 
     }
-
+	
+	
+	public function validar_telefonos($str)
+	{
+		$user=comprobar_login();
+		
+		if (!$str && !$this->input->post('t_oficina') && !$this->input->post('celular'))
+		{
+			$this->form_validation->set_message('validar_telefonos', 'Debe tener al menos un numero telefonico');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+	
 	public function index()
 	{
 		$model=$this->modelo_usar;

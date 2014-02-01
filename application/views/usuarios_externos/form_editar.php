@@ -43,6 +43,10 @@ echo form_open('',array(
 		<td>Repita Contraseña: </td>
 		<td><?php echo form_password('clave2','','class="requerido"');?></td>
 	</tr>
+     <tr>
+		<td>Exigir Contraseña Nueva: </td>
+		<td><?php echo form_checkbox('exigir', '1', $dato['exigir']);?></td>
+	</tr>
 	<tr>
 		<td colspan="2"><hr></td>
 	</tr>

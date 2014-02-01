@@ -47,6 +47,8 @@ class Mante_modalidades_docs extends CI_Controller {
 			{
 				$config['upload_path'] = './public/archivos_modalidades/';
 				$config['allowed_types'] = '*';
+				$config['max_size'] =7168;
+				
 				$this->load->library('upload', $config);
 				
 				if($this->upload->do_upload('archivo_doc'))
