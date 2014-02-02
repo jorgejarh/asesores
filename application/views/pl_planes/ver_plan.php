@@ -128,6 +128,7 @@ h1,h2,h3,h4
             <td align="center" valign="middle"><b>Objetivo</b></td>
             <td align="center" valign="middle"><b>Costo Tema</b></td>
             <td align="center" valign="middle"><b>Modulo</b></td>
+            <td align="center" valign="middle"><b>Temas</b></td>
             <td align="center" valign="middle"><b>Costo Modulo</b></td>
             <td align="center" valign="middle" width="120"><b>Fecha inicio</b></td>
             <td align="center" valign="middle" width="120"><b>Fecha Fin</b></td>
@@ -168,6 +169,21 @@ h1,h2,h3,h4
 													$van_modulo++;
 													?>
                                                 		<td align="left" valign="middle" ><p><?php echo $modulo['nombre_modulo'];?></p></td>
+                                                         <td align="left" valign="middle" >
+														 <?php
+                                                        $temas_modulo=json_decode($modulo['temas']);
+														if($temas_modulo)
+														{
+															foreach($temas_modulo as $tem)
+															{
+																?>
+																 <div><p>-<?php echo $tem;?></p></div>
+																<?php
+															}
+														}
+														
+														?> 
+                                                        </td>
                                                         <td align="center" valign="middle"><?php echo number_format(obtener_costo_modulo($modulo['id_modulo']),2); ?></td>
                                                         <td align="center" valign="middle"><?php echo date('d/m/Y',strtotime($modulo['fecha_prevista']));?></td>
                                                         <td align="center" valign="middle"><?php echo date('d/m/Y',strtotime($modulo['fecha_prevista_fin']));?></td>
@@ -186,7 +202,15 @@ h1,h2,h3,h4
 													}
 													
 												}
-										}
+										}else{
+											?>
+                                            <td>&nbsp;</td> <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        </tr>
+											<?php
+											}
 								
 								if($count_tema!=$van_tema)
 								{
@@ -200,7 +224,19 @@ h1,h2,h3,h4
 								}
                             }
 
-					}
+					}else{
+						?>
+                        <td>&nbsp;</td> <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        
+                                                        </tr>
+                        <?php
+						}
 
 		}
 		?>

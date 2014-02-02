@@ -184,8 +184,8 @@ h1,h2,h3,h4
 														
 														?> 
                                                         </td>
-                                                        <td align="center" valign="middle"><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista']));?></td>
-                                                        <td align="center" valign="middle"><?php echo date(date('d/m/Y'),strtotime($modulo['fecha_prevista_fin']));?></td>
+                                                        <td align="center" valign="middle"><?php echo date('d/m/Y',strtotime($modulo['fecha_prevista']));?></td>
+                                                        <td align="center" valign="middle"><?php echo date('d/m/Y',strtotime($modulo['fecha_prevista_fin']));?></td>
                                                     </tr>
                                                     
                                                     <?php
@@ -201,7 +201,16 @@ h1,h2,h3,h4
 													}
 													
 												}
-										}
+										}else{
+											?>
+                                            <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        </tr>
+                                            <?php
+											}
 								
 								if($count_tema!=$van_tema)
 								{
@@ -215,7 +224,18 @@ h1,h2,h3,h4
 								}
                             }
 
-					}
+					}else{
+						?>
+                         <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        <td>&nbsp;</td>
+                                                        </tr>
+                        <?php
+						}
 
 		}
 		?>

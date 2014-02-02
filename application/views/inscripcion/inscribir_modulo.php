@@ -51,9 +51,30 @@
 			<?php
 			
 			echo form_close();
+			
+			}else{
+				?>
+                <?php
+            	echo form_open('');
+				?>
+                <table align="center" width="80%" class="lista_personas">
+            	<tr>
+                	<td align="center" valign="middle"><b>Nombre de la persona</b></td>
+                    <td align="center" valign="middle"><b>Preinscrito</b></td>
+                    <td align="center" valign="middle"><b>Inscribir</b></td>
+                   
+                </tr>
+                </table>
+                <div align="center"><input type="submit" value="Enviar Inscripcion" /></div>
+                <?php
+                echo form_close();
+				?>
+                
+                <?php
+				}
 			?>
             
-            <button onClick="nueva_persona();">Inscribir Persona</button> <button onClick="imprimir_asistencia();">Imprimir Asistencia</button> 
+             <button onClick="nueva_persona();">Inscribir Persona</button> <button onClick="imprimir_asistencia();">Imprimir Asistencia</button> 
             <button onClick="opinion();">Opinion de Participantes</button> 
             <?php
             if($modulo['es_calificado']==0)
@@ -67,11 +88,29 @@
                 <?php
 				}
 			?>
-           
             
             <div class="form_user" style="display:none;"></div>
             
             <div id="lista_asistencia" style="display:none;">
+            <style type="text/css">
+				.a_ h3
+				{
+					margin:0px;
+				}
+				.a_ table
+				{
+					border-spacing:0;
+					border-collapse:collapse;
+				}
+				.a_ tr td
+				{
+					border:1px #000000 solid;
+					padding:5px;
+					margin:0px;
+					vertical-align:middle;
+				}
+				</style>
+            
             	<div align="center" class="a_">
                 	<h2>FUNDACIÓN ASESORES PARA EL DESARROLLO</h2>
                     <p align="left"><b>Fecha:</b></p>
@@ -110,33 +149,10 @@
 						?>
                     </table>
                 </div>
-                <style type="text/css">
-				.a_ h3
-				{
-					margin:0px;
-				}
-				.a_ table
-				{
-					border-spacing:0;
-					border-collapse:collapse;
-				}
-				.a_ tr td
-				{
-					border:1px #000000 solid;
-					padding:5px;
-					margin:0px;
-					vertical-align:middle;
-				}
-				</style>
+                
             </div>
             
-            <?php
-			}else{
-				?>
-                <h1>No hay Personas inscritas a este modulo</h1>
-                <?php
-				}
-			?>
+            
       </div>
     </div>
     <!-- end #dashboard --> 
@@ -145,6 +161,9 @@
   <!-- end #sidebar --> 
   
 </div>
+
+
+
 <script type="text/javascript">
 
 function opinion()
