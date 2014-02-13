@@ -19,8 +19,8 @@
 					      <tr>
 					      	<th>Nombre Menu</th>
 					        <th>Url</th>
-					        <th>Editar</th>
-					        <th>Eliminar</th>
+					        <th>&nbsp;</th>
+					        <th> &nbsp;</th>
 					      </tr>
 					    </thead>
 					    <tbody>
@@ -31,8 +31,8 @@
 		      				<tr class="gradeA">
 		      					<td><?php echo $valor['nombre_menu'];?></td>
 						        <td><?php echo $valor['url'];?></td> 
-						        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_menu']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
-						        <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_menu']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
+						        <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor['id_menu']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+						        <td align="center" class="datatable_icono"><a title="Eliminar" onClick="eliminar_registro(<?php echo $valor['id_menu']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
 						    </tr>
 		  				<?php
 								if($valor['submenu'])

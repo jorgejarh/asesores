@@ -22,8 +22,8 @@ if($listado)
         <th>Descripci&oacute;n</th>
         <th>Fecha de creacion</th>
         <th>Agregar Documentos</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -36,10 +36,10 @@ if($listado)
         <td><?php echo $valor['objetivo'];?></td>
         <td><?php echo date('d/m/Y',strtotime($valor['f_creacion']));?></td>
         <td align="center" class="datatable_icono"><a href="<?php echo site_url('mante_modalidades_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
-          <a onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
+          <a title="Eliminar" onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
           </td>
       </tr>
       <?php

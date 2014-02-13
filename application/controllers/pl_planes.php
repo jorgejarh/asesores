@@ -35,7 +35,7 @@ class Pl_planes extends CI_Controller {
 		$this->load->model('mante_estados_plan_model');
 		
 		$this->set_campo("nombre_plan","Nombre del Plan",'required|xss_clean');
-		$this->set_campo("id_estado_plan","Estado del plan",'required|xss_clean','select',preparar_select($this->mante_estados_plan_model->obtener(),'id_estado_plan','nombre_estado'));
+		//$this->set_campo("id_estado_plan","Estado del plan",'required|xss_clean','select',preparar_select($this->mante_estados_plan_model->obtener(),'id_estado_plan','nombre_estado'));
 
     }
 

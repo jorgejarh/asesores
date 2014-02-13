@@ -18,15 +18,12 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Nombres</th>
-        <th>Apellidos</th>
-        <th>Tel. Oficina</th>
-        <th>Tel. Celular</th>
+      	<th>Nombre</th>
         <th>Email</th>
         <th>Asigar Profesión</th>
         <th>Asigar Especialidad</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -35,17 +32,14 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombres'];?></td>
-      	<td><?php echo $valor['apellidos'];?></td>
-       <td><?php echo $valor['t_oficina'];?></td>
-       <td><?php echo $valor['celular'];?></td>
+      	<td><?php echo $valor['apellidos'].", ".$valor['nombres'];?></td>
        <td><?php echo $valor['correo'];?></td>
-        <td align="center" class="datatable_icono"><a onClick="profesiones(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_posts.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="especialidades(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_posts.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <td align="center" class="datatable_icono"><a onClick="profesiones(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_page.png');?></a></td>
+        <td align="center" class="datatable_icono"><a onClick="especialidades(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_settings.png');?></a></td>
+        <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
-          <a onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
+          <a title="Eliminar" onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
           </td>
       </tr>
       <?php

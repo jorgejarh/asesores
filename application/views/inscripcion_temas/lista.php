@@ -34,7 +34,7 @@ if($listado)
         <th >Asignar personas</th>
         
         <th >Fecha de inscripcion</th>
-        <th>Eliminar</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -58,7 +58,7 @@ if($listado)
         
         <td align="center" class="datatable_icono">
         
-          <a onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
+          <a title="Eliminar" onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
           </td>
       </tr>
       <?php

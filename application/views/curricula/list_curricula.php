@@ -21,8 +21,8 @@ if($listado)
         <th>Curricula</th>
         <th>Descripción</th>
 		<th>Asignar Perfiles</th>
-        <th>Editar Nombre</th>
-        <th>Eliminar</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -34,9 +34,9 @@ if($listado)
         <td><?php echo $valor['curricula'];?></td>
         <td><?php echo $valor['objetivo']; ?></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('perfiles/index/'.$valor['id_curricula']);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_curricula']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor['id_curricula']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         
-        <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_curricula']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
+        <td align="center" class="datatable_icono"><a title="Eliminar" onClick="eliminar_registro(<?php echo $valor['id_curricula']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
       </tr>
       <?php
 		}

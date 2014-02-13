@@ -21,12 +21,9 @@
 					        <th>Cooperativa</th>
 					        <th>Gerente</th>
 					        <th>Tel&eacute;fono</th>
-					        <th>Fax</th>
 					        <th>Email</th>
-					        <th>Credito Fiscal</th>
-					        <!--<th>Correo Electr&oacute;nico</th>-->
-					        <th>Editar</th>
-					        <th>Eliminar</th>
+					        <th>&nbsp;</th>
+					        <th>&nbsp;</th>
 					      </tr>
 					    </thead>
 					    <tbody>
@@ -67,12 +64,9 @@
 						        <td><?php echo $valor['cooperativa'];?></td>
 						        <td><?php echo $valor['gerente'];?></td>
 						        <td><?php echo $valor['telefono'];?></td>
-						        <td><?php echo $valor['fax'];?></td>
-						        <td><?php echo $valor['email'];?></td>
-						        <td><?php echo $valor['credito_fiscal'];?></td>
-						        <!--<td><?php echo $valor['email'];?></td>-->
-						        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_cooperativa']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
-						        <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_cooperativa']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
+						        <td><a href="mailto:<?php echo $valor['email'];?>"><?php echo $valor['email'];?></a></td>
+						        <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor['id_cooperativa']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+						        <td align="center" class="datatable_icono"><a title="Eliminar" onClick="eliminar_registro(<?php echo $valor['id_cooperativa']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
 						    </tr>
 		  				<?php
 							}

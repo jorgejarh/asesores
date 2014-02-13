@@ -21,9 +21,9 @@ if($listado)
       	<th>Tipo Usuario</th>
       	<th>Rol</th>
         <th>Sub Rol</th>
-        <th>Editar</th>
+        <th>&nbsp;</th>
         
-        <th>Eliminar</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -35,8 +35,8 @@ if($listado)
       	<td><?php echo $valor['nombre_tipo_usuario'];?></td>
       	<td><?php echo $valor['rol'];?></td>
         <td><?php echo $valor['subrol'];?></td>
-        <td align="center" class="datatable_icono"><a onClick="editar_registro(<?php echo $valor['id_subrol']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor['id_subrol']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
+        <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor['id_subrol']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <td align="center" class="datatable_icono"><a title="Eliminar" onClick="eliminar_registro(<?php echo $valor['id_subrol']; ?>);" title="Clic para Desactivar"><?php echo img('public/img/cancel.png');?></a></td>
       </tr>
       <?php
 		}

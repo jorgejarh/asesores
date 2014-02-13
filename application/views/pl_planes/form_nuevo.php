@@ -43,6 +43,7 @@ echo form_open('',array(
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
+        <input type="hidden" value="2" name="id_estado_plan" />
 			<input type="submit" id="save" value="Guardar" />
 		</td>
 	</tr>
