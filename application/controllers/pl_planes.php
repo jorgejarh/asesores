@@ -167,6 +167,18 @@ class Pl_planes extends CI_Controller {
 	}
 	
 	
+	public function estado()
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		if ($post)
+		{
+			$id=$post['id'];
+			unset($post['id']);
+			$resultado= $this->$model->actualizar($post,$id);
+		}
+	}
+	
 	function ver_plan($id_plan=0, $imprimir="")
 	{
 		$model=$this->modelo_usar;

@@ -22,6 +22,7 @@ if($listado)
         <th>Total</th>
         <th>Ver plan</th>
         <th>Asignar Modalidades</th>
+        <th>Agregar Documentos</th>
        	<th>Estado</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
@@ -37,11 +38,27 @@ if($listado)
         <td>$ <?php echo number_format(obtener_costo_plan($valor[$this->$model->id_tabla]),2);?></td>
         <td align="center"	class="datatable_icono"><a target="_blank" href="<?php echo site_url('pl_planes/ver_plan/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modalidades/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
-        <td><?php echo $valor['nombre_estado'];?></td>
+        <td align="center" class="datatable_icono"><a href="<?php echo site_url('mante_modalidades_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
+        <td align="center">
+        <?php
+        if($valor['id_estado_plan']==2)
+		{
+			?>
+            <a title="Abierto" onClick="cambiar_estado(<?php echo $valor[$this->$model->id_tabla]; ?>,3);"><?php echo img('public/img/accept.png');?></a>
+            <?php
+		}else{
+			?>
+            <a title="Cerrado" onClick="cambiar_estado(<?php echo $valor[$this->$model->id_tabla]; ?>,2);"><?php echo img('public/img/cancel.png');?></a>
+            <?php
+			}
+		?>
+		
+        
+		</td>
         <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
-          <a title="Eliminar" onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
+          <a onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
           </td>
       </tr>
       <?php
@@ -105,6 +122,27 @@ function eliminar_registro(id)
 		  url: "<?php echo site_url($this->nombre_controlador.'/eliminar');?>",
 		  type:"POST",
 		  data:{'id':id},
+		  success:function(data){
+		  	
+		  		location.reload();
+		
+		  }
+		  
+		});
+}
+
+
+function cambiar_estado(id,valor)
+{
+	if(!confirm('¿Seguro que desea cambiar estado?'))
+	{
+		return false;
+	}
+
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/estado');?>",
+		  type:"POST",
+		  data:{'id':id,'id_estado_plan':valor},
 		  success:function(data){
 		  	
 		  		location.reload();

@@ -24,6 +24,7 @@ $(document).ready(function(event){
 
 </script>
 <style>
+
 .div_imprimir {
 	position:absolute;
 	right:0px;

@@ -24,6 +24,20 @@ $(document).ready(function(event){
 
 </script>
 <style>
+body
+{
+	font-family:Calibri,Arial;
+}
+.gris_l
+{
+	background:#DDDDDD;
+}
+.gris_l_2
+{
+	background:#EEEEEE;
+}
+
+
 .div_imprimir {
 	position: absolute;
 	right: 0px;
@@ -149,7 +163,7 @@ p {
   </table>
   <h3 align="center"><?php echo "PRESUPUESTO";?></h3>
   <table width="80%" class="cuadro" cellpadding="0" cellspacing="0" >
-    <tr>
+    <tr class="gris_l">
       <td align="center" valign="middle"><b>Rubros</b></td>
       <td align="center" valign="middle"><b>Unidades</b></td>
       <td align="center" valign="middle"><b>Costo Unit.</b></td>
@@ -169,7 +183,7 @@ p {
 				}
 			}
 			?>
-    <tr>
+    <tr class="gris_l_2" >
       <td align="left" valign="middle"><b>
         <?php
                 echo $rubros['nombre'];
@@ -206,7 +220,7 @@ p {
   <div style="margin-top:40px;">
   	 <h2 align="center">RESULTADOS FINANCIEROS ESTIMADOS</h2>
      <table width="80%" class="cuadro">
-     	<tr>
+     	 <tr class="gris_l">
         	<td align="center"><b>Detalle</b></td>
             <td align="center"><b>Valor</b></td>
         </tr>
@@ -234,7 +248,7 @@ p {
         	<td align="left"><p>Costo del Evento a Internacionales  </p></td>
             <td align="center"><p>$ <?php echo $datos['precio_venta_ex'];?></p></td>
         </tr>
-        <tr>
+        <tr class="gris_l">
         	<td align="left" colspan="2"><b>RESULTADOS ESTIMADOS DEL EVENTO</b></td>
            
         </tr>
@@ -264,6 +278,15 @@ p {
         </tr>
      </table>
   </div>
+  <div style="margin-top:10px; padding-top:30px;" align="center">
+  	<table width="60%">
+    	<tr>
+        	<td align="center"><p style="border-top:#000 solid 1px;; padding-top:5px;">Elabora</p></td>
+            <td align="center"><p style="border-top:#000 solid 1px;; padding-top:5px;">Autoriza</p></td>
+        </tr>
+    </table>
+  </div>
+  
 </div>
 </body>
 </html>
