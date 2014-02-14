@@ -1,14 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Mante_modalidades_docs extends CI_Controller {
+class Mante_facilitadores_docs extends CI_Controller {
 
 	public $datos_user=array();
 
-	public $carpeta_view="mante_modalidades_docs";
+	public $carpeta_view="mante_facilitadores_docs";
 
-	public $modelo_usar="mante_modalidades_docs_model";
+	public $modelo_usar="mante_facilitadores_docs_model";
 
-	public $nombre_controlador="mante_modalidades_docs";
+	public $nombre_controlador="mante_facilitadores_docs";
 	
 	public $nombre_titulo="Gestion de Documentos - ";
 	
@@ -45,7 +45,7 @@ class Mante_modalidades_docs extends CI_Controller {
 		{
 			if($post['nombre_doc']!="")
 			{
-				$config['upload_path'] = './public/archivos_modalidades/';
+				$config['upload_path'] = './public/archivos_facilitadores/';
 				$config['allowed_types'] = '*';
 				$config['max_size'] =7168;
 				
@@ -54,7 +54,7 @@ class Mante_modalidades_docs extends CI_Controller {
 				if($this->upload->do_upload('archivo_doc'))
 				{
 					$archivo= $this->upload->data();
-					$this->$model->nuevo(array('id_plan'=>$id_modalidad,'nombre_doc'=>$post['nombre_doc'],'archivo'=>$archivo['orig_name']));
+					$this->$model->nuevo(array('id_facilitador'=>$id_modalidad,'nombre_doc'=>$post['nombre_doc'],'archivo'=>$archivo['orig_name']));
 					redirect($this->nombre_controlador.'/index/'.$id_modalidad);
 				}else{
 					 $error[]= $this->upload->display_errors('<div>','</div>');
@@ -64,10 +64,10 @@ class Mante_modalidades_docs extends CI_Controller {
 				}
 		}
 		
-		$this->load->model("pl_planes_model");
-		$data["modalidad"]=$this->pl_planes_model->obtener($id_modalidad);
+		$this->load->model("mante_facilitadores_model");
+		$data["modalidad"]=$this->mante_facilitadores_model->obtener($id_modalidad);
 		$data['error']=$error;
-		$data['title']=$this->nombre_titulo." ".$data["modalidad"]['nombre_plan'];
+		$data['title']=$this->nombre_titulo." ".$data["modalidad"]['nombres']." ".$data["modalidad"]['apellidos'];
 		$data['template']="sistema";
 		$data['contenido']=$this->carpeta_view."/lista";
 		$data['listado']=$this->$model->obtener($id_modalidad);

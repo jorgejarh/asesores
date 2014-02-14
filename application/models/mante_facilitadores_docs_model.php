@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Mante_modalidades_docs_model extends CI_Model {
+class Mante_facilitadores_docs_model extends CI_Model {
 	
-	public $nombre_tabla="pl_panes_docs";
+	public $nombre_tabla="mante_facilitadores_docs";
 	
 	public $id_tabla="";
 	
@@ -25,9 +25,9 @@ class Mante_modalidades_docs_model extends CI_Model {
     function obtener($id_modalidad)
 	{
 		
-		$this->db->select("a.*, b.nombre_completo as nombre_usuario");
-		$this->db->where("a.id_usuario = b.id_usuario and a.id_plan = ".$id_modalidad);
-		return $this->db->get_where($this->nombre_tabla." a, usu_usuario b",array('a.activo'=>1))->result_array();
+		$this->db->select("a.*");
+		$this->db->where("a.id_facilitador = ".$id_modalidad);
+		return $this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1))->result_array();
 		
 	}
 	

@@ -93,9 +93,17 @@
             <?php
             if($modulo['puede_evaluar']==1)
 			{
-				?>
+				if($evaluaciones)
+				{
+					?>
                  <div align="center"><input type="submit" value="Guardar" onclick="return validar_enviar();" /></div>
                 <?php
+				}else{
+					?>
+                    <div align="center"><p>No hay evaluaciones asignadas a este modulo</p></div>
+                    <?php
+					}
+				
 			}else{
 				?>
                 <div align="center"><button onClick="imprimir_slect('notas');">Imprimir</button></div>
