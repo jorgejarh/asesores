@@ -44,7 +44,7 @@ echo form_open('',array(
 	</tr>
      <tr>
 		<td>Exigir Contraseña Nueva: </td>
-		<td><?php echo form_checkbox('exigir', '1', $dato['exigir']);?></td>
+		<td><?php echo form_checkbox('exigir', '1',1);?></td>
 	</tr>
 	<tr>
 		<td colspan="2"><hr></td>

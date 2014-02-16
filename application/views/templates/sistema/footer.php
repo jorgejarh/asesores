@@ -37,8 +37,7 @@ if($usuario['exigir']==1)
 					{
 						closeBtn:false,
 						content:data,
-						closeClick:false,
-						close:false
+						closeClick:false
 					}
 				);
 		  	}
