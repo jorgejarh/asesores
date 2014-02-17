@@ -116,4 +116,10 @@ class Inscripcion_temas_personas_model extends CI_Model {
 		
 	}
 	
+	function buscar_persona($dui)
+	{
+		return $this->db->get_where('mante_personal',array('dui'=>$dui,'activo'=>1))->row_array();
+	}
+	
+	
 }

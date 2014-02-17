@@ -23,7 +23,7 @@ if($listado)
         <th>Ver plan</th>
         <th>Asignar Modalidades</th>
         <th>Agregar Documentos</th>
-       	<th>Estado</th>
+       	<th>&nbsp;</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
       </tr>
@@ -113,19 +113,12 @@ function editar_registro(id)
 
 function eliminar_registro(id)
 {
-	if(!confirm('¿Seguro que desea eliminar?'))
-	{
-		return false;
-	}
-
 	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/eliminar');?>",
+		  url: "<?php echo site_url($this->nombre_controlador.'/eliminar');?>/"+id,
 		  type:"POST",
-		  data:{'id':id},
 		  success:function(data){
-		  	
-		  		location.reload();
-		
+
+		  	$.fancybox(data);
 		  }
 		  
 		});

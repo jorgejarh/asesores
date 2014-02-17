@@ -18,8 +18,9 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
+      	<th>Cooperativa</th>
         <th>Sucursal</th>
-        <th>Cooperativa</th>
+        
         <th>Telefono</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
@@ -31,8 +32,9 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
+      	<td><?php echo $valor['cooperativa'];?></td>
       	<td><?php echo $valor['sucursal'];?></td>
-        <td><?php echo $valor['cooperativa'];?></td>
+        
         <td><?php echo $valor['telefono'];?></td>
         <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor['id_sucursal']; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono"><a title="Eliminar" onClick="eliminar_registro(<?php echo $valor['id_sucursal']; ?>);" ><?php echo img('public/img/cancel.png');?></a></td>

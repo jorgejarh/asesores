@@ -10,6 +10,13 @@ echo form_open('',array(
 
 <table align="center" style="margin:auto;  width:400px;">
 	
+    <tr>
+		<td>DUI: </td>
+		<td><?php 
+			echo form_input("dui",$dato['dui']);
+			?><button onclick="buscar_persona();">Buscar</button></td>
+	</tr>
+    
 	<?php
 	foreach($this->campos as $llave=>$valor)
 	{
@@ -106,6 +113,40 @@ $(document).ready(function(e){
 	
 	
 });
+
+
+function buscar_persona()
+{
+	event.preventDefault();
+	
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/buscar_persona');?>",
+		  type:"POST",
+		  dataType:"json",
+		  data:$('#form_nuevo').serialize(),
+		  success:function(data){
+			  
+			  	if(data.dato)
+				{
+					$('input[name=dui]').val(data.dui);
+					$('input[name=nombres]').val(data.nombres);
+					$('input[name=apellidos]').val(data.apellidos);
+					$('select[name=id_sucursal]').val(data.id_sucursal);
+					$('select[name=id_cargo]').val(data.id_cargo);
+					
+				}else{
+					alert("Persona No encontrada");
+					}
+				
+		  },
+		   error:function()
+		  {
+			 alert("Error al procesar, Intente de nuevo"); 
+		  }
+	});
+	return false;
+}
+
 
 
 </script>

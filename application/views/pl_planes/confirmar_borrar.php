@@ -5,55 +5,16 @@ echo form_open('',array(
 					'id'=>'form_nuevo'
 						),
 					array(
-					
+					'id'=>$dato['id_plan']
 						)
 				);
 ?>
-
+<p>Escriba su contraseña para eliminar este plan de capacitaciones.</p>
 <table align="center" style="margin:auto;">
-
-
-	<?php
-	foreach($this->campos as $llave=>$valor)
-	{
-		?>
 	<tr>
-		<td><?php echo $valor['nombre_mostrar']; ?>: </td>
-		<td>
-			<?php
-			switch ($valor['tipo_input']) {
-			 	case 'text':
-			 		echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));
-			 		break;
-			 	case 'textarea':
-			 		echo form_textarea($valor['nombre_campo'], set_value($valor['nombre_campo']));
-			 		break;
-			 	case 'select':
-			 		$options = array('' => 'Seleccione');
-
-			 		if($listado_facilitadores){
-			 			foreach ($listado_facilitadores as $key => $value) {
-			 				$options[$value['id_tipo_facilitador']] = $value['nombre_tipo_facilitador']; 
-			 			}
-			 		}
-
-					echo form_dropdown($valor['nombre_campo'], $options, 'Seleccione');
-
-			 		break;
-			 } 
-				
-			?> 
-		</td>
+		<td>Contraseña: </td>
+		<td><input type="password" name="pass" /></td>
 	</tr>
-		<?php
-	}
-	?>
-	
-     <tr>
-    	<td>Acreditado:</td>
-        <td><?php echo form_checkbox('acreditado', '1');?></td>
-    </tr>
-	
 	
 	<tr>
 		<td colspan="2"><hr></td>
@@ -63,7 +24,7 @@ echo form_open('',array(
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
-			<input type="submit" id="save" value="Guardar" />
+			<input type="submit" id="save" value="Eliminar" />
 		</td>
 	</tr>
 </table>
@@ -86,7 +47,7 @@ $(document).ready(function(e){
 			$('.cargando_').fadeIn('fast');
 
 			$.ajax({
-				  url: "<?php echo site_url($this->nombre_controlador.'/insertar');?>",
+				  url: "<?php echo site_url($this->nombre_controlador.'/ac_eliminar');?>",
 				  type:"POST",
 				  dataType:"json",
 				  data:$(this).serialize(),

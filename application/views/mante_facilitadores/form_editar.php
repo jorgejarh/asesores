@@ -23,7 +23,9 @@ echo form_open('',array(
 			 	case 'text':
 			 		echo form_input($valor['nombre_campo'], $dato[$valor['nombre_campo']] );
 			 		break;
-			 	
+			 	case 'textarea':
+			 		echo form_textarea($valor['nombre_campo'], $dato[$valor['nombre_campo']]);
+			 		break;
 			 	case 'select':
 			 		$options = array('' => 'Seleccione');
 

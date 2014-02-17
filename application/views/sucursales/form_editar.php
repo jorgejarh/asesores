@@ -34,6 +34,10 @@ echo form_open('',array(
 		<td valign="middle">Nombre de la sucursal: </td>
 		<td valign="middle"><input type="text" id="sucursal" name="sucursal" value="<?php echo $dato['sucursal'];?>" class="requerido" /></td>
 	</tr>
+    <tr>
+		<td valign="middle">Gerente: </td>
+		<td valign="middle"><input type="text"  name="gerente" class="" value="<?php echo $dato['gerente'];?>"  /></td>
+	</tr>
      <tr>
 		<td valign="middle">Telefono: </td>
 		<td valign="middle"><input type="text"  name="telefono" class="" value="<?php echo $dato['telefono'];?>"  /></td>

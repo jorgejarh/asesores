@@ -32,7 +32,6 @@ class Inscripcion_temas_personas extends CI_Controller {
         $this->datos_user=comprobar_login();
         $model=$this->modelo_usar;
 		$this->load->model($model);
-		$this->set_campo("dui","DUI",'required|xss_clean');
 		$this->set_campo("nombres","Nombres",'required|xss_clean');
 		$this->set_campo("apellidos","Apellidos",'required|xss_clean');
 		$this->set_campo("id_sucursal","Sucursal",'required|xss_clean','select',preparar_select($this->$model->obtener_sucursales($this->datos_user['info_s']),'id_sucursal','sucursal'));
@@ -98,6 +97,8 @@ class Inscripcion_temas_personas extends CI_Controller {
 			
 			if(!$inscrito)
 			{
+				
+				$this->form_validation->set_rules('dui', "DUI", 'required|xss_clean');
 				foreach($this->campos as $llave=>$valor)		
 				{
 					$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
@@ -168,7 +169,7 @@ class Inscripcion_temas_personas extends CI_Controller {
 			unset($post['id']);
 						
 			$json=array();
-			
+			$this->form_validation->set_rules('dui', "DUI", 'required|xss_clean');
 			foreach($this->campos as $llave=>$valor)		
 			{
 				$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
@@ -204,6 +205,23 @@ class Inscripcion_temas_personas extends CI_Controller {
 			unset($post['id']);
 			$resultado= $this->$model->eliminar($id,$post);
 		}
+	}
+	
+	public function buscar_persona()
+	{
+		$json=array();
+		$dui=$this->input->post('dui');
+		$model=$this->modelo_usar;
+		$json=$this->$model->buscar_persona($dui);
+		if($json)
+		{
+			$json['dato']=true;
+		}else{
+			$json['dato']=false;
+			}
+		
+		
+		echo json_encode($json);
 	}
 
 }

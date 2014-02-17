@@ -113,8 +113,6 @@ class Pl_planes extends CI_Controller {
 			redirect($this->nombre_controlador);
 
 		}
-
-		
 	}
 	
 	
@@ -154,18 +152,63 @@ class Pl_planes extends CI_Controller {
 		}
 	}
 	
-	public function eliminar()
+	public function eliminar($id=0)
 	{
 		$model=$this->modelo_usar;
-		$post=$this->input->post();
-		if ($post)
+		$data['model']=$model;			
+		$data['dato']=$this->$model->obtener($id);
+		
+		if($data['dato'])
 		{
-			$id=$post['id'];
-			unset($post['id']);
-			$resultado= $this->$model->eliminar($id,$post);
+			$data['title']=$this->nombre_titulo." - Eliminar";
+			$this->load->view($this->carpeta_view.'/confirmar_borrar',$data);
 		}
+		
 	}
 	
+	public function ac_eliminar($id=0)
+	{
+		
+		$post=$this->input->post();
+		$model=$this->modelo_usar;
+		if($post)
+		{
+			$json=array();
+			
+			$this->form_validation->set_rules('pass', 'Contraseña','required|callback_validar_pass|xss_clean');
+			
+			if($this->form_validation->run()==TRUE)
+			{
+				
+				$id=$post['id'];
+				unset($post['id']);
+				$resultado= $this->$model->eliminar($id);
+				$json['error']=false;
+
+
+			}else{
+
+				$json['error']=true;
+				$json['mensaje']=traer_errores_form();
+			}
+
+
+			echo json_encode($json);
+		}
+		
+	}
+	
+	public function validar_pass($str)
+	{
+		
+		if($this->datos_user['clave']!=md5($str))
+		{
+			$this->form_validation->set_message('validar_pass', 'La contraseña es Incorrecta');
+			return FALSE;
+		}else{
+			return TRUE;
+			}
+	}
 	
 	public function estado()
 	{

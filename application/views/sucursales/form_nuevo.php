@@ -34,6 +34,10 @@ echo form_open('',array(
 		<td valign="middle"><input type="text" id="sucursal" name="sucursal" class="requerido" /></td>
 	</tr>
     <tr>
+		<td valign="middle">Gerente: </td>
+		<td valign="middle"><input type="text"  name="gerente" class="requerido" /></td>
+	</tr>
+    <tr>
 		<td valign="middle">Telefono: </td>
 		<td valign="middle"><input type="text"  name="telefono" class="requerido" /></td>
 	</tr>
