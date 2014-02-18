@@ -140,7 +140,7 @@
                                 <td><p><?php echo $valor['nombre_sucursal'];?></p></td>
                                 <td><p><?php echo $valor['nombre_cargo'];?></p></td>
                                 <td width="100">&nbsp;</td>
-                                <td width="100">&nbsp;</td>
+                               	<td><p><?php echo $valor['correo'];?></p></td>
                             	
                             </tr>
                             <?php
