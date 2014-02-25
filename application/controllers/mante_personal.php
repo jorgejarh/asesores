@@ -10,7 +10,7 @@ class Mante_personal extends CI_Controller {
 
 	public $nombre_controlador="mante_personal";
 	
-	public $nombre_titulo="Gestion de Personal";
+	public $nombre_titulo="Personal";
 	
 	public $campos=array();
 	
@@ -34,7 +34,7 @@ class Mante_personal extends CI_Controller {
         $model=$this->modelo_usar;
 		$this->load->model($model);
 		$this->load->model('inscripcion_temas_personas_model');
-		$this->set_campo("dui","DUI",'required|xss_clean');
+		$this->set_campo("dui","DUI",'required|is_unique[mante_personal.dui]|xss_clean');
 		$this->set_campo("nombres","Nombres",'required|xss_clean');
 		$this->set_campo("apellidos","Apellidos",'required|xss_clean');
 		$this->set_campo("id_sucursal","Sucursal",'required|xss_clean','select',preparar_select($this->inscripcion_temas_personas_model->obtener_sucursales($this->datos_user['info_s']),'id_sucursal','sucursal'));

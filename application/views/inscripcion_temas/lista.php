@@ -27,7 +27,7 @@ if($listado)
         
         <th >Precio por persona</th>
         
-        <th ># de personas inscritas a este tema</th>
+        <th >Inscritos</th>
         
         <th >Total a Pagar</th>
         

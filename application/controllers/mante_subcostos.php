@@ -10,7 +10,7 @@ class Mante_subcostos extends CI_Controller {
 
 	public $nombre_controlador="mante_subcostos";
 	
-	public $nombre_titulo="Gestion de Sub Costos";
+	public $nombre_titulo="Sub Costos";
 	
 	public $campos=array();
 	

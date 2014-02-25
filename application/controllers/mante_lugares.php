@@ -10,7 +10,7 @@ class Mante_lugares extends CI_Controller {
 
 	public $nombre_controlador="mante_lugares";
 	
-	public $nombre_titulo="Gestion de lugares";
+	public $nombre_titulo="Lugares";
 	
 	public $campos=array();
 	

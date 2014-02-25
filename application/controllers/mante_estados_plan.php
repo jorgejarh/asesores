@@ -10,7 +10,7 @@ class Mante_estados_plan extends CI_Controller {
 
 	public $nombre_controlador="mante_estados_plan";
 	
-	public $nombre_titulo="Gestion de estados de plan";
+	public $nombre_titulo="Estados de plan";
 	
 	public $campos=array();
 	

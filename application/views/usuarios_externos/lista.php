@@ -23,8 +23,8 @@ if($listado)
       	<th>Rol</th>
       	<th>Email</th>
         
-        <th>Editar</th>
-        <th>Estado</th>
+       <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -44,11 +44,11 @@ if($listado)
 						if($valor['estado']==0)
 						{
 							?>
-          <a onClick="eliminar_registro(<?php echo $valor['id_usuario']; ?>,1);" title="Clic para Activar"><?php echo img('public/img/cancel.png');?></a>
+          <a onClick="eliminar_registro(<?php echo $valor['id_usuario']; ?>,1);" title="Clic para Activar"><?php echo img('public/img/accept.png');?></a>
           <?php
 						} else{
 							?>
-          <a onClick="eliminar_registro(<?php echo $valor['id_usuario']; ?>,0);" title="Clic para Desactivar"><?php echo img('public/img/accept.png');?></a>
+          <a onClick="eliminar_registro(<?php echo $valor['id_usuario']; ?>,0);" title="Clic para Desactivar"><?php echo img('public/img/cancelaccept.png');?></a>
           <?php
 						}
 					;?></td>

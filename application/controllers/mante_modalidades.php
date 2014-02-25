@@ -10,7 +10,7 @@ class Mante_modalidades extends CI_Controller {
 
 	public $nombre_controlador="mante_modalidades";
 	
-	public $nombre_titulo="Gestion de Modalidades";
+	public $nombre_titulo="Modalidades";
 	
 	public $campos=array();
 	

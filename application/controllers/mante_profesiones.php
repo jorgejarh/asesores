@@ -10,7 +10,7 @@ class Mante_profesiones extends CI_Controller {
 
 	public $nombre_controlador="mante_profesiones";
 	
-	public $nombre_titulo="Gestion de Profesiones";
+	public $nombre_titulo="Profesiones";
 	
 	public $campos=array();
 	

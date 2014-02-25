@@ -15,7 +15,7 @@ class Plan extends CI_Controller {
 	public function index()
 	{
 		
-		$data['title']="Mantenimiento de usuaios";
+		$data['title']="Mantenimiento de usuarios";
 		$data['template']="sistema";
 		$data['contenido']="plan/list_plan";
 		

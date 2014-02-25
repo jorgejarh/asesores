@@ -10,7 +10,7 @@ class Mante_facilitadores_docs extends CI_Controller {
 
 	public $nombre_controlador="mante_facilitadores_docs";
 	
-	public $nombre_titulo="Gestion de Documentos - ";
+	public $nombre_titulo="Documentos - ";
 	
 	public $campos=array();
 	

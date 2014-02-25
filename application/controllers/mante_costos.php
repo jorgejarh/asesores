@@ -10,7 +10,7 @@ class Mante_costos extends CI_Controller {
 
 	public $nombre_controlador="mante_costos";
 	
-	public $nombre_titulo="Gestion de Costos";
+	public $nombre_titulo="Costos";
 	
 	public $campos=array();
 	

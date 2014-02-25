@@ -10,7 +10,7 @@ class Mante_tipos_evaluacion extends CI_Controller {
 
 	public $nombre_controlador="mante_tipos_evaluacion";
 	
-	public $nombre_titulo="Gestion de Tipos de Evaluación";
+	public $nombre_titulo="Tipos de Evaluación";
 	
 	public $campos=array();
 	

@@ -10,7 +10,7 @@ class Mante_especialidades extends CI_Controller {
 
 	public $nombre_controlador="mante_especialidades";
 	
-	public $nombre_titulo="Gestion de Especialidades";
+	public $nombre_titulo="Especialidades";
 	
 	public $campos=array();
 	

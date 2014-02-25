@@ -10,7 +10,7 @@ class Mante_tipos_facilitadores extends CI_Controller {
 
 	public $nombre_controlador="mante_tipos_facilitadores";
 	
-	public $nombre_titulo="Gestion de Facilitadores (tipos)";
+	public $nombre_titulo="Facilitadores (tipos)";
 	
 	public $campos=array();
 	

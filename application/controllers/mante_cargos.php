@@ -10,7 +10,7 @@ class Mante_cargos extends CI_Controller {
 
 	public $nombre_controlador="mante_cargos";
 	
-	public $nombre_titulo="Gestion de Cargos";
+	public $nombre_titulo="Cargos";
 	
 	public $campos=array();
 	

@@ -10,7 +10,7 @@ class Mante_facilitadores extends CI_Controller {
 
 	public $nombre_controlador="mante_facilitadores";
 	
-	public $nombre_titulo="Gestion de facilitadores";
+	public $nombre_titulo="Facilitadores";
 	
 	public $campos=array();
 	

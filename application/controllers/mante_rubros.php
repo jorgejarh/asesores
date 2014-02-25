@@ -10,7 +10,7 @@ class Mante_rubros extends CI_Controller {
 
 	public $nombre_controlador="mante_rubros";
 	
-	public $nombre_titulo="Gestion de Rubros";
+	public $nombre_titulo="Rubros";
 	
 	public $campos=array();
 	
