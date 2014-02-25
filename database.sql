@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v9.02 
-MySQL - 5.5.33 : Database - asesores
+MySQL - 5.0.51b-community-nt-log : Database - asesores
 *********************************************************************
 */
 
@@ -21,14 +21,14 @@ USE `asesores`;
 DROP TABLE IF EXISTS `abonos_cooperativas`;
 
 CREATE TABLE `abonos_cooperativas` (
-  `id_abono` int(11) NOT NULL AUTO_INCREMENT,
+  `id_abono` int(11) NOT NULL auto_increment,
   `id_cooperativa` int(11) NOT NULL,
   `id_capacitacion` int(11) NOT NULL,
   `abono` decimal(12,2) NOT NULL,
   `f_creacion` datetime NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `activo` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id_abono`),
+  `activo` int(11) NOT NULL default '1',
+  PRIMARY KEY  (`id_abono`),
   KEY `id_cooperativa` (`id_cooperativa`),
   KEY `id_capacitacion` (`id_capacitacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -40,19 +40,19 @@ CREATE TABLE `abonos_cooperativas` (
 DROP TABLE IF EXISTS `conf_cooperativa`;
 
 CREATE TABLE `conf_cooperativa` (
-  `id_cooperativa` int(10) NOT NULL AUTO_INCREMENT,
-  `cooperativa` varchar(100) DEFAULT NULL,
-  `ubicacion` varchar(100) DEFAULT NULL,
-  `telefono` varchar(45) DEFAULT NULL,
-  `fax` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `credito_fiscal` varchar(45) DEFAULT NULL,
-  `logotipo` varchar(100) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
+  `id_cooperativa` int(10) NOT NULL auto_increment,
+  `cooperativa` varchar(100) default NULL,
+  `ubicacion` varchar(100) default NULL,
+  `telefono` varchar(45) default NULL,
+  `fax` varchar(45) default NULL,
+  `email` varchar(45) default NULL,
+  `credito_fiscal` varchar(45) default NULL,
+  `logotipo` varchar(100) default NULL,
+  `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
   `gerente` longtext,
-  PRIMARY KEY (`id_cooperativa`)
+  PRIMARY KEY  (`id_cooperativa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 /*Data for the table `conf_cooperativa` */
@@ -64,7 +64,6 @@ insert  into `conf_cooperativa`(`id_cooperativa`,`cooperativa`,`ubicacion`,`tele
 DROP TABLE IF EXISTS `conf_menu`;
 
 CREATE TABLE `conf_menu` (
-<<<<<<< HEAD
   `id_menu` int(11) NOT NULL auto_increment,
   `nombre_menu` varchar(200) default NULL,
   `id_padre` int(11) default '0',
@@ -74,17 +73,6 @@ CREATE TABLE `conf_menu` (
   `target` varchar(10) default NULL,
   PRIMARY KEY  (`id_menu`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
-=======
-  `id_menu` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_menu` varchar(200) DEFAULT NULL,
-  `id_padre` int(11) DEFAULT '0',
-  `url` varchar(150) DEFAULT '#',
-  `activo` int(11) DEFAULT '1',
-  `orden` int(11) DEFAULT '1',
-  `target` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id_menu`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
->>>>>>> 28fe4635b99e2023dbd920a1737a693bb09b2e31
 
 /*Data for the table `conf_menu` */
 
@@ -95,16 +83,16 @@ insert  into `conf_menu`(`id_menu`,`nombre_menu`,`id_padre`,`url`,`activo`,`orde
 DROP TABLE IF EXISTS `conf_sucursal`;
 
 CREATE TABLE `conf_sucursal` (
-  `id_sucursal` int(10) NOT NULL AUTO_INCREMENT,
+  `id_sucursal` int(10) NOT NULL auto_increment,
   `id_cooperativa` int(10) NOT NULL,
-  `sucursal` varchar(100) DEFAULT NULL,
+  `sucursal` varchar(100) default NULL,
   `gerente` longtext,
-  `telefono` varchar(15) DEFAULT NULL,
-  `fax` varchar(15) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_sucursal`),
+  `telefono` varchar(15) default NULL,
+  `fax` varchar(15) default NULL,
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_sucursal`),
   KEY `fk_conf_sucursal_conf_cooperativa1` (`id_cooperativa`),
   CONSTRAINT `FK_conf_sucursal` FOREIGN KEY (`id_cooperativa`) REFERENCES `conf_cooperativa` (`id_cooperativa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
@@ -118,14 +106,14 @@ insert  into `conf_sucursal`(`id_sucursal`,`id_cooperativa`,`sucursal`,`gerente`
 DROP TABLE IF EXISTS `cu_curricula`;
 
 CREATE TABLE `cu_curricula` (
-  `id_curricula` int(11) NOT NULL AUTO_INCREMENT,
-  `curricula` varchar(100) DEFAULT NULL,
-  `objetivo` varchar(200) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `estado` tinyint(1) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_curricula`)
+  `id_curricula` int(11) NOT NULL auto_increment,
+  `curricula` varchar(100) default NULL,
+  `objetivo` varchar(200) default NULL,
+  `id_usuario` int(11) default NULL,
+  `estado` tinyint(1) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_curricula`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cu_curricula` */
@@ -137,18 +125,18 @@ insert  into `cu_curricula`(`id_curricula`,`curricula`,`objetivo`,`id_usuario`,`
 DROP TABLE IF EXISTS `cu_perfil`;
 
 CREATE TABLE `cu_perfil` (
-  `id_perfil` int(11) NOT NULL AUTO_INCREMENT,
-  `id_curricula` int(11) DEFAULT NULL,
-  `perfil` varchar(100) DEFAULT NULL,
+  `id_perfil` int(11) NOT NULL auto_increment,
+  `id_curricula` int(11) default NULL,
+  `perfil` varchar(100) default NULL,
   `id_cargo` int(11) NOT NULL,
   `aspectos_generales` text,
   `objetivos` text,
-  `duracion` double(6,2) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_perfil`),
+  `duracion` double(6,2) default NULL,
+  `fecha` date default NULL,
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_perfil`),
   KEY `fk_cu_perfil_cu_curricula1` (`id_curricula`),
   CONSTRAINT `FK_cu_perfil` FOREIGN KEY (`id_curricula`) REFERENCES `cu_curricula` (`id_curricula`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
@@ -162,10 +150,10 @@ insert  into `cu_perfil`(`id_perfil`,`id_curricula`,`perfil`,`id_cargo`,`aspecto
 DROP TABLE IF EXISTS `cu_perfil_contenido_aspectos`;
 
 CREATE TABLE `cu_perfil_contenido_aspectos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `nombre` longtext,
-  `id_perfil` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `id_perfil` int(11) default NULL,
+  PRIMARY KEY  (`id`),
   KEY `FK_cu_perfil_contenido_aspectos` (`id_perfil`),
   CONSTRAINT `FK_cu_perfil_contenido_aspectos` FOREIGN KEY (`id_perfil`) REFERENCES `cu_perfil` (`id_perfil`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
@@ -179,11 +167,11 @@ insert  into `cu_perfil_contenido_aspectos`(`id`,`nombre`,`id_perfil`) values (7
 DROP TABLE IF EXISTS `cu_perfil_contenido_b_material_apoyo`;
 
 CREATE TABLE `cu_perfil_contenido_b_material_apoyo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `nombre` longtext,
-  `id_perfil` int(11) DEFAULT NULL,
+  `id_perfil` int(11) default NULL,
   `archivos` longtext,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   KEY `FK_cu_perfil_contenido_b_material_apoyo` (`id_perfil`),
   CONSTRAINT `FK_cu_perfil_contenido_b_material_apoyo` FOREIGN KEY (`id_perfil`) REFERENCES `cu_perfil` (`id_perfil`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -197,10 +185,10 @@ insert  into `cu_perfil_contenido_b_material_apoyo`(`id`,`nombre`,`id_perfil`,`a
 DROP TABLE IF EXISTS `cu_perfil_contenido_niveles_logro`;
 
 CREATE TABLE `cu_perfil_contenido_niveles_logro` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `nombre` longtext,
-  `id_perfil` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `id_perfil` int(11) default NULL,
+  PRIMARY KEY  (`id`),
   KEY `FK_cu_perfil_contenido_niveles_logro` (`id_perfil`),
   CONSTRAINT `FK_cu_perfil_contenido_niveles_logro` FOREIGN KEY (`id_perfil`) REFERENCES `cu_perfil` (`id_perfil`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
@@ -214,10 +202,10 @@ insert  into `cu_perfil_contenido_niveles_logro`(`id`,`nombre`,`id_perfil`) valu
 DROP TABLE IF EXISTS `cu_perfil_contenido_objetivos`;
 
 CREATE TABLE `cu_perfil_contenido_objetivos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `nombre` longtext,
-  `id_perfil` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id_perfil` int(11) default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cu_perfil_contenido_objetivos` */
@@ -229,10 +217,10 @@ insert  into `cu_perfil_contenido_objetivos`(`id`,`nombre`,`id_perfil`) values (
 DROP TABLE IF EXISTS `cu_perfil_contenido_recursos`;
 
 CREATE TABLE `cu_perfil_contenido_recursos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `nombre` longtext,
-  `id_perfil` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `id_perfil` int(11) default NULL,
+  PRIMARY KEY  (`id`),
   KEY `FK_cu_perfil_contenido_recursos` (`id_perfil`),
   CONSTRAINT `FK_cu_perfil_contenido_recursos` FOREIGN KEY (`id_perfil`) REFERENCES `cu_perfil` (`id_perfil`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
@@ -246,11 +234,11 @@ insert  into `cu_perfil_contenido_recursos`(`id`,`nombre`,`id_perfil`) values (1
 DROP TABLE IF EXISTS `cu_perfil_contenido_sugerencias_metodologicas`;
 
 CREATE TABLE `cu_perfil_contenido_sugerencias_metodologicas` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `nombre` longtext,
-  `id_perfil` int(11) DEFAULT NULL,
+  `id_perfil` int(11) default NULL,
   `archivos` longtext,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   KEY `FK_cu_perfil_contenido_sugerencias_metodologicas` (`id_perfil`),
   CONSTRAINT `FK_cu_perfil_contenido_sugerencias_metodologicas` FOREIGN KEY (`id_perfil`) REFERENCES `cu_perfil` (`id_perfil`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -264,10 +252,10 @@ insert  into `cu_perfil_contenido_sugerencias_metodologicas`(`id`,`nombre`,`id_p
 DROP TABLE IF EXISTS `cu_perfil_contenido_unidades_competencia`;
 
 CREATE TABLE `cu_perfil_contenido_unidades_competencia` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `nombre` longtext,
-  `id_perfil` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `id_perfil` int(11) default NULL,
+  PRIMARY KEY  (`id`),
   KEY `FK_cu_perfil_contenido_unidades_competencia` (`id_perfil`),
   CONSTRAINT `FK_cu_perfil_contenido_unidades_competencia` FOREIGN KEY (`id_perfil`) REFERENCES `cu_perfil` (`id_perfil`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
@@ -281,10 +269,10 @@ insert  into `cu_perfil_contenido_unidades_competencia`(`id`,`nombre`,`id_perfil
 DROP TABLE IF EXISTS `cu_perfil_contenido_unidades_contenido`;
 
 CREATE TABLE `cu_perfil_contenido_unidades_contenido` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `nombre` longtext,
-  `id_perfil` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `id_perfil` int(11) default NULL,
+  PRIMARY KEY  (`id`),
   KEY `FK_cu_perfil_contenido_unidades_contenido` (`id_perfil`),
   CONSTRAINT `FK_cu_perfil_contenido_unidades_contenido` FOREIGN KEY (`id_perfil`) REFERENCES `cu_perfil` (`id_perfil`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
@@ -298,12 +286,12 @@ insert  into `cu_perfil_contenido_unidades_contenido`(`id`,`nombre`,`id_perfil`)
 DROP TABLE IF EXISTS `cu_tablas_contenido`;
 
 CREATE TABLE `cu_tablas_contenido` (
-  `id_tabla_contenido` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_tabla` varchar(100) DEFAULT NULL,
-  `id_tabla` varchar(100) DEFAULT NULL,
-  `nombre_contenido` varchar(100) DEFAULT NULL,
-  `archivos` int(11) DEFAULT '0',
-  PRIMARY KEY (`id_tabla_contenido`)
+  `id_tabla_contenido` int(11) NOT NULL auto_increment,
+  `nombre_tabla` varchar(100) default NULL,
+  `id_tabla` varchar(100) default NULL,
+  `nombre_contenido` varchar(100) default NULL,
+  `archivos` int(11) default '0',
+  PRIMARY KEY  (`id_tabla_contenido`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cu_tablas_contenido` */
@@ -315,14 +303,14 @@ insert  into `cu_tablas_contenido`(`id_tabla_contenido`,`nombre_tabla`,`id_tabla
 DROP TABLE IF EXISTS `inscripcion_asistencia`;
 
 CREATE TABLE `inscripcion_asistencia` (
-  `id_asistencia` int(11) NOT NULL AUTO_INCREMENT,
+  `id_asistencia` int(11) NOT NULL auto_increment,
   `id_modulo` int(11) NOT NULL,
   `id_inscripcion_personas` int(11) NOT NULL,
-  `asistio` int(11) DEFAULT '1',
-  `aprobado` int(11) NOT NULL DEFAULT '0',
+  `asistio` int(11) default '1',
+  `aprobado` int(11) NOT NULL default '0',
   `fecha_creacion` datetime NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_asistencia`)
+  `id_usuario` int(11) default NULL,
+  PRIMARY KEY  (`id_asistencia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inscripcion_asistencia` */
@@ -334,13 +322,13 @@ insert  into `inscripcion_asistencia`(`id_asistencia`,`id_modulo`,`id_inscripcio
 DROP TABLE IF EXISTS `inscripcion_temas`;
 
 CREATE TABLE `inscripcion_temas` (
-  `id_inscripcion_tema` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) DEFAULT NULL,
-  `id_capacitacion` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  `id_cooperativa` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_inscripcion_tema`),
+  `id_inscripcion_tema` int(11) NOT NULL auto_increment,
+  `id_usuario` int(11) default NULL,
+  `id_capacitacion` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) default '1',
+  `id_cooperativa` int(11) default NULL,
+  PRIMARY KEY  (`id_inscripcion_tema`),
   KEY `FK_inscripcion_temas` (`id_capacitacion`),
   CONSTRAINT `FK_inscripcion_temas` FOREIGN KEY (`id_capacitacion`) REFERENCES `pl_capacitaciones` (`id_capacitacion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
@@ -354,38 +342,37 @@ insert  into `inscripcion_temas`(`id_inscripcion_tema`,`id_usuario`,`id_capacita
 DROP TABLE IF EXISTS `inscripcion_temas_personas`;
 
 CREATE TABLE `inscripcion_temas_personas` (
-  `id_inscripcion_personas` int(11) NOT NULL AUTO_INCREMENT,
+  `id_inscripcion_personas` int(11) NOT NULL auto_increment,
   `id_inscripcion_tema` int(11) NOT NULL,
-  `dui` varchar(20) DEFAULT NULL,
-  `apellidos` longtext,
-  `nombres` longtext,
-  `correo` longtext,
+  `dui` varchar(20) default NULL,
+  `apellidos` varchar(20) default NULL,
+  `nombres` varchar(20) default NULL,
   `id_sucursal` int(11) NOT NULL,
   `id_cargo` int(11) NOT NULL,
-  `aprobado` int(11) DEFAULT '0',
+  `aprobado` int(11) default '0',
   `id_usuario` int(11) NOT NULL,
   `f_creacion` datetime NOT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_inscripcion_personas`),
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_inscripcion_personas`),
   KEY `FK_inscripcion_temas_personas` (`id_inscripcion_tema`),
   CONSTRAINT `FK_inscripcion_temas_personas` FOREIGN KEY (`id_inscripcion_tema`) REFERENCES `inscripcion_temas` (`id_inscripcion_tema`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inscripcion_temas_personas` */
 
-insert  into `inscripcion_temas_personas`(`id_inscripcion_personas`,`id_inscripcion_tema`,`dui`,`apellidos`,`nombres`,`correo`,`id_sucursal`,`id_cargo`,`aprobado`,`id_usuario`,`f_creacion`,`activo`) values (12,8,'56985749-5','Rodriguez','Jorge','jarh@jarh.com',7,1,0,1,'2014-02-01 22:10:39',1),(13,9,'25689-654','Hernandez','Carlos',NULL,9,2,0,1,'2014-02-01 22:14:02',1);
+insert  into `inscripcion_temas_personas`(`id_inscripcion_personas`,`id_inscripcion_tema`,`dui`,`apellidos`,`nombres`,`id_sucursal`,`id_cargo`,`aprobado`,`id_usuario`,`f_creacion`,`activo`) values (12,8,'56985749-5','Rodriguez','Jorge',7,1,0,1,'2014-02-01 22:10:39',1),(13,9,'25689-654','Hernandez','Carlos',9,2,0,1,'2014-02-01 22:14:02',1);
 
 /*Table structure for table `mante_cargos` */
 
 DROP TABLE IF EXISTS `mante_cargos`;
 
 CREATE TABLE `mante_cargos` (
-  `id_cargo` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_cargo` varchar(100) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_cargo`)
+  `id_cargo` int(11) NOT NULL auto_increment,
+  `nombre_cargo` varchar(100) default NULL,
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_cargo`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_cargos` */
@@ -397,12 +384,12 @@ insert  into `mante_cargos`(`id_cargo`,`nombre_cargo`,`f_creacion`,`id_usuario`,
 DROP TABLE IF EXISTS `mante_cat_resultado`;
 
 CREATE TABLE `mante_cat_resultado` (
-  `id_mante_cat_resultado` int(11) NOT NULL AUTO_INCREMENT,
+  `id_mante_cat_resultado` int(11) NOT NULL auto_increment,
   `nombre` varchar(200) NOT NULL,
-  `activo` int(11) NOT NULL DEFAULT '1',
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_mante_cat_resultado`)
+  `activo` int(11) NOT NULL default '1',
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  PRIMARY KEY  (`id_mante_cat_resultado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_cat_resultado` */
@@ -414,13 +401,13 @@ insert  into `mante_cat_resultado`(`id_mante_cat_resultado`,`nombre`,`activo`,`f
 DROP TABLE IF EXISTS `mante_cat_resultado_aspectos`;
 
 CREATE TABLE `mante_cat_resultado_aspectos` (
-  `id_aspectos_considerar` int(11) NOT NULL AUTO_INCREMENT,
+  `id_aspectos_considerar` int(11) NOT NULL auto_increment,
   `id_mante_cat_resultado` int(11) NOT NULL,
   `nombre` varchar(200) NOT NULL,
-  `activo` int(11) DEFAULT '1',
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_aspectos_considerar`)
+  `activo` int(11) default '1',
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  PRIMARY KEY  (`id_aspectos_considerar`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_cat_resultado_aspectos` */
@@ -432,12 +419,12 @@ insert  into `mante_cat_resultado_aspectos`(`id_aspectos_considerar`,`id_mante_c
 DROP TABLE IF EXISTS `mante_costos`;
 
 CREATE TABLE `mante_costos` (
-  `id_costo` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_costo` varchar(100) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_costo`)
+  `id_costo` int(11) NOT NULL auto_increment,
+  `nombre_costo` varchar(100) default NULL,
+  `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  PRIMARY KEY  (`id_costo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_costos` */
@@ -449,12 +436,12 @@ insert  into `mante_costos`(`id_costo`,`nombre_costo`,`activo`,`id_usuario`,`f_c
 DROP TABLE IF EXISTS `mante_especialidades`;
 
 CREATE TABLE `mante_especialidades` (
-  `id_especialidad` int(11) NOT NULL AUTO_INCREMENT,
+  `id_especialidad` int(11) NOT NULL auto_increment,
   `nombre_especialidad` longtext NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `f_creacion` datetime NOT NULL,
-  `activo` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id_especialidad`)
+  `activo` int(11) NOT NULL default '1',
+  PRIMARY KEY  (`id_especialidad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_especialidades` */
@@ -466,10 +453,10 @@ insert  into `mante_especialidades`(`id_especialidad`,`nombre_especialidad`,`id_
 DROP TABLE IF EXISTS `mante_especialidades_x_facilitador`;
 
 CREATE TABLE `mante_especialidades_x_facilitador` (
-  `id_especialidad_x_facilitador` int(11) NOT NULL AUTO_INCREMENT,
+  `id_especialidad_x_facilitador` int(11) NOT NULL auto_increment,
   `id_especialidad` int(11) NOT NULL,
   `id_facilitador` int(11) NOT NULL,
-  PRIMARY KEY (`id_especialidad_x_facilitador`)
+  PRIMARY KEY  (`id_especialidad_x_facilitador`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_especialidades_x_facilitador` */
@@ -481,12 +468,12 @@ insert  into `mante_especialidades_x_facilitador`(`id_especialidad_x_facilitador
 DROP TABLE IF EXISTS `mante_estados_planes`;
 
 CREATE TABLE `mante_estados_planes` (
-  `id_estado_plan` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_estado` varchar(100) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_estado_plan`)
+  `id_estado_plan` int(11) NOT NULL auto_increment,
+  `nombre_estado` varchar(100) default NULL,
+  `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  PRIMARY KEY  (`id_estado_plan`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_estados_planes` */
@@ -498,12 +485,11 @@ insert  into `mante_estados_planes`(`id_estado_plan`,`nombre_estado`,`activo`,`i
 DROP TABLE IF EXISTS `mante_facilitadores`;
 
 CREATE TABLE `mante_facilitadores` (
-  `id_facilitador` int(11) NOT NULL AUTO_INCREMENT,
-  `nombres` varchar(50) DEFAULT NULL,
-  `apellidos` varchar(50) DEFAULT NULL,
-  `telefono` varchar(20) DEFAULT NULL,
+  `id_facilitador` int(11) NOT NULL auto_increment,
+  `nombres` varchar(50) default NULL,
+  `apellidos` varchar(50) default NULL,
+  `telefono` varchar(20) default NULL,
   `direccion` longtext,
-<<<<<<< HEAD
   `t_oficina` varchar(20) default NULL,
   `celular` varchar(20) default NULL,
   `correo` varchar(15) default NULL,
@@ -513,17 +499,6 @@ CREATE TABLE `mante_facilitadores` (
   `f_creacion` datetime default NULL,
   PRIMARY KEY  (`id_facilitador`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-=======
-  `t_oficina` varchar(20) DEFAULT NULL,
-  `celular` varchar(20) DEFAULT NULL,
-  `correo` varchar(15) DEFAULT NULL,
-  `acreditado` int(11) DEFAULT '0',
-  `activo` int(11) DEFAULT '1',
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_facilitador`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
->>>>>>> 28fe4635b99e2023dbd920a1737a693bb09b2e31
 
 /*Data for the table `mante_facilitadores` */
 
@@ -534,14 +509,14 @@ insert  into `mante_facilitadores`(`id_facilitador`,`nombres`,`apellidos`,`telef
 DROP TABLE IF EXISTS `mante_facilitadores_docs`;
 
 CREATE TABLE `mante_facilitadores_docs` (
-  `id_doc` int(11) NOT NULL AUTO_INCREMENT,
+  `id_doc` int(11) NOT NULL auto_increment,
   `id_facilitador` int(11) NOT NULL,
   `nombre_doc` varchar(100) NOT NULL,
   `archivo` longtext,
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_doc`)
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_doc`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_facilitadores_docs` */
@@ -553,14 +528,14 @@ insert  into `mante_facilitadores_docs`(`id_doc`,`id_facilitador`,`nombre_doc`,`
 DROP TABLE IF EXISTS `mante_lugares`;
 
 CREATE TABLE `mante_lugares` (
-  `id_lugar` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_lugar` varchar(100) DEFAULT NULL,
-  `telefono` varchar(50) DEFAULT NULL,
-  `ubicacion` varchar(100) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_lugar`)
+  `id_lugar` int(11) NOT NULL auto_increment,
+  `nombre_lugar` varchar(100) default NULL,
+  `telefono` varchar(50) default NULL,
+  `ubicacion` varchar(100) default NULL,
+  `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  PRIMARY KEY  (`id_lugar`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_lugares` */
@@ -572,13 +547,13 @@ insert  into `mante_lugares`(`id_lugar`,`nombre_lugar`,`telefono`,`ubicacion`,`a
 DROP TABLE IF EXISTS `mante_modalidades`;
 
 CREATE TABLE `mante_modalidades` (
-  `id_modalidad` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_modalidad` varchar(100) DEFAULT NULL,
-  `objetivo` varchar(300) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_modalidad`)
+  `id_modalidad` int(11) NOT NULL auto_increment,
+  `nombre_modalidad` varchar(100) default NULL,
+  `objetivo` varchar(300) default NULL,
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_modalidad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_modalidades` */
@@ -590,33 +565,32 @@ insert  into `mante_modalidades`(`id_modalidad`,`nombre_modalidad`,`objetivo`,`f
 DROP TABLE IF EXISTS `mante_personal`;
 
 CREATE TABLE `mante_personal` (
-  `id_personal` int(11) NOT NULL AUTO_INCREMENT,
-  `id_cooperativa` int(11) NOT NULL DEFAULT '0',
-  `id_sucursal` int(11) NOT NULL DEFAULT '0',
-  `dui` varchar(100) DEFAULT NULL,
+  `id_personal` int(11) NOT NULL auto_increment,
+  `id_cooperativa` int(11) NOT NULL default '0',
+  `id_sucursal` int(11) NOT NULL default '0',
+  `dui` varchar(100) default NULL,
   `apellidos` longtext,
   `nombres` longtext,
-  `correo` longtext,
-  `id_cargo` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_personal`)
+  `id_cargo` int(11) default NULL,
+  `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  PRIMARY KEY  (`id_personal`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_personal` */
 
-insert  into `mante_personal`(`id_personal`,`id_cooperativa`,`id_sucursal`,`dui`,`apellidos`,`nombres`,`correo`,`id_cargo`,`activo`,`id_usuario`,`f_creacion`) values (1,9,8,'1','Rodriguez','Antonio','a@a.com',2,1,7,'2014-02-15 22:41:49');
+insert  into `mante_personal`(`id_personal`,`id_cooperativa`,`id_sucursal`,`dui`,`apellidos`,`nombres`,`id_cargo`,`activo`,`id_usuario`,`f_creacion`) values (1,9,8,'1','Rodriguez','Antonio',2,1,7,'2014-02-15 22:41:49');
 
 /*Table structure for table `mante_profesion_x_facilitador` */
 
 DROP TABLE IF EXISTS `mante_profesion_x_facilitador`;
 
 CREATE TABLE `mante_profesion_x_facilitador` (
-  `id_profesion_x_facilitador` int(11) NOT NULL AUTO_INCREMENT,
+  `id_profesion_x_facilitador` int(11) NOT NULL auto_increment,
   `id_facilitador` int(11) NOT NULL,
   `id_profesion` int(11) NOT NULL,
-  PRIMARY KEY (`id_profesion_x_facilitador`)
+  PRIMARY KEY  (`id_profesion_x_facilitador`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_profesion_x_facilitador` */
@@ -628,12 +602,12 @@ insert  into `mante_profesion_x_facilitador`(`id_profesion_x_facilitador`,`id_fa
 DROP TABLE IF EXISTS `mante_profesiones`;
 
 CREATE TABLE `mante_profesiones` (
-  `id_profesion` int(11) NOT NULL AUTO_INCREMENT,
+  `id_profesion` int(11) NOT NULL auto_increment,
   `nombre_profesion` longtext NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `f_creacion` datetime NOT NULL,
-  `activo` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id_profesion`)
+  `activo` int(11) NOT NULL default '1',
+  PRIMARY KEY  (`id_profesion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_profesiones` */
@@ -645,12 +619,12 @@ insert  into `mante_profesiones`(`id_profesion`,`nombre_profesion`,`id_usuario`,
 DROP TABLE IF EXISTS `mante_rubros`;
 
 CREATE TABLE `mante_rubros` (
-  `id_rubro` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_rubro`)
+  `id_rubro` int(11) NOT NULL auto_increment,
+  `nombre` varchar(50) default NULL,
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_rubro`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_rubros` */
@@ -662,13 +636,13 @@ insert  into `mante_rubros`(`id_rubro`,`nombre`,`id_usuario`,`f_creacion`,`activ
 DROP TABLE IF EXISTS `mante_subcostos`;
 
 CREATE TABLE `mante_subcostos` (
-  `id_subcosto` int(11) NOT NULL AUTO_INCREMENT,
-  `id_costo` int(11) DEFAULT NULL,
-  `nombre_subcosto` varchar(100) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_subcosto`),
+  `id_subcosto` int(11) NOT NULL auto_increment,
+  `id_costo` int(11) default NULL,
+  `nombre_subcosto` varchar(100) default NULL,
+  `activo` int(11) default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  PRIMARY KEY  (`id_subcosto`),
   KEY `FK_mante_subcostos` (`id_costo`),
   CONSTRAINT `FK_mante_subcostos` FOREIGN KEY (`id_costo`) REFERENCES `mante_costos` (`id_costo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -682,12 +656,12 @@ insert  into `mante_subcostos`(`id_subcosto`,`id_costo`,`nombre_subcosto`,`activ
 DROP TABLE IF EXISTS `mante_tipo_evaluacion`;
 
 CREATE TABLE `mante_tipo_evaluacion` (
-  `id_tipo_evaluacion` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tipo_evaluacion` int(11) NOT NULL auto_increment,
   `nombre_tipo_evaluacion` longtext,
-  `activo` int(11) NOT NULL DEFAULT '1',
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_tipo_evaluacion`)
+  `activo` int(11) NOT NULL default '1',
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  PRIMARY KEY  (`id_tipo_evaluacion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_tipo_evaluacion` */
@@ -699,12 +673,12 @@ insert  into `mante_tipo_evaluacion`(`id_tipo_evaluacion`,`nombre_tipo_evaluacio
 DROP TABLE IF EXISTS `mante_tipos_facilitadores`;
 
 CREATE TABLE `mante_tipos_facilitadores` (
-  `id_tipo_facilitador` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_tipo_facilitador` varchar(50) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_tipo_facilitador`)
+  `id_tipo_facilitador` int(11) NOT NULL auto_increment,
+  `nombre_tipo_facilitador` varchar(50) default NULL,
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_tipo_facilitador`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_tipos_facilitadores` */
@@ -716,18 +690,18 @@ insert  into `mante_tipos_facilitadores`(`id_tipo_facilitador`,`nombre_tipo_faci
 DROP TABLE IF EXISTS `pl_capacitaciones`;
 
 CREATE TABLE `pl_capacitaciones` (
-  `id_capacitacion` int(11) NOT NULL AUTO_INCREMENT,
-  `id_plan_modalidad` int(11) DEFAULT NULL,
+  `id_capacitacion` int(11) NOT NULL auto_increment,
+  `id_plan_modalidad` int(11) default NULL,
   `nombre_capacitacion` longtext,
-  `objetivo` varchar(300) DEFAULT NULL,
-  `cerrado` int(11) DEFAULT '0',
-  `n_participantes` int(11) DEFAULT '1',
-  `n_participantes_no` int(11) DEFAULT '1',
-  `n_participantes_ex` int(11) DEFAULT '1',
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_capacitacion`),
+  `objetivo` varchar(300) default NULL,
+  `cerrado` int(11) default '0',
+  `n_participantes` int(11) default '1',
+  `n_participantes_no` int(11) default '1',
+  `n_participantes_ex` int(11) default '1',
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_capacitacion`),
   KEY `FK_pl_capacitaciones` (`id_plan_modalidad`),
   CONSTRAINT `FK_pl_capacitaciones` FOREIGN KEY (`id_plan_modalidad`) REFERENCES `pl_modalidades` (`id_plan_modalidad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
@@ -741,13 +715,13 @@ insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_c
 DROP TABLE IF EXISTS `pl_modalidades`;
 
 CREATE TABLE `pl_modalidades` (
-  `id_plan_modalidad` int(11) NOT NULL AUTO_INCREMENT,
-  `id_plan` int(11) DEFAULT NULL,
-  `id_modalidad` int(11) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_plan_modalidad`),
+  `id_plan_modalidad` int(11) NOT NULL auto_increment,
+  `id_plan` int(11) default NULL,
+  `id_modalidad` int(11) default NULL,
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_plan_modalidad`),
   KEY `FK_pl_modalidades` (`id_plan`),
   KEY `FK_pl_modalidades2` (`id_modalidad`),
   CONSTRAINT `FK_pl_modalidades` FOREIGN KEY (`id_plan`) REFERENCES `pl_planes` (`id_plan`),
@@ -763,10 +737,10 @@ insert  into `pl_modalidades`(`id_plan_modalidad`,`id_plan`,`id_modalidad`,`id_u
 DROP TABLE IF EXISTS `pl_modulo_facilitador`;
 
 CREATE TABLE `pl_modulo_facilitador` (
-  `id_modulo_facilitador` int(11) NOT NULL AUTO_INCREMENT,
-  `id_modulo` int(11) DEFAULT NULL,
-  `id_facilitador` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_modulo_facilitador`),
+  `id_modulo_facilitador` int(11) NOT NULL auto_increment,
+  `id_modulo` int(11) default NULL,
+  `id_facilitador` int(11) default NULL,
+  PRIMARY KEY  (`id_modulo_facilitador`),
   KEY `FK_pl_modulo_facilitador` (`id_facilitador`),
   KEY `FK_pl_modulo_facilitador_2` (`id_modulo`),
   CONSTRAINT `FK_pl_modulo_facilitador` FOREIGN KEY (`id_facilitador`) REFERENCES `mante_facilitadores` (`id_facilitador`),
@@ -782,26 +756,26 @@ insert  into `pl_modulo_facilitador`(`id_modulo_facilitador`,`id_modulo`,`id_fac
 DROP TABLE IF EXISTS `pl_modulos`;
 
 CREATE TABLE `pl_modulos` (
-  `id_modulo` int(11) NOT NULL AUTO_INCREMENT,
-  `id_capacitacion` int(11) DEFAULT NULL,
-  `id_lugar` int(11) DEFAULT NULL,
+  `id_modulo` int(11) NOT NULL auto_increment,
+  `id_capacitacion` int(11) default NULL,
+  `id_lugar` int(11) default NULL,
   `nombre_modulo` longtext,
-  `precio_venta` decimal(12,2) DEFAULT '0.00',
-  `precio_venta_no` decimal(12,2) DEFAULT '0.00',
-  `precio_venta_ex` decimal(12,2) DEFAULT '0.00',
-  `objetivo_modulo` varchar(300) DEFAULT NULL,
-  `id_contenido` int(11) DEFAULT '0',
-  `fecha_prevista` date DEFAULT NULL,
-  `fecha_prevista_fin` date DEFAULT NULL,
-  `contenido` varchar(200) DEFAULT NULL,
+  `precio_venta` decimal(12,2) default '0.00',
+  `precio_venta_no` decimal(12,2) default '0.00',
+  `precio_venta_ex` decimal(12,2) default '0.00',
+  `objetivo_modulo` varchar(300) default NULL,
+  `id_contenido` int(11) default '0',
+  `fecha_prevista` date default NULL,
+  `fecha_prevista_fin` date default NULL,
+  `contenido` varchar(200) default NULL,
   `temas` longtext,
-  `porcentaje` decimal(18,2) DEFAULT '0.00',
-  `puede_evaluar` int(11) NOT NULL DEFAULT '1',
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  `es_calificado` int(11) DEFAULT '0',
-  PRIMARY KEY (`id_modulo`),
+  `porcentaje` decimal(18,2) default '0.00',
+  `puede_evaluar` int(11) NOT NULL default '1',
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) default '1',
+  `es_calificado` int(11) default '0',
+  PRIMARY KEY  (`id_modulo`),
   KEY `FK_pl_modulos` (`id_capacitacion`),
   KEY `FK_pl_modulos_2` (`id_lugar`),
   CONSTRAINT `FK_pl_modulos` FOREIGN KEY (`id_capacitacion`) REFERENCES `pl_capacitaciones` (`id_capacitacion`),
@@ -817,13 +791,13 @@ insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`id_lugar`,`nombre_modul
 DROP TABLE IF EXISTS `pl_modulos_calificacion`;
 
 CREATE TABLE `pl_modulos_calificacion` (
-  `id_calificacion` int(11) NOT NULL AUTO_INCREMENT,
+  `id_calificacion` int(11) NOT NULL auto_increment,
   `id_modulo` int(11) NOT NULL,
   `id_aspecto` int(11) NOT NULL,
   `nota` decimal(5,2) NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  PRIMARY KEY (`id_calificacion`)
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  PRIMARY KEY  (`id_calificacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_calificacion` */
@@ -833,14 +807,14 @@ CREATE TABLE `pl_modulos_calificacion` (
 DROP TABLE IF EXISTS `pl_modulos_eval`;
 
 CREATE TABLE `pl_modulos_eval` (
-  `id_eval_x_mod` int(11) NOT NULL AUTO_INCREMENT,
+  `id_eval_x_mod` int(11) NOT NULL auto_increment,
   `id_modulo` int(11) NOT NULL,
   `id_tipo_evaluacion` int(11) NOT NULL,
-  `porcentaje` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `activo` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id_eval_x_mod`)
+  `porcentaje` decimal(18,2) NOT NULL default '0.00',
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) NOT NULL default '1',
+  PRIMARY KEY  (`id_eval_x_mod`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_eval` */
@@ -850,12 +824,12 @@ CREATE TABLE `pl_modulos_eval` (
 DROP TABLE IF EXISTS `pl_modulos_notas`;
 
 CREATE TABLE `pl_modulos_notas` (
-  `id_nota_x_modulo` int(11) NOT NULL AUTO_INCREMENT,
+  `id_nota_x_modulo` int(11) NOT NULL auto_increment,
   `id_modulo` int(11) NOT NULL,
   `id_inscripcion_persona` int(11) NOT NULL,
   `id_eval_x_mod` int(11) NOT NULL,
   `nota` decimal(18,2) NOT NULL,
-  PRIMARY KEY (`id_nota_x_modulo`)
+  PRIMARY KEY  (`id_nota_x_modulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_notas` */
@@ -865,16 +839,16 @@ CREATE TABLE `pl_modulos_notas` (
 DROP TABLE IF EXISTS `pl_opiniones`;
 
 CREATE TABLE `pl_opiniones` (
-  `id_opinion` int(11) NOT NULL AUTO_INCREMENT,
+  `id_opinion` int(11) NOT NULL auto_increment,
   `id_modulo` int(11) NOT NULL,
   `mas_gusto` longtext,
   `menos_gusto` longtext,
   `sugerencia` longtext,
   `areas_capacitado` longtext,
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_opinion`)
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_opinion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_opiniones` */
@@ -884,14 +858,14 @@ CREATE TABLE `pl_opiniones` (
 DROP TABLE IF EXISTS `pl_panes_docs`;
 
 CREATE TABLE `pl_panes_docs` (
-  `id_doc` int(11) NOT NULL AUTO_INCREMENT,
+  `id_doc` int(11) NOT NULL auto_increment,
   `id_plan` int(11) NOT NULL,
   `nombre_doc` varchar(100) NOT NULL,
   `archivo` longtext,
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_doc`)
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_doc`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_panes_docs` */
@@ -903,13 +877,13 @@ insert  into `pl_panes_docs`(`id_doc`,`id_plan`,`nombre_doc`,`archivo`,`f_creaci
 DROP TABLE IF EXISTS `pl_planes`;
 
 CREATE TABLE `pl_planes` (
-  `id_plan` int(11) NOT NULL AUTO_INCREMENT,
+  `id_plan` int(11) NOT NULL auto_increment,
   `nombre_plan` longtext,
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `id_estado_plan` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_plan`),
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `id_estado_plan` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_plan`),
   KEY `FK_pl_planes` (`id_estado_plan`),
   CONSTRAINT `FK_pl_planes` FOREIGN KEY (`id_estado_plan`) REFERENCES `mante_estados_planes` (`id_estado_plan`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -923,13 +897,13 @@ insert  into `pl_planes`(`id_plan`,`nombre_plan`,`f_creacion`,`id_usuario`,`id_e
 DROP TABLE IF EXISTS `pl_rubro`;
 
 CREATE TABLE `pl_rubro` (
-  `id_rubro` int(11) NOT NULL AUTO_INCREMENT,
-  `id_rubro_name` int(11) DEFAULT NULL,
-  `id_modulo` int(11) DEFAULT NULL,
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_rubro`),
+  `id_rubro` int(11) NOT NULL auto_increment,
+  `id_rubro_name` int(11) default NULL,
+  `id_modulo` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_rubro`),
   KEY `FK_pl_rubro` (`id_modulo`),
   KEY `FK_pl_rubro2` (`id_rubro_name`),
   CONSTRAINT `FK_pl_rubro` FOREIGN KEY (`id_modulo`) REFERENCES `pl_modulos` (`id_modulo`),
@@ -945,15 +919,15 @@ insert  into `pl_rubro`(`id_rubro`,`id_rubro_name`,`id_modulo`,`f_creacion`,`id_
 DROP TABLE IF EXISTS `pl_subrubro`;
 
 CREATE TABLE `pl_subrubro` (
-  `id_subrubro` int(11) NOT NULL AUTO_INCREMENT,
-  `id_rubro` int(11) DEFAULT NULL,
-  `nombre` varchar(200) DEFAULT NULL,
-  `unidades` int(11) DEFAULT '0',
-  `costo` decimal(12,2) DEFAULT '0.00',
-  `f_creacion` datetime DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  PRIMARY KEY (`id_subrubro`),
+  `id_subrubro` int(11) NOT NULL auto_increment,
+  `id_rubro` int(11) default NULL,
+  `nombre` varchar(200) default NULL,
+  `unidades` int(11) default '0',
+  `costo` decimal(12,2) default '0.00',
+  `f_creacion` datetime default NULL,
+  `id_usuario` int(11) default NULL,
+  `activo` int(11) default '1',
+  PRIMARY KEY  (`id_subrubro`),
   KEY `FK_pl_subrubro` (`id_rubro`),
   CONSTRAINT `FK_pl_subrubro` FOREIGN KEY (`id_rubro`) REFERENCES `pl_rubro` (`id_rubro`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
@@ -967,11 +941,11 @@ insert  into `pl_subrubro`(`id_subrubro`,`id_rubro`,`nombre`,`unidades`,`costo`,
 DROP TABLE IF EXISTS `sitio_slider`;
 
 CREATE TABLE `sitio_slider` (
-  `id_slider` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_imagen` varchar(200) DEFAULT NULL,
-  `texto_aparecer` varchar(200) DEFAULT NULL,
-  `nombre_archivo` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id_slider`)
+  `id_slider` int(11) NOT NULL auto_increment,
+  `nombre_imagen` varchar(200) default NULL,
+  `texto_aparecer` varchar(200) default NULL,
+  `nombre_archivo` varchar(200) default NULL,
+  PRIMARY KEY  (`id_slider`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sitio_slider` */
@@ -983,11 +957,11 @@ insert  into `sitio_slider`(`id_slider`,`nombre_imagen`,`texto_aparecer`,`nombre
 DROP TABLE IF EXISTS `usu_coop_suc`;
 
 CREATE TABLE `usu_coop_suc` (
-  `id_usu_coop` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) DEFAULT NULL,
-  `id_cooperativa` int(11) DEFAULT NULL,
-  `id_sucursal` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_usu_coop`)
+  `id_usu_coop` int(11) NOT NULL auto_increment,
+  `id_usuario` int(11) default NULL,
+  `id_cooperativa` int(11) default NULL,
+  `id_sucursal` int(11) default NULL,
+  PRIMARY KEY  (`id_usu_coop`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usu_coop_suc` */
@@ -999,10 +973,10 @@ insert  into `usu_coop_suc`(`id_usu_coop`,`id_usuario`,`id_cooperativa`,`id_sucu
 DROP TABLE IF EXISTS `usu_permisos_menu`;
 
 CREATE TABLE `usu_permisos_menu` (
-  `id_permiso` int(11) NOT NULL AUTO_INCREMENT,
-  `id_subrol` int(11) DEFAULT NULL,
-  `id_menu` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_permiso`),
+  `id_permiso` int(11) NOT NULL auto_increment,
+  `id_subrol` int(11) default NULL,
+  `id_menu` int(11) default NULL,
+  PRIMARY KEY  (`id_permiso`),
   KEY `FK_usu_permisos_menu` (`id_menu`),
   KEY `FK_usu_permisos_menu2` (`id_subrol`),
   CONSTRAINT `FK_usu_permisos_menu` FOREIGN KEY (`id_menu`) REFERENCES `conf_menu` (`id_menu`),
@@ -1018,11 +992,11 @@ insert  into `usu_permisos_menu`(`id_permiso`,`id_subrol`,`id_menu`) values (232
 DROP TABLE IF EXISTS `usu_rol`;
 
 CREATE TABLE `usu_rol` (
-  `id_rol` int(11) NOT NULL AUTO_INCREMENT,
-  `id_tipo_usuario` int(11) DEFAULT '0',
-  `rol` varchar(25) DEFAULT NULL,
-  `estado` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_rol`),
+  `id_rol` int(11) NOT NULL auto_increment,
+  `id_tipo_usuario` int(11) default '0',
+  `rol` varchar(25) default NULL,
+  `estado` tinyint(1) default NULL,
+  PRIMARY KEY  (`id_rol`),
   KEY `FK_usu_rol` (`id_tipo_usuario`),
   CONSTRAINT `FK_usu_rol` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `usu_tipo_usuario` (`id_tipo_usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
@@ -1036,11 +1010,11 @@ insert  into `usu_rol`(`id_rol`,`id_tipo_usuario`,`rol`,`estado`) values (1,1,'A
 DROP TABLE IF EXISTS `usu_subrol`;
 
 CREATE TABLE `usu_subrol` (
-  `id_subrol` int(11) NOT NULL AUTO_INCREMENT,
-  `id_rol` int(11) DEFAULT NULL,
-  `subrol` varchar(25) DEFAULT NULL,
-  `estado` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id_subrol`),
+  `id_subrol` int(11) NOT NULL auto_increment,
+  `id_rol` int(11) default NULL,
+  `subrol` varchar(25) default NULL,
+  `estado` tinyint(1) default NULL,
+  PRIMARY KEY  (`id_subrol`),
   KEY `FK_usu_subrol` (`id_rol`),
   CONSTRAINT `FK_usu_subrol` FOREIGN KEY (`id_rol`) REFERENCES `usu_rol` (`id_rol`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -1054,9 +1028,9 @@ insert  into `usu_subrol`(`id_subrol`,`id_rol`,`subrol`,`estado`) values (1,1,'A
 DROP TABLE IF EXISTS `usu_tipo_usuario`;
 
 CREATE TABLE `usu_tipo_usuario` (
-  `id_tipo_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_tipo_usuario` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id_tipo_usuario`)
+  `id_tipo_usuario` int(11) NOT NULL auto_increment,
+  `nombre_tipo_usuario` varchar(200) default NULL,
+  PRIMARY KEY  (`id_tipo_usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usu_tipo_usuario` */
@@ -1068,31 +1042,27 @@ insert  into `usu_tipo_usuario`(`id_tipo_usuario`,`nombre_tipo_usuario`) values 
 DROP TABLE IF EXISTS `usu_usuario`;
 
 CREATE TABLE `usu_usuario` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `usuario` varchar(50) DEFAULT NULL,
-  `clave` varchar(50) DEFAULT NULL,
-  `nombre_completo` varchar(200) DEFAULT NULL,
-  `telefono` varchar(20) DEFAULT NULL,
-  `celular` varchar(20) DEFAULT NULL,
+  `id_usuario` int(11) NOT NULL auto_increment,
+  `usuario` varchar(50) default NULL,
+  `clave` varchar(50) default NULL,
+  `nombre_completo` varchar(200) default NULL,
+  `telefono` varchar(20) default NULL,
+  `celular` varchar(20) default NULL,
   `direccion` text,
-  `correo` varchar(50) DEFAULT NULL,
-  `ultimo_acceso` datetime DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
-  `id_subrol` int(11) DEFAULT NULL,
-  `activo` int(11) DEFAULT '1',
-  `exigir` int(11) DEFAULT '0',
-  PRIMARY KEY (`id_usuario`),
+  `correo` varchar(50) default NULL,
+  `ultimo_acceso` datetime default NULL,
+  `estado` int(11) default NULL,
+  `id_subrol` int(11) default NULL,
+  `activo` int(11) default '1',
+  `exigir` int(11) default '0',
+  PRIMARY KEY  (`id_usuario`),
   KEY `FK_usu_usuario` (`id_subrol`),
   CONSTRAINT `FK_usu_usuario` FOREIGN KEY (`id_subrol`) REFERENCES `usu_subrol` (`id_subrol`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usu_usuario` */
 
-<<<<<<< HEAD
 insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`,`exigir`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-02-24 20:15:07',1,1,1,0),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1,0),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1,0),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1,0),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1,0),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1,0),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2014-02-24 21:39:39',1,2,1,0),(8,'jarh100','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez Arevalo','23658965','78965896',NULL,'jarh@jarh.com','2014-02-16 20:14:28',1,1,1,0),(9,'fjarh','e10adc3949ba59abbe56e057f20f883e','Lic. Jorge Rodriguez','2365-9856','7845-9658',NULL,'jarh@jarh.com','2014-02-13 23:32:02',1,4,1,0);
-=======
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`,`exigir`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-02-17 22:33:24',1,1,1,0),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1,0),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1,0),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1,0),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1,0),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1,0),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2014-02-17 22:42:41',1,2,1,0),(8,'jarh100','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez Arevalo','23658965','78965896',NULL,'jarh@jarh.com','2014-02-16 20:14:28',1,1,1,0),(9,'fjarh','e10adc3949ba59abbe56e057f20f883e','Lic. Jorge Rodriguez','2365-9856','7845-9658',NULL,'jarh@jarh.com','2014-02-13 23:32:02',1,4,1,0);
->>>>>>> 28fe4635b99e2023dbd920a1737a693bb09b2e31
 
 /* Procedure structure for procedure `borrar_datos` */
 
