@@ -37,6 +37,7 @@ class Mante_personal extends CI_Controller {
 		$this->set_campo("dui","DUI",'required|is_unique[mante_personal.dui]|xss_clean');
 		$this->set_campo("nombres","Nombres",'required|xss_clean');
 		$this->set_campo("apellidos","Apellidos",'required|xss_clean');
+		$this->set_campo("correo","Correo",'valid_email|xss_clean');
 		$this->set_campo("id_sucursal","Sucursal",'required|xss_clean','select',preparar_select($this->inscripcion_temas_personas_model->obtener_sucursales($this->datos_user['info_s']),'id_sucursal','sucursal'));
 		$this->set_campo("id_cargo","Cargo",'required|xss_clean','select',preparar_select($this->inscripcion_temas_personas_model->obtener_cargos(),'id_cargo','nombre_cargo'));
 		
