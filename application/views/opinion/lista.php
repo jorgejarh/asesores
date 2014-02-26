@@ -6,16 +6,16 @@
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td><?php echo $modulo['nombre_modulo'];?></td>
+      			<td>Opiniones para <?php echo $modulo['nombre_modulo'];?></td>
       			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $modulo['id_modulo']?>);">Nuevo</button></td>
       		</tr>
       	</table>
       </h2>
-      <div class="bot_atras">
+      <!--<div class="bot_atras">
     	<?php
         echo anchor('inscripcion/inscribir_modulo/'.$modulo['id_modulo'],'<- Regresar');
 		?>
-    </div>
+    </div>-->
       <div class="" style="width:90%; margin:auto;">
       
         <?php

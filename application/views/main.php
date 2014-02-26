@@ -61,20 +61,18 @@ div.parte{
 
 		<div class="clearfix"></div>
 	</div><!-- end #dashboard -->
-	<div class="clearfix"></div>	
+	<div class="clearfix"></div>
+    <!--	
 	<div id="shortcuts" style="width:auto; float:none;" >
 		<h2 class="ico_mug">Accesos Directos</h2>
 		<ul class="clearfix">
-			<!--<li class="first_li"><a href=""><img src="<?php echo base_url();?>public/img/theme.jpg" alt="themes" /><span>Themes</span></a></li>-->
 			<li class="first_li"><a href=""><img src="<?php echo base_url();?>public/img/statistic.jpg" alt="statistics" /><span>Reportes</span></a></li>
 			<li><a href=""><img src="<?php echo base_url();?>public/img/capacitaciones.fw.png" alt="Capacitaciones" /><span>Capacitaciones</span></a></li>
 			<li><a href=""><img src="<?php echo base_url();?>public/img/consultorias.fw.png" alt="Consultorías" /><span>Consultorías</span></a></li>
 			<li><a href=""><img src="<?php echo base_url();?>public/img/asesorias.fw.png" alt="Asesorías" /><span>Asesorías</span></a></li>
 
 			<li><a href=""><img src="<?php echo base_url();?>public/img/users.jpg" alt="Users" /><span>Usuarios</span></a></li>
-			<!--<li><a href=""><img src="<?php echo base_url();?>public/img/comments.jpg" alt="Comments" /><span>Comments</span></a></li>-->
-			<!--<li><a href=""><img src="<?php echo base_url();?>public/img/gallery.jpg" alt="Gallery" /><span>Gallery</span></a></li>-->
 			<li><a href=""><img src="<?php echo base_url();?>public/img/security.jpg" alt="Security" /><span>Configuración</span></a></li>
 		</ul>
-	</div><!-- end #shortcuts -->
+	</div>--><!-- end #shortcuts -->
 </div>

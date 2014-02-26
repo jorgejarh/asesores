@@ -43,7 +43,7 @@ if($listado)
         <th >Cargo</th>
         
         <th >Fecha de inscripcion</th>
-        <th>&nbsp;</th>
+        <!--<th>&nbsp;</th>-->
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -65,7 +65,7 @@ if($listado)
         
         <td><?php echo date('d-m-Y',strtotime($valor['f_creacion']));?></td>
         
-        <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+        <!--<td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>-->
         
         <td align="center" class="datatable_icono">
         

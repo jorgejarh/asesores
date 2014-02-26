@@ -142,7 +142,7 @@ function obtener_datos_usuario($id)
                                     AND permisos.id_subrol = subrol.id_subrol
                                     AND menu.id_menu = permisos.id_menu
                                     AND activo = 1
-                                    AND id_padre = 0")->result_array();
+                                    AND id_padre = 0 order by menu.id_menu")->result_array();
 	}
 	
 	function obtener_menus_por_id_padre($id_menu=0,$id_subrol=0)
