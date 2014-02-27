@@ -1,16 +1,16 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Inscripcion extends CI_Controller {
+class Cal_modulo extends CI_Controller {
 
 	public $datos_user=array();
 
-	public $carpeta_view="inscripcion";
+	public $carpeta_view="cal_modulo";
 
-	public $modelo_usar="inscripcion_model";
+	public $modelo_usar="cal_modulo_model";
 
-	public $nombre_controlador="inscripcion";
+	public $nombre_controlador="cal_modulo";
 	
-	public $nombre_titulo="Inscripcion";
+	public $nombre_titulo="Calificar Modulo";
 	
 	public $campos=array();
 	
@@ -35,10 +35,9 @@ class Inscripcion extends CI_Controller {
 		$this->load->model("cooperativa_model");
 		$this->load->model("mante_cargos_model");
 		
-		//$this->set_campo("dui","DUI",'required|xss_clean');
+		$this->set_campo("dui","DUI",'required|xss_clean');
 		$this->set_campo("nombres","Nombres",'required|xss_clean');
 		$this->set_campo("apellidos","Apellidos",'required|xss_clean');
-		$this->set_campo("correo","Correo",'xss_clean');
 		$this->set_campo("id_cooperativa","Cooperativa",'required|xss_clean','select',preparar_select($this->cooperativa_model->obtener_cooperativa(),'id_cooperativa','cooperativa'));
 		$this->set_campo("id_sucursal","Sucursal",'xss_clean','select',array('0'=>'Ninguna'));
 		$this->set_campo("id_cargo","Cargo",'required|xss_clean','select',preparar_select($this->mante_cargos_model->obtener(),'id_cargo','nombre_cargo'));
@@ -88,7 +87,7 @@ class Inscripcion extends CI_Controller {
 		/*$listado[0]=".: Seleccione:.";
 		  ksort($listado);*/
 		echo form_dropdown('',$listado,0,'id="id_modulo"');
-		echo '<div><button onclick="inscribir_modulo();">Inscribir a este modulo</button></div>';
+		echo '<div><button onclick="inscribir_modulo();">Seleccionar modulo</button></div>';
 	}
 	
 	public function inscribir_modulo($id_modulo=0)
@@ -99,21 +98,10 @@ class Inscripcion extends CI_Controller {
 		
 		if($data['modulo'])
 		{
-			$data['mensaje']="";
-			
-			$post=$this->input->post();
-			
-			if($post)
-			{
-				$this->$model->guardar_asistencia($post,$data['modulo']);
-				
-				$data['mensaje']="Datos Guardados.";
-			}
-			
-			$data['title']="Inscripcion al modulo ".$data['modulo']['nombre_modulo'];
+						
+			$data['title']="Calificaion del modulo ".$data['modulo']['nombre_modulo'];
 			$data['template']="sistema";
 			$data['contenido']=$this->carpeta_view."/inscribir_modulo";
-			$data['nombres_personas']=$this->$model->obtener_personas($data['modulo']['id_capacitacion'],$id_modulo);
 			
 			$data['model']=$model;
 			$this->load->view('template',$data);

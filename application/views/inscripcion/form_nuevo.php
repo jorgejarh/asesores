@@ -11,6 +11,12 @@ echo form_open('',array(
 ?>
 
 <table align="center" style="margin:auto;">
+	<tr>
+		<td>DUI: </td>
+		<td><?php 
+			echo form_input("dui");
+			?><button class="bus" onclick="buscar_persona();">Buscar</button></td>
+	</tr>
 	<?php
 	foreach($this->campos as $llave=>$valor)
 	{
@@ -105,7 +111,7 @@ $(document).ready(function(e){
 		return false;
 	});
 	
-	$('select[name=id_cooperativa]').change(function(e) {
+	$('select[name=id_cooperativa]').change(function(e,id_sucursal) {
         id_cooperativa=$(this).val();
 		
 		$.ajax({
@@ -116,7 +122,7 @@ $(document).ready(function(e){
 				  success:function(data){
 
 				  		$('select[name=id_sucursal]').html(data);
-				  		
+						
 				  },
 				   error:function()
 				  {
@@ -126,8 +132,63 @@ $(document).ready(function(e){
 			});
 		
     });
+	$('input[name=nombres]').attr('readonly', true);
+	$('input[name=apellidos]').attr('readonly', true);
+	$('select[name=id_cooperativa]').attr('readonly', true);
+	$('select[name=id_sucursal]').attr('readonly', true);
+	$('select[name=id_cargo]').attr('readonly', true);
+	$('input[name=correo]').attr('readonly', true);
+	
 
 });
+
+
+function buscar_persona()
+{
+	event.preventDefault();
+	var bot=$('.bus');
+	bot.html("Buscando...");
+	$.ajax({
+		  url: "<?php echo site_url('inscripcion_temas_personas/buscar_persona');?>",
+		  type:"POST",
+		  dataType:"json",
+		  data:$('#form_nuevo').serialize(),
+		  success:function(data){
+				bot.html("Buscar");
+			  	if(data.dato)
+				{
+					$('input[name=dui]').val(data.dui);
+					$('input[name=nombres]').val(data.nombres);
+					$('input[name=apellidos]').val(data.apellidos);
+					$('select[name=id_cooperativa]').val(data.id_cooperativa);
+					$('select[name=id_cooperativa]').change();
+					$('select[name=id_sucursal]').val(data.id_sucursal);
+					
+					//$('select[name=id_sucursal]').change();
+					$('select[name=id_cargo]').val(data.id_cargo);
+					$('input[name=correo]').val(data.correo);
+				}else{
+					alert("La persona que desea inscribir no existe. Puede agregarla en la opcion: Registro de Personal");
+					
+					$('input[name=dui]').val("");
+					$('input[name=nombres]').val("");
+					$('input[name=apellidos]').val("");
+					$('select[name=id_cooperativa]').val(1);
+					$('select[name=id_cooperativa]').change();
+					$('select[name=id_sucursal]').val(0);
+					$('select[name=id_cargo]').val(1);
+					$('input[name=correo]').val("");
+					
+					}
+				
+		  },
+		   error:function()
+		  {
+			 alert("Error al procesar, Intente de nuevo"); 
+		  }
+	});
+	return false;
+}
 
 
 </script>

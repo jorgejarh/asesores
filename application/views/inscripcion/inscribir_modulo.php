@@ -74,10 +74,11 @@
 				}
 			?>
             
+            <button onClick="registrar_persona();">Registrar Persona</button>
              <button onClick="nueva_persona();">Inscribir Persona</button> <!--<button onClick="imprimir_asistencia();">Imprimir Asistencia</button> -->
             <!--<button onClick="opinion();">Opinion de Participantes</button> -->
             <?php
-            if($modulo['es_calificado']==0)
+            /*if($modulo['es_calificado']==0)
 			{
 				?>
                  <button class="cal_mod" onClick="calificar(<?php echo $modulo['id_modulo'];?>);">Calificar Modulo</button> 
@@ -86,7 +87,7 @@
 				?>
                 <a target="_blank" href="<?php echo site_url($this->nombre_controlador."/ver_resultados/".$modulo['id_modulo']);?>">Ver Resultados</a>
                 <?php
-				}
+				}*/
 			?>
             
             <div class="form_user" style="display:none;"></div>
