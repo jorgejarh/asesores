@@ -5,14 +5,15 @@ echo form_open('',array(
 					'id'=>'form_nuevo'
 						),
 					array(
-					'id_capacitacion'=>$id
+					'id_capacitacion'=>$id,
+					'tipo_persona'=>'A'
 						)
 				);
 ?>
 
 <table align="center" style="margin:auto;">
 	<tr>
-		<td>DUI: </td>
+		<td>DUI / Identificación: </td>
 		<td><?php 
 			echo form_input("dui");
 			?><button class="bus" onclick="buscar_persona();">Buscar</button></td>
@@ -21,7 +22,7 @@ echo form_open('',array(
 	foreach($this->campos as $llave=>$valor)
 	{
 		?>
-	<tr>
+	<tr class="<?php echo ($valor['nombre_campo']=='id_cooperativa' || $valor['nombre_campo']=='id_sucursal')?'no_afi':'';?>">
 		<td><?php echo $valor['nombre_mostrar']; ?>: </td>
 		<td><?php 
 			switch($valor['tipo_elemento'])
@@ -111,8 +112,10 @@ $(document).ready(function(e){
 		return false;
 	});
 	
-	$('select[name=id_cooperativa]').change(function(e,id_sucursal) {
-        id_cooperativa=$(this).val();
+	$('select[name=id_cooperativa]').change(function(e) {
+        
+		
+		id_cooperativa=$(this).val();
 		
 		$.ajax({
 				  url: "<?php echo site_url($this->nombre_controlador.'/sucursales');?>/"+id_cooperativa,
@@ -163,10 +166,24 @@ function buscar_persona()
 					$('select[name=id_cooperativa]').val(data.id_cooperativa);
 					$('select[name=id_cooperativa]').change();
 					$('select[name=id_sucursal]').val(data.id_sucursal);
-					
+					setTimeout("$('select[name=id_sucursal]').val("+data.id_sucursal+");",3000);
+					//setTimeout("alert('"+data.id_sucursal+"');",3000);
 					//$('select[name=id_sucursal]').change();
 					$('select[name=id_cargo]').val(data.id_cargo);
 					$('input[name=correo]').val(data.correo);
+					$('input[name=tipo_persona]').val(data.tipo_persona);
+					
+					if(data.tipo_persona=="A")
+					{
+						$('.no_afi').show();
+						$('.no_afi').show();
+						
+					}else{
+						$('.no_afi').hide();
+						$('.no_afi').hide();
+						}
+					
+					
 				}else{
 					alert("La persona que desea inscribir no existe. Puede agregarla en la opcion: Registro de Personal");
 					

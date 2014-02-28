@@ -137,6 +137,20 @@ class Inscripcion extends CI_Controller {
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	
+	public function registrar_persona($id_capacitacion=0,$id_modulo=0)
+	{
+		$model=$this->modelo_usar;
+		$data=array();
+		$data['title']=$this->nombre_titulo." - Regitrar Persona";
+		$data['id']=$id_capacitacion;
+		$data['id_modulo']=$id_modulo;
+		$data['cooperativas']=preparar_select($this->cooperativa_model->obtener_cooperativa(),'id_cooperativa','cooperativa');
+		$data['cargos']=preparar_select($this->mante_cargos_model->obtener(),'id_cargo','nombre_cargo');
+		$this->load->view($this->carpeta_view.'/registrar_persona',$data);
+	}
+	
+	
+	
 	public function sucursales($id_cooperativa=0)
 	{
 		$lista=array();
@@ -158,7 +172,6 @@ class Inscripcion extends CI_Controller {
 		$model=$this->modelo_usar;
 		$post=$this->input->post();
 		
-		
 		if($post)
 		{
 			unset($post['a']);
@@ -176,6 +189,7 @@ class Inscripcion extends CI_Controller {
 			
 			if(!$inscrito)
 			{
+				$this->form_validation->set_rules("dui","Dui/Identificación",'required|xss_clean');
 				foreach($this->campos as $llave=>$valor)		
 				{
 					$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
@@ -214,6 +228,40 @@ class Inscripcion extends CI_Controller {
 
 		}
 	}
+	
+	public function insertar_nueva_persona($id_modulo=0)
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		
+		
+		if($post)
+		{
+			unset($post['a']);
+			$json=array();
+			$this->form_validation->set_rules("dui","Dui/Identificación",'required|is_unique[mante_personal.dui]|xss_clean');
+			$this->form_validation->set_rules("nombres","Nombres",'required|xss_clean');
+			$this->form_validation->set_rules("apellidos","Apellidos",'required|xss_clean');
+			$this->form_validation->set_rules("correo","Correo",'valid_email|xss_clean');
+			
+				if($this->form_validation->run()==TRUE)
+				{
+					//$json['mensaje']=print_r($post,true);
+					$this->load->model("mante_personal_model");
+					$resultado=$this->mante_personal_model->nuevo($post);
+					$json['error']=false;
+				}else{
+					$json['error']=true;
+					$json['mensaje']=traer_errores_form();
+					
+				}
+				
+			echo json_encode($json);
+
+		}
+	}
+	
+	
 	
 	public function calificar($id_modulo=0)
 	{

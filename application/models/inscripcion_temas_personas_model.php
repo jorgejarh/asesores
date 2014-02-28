@@ -57,6 +57,16 @@ class Inscripcion_temas_personas_model extends CI_Model {
 	
 	function nuevo($datos)
 	{
+		if(isset($datos['tipo_persona']))
+		{
+			if($datos['tipo_persona']=="A")
+			{
+				
+			}else{
+				$datos['id_sucursal']=0;
+				}
+		}
+		
 		
 		$datos['id_usuario']=$this->datos_user['id_usuario'];
 		$datos['f_creacion']=date('Y-m-d H:i:s');

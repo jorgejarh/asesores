@@ -5,7 +5,8 @@ echo form_open('',array(
 					'id'=>'form_nuevo'
 						),
 					array(
-					'id_cooperativa'=>$this->datos_user['info_s']['id_cooperativa']
+					'id_cooperativa'=>$this->datos_user['info_s']['id_cooperativa'],
+					'tipo_persona'=>'A'
 						)
 				);
 ?>

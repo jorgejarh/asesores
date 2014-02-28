@@ -94,6 +94,7 @@ class Inscripcion_temas_model extends CI_Model {
 	
 	function obtener_inscripcion($datos)
 	{
+		
 		$dato=$this->db->get_where($this->nombre_tabla,array('id_capacitacion'=>$datos['id_capacitacion'],'id_cooperativa'=>$datos['id_cooperativa']))->row_array();
 		
 		if(!$dato)

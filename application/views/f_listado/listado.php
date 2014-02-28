@@ -12,6 +12,10 @@
       
             <div id="lista_asistencia" >
             <style type="text/css">
+			body
+{
+	font-family:Calibri,Arial;
+}
 				.a_ h3
 				{
 					margin:0px;

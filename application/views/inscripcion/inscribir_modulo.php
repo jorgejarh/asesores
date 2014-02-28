@@ -233,6 +233,20 @@ function nueva_persona()
 		});
 }
 
+function registrar_persona()
+{
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/registrar_persona/'.$modulo['id_capacitacion'].'/'.$modulo['id_modulo']);?>",
+		  type:"POST",
+		  success:function(data){
+			  
+			  	$('.form_user').html(data);
+		  		$('.form_user').toggle();
+		  }
+		  
+		});
+}
+
 function calificar(id)
 {
 	$.ajax({
