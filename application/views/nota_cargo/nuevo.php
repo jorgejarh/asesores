@@ -2,22 +2,53 @@
   <div id="main_panel_container" class="left" style="width:900px;">
     <div id="dashboard" style="width:100%;padding-bottom:50px;">
       <h2 class="ico_mug"> <?php echo $title;?> </h2>
-      <div>
-      	<?php echo anchor('nota_cargo/index','Atras');?>
-      </div>
+      <div> <?php echo anchor('nota_cargo/index','Atras');?> </div>
       <br />
-      <div>
-      	<?php
+      <div style="width:95%; margin:auto;">
+        <?php
         echo form_open();
 		?>
-        <table>
-        	<tr>
-                <td><?php echo form_dropdown('tipo_persona',array('C'=>"Cooperativa",'PN'=>"Persona Natural"),set_value('tipo_persona'));?> <?php echo form_dropdown('cooperativa',array());?></td>
-                
-            </tr>
-            <tr>
-            	<td>Por $ <?php echo form_input('cantidad_por', set_value('cantidad_por'));?></td>
-            </tr>
+        <table width="100%">
+          <tr align="right">
+            <td>Por $ <?php echo form_input('cantidad_por', set_value('cantidad_por'));?> Más IVA</td>
+          </tr>
+          <tr>
+            <td><?php echo form_dropdown('tipo_persona',array('C'=>"Cooperativa",'PN'=>"Persona Natural"),set_value('tipo_persona'));?> <?php echo form_dropdown('cooperativa',array());?></td>
+          </tr>
+          <tr>
+            <td><p>Hemos cargado a su cuenta por Cobrar en la Fundacion Asesores para el Desarrollo, la suma de :</p></td>
+          </tr>
+          <tr>
+            <td><?php $opciones=array('name'=>'cantidad_letras', 'value'=>set_value('cantidad_letras'), 'readonly'=>'readonly','style'=>'width:100%;'); 
+			echo form_input($opciones );?>
+              </td>
+          </tr>
+          <tr>
+            <td><p>Por Participación en jornada de capacitación:</p></td>
+          </tr>
+          <tr>
+            <td><?php echo form_dropdown('id_capacitacion',array());?>
+              </td>
+          </tr>
+          <tr>
+            <td><p>Participantes:</p>
+            	<div class="participantes">
+                	
+                </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Inversión individual: $
+             <?php 
+			 $opciones=array('name'=>'inversion_individual', 'value'=>set_value('inversion_individual'), 'readonly'=>'readonly'); 
+			echo form_input($opciones );?> 
+            
+            Inversión Total: $
+             <?php 
+			 $opciones=array('name'=>'inversion_individual', 'value'=>set_value('inversion_individual'), 'readonly'=>'readonly'); 
+			echo form_input($opciones );?>
+            </td>
+          </tr>
         </table>
         <?php
 		echo form_close();
@@ -40,12 +71,35 @@ $(document).ready(function() {
 		  success:function(data){
 
 		  	 $('select[name=cooperativa]').html(data);
+			 $('select[name=cooperativa]').change();
 		  }
 		  
 		});
 	});
 	
+	
+	
+	$('select[name=cooperativa]').change(function(e) {
+        var id_cooperativa=$(this).val();
+		var tipo_persona=$('select[name=tipo_persona]').val();
+		
+		$.ajax({
+		  url: "<?php echo site_url('nota_cargo/ajax_capacitaciones');?>",
+		  type:"POST",
+		  dataType:"json",
+		  data:{'tipo_persona':tipo_persona,'id_cooperativa':id_cooperativa},
+		  success:function(data){
+			  $('select[name=id_capacitacion]').html("");
+			  $('select[name=id_capacitacion]').html(data.capacitaciones);
+		  }
+		  
+		});
+		
+    });
+	
+	
 	$('select[name=tipo_persona]').change();
+	
 });
 
 function nuevo_registro()
