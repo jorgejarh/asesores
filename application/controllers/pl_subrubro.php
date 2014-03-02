@@ -35,6 +35,7 @@ class Pl_subrubro extends CI_Controller {
 		$this->load->model('pl_rubro_model');
 		
 		$this->set_campo("nombre","Nombre",'required|xss_clean');
+		$this->set_campo("dias","Dias",'required|xss_clean');
 		$this->set_campo("unidades","Unidades",'required|integer|xss_clean');
 		$this->set_campo("costo","Costo por unidad",'required|numeric|xss_clean');
 		
@@ -67,6 +68,8 @@ class Pl_subrubro extends CI_Controller {
 		$data['title']=$this->nombre_titulo." - Nuevo";
 		$data['id']=$id;
 		$data['n_participantes'] = $this->$model->obtener_n_participantes( $id );
+		$data['capacitacion']=$this->$model->obtener_modulo($id);
+		$data['dias']=ver_dias($data['capacitacion']['fecha_prevista'],$data['capacitacion']['fecha_prevista_fin']);
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	

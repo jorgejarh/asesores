@@ -82,7 +82,7 @@ class Evaluar_modulo extends CI_Controller {
 			$this->load->model("pl_modalidades_model");
 			
 			$data['capacitacion']=$this->pl_capacitaciones_model->obtener($data['modulo']['id_capacitacion']);
-			$data['modalidad']=$this->pl_capacitaciones_model->obtener($data['capacitacion']['id_plan_modalidad']);
+			$data['modalidad']=$this->pl_modalidades_model->obtener($data['capacitacion']['id_plan_modalidad']);
 			
 			
 			$data['mensaje']="";

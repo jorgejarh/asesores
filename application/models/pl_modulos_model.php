@@ -63,7 +63,7 @@ class Pl_modulos_model extends CI_Model {
 	function lista($id=0)
 	{
 		$this->db->select("a.*",false);
-		return $this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_capacitacion'=>$id))->result_array();
+		return $this->db->order_by("a.fecha_prevista","ASC")->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_capacitacion'=>$id))->result_array();
 		
 	}
 	

@@ -73,9 +73,9 @@
                 <?php
 				}
 			?>
-            
+            <button onClick="nueva_persona();">Inscribir Persona</button>
             <button onClick="registrar_persona();">Registrar Persona</button>
-             <button onClick="nueva_persona();">Inscribir Persona</button> <!--<button onClick="imprimir_asistencia();">Imprimir Asistencia</button> -->
+              <!--<button onClick="imprimir_asistencia();">Imprimir Asistencia</button> -->
             <!--<button onClick="opinion();">Opinion de Participantes</button> -->
             <?php
             /*if($modulo['es_calificado']==0)

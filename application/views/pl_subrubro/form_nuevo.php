@@ -26,9 +26,17 @@ echo form_open('',array(
 
 						echo form_input($valor['nombre_campo'], $n_participantes );
 					}else{
+						
+						if( $valor['nombre_campo'] == 'dias' ){
 
-						echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));
+							echo form_input($valor['nombre_campo'], $dias );
+						}else{
+						
+							echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));
+						}
 					}
+					
+					
 					
 					break;
 				

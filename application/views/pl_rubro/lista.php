@@ -25,6 +25,7 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
+      	<th>Nº</th>
       	<th>Nombre del Rubro</th>
         <th>Sub Rubros</th>
         <th>Total</th>
@@ -35,18 +36,21 @@ if($listado)
     </thead>
     <tbody>
       <?php
+	  $conta=0;
 		foreach($listado as $valor)
 		{
+			$conta++;
 			$total_rubro=0.00;
 			?>
       <tr class="gradeA">
+      	<td><?php echo $conta;?></td>
       	<td><?php echo $valor['nombre_rubro'];?></td>
         <td><?php
 			if($valor['sub'])
 			{
 				foreach($valor['sub'] as $sub)
 				{
-					$subtotal=$sub['costo']*$sub['unidades'];
+					$subtotal=$sub['costo']*$sub['unidades']*$sub['dias'];
 					echo '<div><a title="Total: $ '.number_format($subtotal,2).'">- '.$sub['nombre'].'</a></div>';
 					$total_rubro+=$subtotal;
 				}

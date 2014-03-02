@@ -146,7 +146,7 @@ function validar_enviar()
 {
 	if(confirm('¿Seguro que desea enviar notas? No podra modificar despues del envio.'))
 	{
-		return true;
+		$('#form_notas').submit();
 	}else{
 		return false;
 		}

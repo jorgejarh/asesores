@@ -40,7 +40,7 @@ class Pl_rubro_model extends CI_Model {
 	function lista($id=0)
 	{
 		$this->db->select("a.* , b.nombre as nombre_rubro");
-		$this->db->where("a.id_rubro_name = b.id_rubro");
+		$this->db->order_by("a.id_rubro","DESC")->where("a.id_rubro_name = b.id_rubro");
 		$datos=$this->db->get_where($this->nombre_tabla." a, mante_rubros b",array('a.activo'=>1,'a.id_modulo'=>$id))->result_array();
 		if($datos)
 		{

@@ -28,6 +28,7 @@ if($listado)
       	<th>Nombre del Detalle</th>
         <th>Unidades</th>
         <th>Costo X Unidad</th>
+        <th>Dias</th>
         <th>Total</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
@@ -37,12 +38,13 @@ if($listado)
       <?php
 		foreach($listado as $valor)
 		{
-			$total_subrubro=$valor['unidades']*$valor['costo'];
+			$total_subrubro=$valor['unidades']*$valor['costo']*$valor['dias'];
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['nombre'];?></td>
        <td> <?php echo $valor['unidades'];?></td>
        <td>$ <?php echo number_format($valor['costo'],2);?></td>
+       <td> <?php echo $valor['dias'];?></td>
        <td>$ <?php echo number_format($total_subrubro,2);?></td>
         <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">

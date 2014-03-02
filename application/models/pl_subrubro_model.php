@@ -62,7 +62,7 @@ class Pl_subrubro_model extends CI_Model {
 
 	function obtener_n_participantes( $id_rubro ){
 
-		$this->db->select('pl_capacitaciones.n_participantes');
+		$this->db->select('pl_capacitaciones.n_participantes + pl_capacitaciones.n_participantes_no + pl_capacitaciones.n_participantes_ex as n_participantes');
 		$this->db->where('pl_rubro.id_rubro', $id_rubro);
 		$this->db->from('pl_rubro');
 		$this->db->join('pl_modulos', 'pl_modulos.id_modulo = pl_rubro.id_modulo');
@@ -70,21 +70,13 @@ class Pl_subrubro_model extends CI_Model {
 		return $query = $this->db->get()->row()->n_participantes;
 	}
 	
-	function obtener_curriculas()
-	{
-		return $this->db->get_where('cu_curricula',array('estado'=>1))->result_array();
+	function obtener_modulo( $id_rubro ){
+
+		$this->db->select('pl_modulos.*');
+		$this->db->where('pl_rubro.id_rubro', $id_rubro);
+		$this->db->from('pl_rubro');
+		$this->db->join('pl_modulos', 'pl_modulos.id_modulo = pl_rubro.id_modulo');
+		return $query = $this->db->get()->row_array();
 	}
-	
-	function obtener_perfiles($id)
-	{
-		return $this->db->get_where('cu_perfil',array('id_curricula'=>$id))->result_array();
-	}
-	
-	function obtener_contenidos($id)
-	{
-		return $this->db->get_where('cu_perfil_contenido_aspectos',array('id_perfil'=>$id))->result_array();
-	}
-	
-	
 	
 }

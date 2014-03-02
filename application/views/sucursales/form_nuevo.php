@@ -43,7 +43,7 @@ echo form_open('',array(
 	</tr>
     <tr>
 		<td valign="middle">Fax: </td>
-		<td valign="middle"><input type="text"  name="fax" class="requerido" /></td>
+		<td valign="middle"><input type="text"  name="fax" class="" /></td>
 	</tr>
 	<tr>
 		<td colspan="2"><hr></td>

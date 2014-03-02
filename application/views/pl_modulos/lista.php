@@ -29,9 +29,9 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
+      	<th >Inicio</th>
+        <th >Fin</th>
       	<th>Nombre del Modulo</th>
-        <th width="90">Fechas</th>
-        
          <th>Ver Pres.</th>
          <th>Asignar Tema</th>
         <th>Asignar Costos</th>
@@ -48,9 +48,10 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
+      	<td><?php echo date('d/m/Y',strtotime($valor['fecha_prevista'])); ?></td>
+        <td><?php 
+		echo date('d/m/Y',strtotime($valor['fecha_prevista_fin']));?></td>
       	<td><?php echo $valor['nombre_modulo'];?></td>
-        <td><?php echo date('d/m/Y',strtotime($valor['fecha_prevista'])); echo "-"; echo date('d/m/Y',strtotime($valor['fecha_prevista_fin']));?></td>
-        
         <td align="center"	class="">
         <?php
 		$total=obtener_costo_modulo($valor[$this->$model->id_tabla]);
