@@ -32,7 +32,7 @@ if($listado)
       	<th >Inicio</th>
         <th >Fin</th>
       	<th>Nombre del Modulo</th>
-         <th>Ver Pres.</th>
+         <!--<th>Ver Pres.</th>-->
          <th>Asignar Tema</th>
         <th>Asignar Costos</th>
         <th>Asignar Evaluaciones</th>
@@ -52,8 +52,11 @@ if($listado)
         <td><?php 
 		echo date('d/m/Y',strtotime($valor['fecha_prevista_fin']));?></td>
       	<td><?php echo $valor['nombre_modulo'];?></td>
+        
+        <!--
         <td align="center"	class="">
         <?php
+		/*
 		$total=obtener_costo_modulo($valor[$this->$model->id_tabla]);
         if($total>0)
 		{
@@ -61,9 +64,9 @@ if($listado)
         <a target="_blank" href="<?php echo site_url('pl_modulos/ver_presupuesto/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a>
         
         <?php
-		}
+		}*/
 		?>
-        </td>
+        </td>-->
         <td align="center"	class="datatable_icono"><a onclick="temas(<?php echo $valor[$this->$model->id_tabla]?>);" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_rubro/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         

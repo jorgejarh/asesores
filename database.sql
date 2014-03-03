@@ -311,11 +311,11 @@ CREATE TABLE `inscripcion_asistencia` (
   `fecha_creacion` datetime NOT NULL,
   `id_usuario` int(11) default NULL,
   PRIMARY KEY  (`id_asistencia`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inscripcion_asistencia` */
 
-insert  into `inscripcion_asistencia`(`id_asistencia`,`id_modulo`,`id_inscripcion_personas`,`asistio`,`aprobado`,`fecha_creacion`,`id_usuario`) values (31,10,12,1,1,'2014-02-13 23:16:25',1),(32,10,13,1,1,'2014-02-13 23:16:25',1),(33,10,14,1,0,'2014-02-26 22:56:35',1),(34,10,15,1,0,'2014-02-27 23:30:01',1);
+insert  into `inscripcion_asistencia`(`id_asistencia`,`id_modulo`,`id_inscripcion_personas`,`asistio`,`aprobado`,`fecha_creacion`,`id_usuario`) values (31,10,12,1,1,'2014-03-02 22:26:02',1),(32,10,13,1,1,'2014-03-02 22:26:02',1),(33,10,14,1,0,'2014-03-02 22:26:02',1),(34,10,15,1,0,'2014-03-02 22:26:02',1),(35,10,16,1,1,'2014-03-02 22:26:02',1),(36,10,17,1,1,'2014-03-02 22:26:02',1);
 
 /*Table structure for table `inscripcion_temas` */
 
@@ -323,11 +323,11 @@ DROP TABLE IF EXISTS `inscripcion_temas`;
 
 CREATE TABLE `inscripcion_temas` (
   `id_inscripcion_tema` int(11) NOT NULL auto_increment,
-  `id_usuario` int(11) default NULL,
+  `id_usuario` int(11) default '0',
   `id_capacitacion` int(11) default NULL,
   `f_creacion` datetime default NULL,
   `activo` int(11) default '1',
-  `id_cooperativa` int(11) default NULL,
+  `id_cooperativa` int(11) default '0',
   PRIMARY KEY  (`id_inscripcion_tema`),
   KEY `FK_inscripcion_temas` (`id_capacitacion`),
   CONSTRAINT `FK_inscripcion_temas` FOREIGN KEY (`id_capacitacion`) REFERENCES `pl_capacitaciones` (`id_capacitacion`)
@@ -335,7 +335,7 @@ CREATE TABLE `inscripcion_temas` (
 
 /*Data for the table `inscripcion_temas` */
 
-insert  into `inscripcion_temas`(`id_inscripcion_tema`,`id_usuario`,`id_capacitacion`,`f_creacion`,`activo`,`id_cooperativa`) values (8,7,7,'2014-02-01 22:10:39',1,9),(9,4,7,'2014-02-01 22:14:02',1,6),(10,0,7,'2014-02-26 22:03:06',1,1),(11,0,7,'2014-02-26 22:07:07',1,NULL);
+insert  into `inscripcion_temas`(`id_inscripcion_tema`,`id_usuario`,`id_capacitacion`,`f_creacion`,`activo`,`id_cooperativa`) values (8,7,7,'2014-02-01 22:10:39',1,9),(9,4,7,'2014-02-01 22:14:02',1,6),(10,0,7,'2014-02-26 22:03:06',1,1),(11,0,7,'2014-02-26 22:07:07',1,0);
 
 /*Table structure for table `inscripcion_temas_personas` */
 
@@ -358,11 +358,11 @@ CREATE TABLE `inscripcion_temas_personas` (
   PRIMARY KEY  (`id_inscripcion_personas`),
   KEY `FK_inscripcion_temas_personas` (`id_inscripcion_tema`),
   CONSTRAINT `FK_inscripcion_temas_personas` FOREIGN KEY (`id_inscripcion_tema`) REFERENCES `inscripcion_temas` (`id_inscripcion_tema`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `inscripcion_temas_personas` */
 
-insert  into `inscripcion_temas_personas`(`id_inscripcion_personas`,`id_inscripcion_tema`,`dui`,`apellidos`,`nombres`,`correo`,`tipo_persona`,`id_sucursal`,`id_cargo`,`aprobado`,`id_usuario`,`f_creacion`,`activo`) values (12,8,'56985749-5','Rodriguez','Jorge','sdf','A',7,1,0,1,'2014-02-01 22:10:39',1),(13,9,'25689-654','Hernandez','Carlos',NULL,'A',9,2,0,1,'2014-02-01 22:14:02',1),(14,8,'2','Amaya','Carlos','jarh@jarh.com','A',0,3,0,1,'2014-02-26 22:56:35',1),(15,10,'123','Melendez','Mario','jarh@jarh.com','NA',0,1,0,1,'2014-02-27 23:30:01',1);
+insert  into `inscripcion_temas_personas`(`id_inscripcion_personas`,`id_inscripcion_tema`,`dui`,`apellidos`,`nombres`,`correo`,`tipo_persona`,`id_sucursal`,`id_cargo`,`aprobado`,`id_usuario`,`f_creacion`,`activo`) values (12,8,'56985749-5','Rodriguez','Jorge','sdf','A',7,1,0,1,'2014-02-01 22:10:39',1),(13,9,'25689-654','Hernandez','Carlos',NULL,'A',9,2,0,1,'2014-02-01 22:14:02',1),(14,8,'2','Amaya','Carlos','jarh@jarh.com','A',0,3,0,1,'2014-02-26 22:56:35',1),(15,11,'123','Melendez','Mario','jarh@jarh.com','NA',0,1,0,1,'2014-02-27 23:30:01',1),(16,11,'9','Guerra','Maria','jarh@jarh.com','EX',0,1,0,1,'2014-03-02 22:12:46',1),(17,11,'7','Ramirez','Daniel','jjjjj@sad.com','EX',0,1,0,1,'2014-03-02 22:25:53',1);
 
 /*Table structure for table `mante_cargos` */
 
@@ -580,11 +580,11 @@ CREATE TABLE `mante_personal` (
   `id_usuario` int(11) default NULL,
   `f_creacion` datetime default NULL,
   PRIMARY KEY  (`id_personal`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `mante_personal` */
 
-insert  into `mante_personal`(`id_personal`,`id_cooperativa`,`id_sucursal`,`dui`,`apellidos`,`nombres`,`correo`,`id_cargo`,`tipo_persona`,`activo`,`id_usuario`,`f_creacion`) values (1,9,8,'1','Rodriguez','Antonio',NULL,2,'A',1,7,'2014-02-15 22:41:49'),(2,9,8,'2','Amaya','Carlos','jarh@jarh.com',3,'A',1,7,'2014-02-25 22:33:52'),(3,1,0,'123','Melendez','Mario','jarh@jarh.com',1,'NA',1,1,'2014-02-27 23:04:33');
+insert  into `mante_personal`(`id_personal`,`id_cooperativa`,`id_sucursal`,`dui`,`apellidos`,`nombres`,`correo`,`id_cargo`,`tipo_persona`,`activo`,`id_usuario`,`f_creacion`) values (1,9,8,'1','Rodriguez','Antonio',NULL,2,'A',1,7,'2014-02-15 22:41:49'),(2,9,8,'2','Amaya','Carlos','jarh@jarh.com',3,'A',1,7,'2014-02-25 22:33:52'),(3,1,0,'123','Melendez','Mario','jarh@jarh.com',1,'NA',1,1,'2014-02-27 23:04:33'),(4,1,0,'9','Guerra','Maria','jarh@jarh.com',1,'EX',1,1,'2014-03-02 22:12:32'),(5,1,0,'4','Montoya','Ever','j@jarh.com',1,'EX',1,1,'2014-03-02 22:18:03'),(6,1,0,'7','Ramirez','Daniel','jjjjj@sad.com',1,'EX',1,1,'2014-03-02 22:25:22');
 
 /*Table structure for table `mante_profesion_x_facilitador` */
 
@@ -732,7 +732,7 @@ CREATE TABLE `pl_capacitaciones` (
 
 /*Data for the table `pl_capacitaciones` */
 
-insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`cerrado`,`n_participantes`,`n_participantes_no`,`n_participantes_ex`,`f_creacion`,`id_usuario`,`activo`) values (7,6,'Diplomado 1','Diplomado 1',0,10,5,5,'2014-01-31 23:16:51',8,1),(8,6,'Diplomado 2','Diplomado 2',0,0,0,0,'2014-02-01 00:04:52',8,1);
+insert  into `pl_capacitaciones`(`id_capacitacion`,`id_plan_modalidad`,`nombre_capacitacion`,`objetivo`,`cerrado`,`n_participantes`,`n_participantes_no`,`n_participantes_ex`,`f_creacion`,`id_usuario`,`activo`) values (7,6,'Diplomado 1','Diplomado 1',0,20,15,20,'2014-01-31 23:16:51',8,1),(8,6,'Diplomado 2','Diplomado 2',0,0,0,0,'2014-02-01 00:04:52',8,1);
 
 /*Table structure for table `pl_modalidades` */
 
@@ -769,11 +769,11 @@ CREATE TABLE `pl_modulo_facilitador` (
   KEY `FK_pl_modulo_facilitador_2` (`id_modulo`),
   CONSTRAINT `FK_pl_modulo_facilitador` FOREIGN KEY (`id_facilitador`) REFERENCES `mante_facilitadores` (`id_facilitador`),
   CONSTRAINT `FK_pl_modulo_facilitador_2` FOREIGN KEY (`id_modulo`) REFERENCES `pl_modulos` (`id_modulo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulo_facilitador` */
 
-insert  into `pl_modulo_facilitador`(`id_modulo_facilitador`,`id_modulo`,`id_facilitador`) values (1,10,2);
+insert  into `pl_modulo_facilitador`(`id_modulo_facilitador`,`id_modulo`,`id_facilitador`) values (1,10,2),(3,11,2);
 
 /*Table structure for table `pl_modulos` */
 
@@ -804,11 +804,11 @@ CREATE TABLE `pl_modulos` (
   KEY `FK_pl_modulos_2` (`id_lugar`),
   CONSTRAINT `FK_pl_modulos` FOREIGN KEY (`id_capacitacion`) REFERENCES `pl_capacitaciones` (`id_capacitacion`),
   CONSTRAINT `FK_pl_modulos_2` FOREIGN KEY (`id_lugar`) REFERENCES `mante_lugares` (`id_lugar`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos` */
 
-insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`id_lugar`,`nombre_modulo`,`precio_venta`,`precio_venta_no`,`precio_venta_ex`,`objetivo_modulo`,`id_contenido`,`fecha_prevista`,`fecha_prevista_fin`,`contenido`,`temas`,`porcentaje`,`puede_evaluar`,`id_usuario`,`f_creacion`,`activo`,`es_calificado`) values (10,7,3,'Modulo 1','10.00','15.00','20.00','Modulo 1',0,'2014-02-19','2014-02-27','---','[\"Tema1\",\"TEMA 2\"]','50.00',1,8,'2014-01-31 23:17:35',1,1);
+insert  into `pl_modulos`(`id_modulo`,`id_capacitacion`,`id_lugar`,`nombre_modulo`,`precio_venta`,`precio_venta_no`,`precio_venta_ex`,`objetivo_modulo`,`id_contenido`,`fecha_prevista`,`fecha_prevista_fin`,`contenido`,`temas`,`porcentaje`,`puede_evaluar`,`id_usuario`,`f_creacion`,`activo`,`es_calificado`) values (10,7,3,'Modulo 1','10.00','15.00','20.00','Modulo 1',0,'2014-02-19','2014-02-27','---','[\"Tema1\",\"TEMA 2\"]','50.00',0,8,'2014-01-31 23:17:35',1,1),(11,7,2,'Modulo 2','50.00','60.00','100.00','',0,'2014-03-03','2014-03-05','',NULL,'50.00',1,1,'2014-03-01 20:11:10',1,0);
 
 /*Table structure for table `pl_modulos_calificacion` */
 
@@ -841,9 +841,11 @@ CREATE TABLE `pl_modulos_eval` (
   `id_usuario` int(11) default NULL,
   `activo` int(11) NOT NULL default '1',
   PRIMARY KEY  (`id_eval_x_mod`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_eval` */
+
+insert  into `pl_modulos_eval`(`id_eval_x_mod`,`id_modulo`,`id_tipo_evaluacion`,`porcentaje`,`f_creacion`,`id_usuario`,`activo`) values (1,11,6,'100.00','2014-03-01 22:40:24',1,1),(2,10,6,'100.00','2014-03-01 22:40:46',1,1);
 
 /*Table structure for table `pl_modulos_notas` */
 
@@ -856,9 +858,11 @@ CREATE TABLE `pl_modulos_notas` (
   `id_eval_x_mod` int(11) NOT NULL,
   `nota` decimal(18,2) NOT NULL,
   PRIMARY KEY  (`id_nota_x_modulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_notas` */
+
+insert  into `pl_modulos_notas`(`id_nota_x_modulo`,`id_modulo`,`id_inscripcion_persona`,`id_eval_x_mod`,`nota`) values (1,10,14,2,'9.00'),(2,10,13,2,'5.00'),(3,10,15,2,'6.00'),(4,10,12,2,'8.00');
 
 /*Table structure for table `pl_opiniones` */
 
@@ -934,11 +938,11 @@ CREATE TABLE `pl_rubro` (
   KEY `FK_pl_rubro2` (`id_rubro_name`),
   CONSTRAINT `FK_pl_rubro` FOREIGN KEY (`id_modulo`) REFERENCES `pl_modulos` (`id_modulo`),
   CONSTRAINT `FK_pl_rubro2` FOREIGN KEY (`id_rubro_name`) REFERENCES `mante_rubros` (`id_rubro`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_rubro` */
 
-insert  into `pl_rubro`(`id_rubro`,`id_rubro_name`,`id_modulo`,`f_creacion`,`id_usuario`,`activo`) values (1,2,10,'2014-02-12 21:44:26',1,1);
+insert  into `pl_rubro`(`id_rubro`,`id_rubro_name`,`id_modulo`,`f_creacion`,`id_usuario`,`activo`) values (1,2,10,'2014-02-12 21:44:26',1,1),(2,2,11,'2014-03-01 20:26:25',1,1),(3,3,11,'2014-03-01 22:36:10',1,1);
 
 /*Table structure for table `pl_subrubro` */
 
@@ -949,6 +953,7 @@ CREATE TABLE `pl_subrubro` (
   `id_rubro` int(11) default NULL,
   `nombre` varchar(200) default NULL,
   `unidades` int(11) default '0',
+  `dias` int(11) default '0',
   `costo` decimal(12,2) default '0.00',
   `f_creacion` datetime default NULL,
   `id_usuario` int(11) default NULL,
@@ -956,11 +961,11 @@ CREATE TABLE `pl_subrubro` (
   PRIMARY KEY  (`id_subrubro`),
   KEY `FK_pl_subrubro` (`id_rubro`),
   CONSTRAINT `FK_pl_subrubro` FOREIGN KEY (`id_rubro`) REFERENCES `pl_rubro` (`id_rubro`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_subrubro` */
 
-insert  into `pl_subrubro`(`id_subrubro`,`id_rubro`,`nombre`,`unidades`,`costo`,`f_creacion`,`id_usuario`,`activo`) values (1,1,'Almuerzo',10,'2.00','2014-02-12 21:44:43',1,1);
+insert  into `pl_subrubro`(`id_subrubro`,`id_rubro`,`nombre`,`unidades`,`dias`,`costo`,`f_creacion`,`id_usuario`,`activo`) values (1,1,'Almuerzo',10,0,'2.00','2014-02-12 21:44:43',1,1),(2,2,'desayuno',55,3,'2.00','2014-03-01 22:14:36',1,1),(3,3,'Cuadernos',55,3,'3.00','2014-03-01 22:36:25',1,1),(4,2,'Almuerzos',55,3,'2.00','2014-03-02 20:29:39',1,1);
 
 /*Table structure for table `sitio_slider` */
 
@@ -1088,7 +1093,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`,`exigir`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-02-28 21:11:29',1,1,1,0),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1,0),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1,0),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1,0),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1,0),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1,0),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2014-02-25 22:10:28',1,2,1,0),(8,'jarh100','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez Arevalo','23658965','78965896',NULL,'jarh@jarh.com','2014-02-16 20:14:28',1,1,1,0),(9,'fjarh','e10adc3949ba59abbe56e057f20f883e','Lic. Jorge Rodriguez','2365-9856','7845-9658',NULL,'jarh@jarh.com','2014-02-13 23:32:02',1,4,1,0);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`,`exigir`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-03-02 17:31:22',1,1,1,0),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1,0),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1,0),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1,0),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1,0),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1,0),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2014-02-25 22:10:28',1,2,1,0),(8,'jarh100','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez Arevalo','23658965','78965896',NULL,'jarh@jarh.com','2014-02-16 20:14:28',1,1,1,0),(9,'fjarh','e10adc3949ba59abbe56e057f20f883e','Lic. Jorge Rodriguez','2365-9856','7845-9658',NULL,'jarh@jarh.com','2014-02-13 23:32:02',1,4,1,0);
 
 /* Procedure structure for procedure `borrar_datos` */
 

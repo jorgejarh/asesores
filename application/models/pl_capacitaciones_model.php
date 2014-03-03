@@ -93,4 +93,105 @@ class Pl_capacitaciones_model extends CI_Model {
 		//return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
 	}
 	
+	function obtener_presupuesto($id_capacitacion=0)
+	{
+		$data=$this->db->get_where('pl_capacitaciones a',array('a.id_capacitacion'=>$id_capacitacion,'a.activo'=>1))->row_array();
+		if($data)
+		{
+			$data['modalidad']=$this->db->select("a.*, b.nombre_modalidad, c.nombre_plan",false)->where("a.id_modalidad = b.id_modalidad and a.id_plan = c.id_plan")->get_where('pl_modalidades a, mante_modalidades b, pl_planes c',array('a.id_plan_modalidad'=>$data['id_plan_modalidad'],'a.activo'=>1))->row_array();
+			
+			if($data['modalidad'])
+			{
+				
+				$data['modulos']=$this->db->get_where('pl_modulos a',array('a.id_capacitacion'=>$data['id_capacitacion'],'a.activo'=>1))->result_array();
+				
+				if($data['modulos'])
+				{
+					foreach($data['modulos'] as $key=>$val)
+					{
+						$data['modulos'][$key]['rubros']=$this->db->select("a.*, b.nombre as nombre_rubro")
+														->where("a.id_rubro_name = b.id_rubro")
+														->get_where('pl_rubro a, mante_rubros b',array('a.id_modulo'=>$val['id_modulo'],'a.activo'=>1))
+														->result_array();
+						
+						if($data['modulos'][$key]['rubros'])
+						{
+							foreach($data['modulos'][$key]['rubros'] as $key2=>$val2)
+							{
+								$data['modulos'][$key]['rubros'][$key2]['sub']=$this->db->get_where('pl_subrubro a',array('a.id_rubro'=>$val2['id_rubro'],'a.activo'=>1))->result_array();
+							}
+						}
+						
+						
+						
+					}
+					return $data;
+					
+				}else{
+					echo "No hay modulos";
+					exit();
+					}
+					
+			}else{
+				echo "Modalidad o PLan Incorrecto";
+				exit();
+				}
+			
+			
+		}else{
+			echo "Capacitación no encontrado";
+			exit();
+			}
+		
+		
+	}
+	
+	function obtener_rubros_x_capacitacion($id_capacitacion=0)
+	{
+		return $this->db->query("SELECT 
+				  b.`id_rubro_name`,
+				  d.nombre,
+				  SUM(c.costo * c.dias * c.unidades) AS total 
+				FROM
+				  `pl_modulos` a,
+				  `pl_rubro` b,
+				  `mante_rubros` d,
+				  pl_subrubro c 
+				WHERE a.`id_capacitacion` = ".$id_capacitacion." 
+				  AND b.`id_modulo` = a.`id_modulo` 
+				  AND b.`id_rubro` = c.`id_rubro` 
+				  AND b.`id_rubro_name` = d.`id_rubro` 
+				  AND a.`activo` = 1 
+				  AND b.`activo` = 1 
+				  AND c.`activo` = 1 
+				  AND d.`activo` = 1 
+				  GROUP BY b.`id_rubro_name`")->result_array();
+	}
+	
+	function obtener_sub_rubros_x_capacitacion($id_capacitacion=0,$id_rubro=0)
+	{
+		return $this->db->query("SELECT 
+				  b.`id_rubro_name`,
+				  d.nombre,
+				  c.`nombre` AS nombre_sub,
+				  (c.costo * c.dias * c.unidades) AS total ,
+					c.unidades,
+					  c.dias,
+						c.costo
+				FROM
+				  `pl_modulos` a,
+				  `pl_rubro` b,
+				  `mante_rubros` d,
+				  pl_subrubro c 
+				WHERE a.`id_capacitacion` = ".$id_capacitacion." 
+				  AND b.`id_modulo` = a.`id_modulo` 
+				  AND b.`id_rubro` = c.`id_rubro` 
+				  AND b.`id_rubro_name` = d.`id_rubro` 
+				  AND a.`activo` = 1 
+				  AND b.`activo` = 1 
+				  AND c.`activo` = 1 
+				  AND d.`activo` = 1 
+				  AND b.`id_rubro_name`=".$id_rubro."")->result_array();
+	}
+	
 }

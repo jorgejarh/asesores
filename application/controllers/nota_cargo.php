@@ -45,7 +45,7 @@ class Nota_cargo extends CI_Controller {
 			}
 		}else{
 			$data['lista_personas']=$this->nota_cargo_model->obtener_no_afiliadas();
-			echo $this->db->last_query();
+			
 				foreach($data['lista_personas'] as $val)
 				{
 					echo '<option value="'.$val['dui'].'">'.$val['apellidos'].', '.$val['nombres'].'</option>';
@@ -61,13 +61,12 @@ class Nota_cargo extends CI_Controller {
 			$json=array();
 			
 			$capacitaciones=$this->nota_cargo_model->obtener_capacitaciones($post);
-			
+			//echo $this->db->last_query();
+			$json['capacitaciones']="";
 			foreach($capacitaciones as $valor)
 			{
-				$json['capacitaciones']='<option value="'.$valor['id_capacitacion'].'">'.$valor['nombre_capacitacion'].'</option>';
+				$json['capacitaciones'].='<option value="'.$valor['id_capacitacion'].'">'.$valor['nombre_capacitacion'].'</option>';
 			}
-			
-			
 			
 			echo json_encode($json);
 		}
@@ -75,5 +74,36 @@ class Nota_cargo extends CI_Controller {
 		//print_r($post);
 	}
 	
+	public function ajax_personas_x_capacitacion()
+	{
+		$post=$this->input->post();
+		
+		if($post)
+		{
+			$json=array();
+			
+			$personas=$this->nota_cargo_model->personas_x_capacitacion($post);
+			
+			$json['personas']="";
+			foreach($personas as $valor)
+			{
+				$json['personas'].='<p>'.$valor['nombres']." ".$valor['apellidos'].'</p>';
+			}
+			
+			echo json_encode($json);
+		}
+	}
+	
+	public function ajax_letras()
+	{
+		$post=$this->input->post();
+		
+		if($post)
+		{
+			$letra= new EnLetras();
+			
+			echo $letra->ValorEnLetras($post['num'],"Dolares");
+		}
+	}
 
 }

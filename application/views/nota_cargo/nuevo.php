@@ -91,11 +91,50 @@ $(document).ready(function() {
 		  success:function(data){
 			  $('select[name=id_capacitacion]').html("");
 			  $('select[name=id_capacitacion]').html(data.capacitaciones);
+			  $('select[name=id_capacitacion]').change();
 		  }
 		  
 		});
 		
     });
+	
+	$('select[name=id_capacitacion]').change(function(e) {
+        
+		var id_cooperativa=$('select[name=cooperativa]').val();
+		var id_capacitacion=$(this).val();
+		var tipo_persona=$('select[name=tipo_persona]').val();
+		
+		$.ajax({
+		  url: "<?php echo site_url('nota_cargo/ajax_personas_x_capacitacion');?>",
+		  type:"POST",
+		  dataType:"json",
+		  data:{'tipo_persona':tipo_persona,'id_cooperativa':id_cooperativa,'id_capacitacion':id_capacitacion},
+		  success:function(data){
+			  $('.participantes').html(data.personas);
+		  }
+		  
+		});
+		
+    });
+	
+	
+	$('input[name=cantidad_por]').change(function(e) {
+        
+		var num=$(this).val();
+		
+		$.ajax({
+		  url: "<?php echo site_url('nota_cargo/ajax_letras');?>",
+		  type:"POST",
+		  data:{'num':num},
+		  success:function(data){
+			  
+			  $('input[name=cantidad_letras]').val(data);
+		  }
+		  
+		});
+		
+    });
+	
 	
 	
 	$('select[name=tipo_persona]').change();
