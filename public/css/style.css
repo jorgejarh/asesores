@@ -259,3 +259,8 @@ a
 {
 	width:30px!important;
 }
+
+.error_
+{
+	border:#F00 solid 1px;
+}

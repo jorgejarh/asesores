@@ -6,7 +6,7 @@
       <br />
       <div style="width:95%; margin:auto;">
         <?php
-        echo form_open();
+        echo form_open('',array('class'=>'form_nota'));
 		?>
         <table width="100%">
           <tr align="right">
@@ -31,7 +31,7 @@
               </td>
           </tr>
           <tr>
-            <td><p>Participantes:</p>
+            <td><div><b>Participantes:</b></div>
             	<div class="participantes">
                 	
                 </div>
@@ -45,11 +45,16 @@
             
             Inversión Total: $
              <?php 
-			 $opciones=array('name'=>'inversion_individual', 'value'=>set_value('inversion_individual'), 'readonly'=>'readonly'); 
+			 $opciones=array('name'=>'inversion_total', 'value'=>set_value('inversion_total'), 'readonly'=>'readonly'); 
 			echo form_input($opciones );?>
             </td>
           </tr>
+          <tr>
+          	<td align="center"><input type="submit" id="save" value="Guardar" onclick="validar_todo();" /></td>
+          </tr>
         </table>
+        
+        
         <?php
 		echo form_close();
 		?>
@@ -111,6 +116,7 @@ $(document).ready(function() {
 		  data:{'tipo_persona':tipo_persona,'id_cooperativa':id_cooperativa,'id_capacitacion':id_capacitacion},
 		  success:function(data){
 			  $('.participantes').html(data.personas);
+			  llenar_precios();
 		  }
 		  
 		});
@@ -140,6 +146,62 @@ $(document).ready(function() {
 	$('select[name=tipo_persona]').change();
 	
 });
+
+function llenar_precios()
+{
+	var id_capacitacion=$('select[name=id_capacitacion]').val();
+	var id_cooperativa=$('select[name=cooperativa]').val();
+	var tipo_persona=$('select[name=tipo_persona]').val();
+	$.ajax({
+		  url: "<?php echo site_url('nota_cargo/ajax_datos_capacitacion');?>",
+		  type:"POST",
+		  //dataType:"json",
+		  data:{'tipo_persona':tipo_persona,'id_cooperativa':id_cooperativa,'id_capacitacion':id_capacitacion},
+		  success:function(data){
+			  
+			  $('input[name=inversion_individual]').val(data);
+			  var cantidad=$('.participantes ul li').size();
+			  
+			  var total=parseFloat(cantidad)*parseFloat(data);
+			  
+			  $('input[name=inversion_total]').val(total);
+			  
+		  }
+		  
+		});
+}
+
+function validar_todo()
+{
+	event.preventDefault();
+	var validar_form=true;
+	$('.form_nota').find('input[type=text]').each(function(index, element) {
+        
+		if($(this).val()=="" || $(this).val()==0 )
+		{
+			validar_form=false;
+			$(this).addClass('error_');
+		}else{
+			$(this).removeClass('error_');
+			}
+    });
+	
+	$('.form_nota').find('select').each(function(index, element) {
+        
+		if($(this).val()=="" || $(this).val()==0 || $(this).val()==null )
+		{
+			validar_form=false;
+			$(this).addClass('error_');
+		}else{
+			$(this).removeClass('error_');
+			}
+    });
+	
+	if(validar_form)
+	{
+		$('.form_nota').submit();
+	}
+}
 
 function nuevo_registro()
 {
@@ -198,3 +260,9 @@ function eliminar_registro(id)
 }
 
 </script> 
+<style type="text/css">
+.lista_participantes
+{
+	margin:0px;
+}
+</style>

@@ -44,4 +44,15 @@ class Nota_cargo_model extends CI_Model {
 			}
 	}
 	
+	function guardar_nota_cargo($datos=array())
+	{
+		$this->db->insert('notas_cargo',$datos);
+	}
+	
+	function obtener_una_nota($id_nota_cargo)
+	{
+		return $this->db->get_where('notas_cargo',array('id_nota_cargo'=>$id_nota_cargo))->row_array();
+	}
+	
+	
 }

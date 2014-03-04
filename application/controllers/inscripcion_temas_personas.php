@@ -220,9 +220,9 @@ class Inscripcion_temas_personas extends CI_Controller {
 		}else{
 			$json['dato']=false;
 			}
-		
-		
 		echo json_encode($json);
 	}
+	
+	
 
 }
