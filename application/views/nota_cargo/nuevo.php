@@ -1,3 +1,4 @@
+
 <div id="content_main" class="clearfix">
   <div id="main_panel_container" class="left" style="width:900px;">
     <div id="dashboard" style="width:100%;padding-bottom:50px;">
@@ -199,7 +200,13 @@ function validar_todo()
 	
 	if(validar_form)
 	{
-		$('.form_nota').submit();
+		if(confirm("¿Esta seguro de generar la nota de cargo?"))
+		{
+			$('.form_nota').submit();
+		}else{
+			return false;
+			}
+		
 	}
 }
 

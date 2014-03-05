@@ -166,7 +166,36 @@ class Nota_cargo extends CI_Controller {
 	{
 		
 		$data['datos']=$this->nota_cargo_model->obtener_una_nota($id_nota_cargo);
-
+		$data['persona']="";
+		if($data['datos']['tipo_persona']=="C")
+		{
+			
+			$data['lista_personas']=$this->nota_cargo_model->obtener_cooperativas();
+			foreach($data['lista_personas'] as $val)
+			{
+				if($val['id_cooperativa']==$data['datos']['id_cooperativa'])
+				{
+					$data['persona']=$val['cooperativa'];
+					break;
+				}
+				
+			}
+		}else{
+			$data['lista_personas']=$this->nota_cargo_model->obtener_no_afiliadas();
+			
+				foreach($data['lista_personas'] as $val)
+				{
+					if($val['dui']==$data['datos']['id_cooperativa'])
+					{
+						$data['persona']=$val['apellidos'].', '.$val['nombres'];
+						break;
+					}
+					
+				}
+			}	
+		
+		$data['personas']=$this->nota_cargo_model->personas_x_capacitacion(array('id_cooperativa'=>$data['datos']['id_cooperativa'],'tipo_persona'=>$data['datos']['tipo_persona']));
+		
 		$data['titulo']="Imprimir";
 		
 		$this->load->view('nota_cargo/imprimir',$data);
