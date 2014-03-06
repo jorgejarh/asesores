@@ -117,11 +117,11 @@ $(document).ready(function(e){
 	/*$('input[name=dui').change(function(e) {
         buscar_persona();
     });*/
-	$('input[name=nombres]').attr("disabled", "disabled"); 
-	$('input[name=apellidos]').attr("disabled", "disabled"); 
-	$('select[name=id_sucursal]').attr("disabled", "disabled"); 
-	$('select[name=id_cargo]').attr("disabled", "disabled"); 
-	$('input[name=correo]').attr("disabled", "disabled"); 
+	$('input[name=nombres]').attr('readonly', true);
+	$('input[name=apellidos]').attr('readonly', true);
+	$('select[name=id_sucursal]').attr('readonly', true);
+	$('select[name=id_cargo]').attr('readonly', true);
+	$('input[name=correo]').attr('readonly', true);
 	
 });
 
