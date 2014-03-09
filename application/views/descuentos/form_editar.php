@@ -25,15 +25,7 @@ echo form_open('',array(
 			 		break;
 			 	
 			 	case 'select':
-			 		/*$options = array('' => 'Seleccione');
-
-			 		if($listado_facilitadores){
-			 			foreach ($listado_facilitadores as $key => $value) {
-			 				$options[$value['id_tipo_facilitador']] = $value['nombre_tipo_facilitador']; 
-			 			}
-			 		}
-
-					echo form_dropdown($valor['nombre_campo'], $options, $dato['id_tipo_facilitador']);*/
+			 		echo form_dropdown($valor['nombre_campo'], $valor['datos_select'], '0');
 
 			 		break;
 			 } 
@@ -107,8 +99,44 @@ $(document).ready(function(e){
 
 		return false;
 	});
-
+	
+	
+	$("select[name=id_cooperativa]").change(function(e) {
+        
+		var id_cooperativa=$(this).val();
+		
+		$.ajax({
+				  url: "<?php echo site_url($this->nombre_controlador.'/obtener_inscripciones');?>",
+				  type:"POST",
+				  dataType:"json",
+				  data:{'id_cooperativa':id_cooperativa},
+				  success:function(data){
+					  $("select[name=id_inscripcion_tema]").html("");
+					  $.each(data,function(index,elemento){
+						  
+						  $("select[name=id_inscripcion_tema]").append(obtener_opcion(elemento.id_inscripcion_tema,elemento.nombre_capacitacion));
+						  //alert(elemento.nombre_capacitacion);
+						  });
+					  $("select[name=id_inscripcion_tema]").val(<?php echo $dato['id_inscripcion_tema'];?>);
+				  			//$("input[name=id_inscripcion_tema]").html(data);			  		
+				  },
+				   error:function()
+				  {
+					 alert("Error al procesar, Intente de nuevo"); 
+					 location.reload();
+				  }
+			});
+		
+    });
+	
+	
+	$("select[name=id_cooperativa]").change();
+	
 });
 
+function obtener_opcion(id,nombre)
+{
+	return '<option value="'+id+'">'+nombre+'</option>'
+}
 
 </script>

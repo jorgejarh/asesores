@@ -95,7 +95,7 @@ $(document).ready(function(e){
 		return false;
 	});
 	
-	$("input[name=id_cooperativa]").change(function(e) {
+	$("select[name=id_cooperativa]").change(function(e) {
         
 		var id_cooperativa=$(this).val();
 		
@@ -105,8 +105,14 @@ $(document).ready(function(e){
 				  dataType:"json",
 				  data:{'id_cooperativa':id_cooperativa},
 				  success:function(data){
-
-				  			$("input[name=id_inscripcion_tema]").html(data);			  		
+					  
+					  $.each(data,function(index,elemento){
+						  
+						  $("select[name=id_inscripcion_tema]").append(obtener_opcion(elemento.id_inscripcion_tema,elemento.nombre_capacitacion));
+						  //alert(elemento.nombre_capacitacion);
+						  });
+					  
+				  			//$("input[name=id_inscripcion_tema]").html(data);			  		
 				  },
 				   error:function()
 				  {
@@ -117,5 +123,13 @@ $(document).ready(function(e){
 		
     });
 	
+	
+	$("select[name=id_cooperativa]").change();
 });
+
+function obtener_opcion(id,nombre)
+{
+	return '<option value="'+id+'">'+nombre+'</option>'
+}
+
 </script>

@@ -29,6 +29,7 @@ class Estado_cuenta extends CI_Controller {
 		if($data['cooperativa'])
 		{
 			$data['inscripciones']=$this->estado_cuenta_model->obtener_inscripciones_x_cooperativa($id_cooperativa);
+			
 			//echo $this->db->last_query();
 			$this->load->view('estado_cuenta/ver',$data);
 		}

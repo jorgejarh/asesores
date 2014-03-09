@@ -37,7 +37,7 @@ class Descuentos extends CI_Controller {
 		
 		$this->set_campo("id_cooperativa","Cooperativa",'required|xss_clean', 'select',preparar_select($this->cooperativa_model->obtener_cooperativa(),'id_cooperativa','cooperativa'));
 		$this->set_campo("id_inscripcion_tema","Capacitación",'required|xss_clean', 'select',array());
-		$this->set_campo("descuento","Descuento",'required|xss_clean', 'text');
+		$this->set_campo("descuento","Descuento en %",'required|numeric|xss_clean', 'text');
     }
 
 	public function index()
@@ -64,7 +64,12 @@ class Descuentos extends CI_Controller {
 	public function obtener_inscripciones()
 	{
 		$model=$this->modelo_usar;
-		
+		$post=$this->input->post();
+		if($post)
+		{
+			$inscripciones=$this->$model->obtener_inscripciones($post['id_cooperativa']);
+			echo json_encode($inscripciones);
+		}
 		
 	}
 	

@@ -19,7 +19,9 @@ class Estado_cuenta_model extends CI_Model {
 	
 	function obtener_inscripciones_x_cooperativa($id_cooperativa=0)
 	{
-		$this->db->select("a.*, b.nombre_capacitacion, (SELECT SUM(c.precio_venta) FROM  pl_modulos c WHERE c.id_capacitacion = b.id_capacitacion) AS precio_capacitacion ,
+		$this->db->select("a.*, b.nombre_capacitacion, 
+			(SELECT SUM(e.descuento) FROM inscripcion_temas_descuentos e WHERE e.activo=1 AND e.id_inscripcion_tema=a.id_inscripcion_tema) AS descuento,
+		(SELECT SUM(c.precio_venta) FROM  pl_modulos c WHERE c.id_capacitacion = b.id_capacitacion) AS precio_capacitacion ,
   														(SELECT COUNT(d.id_inscripcion_personas) FROM inscripcion_temas_personas d WHERE d.id_inscripcion_tema = a.id_inscripcion_tema) AS cantidad_inscritos,
 														(SELECT SUM(e.cantidad_por) FROM notas_cargo e WHERE e.id_cooperativa = a.id_cooperativa) AS cantidad_pagada
   

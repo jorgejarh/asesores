@@ -46,11 +46,12 @@ p {
             <?php
             foreach($inscripciones as $valor)
 			{
+				
 				?>
                 <tr>
                 	<td align="center"><p><?php echo date('d/m/Y',strtotime( $valor['f_creacion']));?></p></td>
                     <td align="center"><p>Inscripcion de <?php echo $valor['cantidad_inscritos'];?> persona(s) en <?php echo $valor['nombre_capacitacion'];?></p></td>
-                    <td align="center"><p>$ <?php $debe=$valor['cantidad_inscritos']*$valor['precio_capacitacion']; echo number_format($debe,2);?></p></td>
+                    <td align="center"><p>$ <?php $debe=$valor['cantidad_inscritos']*$valor['precio_capacitacion'];$debe=$debe-($debe*($valor['descuento']/100)); echo number_format($debe,2);?></p></td>
                     <td align="center"><p>$ <?php echo number_format($valor['cantidad_pagada'],2);?></p></td>
                     <td align="center"><p>$ <?php echo number_format($debe-$valor['cantidad_pagada'],2);?></p></td>
                 </tr>
