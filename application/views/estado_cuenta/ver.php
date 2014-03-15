@@ -14,9 +14,47 @@ $(document).ready(function(event){
 	//window.print() ;
 });
 </script>
-<style type="text/css">
-body {
-	font-family: Calibri, Arial;
+<style>
+body
+{
+	font-family:Calibri,Arial;
+}
+.gris_l
+{
+	background:#DDDDDD;
+}
+.gris_l_2
+{
+	background:#EEEEEE;
+}
+
+
+.div_imprimir {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.div_imprimir .opciones_ {
+	background: #FFF;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	list-style: none;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+	width: 150px;
+}
+.div_imprimir .opciones_ li {
+	border: 1px solid #CCC;
+	padding: 5px;
+}
+.div_imprimir .opciones_ li:hover {
+	background: #CCC;
+}
+.div_imprimir .opciones_ li a {
+	text-decoration: none;
+	color: #333;
 }
 .cuadro td {
 	border: #000 solid 1px;
@@ -26,6 +64,7 @@ p {
 	margin: 5px;
 }
 </style>
+
 </head>
 <body>
 <div class="copia1">
@@ -35,8 +74,8 @@ p {
     <div>
     	<p>Cooperativa: <b><?php echo $cooperativa['cooperativa'];?></b></p>
         
-        <table width="100%">
-        	<tr>
+        <table width="100%" class="cuadro" cellpadding="0" cellspacing="0">
+        	<tr class="gris_l">
             	<td align="center"><p><b>Fecha</b></p></td>
                 <td align="center"><p><b>Concepto</b></p></td>
                 <td align="center"><p><b>Cargo</b></p></td>
@@ -44,11 +83,13 @@ p {
                 <td align="center"><p><b>Saldo</b></p></td>
             </tr>
             <?php
+			$conta=0;
             foreach($inscripciones as $valor)
 			{
+				$conta++;
 				
 				?>
-                <tr>
+                <tr class="<?php echo (($conta%2)==0)?'gris_l_2':'';?>">
                 	<td align="center"><p><?php echo date('d/m/Y',strtotime( $valor['f_creacion']));?></p></td>
                     <td align="center"><p>Inscripcion de <?php echo $valor['cantidad_inscritos'];?> persona(s) en <?php echo $valor['nombre_capacitacion'];?></p></td>
                     <td align="center"><p>$ <?php $debe=$valor['cantidad_inscritos']*$valor['precio_capacitacion'];$debe=$debe-($debe*($valor['descuento']/100)); echo number_format($debe,2);?></p></td>
@@ -60,6 +101,7 @@ p {
 			?>
         </table>
     </div>
+    <div><p style="text-align:center;"><a onclick="window.print();">Imprimir</a></p></div>
   </div>
 </div>
 <div class="copia2"></div>

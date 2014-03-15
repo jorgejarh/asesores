@@ -113,7 +113,7 @@ $(document).ready(function(e){
 				  success:function(data){
 					  $("select[name=id_inscripcion_tema]").html("");
 					  $.each(data,function(index,elemento){
-						  
+						  $("select[name=id_inscripcion_tema]").html("");
 						  $("select[name=id_inscripcion_tema]").append(obtener_opcion(elemento.id_inscripcion_tema,elemento.nombre_capacitacion));
 						  //alert(elemento.nombre_capacitacion);
 						  });
