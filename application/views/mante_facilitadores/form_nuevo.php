@@ -21,7 +21,7 @@ echo form_open('',array(
 		<td><?php echo $valor['nombre_mostrar']; ?>: </td>
 		<td>
 			<?php
-			switch ($valor['tipo_input']) {
+			switch ($valor['tipo_elemento']) {
 			 	case 'text':
 			 		echo form_input($valor['nombre_campo'], set_value($valor['nombre_campo']));
 			 		break;
@@ -29,15 +29,8 @@ echo form_open('',array(
 			 		echo form_textarea($valor['nombre_campo'], set_value($valor['nombre_campo']));
 			 		break;
 			 	case 'select':
-			 		$options = array('' => 'Seleccione');
-
-			 		if($listado_facilitadores){
-			 			foreach ($listado_facilitadores as $key => $value) {
-			 				$options[$value['id_tipo_facilitador']] = $value['nombre_tipo_facilitador']; 
-			 			}
-			 		}
-
-					echo form_dropdown($valor['nombre_campo'], $options, 'Seleccione');
+			 		
+					echo form_dropdown($valor['nombre_campo'], $valor['datos_select'], 'Seleccione');
 
 			 		break;
 			 } 

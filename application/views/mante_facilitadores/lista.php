@@ -18,7 +18,8 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Nombre</th>
+      	<th>Tipo</th>
+        <th>Nombre</th>
         <th>Email</th>
         <th>Agregar Documentos</th>
         <th>Asigar Profesión</th>
@@ -33,6 +34,7 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
+      	<td><?php echo $valor['nombre_tipo_facilitador'];?></td>
       	<td><?php echo $valor['apellidos'].", ".$valor['nombres'];?></td>
        <td><?php echo $valor['correo'];?></td>
        <td align="center" class="datatable_icono"><a href="<?php echo site_url('mante_facilitadores_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>

@@ -10,20 +10,22 @@ class Mante_facilitadores extends CI_Controller {
 
 	public $nombre_controlador="mante_facilitadores";
 	
-	public $nombre_titulo="Facilitadores";
+	public $nombre_titulo="Facilitadores/Técnicos";
 	
 	public $campos=array();
 	
 	
-	public function set_campo($nombre_campo, $nombre_mostrar, $reglas="", $tipo_input)
+	public function set_campo($nombre_campo,$nombre_mostrar,$reglas="",$tipo_elemento="text",$datos_select=array(),$dato='')
 	{
 		$this->campos[]=array(
 								'nombre_campo'=>$nombre_campo,
 								'nombre_mostrar'=>$nombre_mostrar,
 								'reglas'=>$reglas,
-								'tipo_input'=>$tipo_input 
+								'tipo_elemento'=>$tipo_elemento,
+								'datos_select'=>$datos_select
 								);
 	}
+	
 	
 	function __construct()
     {
@@ -33,7 +35,7 @@ class Mante_facilitadores extends CI_Controller {
         $model=$this->modelo_usar;
 		$this->load->model($model);
 		$this->load->model('mante_tipos_facilitadores_model');
-		
+		$this->set_campo("id_tipo_facilitador","Tipo de Facilitador",'required|xss_clean', 'select',preparar_select($this->mante_tipos_facilitadores_model->obtener(),'id_tipo_facilitador','nombre_tipo_facilitador'));
 		$this->set_campo("nombres","Nombres",'required|xss_clean', 'text');
 		$this->set_campo("apellidos","Apellidos",'required|xss_clean', 'text');
 		$this->set_campo("direccion","Direccion",'xss_clean', 'textarea');
