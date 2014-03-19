@@ -51,9 +51,32 @@ CREATE TABLE `asesoria_proyectos` (
   `id_usuario` int(11) default NULL,
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_proyecto`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `asesoria_proyectos` */
+
+insert  into `asesoria_proyectos`(`id_proyecto`,`id_servicio`,`fecha_inicio`,`fecha_fin`,`nombre_proyecto`,`cantidad_tiempo_estimado`,`nombre_tiempo_estimado`,`f_creacion`,`id_usuario`,`activo`) values (1,1,'2014-03-18','2014-03-28','Proyecto 1',10,'days','2014-03-18 21:34:21',1,1),(2,1,'2014-03-22','2014-09-22','Proyecto 2',6,'months','2014-03-18 22:27:35',1,1);
+
+/*Table structure for table `asesoria_proyectos_actividades` */
+
+DROP TABLE IF EXISTS `asesoria_proyectos_actividades`;
+
+CREATE TABLE `asesoria_proyectos_actividades` (
+  `id_actividad` int(11) NOT NULL auto_increment,
+  `id_proyecto` int(11) NOT NULL,
+  `nombre_actividad` longtext,
+  `fecha_inicio` date default NULL,
+  `fecha_fin` date default NULL,
+  `resultado_esperado` longtext,
+  `id_usuario` int(11) default NULL,
+  `f_creacion` datetime default NULL,
+  `activo` int(11) NOT NULL default '1',
+  PRIMARY KEY  (`id_actividad`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+/*Data for the table `asesoria_proyectos_actividades` */
+
+insert  into `asesoria_proyectos_actividades`(`id_actividad`,`id_proyecto`,`nombre_actividad`,`fecha_inicio`,`fecha_fin`,`resultado_esperado`,`id_usuario`,`f_creacion`,`activo`) values (1,1,'Actividad 1','2014-03-26','1969-12-31','Terminar la Inspeccion',1,'2014-03-18 23:55:51',1),(2,1,'actividad 2','2014-03-27','1969-12-31','Otra actividad',1,'2014-03-18 23:56:48',1),(3,1,'actividad 3','2014-03-27','2014-03-31','Otra',1,'2014-03-18 23:59:33',1),(4,2,'Actividad 5','2014-03-24','2014-03-27','dddd',1,'2014-03-19 00:03:28',1);
 
 /*Table structure for table `asesoria_servicios` */
 
@@ -68,9 +91,24 @@ CREATE TABLE `asesoria_servicios` (
   `id_usuario` int(11) default NULL,
   `activo` int(11) default '1',
   PRIMARY KEY  (`id_servicio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `asesoria_servicios` */
+
+insert  into `asesoria_servicios`(`id_servicio`,`id_tipo_solicitante`,`id_cooperativa`,`nombre_solicitante`,`f_creacion`,`id_usuario`,`activo`) values (1,1,9,'ACACCIBA','2014-03-16 17:22:21',1,1);
+
+/*Table structure for table `asesoria_tecnicos_x_proyecto` */
+
+DROP TABLE IF EXISTS `asesoria_tecnicos_x_proyecto`;
+
+CREATE TABLE `asesoria_tecnicos_x_proyecto` (
+  `id_tecnico_asignado` int(11) NOT NULL auto_increment,
+  `id_proyecto` int(11) NOT NULL,
+  `id_facilitador` int(11) NOT NULL,
+  PRIMARY KEY  (`id_tecnico_asignado`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `asesoria_tecnicos_x_proyecto` */
 
 /*Table structure for table `asesoria_tipos_solicitantes` */
 
@@ -575,7 +613,7 @@ CREATE TABLE `mante_facilitadores` (
 
 /*Data for the table `mante_facilitadores` */
 
-insert  into `mante_facilitadores`(`id_facilitador`,`nombres`,`apellidos`,`telefono`,`direccion`,`t_oficina`,`celular`,`correo`,`acreditado`,`id_tipo_facilitador`,`activo`,`id_usuario`,`f_creacion`) values (1,'Jorge Antonio','Rodriguez','',NULL,'25639845','','jarh@jarh.com',0,1,1,1,'2013-06-11 10:00:00'),(2,'Carlos','Hernandez','123456789','','123456789','123456789','jarh@jar.com',1,1,1,1,'2013-06-11 23:45:54');
+insert  into `mante_facilitadores`(`id_facilitador`,`nombres`,`apellidos`,`telefono`,`direccion`,`t_oficina`,`celular`,`correo`,`acreditado`,`id_tipo_facilitador`,`activo`,`id_usuario`,`f_creacion`) values (1,'Jorge Antonio','Rodriguez','',NULL,'25639845','','jarh@jarh.com',0,1,1,1,'2013-06-11 10:00:00'),(2,'Carlos','Hernandez','123456789','','123456789','123456789','jarh@jar.com',1,2,1,1,'2013-06-11 23:45:54');
 
 /*Table structure for table `mante_facilitadores_docs` */
 
@@ -1167,7 +1205,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`,`exigir`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-03-15 19:01:57',1,1,1,0),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1,0),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1,0),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1,0),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1,0),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1,0),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2014-03-05 22:02:44',1,2,1,0),(8,'jarh100','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez Arevalo','23658965','78965896',NULL,'jarh@jarh.com','2014-02-16 20:14:28',1,1,1,0),(9,'fjarh','e10adc3949ba59abbe56e057f20f883e','Lic. Jorge Rodriguez','2365-9856','7845-9658',NULL,'jarh@jarh.com','2014-02-13 23:32:02',1,4,1,0);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`,`exigir`) values (1,'admin','202cb962ac59075b964b07152d234b70','Administrador 1','12345','12345','dkfjkdsjfk','','2014-03-18 20:07:35',1,1,1,0),(2,'rolan','202cb962ac59075b964b07152d234b70','Rolando Medrano1','111111','11111','9re98r9488dvkfckf',NULL,NULL,1,1,1,0),(3,'sdoradea','1234','Sergio','434','34324',NULL,NULL,NULL,0,1,1,0),(4,'sergio','e10adc3949ba59abbe56e057f20f883e','Sergio','22222222','',NULL,'','2013-07-23 11:42:19',1,2,1,0),(5,'eeee','202cb962ac59075b964b07152d234b70','Jorge Rodriguez','22222','22222222',NULL,NULL,NULL,1,1,1,0),(6,'usuario1','e10adc3949ba59abbe56e057f20f883e','Carlos Rivera','23659848','75698459',NULL,'','2013-11-06 17:42:32',1,2,1,0),(7,'jarh','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez','123456','123456',NULL,'jarh@jarh.com','2014-03-05 22:02:44',1,2,1,0),(8,'jarh100','e10adc3949ba59abbe56e057f20f883e','Jorge Rodriguez Arevalo','23658965','78965896',NULL,'jarh@jarh.com','2014-02-16 20:14:28',1,1,1,0),(9,'fjarh','e10adc3949ba59abbe56e057f20f883e','Lic. Jorge Rodriguez','2365-9856','7845-9658',NULL,'jarh@jarh.com','2014-02-13 23:32:02',1,4,1,0);
 
 /* Procedure structure for procedure `borrar_datos` */
 

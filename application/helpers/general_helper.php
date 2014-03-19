@@ -882,4 +882,23 @@ function Parte($x)
 
 }
 
+function traducir_tipo_tiempo($tiempo="")
+{
+	$respuesta="";
+	switch($tiempo)
+	{
+		case "days":
+			$respuesta="Dia(s)";
+			break;
+		case "months":
+			$respuesta="Mes(es)";
+			break;
+		case "years":
+			$respuesta="Año(s)";
+			break;
+	}
+	return $respuesta;
+}
+
+
 ?>

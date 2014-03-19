@@ -23,8 +23,8 @@ if($listado)
       <tr>
       	<th>Id</th>
         <th>Solicitante</th>
+        <th>Proyectos</th>
         <th>Fecha de Creación</th>
-        
         <th>&nbsp;</th>
         <th>&nbsp;</th>
       </tr>
@@ -38,6 +38,7 @@ if($listado)
       <tr class="gradeA">
       	<td><?php echo $valor['id_servicio'];?></td>
        <td> <?php echo $valor['nombre_solicitante'];?></td>
+       <td align="center" class="datatable_icono"><a href="<?php echo site_url('ase_proyectos/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
        <td> <?php echo date('d/m/Y',strtotime( $valor['f_creacion']));?></td>
         <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
