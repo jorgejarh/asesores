@@ -5,12 +5,12 @@
         <table style="width:100%;">
           <tr>
             <td><?php echo $title;?></td>
-            <td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $dato['id_servicio']?>);">Nuevo</button></td>
+            <td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $dato['id_actividad']?>);">Nuevo</button></td>
           </tr>
         </table>
       </h2>
        <div class="bot_atras">
-      <?php echo anchor('ase_servicios/index/','<- Regresar');?>
+      <?php echo anchor('ase_bitacoras/index/','<- Regresar');?>
     	
          </div>
       <div class="" style="width:90%; margin:auto;">
@@ -22,13 +22,9 @@ if($listado)
           <thead>
             <tr>
               <th>Id</th>
-              <th>Nombre Proyecto</th>
+              <th>Observacion</th>
               <th>Fecha Inicio</th>
-              <th>Duración</th>
               <th>Fecha Fin</th>
-              <th>Tecnicos Asignados</th>
-              <th>Actividades</th>
-              <th>Reporte</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
             </tr>
@@ -40,29 +36,11 @@ if($listado)
 			
 			?>
             <tr class="gradeA">
-              <td><?php echo $valor['id_proyecto'];?></td>
-              <td><?php echo $valor['nombre_proyecto'];?></td>
+              <td><?php echo $valor['id_bitacora'];?></td>
+              <td><?php echo $valor['observaciones'];?></td>
               <td><?php echo date('d/m/Y',strtotime($valor['fecha_inicio']));?></td>
-              <td><?php echo $valor['cantidad_tiempo_estimado']." ".traducir_tipo_tiempo($valor['nombre_tiempo_estimado']);?></td>
               <td><?php echo date('d/m/Y',strtotime($valor['fecha_fin']));?></td>
-              <td align="center" class="">
-              <?php
-              foreach($valor['tecnicos'] as $val)
-			  {
-				  ?>
-                  <div class="tec_<?php echo $val['id_tecnico_asignado'];?>"><?php echo $val['apellidos'].", ".$val['nombres']?> <a title="Eliminar Tecnico" onclick="eliminar_asignado(<?php echo $val['id_tecnico_asignado'];?>);"><b>X</b></a></div>
-                  <?php
-				 }
-			  ?>
-              
-              <div>
-              	<a onclick="agregar_tecnico(<?php echo $valor[$this->$model->id_tabla];?>);" >+ Agregar</a>
-              </div>
-              
-              
-              </td>
-              <td align="center" class="datatable_icono"><a href="<?php echo site_url('ase_actividades/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
-              <td align="center" class="datatable_icono"><a target="_blank" href="<?php echo site_url('ase_proyectos/reporte/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
+              <!--<td align="center" class="datatable_icono"><a href="<?php echo site_url('ase_actividades/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>-->
               <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
               <td align="center" class="datatable_icono"><a title="Eliminar" onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a></td>
             </tr>

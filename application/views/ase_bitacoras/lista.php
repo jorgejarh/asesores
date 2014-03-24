@@ -26,8 +26,8 @@
             </div>
             <br />
             <div>
-            	<button onclick="">Ver Bitacora</button>
-                <button onclick="">Ver Recomendaciones</button>
+            	<button onclick="ver_bitacora();">Ver Bitacora</button>
+                <button onclick="ver_recomendaciones()">Ver Recomendaciones</button>
             </div>
       </div>
     </div>
@@ -81,6 +81,30 @@ $(document).ready(function(e) {
 	
 	$('select[name=id_solicitante]').change();
 });
+
+function ver_bitacora()
+{
+	var id=$("select[name=id_actividad]").val();
+	if(id!="")
+	{
+		window.location.href="<?php echo site_url('ase_bitacora/index');?>/"+id;
+	}else{
+		alert("Debe seleccionar una Actividad");
+		}
+	
+}
+
+function ver_recomendaciones()
+{
+	var id=$("select[name=id_actividad]").val();
+	if(id!="")
+	{
+		window.location.href="<?php echo site_url('ase_recomendaciones/index');?>/"+id;
+	}else{
+		alert("Debe seleccionar una Actividad");
+		}
+	
+}
 
 </script>
 
