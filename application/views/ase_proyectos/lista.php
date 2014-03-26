@@ -27,8 +27,8 @@ if($listado)
               <th>Duración</th>
               <th>Fecha Fin</th>
               <th>Tecnicos Asignados</th>
-              <th>Actividades</th>
-              <th>Reporte</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
             </tr>
@@ -50,7 +50,7 @@ if($listado)
               foreach($valor['tecnicos'] as $val)
 			  {
 				  ?>
-                  <div class="tec_<?php echo $val['id_tecnico_asignado'];?>"><?php echo $val['apellidos'].", ".$val['nombres']?> <a title="Eliminar Tecnico" onclick="eliminar_asignado(<?php echo $val['id_tecnico_asignado'];?>);"><b>X</b></a></div>
+                  <div class="tec_<?php echo $val['id_tecnico_asignado'];?>"><?php echo $val['apellidos'].", ".$val['nombres']?> <a title="Eliminar Tecnico" onclick="eliminar_asignado(<?php echo $val['id_tecnico_asignado'];?>);"><b ><?php echo img('public/img/cancel.png');?></b></a></div>
                   <?php
 				 }
 			  ?>
@@ -61,10 +61,10 @@ if($listado)
               
               
               </td>
-              <td align="center" class="datatable_icono"><a href="<?php echo site_url('ase_actividades/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
-              <td align="center" class="datatable_icono"><a target="_blank" href="<?php echo site_url('ase_proyectos/reporte/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
-              <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
-              <td align="center" class="datatable_icono"><a title="Eliminar" onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a></td>
+              <td align="center" class=""><a title="Actividades" href="<?php echo site_url('ase_actividades/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
+              <td align="center" class=""><a title="Reporte" target="_blank" href="<?php echo site_url('ase_proyectos/reporte/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
+              <td align="center" class=""><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
+              <td align="center" class=""><a title="Eliminar" onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a></td>
             </tr>
             <?php
 		}

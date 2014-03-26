@@ -40,7 +40,9 @@ class Ase_proyectos extends CI_Controller {
 		
 		$this->set_campo("fecha_inicio","Fecha Inicio",'required|xss_clean','text',array(),'fecha__');
 		$this->set_campo("nombre_proyecto","Nombre del Proyecto",'required|xss_clean');
-		$this->set_campo("cantidad_tiempo_estimado","Cantidad",'is_numeric|required|xss_clean');
+		$this->set_campo("inversion","Inversion",'required|is_numeric|xss_clean');
+		$this->set_campo("cantidad_tiempo_estimado","Duración",'is_numeric|required|xss_clean');
+		
 		$this->set_campo("nombre_tiempo_estimado","Tiempo",'required|xss_clean','select',array('days'=>'Dia(s)','months'=>'Mes(es)','years'=>'Año(s)'));
 		
     }

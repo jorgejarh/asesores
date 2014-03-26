@@ -118,7 +118,23 @@ $(document).ready(function(e){
 	changeMonth: true,
       changeYear: true });
 	
+	
+	$cantidad=$('input[name=cantidad_tiempo_estimado]');
+	$nombre_cantidad=$('select[name=nombre_tiempo_estimado]');
+	
+	$('select[name=nombre_tiempo_estimado]').parent().parent().remove();
+	
+	$cantidad.width(50);
+	$nombre_cantidad.width(100);
+	$cantidad.after($nombre_cantidad);
+	
+	
+	
+	
 });
+
+
+
 
 </script>
 
