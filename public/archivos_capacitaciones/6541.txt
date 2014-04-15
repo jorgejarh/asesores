@@ -1,0 +1,5 @@
+Infragistics.Windows.Ribbon.XamRibbon, InfragisticsWPF4.Ribbon.v12.1, Version=12.1.20121.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+Infragistics.Windows.Editors.XamNumericEditor, InfragisticsWPF4.Editors.v12.1, Version=12.1.20121.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+Infragistics.Windows.DataPresenter.XamDataGrid, InfragisticsWPF4.DataPresenter.v12.1, Version=12.1.20121.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+Infragistics.Windows.DockManager.XamDockManager, InfragisticsWPF4.DockManager.v12.1, Version=12.1.20121.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb
+Infragistics.Windows.Editors.XamMaskedEditor, InfragisticsWPF4.Editors.v12.1, Version=12.1.20121.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb

@@ -21,6 +21,7 @@ if($listado)
       	<th>Tipo</th>
         <th>Nombre</th>
         <th>Email</th>
+        <th>Acreditado</th>
         <th>Agregar Documentos</th>
         <th>Asigar Profesión</th>
         <th>Asigar Especialidad</th>
@@ -37,6 +38,7 @@ if($listado)
       	<td><?php echo $valor['nombre_tipo_facilitador'];?></td>
       	<td><?php echo $valor['apellidos'].", ".$valor['nombres'];?></td>
        <td><?php echo $valor['correo'];?></td>
+       <td><?php echo ($valor['acreditado']==1)?'Si':'No'; ?></td>
        <td align="center" class="datatable_icono"><a href="<?php echo site_url('mante_facilitadores_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="profesiones(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_page.png');?></a></td>
         <td align="center" class="datatable_icono"><a onClick="especialidades(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_settings.png');?></a></td>
