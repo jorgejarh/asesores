@@ -71,4 +71,17 @@ class Mante_personal_model extends CI_Model {
 		//return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
 	}
 	
+	function obtener_cooperativas($datos=array())
+	{
+		if($datos)
+			{
+				
+				return $this->db->get_where("conf_cooperativa a",array('a.activo'=>1,'a.id_cooperativa'=>$datos['id_cooperativa']))->result_array();
+			}else{
+				
+				return $this->db->get_where("conf_cooperativa a",array('a.activo'=>1))->result_array();
+				
+				}
+	}
+	
 }

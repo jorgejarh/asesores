@@ -7,9 +7,14 @@ class Estado_cuenta_model extends CI_Model {
         parent::__construct();
     }
 	
-	function obtener_cooperativas()
+	function obtener_cooperativas($datos=array())
 	{
-		return $this->db->get_where("conf_cooperativa",array('activo'=>1))->result_array();
+		if(!$datos)
+		{
+			return $this->db->get_where("conf_cooperativa",array('activo'=>1))->result_array();
+		}else{
+			return $this->db->get_where("conf_cooperativa",array('id_cooperativa'=>$datos['id_cooperativa']))->result_array();
+			}
 	}
 	
 	function obtener_una_cooperativa($id_cooperativa=0)

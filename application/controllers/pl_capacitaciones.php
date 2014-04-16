@@ -36,6 +36,7 @@ class Pl_capacitaciones extends CI_Controller {
 		
 		$this->set_campo("nombre_capacitacion","Nombre",'required|xss_clean');
 		$this->set_campo("objetivo","Descripción",'xss_clean','textarea');
+		$this->set_campo("dirigido","Dirigido a",'required|xss_clean','textarea');
 		$this->set_campo("n_participantes","# Partic. Cooperativas afiliadas",'numeric|xss_clean');
 		$this->set_campo("n_participantes_no","# Partic. Cooperativas no afiliadas",'numeric|xss_clean');
 		$this->set_campo("n_participantes_ex","# Partic. Extranjeros",'numeric|xss_clean');

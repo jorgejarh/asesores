@@ -5,7 +5,6 @@
       		<table style="width:100%;">
       		<tr>
       			<td><?php echo $title;?></td>
-      			<td style="text-align:right;"><button onClick="nuevo_registro();">Nuevo</button></td>
       		</tr>
       	</table>
       	</h2>
@@ -17,7 +16,6 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Id</th>
         <th>Cooperativa</th>
         <th>Telefono</th>
         <th>Email</th>
@@ -30,7 +28,6 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['id_cooperativa'];?></td>
        <td><?php echo $valor['cooperativa'];?></td>
        <td><?php echo $valor['telefono'];?></td>
       <td><?php echo $valor['email'];?></td>

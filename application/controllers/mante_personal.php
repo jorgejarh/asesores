@@ -34,6 +34,7 @@ class Mante_personal extends CI_Controller {
         $model=$this->modelo_usar;
 		$this->load->model($model);
 		$this->load->model('inscripcion_temas_personas_model');
+		$this->set_campo("id_cooperativa","Cooperativa",'required|xss_clean','select',preparar_select($this->$model->obtener_cooperativas($this->datos_user['info_s']),'id_cooperativa','cooperativa'));
 		$this->set_campo("dui","DUI",'required|is_unique[mante_personal.dui]|xss_clean');
 		$this->set_campo("nombres","Nombres",'required|xss_clean');
 		$this->set_campo("apellidos","Apellidos",'required|xss_clean');

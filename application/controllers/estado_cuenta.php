@@ -17,7 +17,7 @@ class Estado_cuenta extends CI_Controller {
 		$data['title']="Estado de cuentas";
 		$data['template']="sistema";
 		$data['contenido']="estado_cuenta/lista";
-		$data['listado']=$this->estado_cuenta_model->obtener_cooperativas();
+		$data['listado']=$this->estado_cuenta_model->obtener_cooperativas($this->datos_user['info_s']);
 		
 		$this->load->view('template',$data);
 
