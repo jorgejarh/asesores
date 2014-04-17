@@ -61,6 +61,7 @@
 <body>
 <!--
 <?php
+/*
 echo "################################################################";
 echo "upload_max_filesize"."=".ini_get('upload_max_filesize');
 echo ",";
@@ -68,7 +69,7 @@ echo "post_max_size"."=".ini_get('post_max_size');
 echo ",";
 echo "max_input_time"."=".ini_get('max_input_time');
 echo ",";
-echo "################################################################";
+echo "################################################################";*/
 ?>
 -->
 <div class="container" id="container" style="overflow:visible;" >

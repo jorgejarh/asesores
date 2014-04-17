@@ -84,4 +84,10 @@ class Mante_personal_model extends CI_Model {
 				}
 	}
 	
+	function obtener_sucursales($id_cooperativa=0)
+	{
+		return $this->db->get_where("conf_sucursal a",array('a.id_cooperativa'=>$id_cooperativa))->result_array();
+		 
+	}
+	
 }

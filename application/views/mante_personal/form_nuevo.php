@@ -96,7 +96,29 @@ $(document).ready(function(e){
 
 		return false;
 	});
+	
+	
+	$('select[name=id_cooperativa]').change(function(e) {
+        
+		id_cooperativa=$(this).val();
+		$.ajax({
+				  url: "<?php echo site_url($this->nombre_controlador.'/obtener_sucursales');?>",
+				  type:"POST",
+				  data:{'id_cooperativa':id_cooperativa},
+				  success:function(data){
 
+				  		$('select[name=id_sucursal]').html("");
+						$('select[name=id_sucursal]').html(data);
+				  		
+				  },
+				   error:function()
+				  {
+					 alert("Error al procesar, Intente de nuevo"); 
+					 //location.reload();
+				  }
+			});
+    });
+	$('select[name=id_cooperativa]').change();
 });
 
 
