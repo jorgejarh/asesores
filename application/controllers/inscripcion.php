@@ -125,6 +125,16 @@ class Inscripcion extends CI_Controller {
 		
 		
 	}
+	public function inscribir_modulo_una_persona($id_modulo=0)
+	{
+		$post=$this->input->post();
+		if($post)
+		{
+			$model=$this->modelo_usar;
+			$this->$model->guardar_asistencia_uno($id_modulo,$post['asistio'],$post['aprobo'],$post['id_asistencia']);
+		}
+	}
+	
 	
 	public function nueva_persona($id_capacitacion=0,$id_modulo=0)
 	{
@@ -227,6 +237,13 @@ class Inscripcion extends CI_Controller {
 			echo json_encode($json);
 
 		}
+	}
+	
+	public function eliminar_asistencia()
+	{
+		$post=$this->input->post();
+		$model=$this->modelo_usar;
+		$this->$model->eliminar_asistencia($post['id'],$post['id_2']);
 	}
 	
 	public function insertar_nueva_persona($id_modulo=0)

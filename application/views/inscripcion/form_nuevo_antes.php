@@ -92,8 +92,11 @@ $(document).ready(function(e){
 				  			form.fadeIn('fast');
 				  		}else{
 							$('.cargando_').fadeOut('fast');
+							crear_tr(data.datos.apellidos, data.datos.nombres, data.datos.id_asistencia, data.datos.nombre_cooperativa, data.datos.nombre_sucursal, data.datos.nombre_cargo);
 							$('.form_user').hide();
-							
+				  			//$.fancybox(data.mensaje);
+
+				  			//location.reload();
 							location.reload();
 				  		}
 				  		

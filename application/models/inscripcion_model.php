@@ -110,6 +110,27 @@ class Inscripcion_model extends CI_Model {
 		
 	}
 	
+	function guardar_asistencia_uno($id_modulo,$asistio,$aprobado,$id_asistencia)
+	{
+		$this->db->update('inscripcion_asistencia',array('id_modulo'=>$id_modulo,
+															'asistio'=>$asistio,
+															'aprobado'=>$aprobado,
+															'fecha_creacion'=>date('Y-m-d H:i:s'),
+															'id_usuario'=>$this->datos_user['id_usuario']
+															),
+															array(
+															'id_asistencia'=>$id_asistencia
+															)
+									
+								);
+	}
+	
+	function eliminar_asistencia($id=0,$id_inscripcion_personas=0)
+	{
+		$this->db->delete('inscripcion_asistencia',array('id_asistencia'=>$id));
+		$this->db->delete('inscripcion_temas_personas',array('id_inscripcion_personas'=>$id_inscripcion_personas));
+		
+	}
 	
 	function validar_inscrito($dui='',$id_inscripcion=0)
 	{

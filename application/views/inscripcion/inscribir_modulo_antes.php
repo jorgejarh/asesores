@@ -38,7 +38,6 @@
 				$contador_lista=0;
                 foreach($nombres_personas as $valor)
 				{
-					
 					$contador_lista++;
 				?>
                  <tr class="gradeA">
@@ -61,18 +60,14 @@
                      <?php 
 					if($valor['aprobado']==1)
 					{
-						?>
-                        <a onclick="inscribir_persona_uno(<?php echo $valor['asistio'].",0,".$valor['id_asistencia']; ?>);"><?php echo img('public/img/accept.png');?></a>
-						<?php
+						echo img('public/img/accept.png');
 					}else{
-						?>
-                        <a onclick="inscribir_persona_uno(<?php echo $valor['asistio'].",1,".$valor['id_asistencia']; ?>);"><?php echo img('public/img/cancel.png');?></a>
-						<?php
+						echo img('public/img/cancel.png');
 						}
 					?>
                     </td>
                     <td align="center" valign="middle">
-                     <a onClick="eliminar_registro(<?php echo $valor['id_asistencia'].",".$valor['id_inscripcion_personas']; ?>);" title="Eliminar"><?php echo img('public/img/cancel.png');?></a>
+                     <a onClick="eliminar_registro(<?php echo $valor['id_inscripcion_personas']; ?>);" title="Eliminar"><?php echo img('public/img/cancel.png');?></a>
                      </td>
                 </tr>
                 <?php
@@ -80,7 +75,37 @@
 				?>
             </tbody>
             </table>
-          
+            <table align="center" width="80%" class="lista_personas">
+            	<tr>
+                	<td align="center" valign="middle"><b>Nombre de la persona</b></td>
+                    <td align="center" valign="middle"><b>Preinscrito</b></td>
+                    <td align="center" valign="middle"><b>Inscribir</b></td>
+                   
+                </tr>
+                <?php
+				$son=count($nombres_personas);
+				$van=0;
+                foreach($nombres_personas as $valor)
+				{
+					
+				?>
+                <tr class="tr_table">
+                	<td align="center" valign="middle"><?php echo $valor['apellidos'].", ".$valor['nombres'];?> <input type="hidden" name="id_asistencia[<?php echo $van;?>]" value="<?php  echo $valor['id_asistencia'];?>" /></td>
+                    
+                    
+                    <td align="center" valign="middle"><input type="hidden" name="asistio[<?php echo $van;?>]" value="0" /><input  <?php if($valor['asistio']==1){ echo 'checked="checked"'; } ?> type="checkbox" value="1" name="asistio[<?php echo $van;?>]" /></td>
+                    
+                    <td align="center" valign="middle"><input type="hidden" name="aprobado[<?php echo $van;?>]" value="0" /><input  <?php if($valor['aprobado']==1){ echo 'checked="checked"'; } ?> type="checkbox" value="1" name="aprobado[<?php echo $van;?>]" />
+                   
+                    </td>
+                </tr>
+                <?php
+					$van++;
+				}
+				?>
+            </table>
+            <div align="center"><input type="submit" value="Enviar Inscripcion" /></div>
+            
 			<?php
 			
 			echo form_close();
@@ -109,7 +134,20 @@
             
               <!--<button onClick="imprimir_asistencia();">Imprimir Asistencia</button> -->
             <!--<button onClick="opinion();">Opinion de Participantes</button> -->
-
+            <?php
+            /*if($modulo['es_calificado']==0)
+			{
+				?>
+                 <button class="cal_mod" onClick="calificar(<?php echo $modulo['id_modulo'];?>);">Calificar Modulo</button> 
+                <?php
+			}else{
+				?>
+                <a target="_blank" href="<?php echo site_url($this->nombre_controlador."/ver_resultados/".$modulo['id_modulo']);?>">Ver Resultados</a>
+                <?php
+				}*/
+			?>
+            
+            
             <div id="lista_asistencia" style="display:none;">
             <style type="text/css">
 				.a_ h3
@@ -185,40 +223,6 @@
 
 <script type="text/javascript">
 
-
-function inscribir_persona_uno(asistio,aprobado,id_asistencia)
-{
-	
-	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/inscribir_modulo_una_persona/'.$modulo['id_modulo']);?>",
-		  type:"POST",
-		  data:{'asistio':asistio, 'aprobo':aprobado,'id_asistencia':id_asistencia},
-		  success:function(data){
-
-		  	location.reload();
-		  }
-	
-	});
-}
-
-
-function eliminar_registro(id,id_2)
-{
-	if(confirm("¿Esta seguro de eliminar?"))
-	{
-		$.ajax({
-			  url: "<?php echo site_url($this->nombre_controlador.'/eliminar_asistencia/');?>",
-			  type:"POST",
-			  data:{'id':id,'id_2':id_2},
-			  success:function(data){
-	
-				location.reload();
-			  }
-		
-		});
-	}
-}
-
 function opinion()
 {
 	window.location="<?php echo site_url("opinion/index/".$modulo['id_modulo']);?>";
@@ -229,6 +233,29 @@ function imprimir_asistencia()
 	imprimir_select("lista_asistencia");
 }
 
+function crear_tr(apellidos,nombres,id_asistencia,cooperativa,sucursal,cargo)
+{
+	total_filas=$('.lista_personas tr').size();
+	total_filas=total_filas-1;
+	tr= '<tr class="tr_table">'+
+                	'<td align="center" valign="middle">'+apellidos+', '+nombres+'<input type="hidden" name="id_asistencia['+total_filas+']" value='+id_asistencia+'" /></td>'+
+                    '<td align="center" valign="middle"><input type="hidden" name="asistio['+total_filas+']" value="0" /><input checked="checked" type="checkbox" value="1" name="asistio['+total_filas+']" /></td>'+
+                    '<td align="center" valign="middle"><input type="hidden" name="aprobado['+total_filas+']" value="0" /><input  checked="checked" type="checkbox" value="1" name="aprobado['+total_filas+']" />'+
+                    '</td>'+
+                '</tr>';
+	$('.lista_personas').append(tr);
+	
+	tr2='<tr>'+
+                            	'<td><p align="center">'+(total_filas+1)+'</p></td>'+
+                                '<td><p>'+apellidos+', '+nombres+'</p></td>'+
+                                '<td><p>'+cooperativa+'</p></td>'+
+                                '<td><p>'+sucursal+'</p></td>'+
+                                '<td><p>'+cargo+'</p></td>'+
+                                '<td width="100">&nbsp;</td>'+
+                                '<td width="100">&nbsp;</td>'+
+                            '</tr>';
+	$('.l_tabla').append(tr2);
+}
 
 $(document).ready(function(e) {
     
