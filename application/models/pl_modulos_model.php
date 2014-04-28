@@ -39,16 +39,23 @@ class Pl_modulos_model extends CI_Model {
 			
 			return $this->db->get_where($this->nombre_tabla,array('a.activo'=>1))->result_array();
 		}else{
-			
-			$dato=$this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
-			
-			$facilitadores=$this->db->get_where('pl_modulo_facilitador',array($this->id_tabla=>$id))->result_array();
+			$this->db->select("a.*, b.nombre_lugar");
+			$this->db->from("mante_lugares b");
+			$this->db->where("b.id_lugar = a.id_lugar");
+			$dato=$this->db->get_where($this->nombre_tabla." a",array("a.".$this->id_tabla=>$id))->row_array();
+			$this->db->select("a.*, b.*");
+			$this->db->where("a.id_facilitador = b.id_facilitador");
+			$facilitadores=$this->db->get_where('pl_modulo_facilitador a, mante_facilitadores b',array("a.".$this->id_tabla=>$id))->result_array();
 			
 			if($facilitadores)
 			{
 				foreach($facilitadores as $valor)
 				{
 					$dato['facilitadores[]'][]=$valor['id_facilitador'];
+				}
+				foreach($facilitadores as $valor)
+				{
+					$dato['facilitadores_nombres[]'][]=$valor['nombres']." ".$valor['apellidos'];
 				}
 			}else{
 				$dato['facilitadores[]']=array();

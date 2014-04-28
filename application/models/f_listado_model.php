@@ -31,12 +31,7 @@ class F_listado_model extends CI_Model {
 		return $this->db->get_where('pl_modulos',array('id_capacitacion'=>$id_capacitacion,'activo'=>1))->result_array();
 	}
 	
-	function obtener_modulo($id_modulo=0)
-	{
-		return $this->db->get_where('pl_modulos',array('id_modulo'=>$id_modulo,'activo'=>1))->row_array();
-	}
-	
-	function obtener_personas($id_capacitacion=0,$id_modulo=0)
+	function obtener_personas($id_capacitacion=0,$id_modulo=0,$aprobado=0)
 	{
 		$this->db->where("a.id_inscripcion_tema = b.id_inscripcion_tema");
 		$inscripciones=$this->db->get_where('inscripcion_temas a, inscripcion_temas_personas b',array('a.id_capacitacion'=>$id_capacitacion))->result_array();
@@ -64,6 +59,12 @@ class F_listado_model extends CI_Model {
 							(select nombre_cargo from mante_cargos x where x.id_cargo = b.id_cargo limit 1) as nombre_cargo',false);
 		$this->db->where("a.id_inscripcion_tema = b.id_inscripcion_tema");
 		$this->db->where(" b.id_inscripcion_personas = c.id_inscripcion_personas",false,false);
+		
+		if($aprobado==1)
+		{
+			$this->db->where("c.aprobado = 1");
+			}
+		
 		return $this->db->order_by('b.apellidos')
 					->get_where('inscripcion_temas a, inscripcion_temas_personas b, inscripcion_asistencia c',array('a.id_capacitacion'=>$id_capacitacion))
 					->result_array();

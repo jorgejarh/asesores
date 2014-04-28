@@ -36,14 +36,29 @@
             
             	<div align="center" class="a_">
                 	<h2>FUNDACIÓN ASESORES PARA EL DESARROLLO</h2>
-                    <p align="left"><b>Fecha:</b></p>
+                    <p align="left"><b>Fecha:</b> <?php echo date('d/m/Y');?></p>
+                    <p align="left"><b>Modalidad:</b> <?php echo $capacitacion['nombre_modalidad'];?></p>
+                    <p align="left"><b>Capacitacion:</b> <?php echo $capacitacion['nombre_capacitacion'];?></p>
                     <p align="left"><b>Nombre del Evento:</b> <?php echo $modulo['nombre_modulo'];?></p>
-                    <p align="left"><b>Dirigido a:</b></p>
-                    <p align="left"><b>Lugar:</b></p>
-                    
+                    <p align="left"><b>Dirigido a:</b> <?php echo $capacitacion['dirigido'];?></p>
+                    <p align="left"><b>Lugar:</b> <?php echo $modulo['nombre_lugar'];?></p>
+                    <p align="left"><b>Facilitadores:</b> <?php 
+					$conta=count($modulo['facilitadores_nombres[]']); 
+					$van=0; 
+					foreach ($modulo['facilitadores_nombres[]'] as $valor)
+					{
+						$van++;
+						echo $valor;
+						if($conta!=$van)
+						{
+							echo ", ";
+							}
+					} 
+					?> </p>
                     <table width="100%" class="l_tabla">
                     	<tr>
                         	<td align="center"><h3>#</h3></td>
+                            <td align="center"><h3>DUI</h3></td>
                             <td align="center"><h3>Nombres</h3></td>
                             <td align="center"><h3>Cooperativa</h3></td>
                             <td align="center"><h3>Sucursal</h3></td>
@@ -58,6 +73,7 @@
 							?>
                             <tr>
                             	<td><p align="center"><?php echo $contador_persona;?></p></td>
+                                 <td><p><?php echo $valor['dui'];?></p></td>
                                 <td><p><?php echo $valor['apellidos'].", ".$valor['nombres'];?></p></td>
                                 <td><p><?php echo $valor['nombre_cooperativa'];?></p></td>
                                 <td><p><?php echo $valor['nombre_sucursal'];?></p></td>

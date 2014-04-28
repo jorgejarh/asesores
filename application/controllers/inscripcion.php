@@ -110,7 +110,7 @@ class Inscripcion extends CI_Controller {
 				$data['mensaje']="Datos Guardados.";
 			}
 			
-			$data['title']="Inscripcion al modulo ".$data['modulo']['nombre_modulo'];
+			$data['title']="Inscripcion a ".$data['modulo']['nombre_modulo'];
 			$data['template']="sistema";
 			$data['contenido']=$this->carpeta_view."/inscribir_modulo";
 			$data['nombres_personas']=$this->$model->obtener_personas($data['modulo']['id_capacitacion'],$id_modulo);
@@ -342,6 +342,15 @@ class Inscripcion extends CI_Controller {
 			$this->load->view($this->carpeta_view.'/ver_resultados',$data);
 		}
 		
+	}
+	
+	public function buscar_todo()
+	{
+		$this->load->model("mante_personal_model");
+		$data['listado']=$this->mante_personal_model->obtener();
+		
+		
+		$this->load->view($this->carpeta_view.'/personas_view',$data);
 	}
 	
 }

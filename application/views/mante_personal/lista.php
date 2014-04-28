@@ -20,6 +20,7 @@ if($listado)
       <tr>
       	<th>DUI</th>
        	<th>Nombre</th>
+        <th>Cooperativa</th>
         <th>Sucursal</th>
         <th>Cargo</th>
         <th>&nbsp;</th>
@@ -30,16 +31,19 @@ if($listado)
       <?php
 		foreach($listado as $valor)
 		{
+			
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['dui'];?></td>
         <td><?php echo $valor['apellidos'].", ".$valor['nombres'];?></td>
+        <td><?php echo $valor['nombre_cooperativa'];?></td>
+        
         <td><?php echo $valor['nombre_sucursal'];?></td>
         <td><?php echo $valor['nombre_cargo'];?></td>
         <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
-          <a title="Eliminar" onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
+          <a onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
           </td>
       </tr>
       <?php

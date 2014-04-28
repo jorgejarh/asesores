@@ -26,6 +26,7 @@
 			?>
             <table align="center" width="95%">
             	<tr>
+                	<td align="left" valign="middle" width="25"><b>#</b></td>
                 	<td align="left" valign="middle"><b>Nombre de la persona</b></td>
                     <?php
                     foreach($evaluaciones as $una_evaluacion)
@@ -50,6 +51,7 @@
 					
 				?>
                 <tr class="tr_table">
+                	<td align="left" valign="middle"><?php echo $van+1;?></td>
                 	<td align="left" valign="middle"><?php echo $valor['apellidos'].", ".$valor['nombres'];?> <input type="hidden" name="id_asistencia[<?php echo $van;?>]" value="<?php  echo $valor['id_asistencia'];?>" /></td>
                     
                     <?php

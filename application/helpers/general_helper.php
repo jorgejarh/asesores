@@ -19,6 +19,7 @@ if ( ! function_exists('comprobar_login'))
 function config_lenguaje_tabla()
 {
 	return '"sPaginationType": "full_numbers",
+			"iDisplayLength": 50,
 	        "oLanguage": {
 			"sLengthMenu": "Mostrar _MENU_ registros por página",
 			"sZeroRecords": "No se encontraron registros",

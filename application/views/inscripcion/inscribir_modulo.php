@@ -12,6 +12,7 @@
       
       	<button onClick="nueva_persona();">Inscribir Persona</button>
             <button onClick="registrar_persona();">Registrar Persona</button>
+            <button ><a target="_blank" href="<?php echo site_url('f_listado/listado/'.$modulo['id_modulo']);?>">Imprimir Lista</a></button>
       	<div class="form_user" style="display:none;"></div>
       		<?php
             if($nombres_personas)
@@ -24,6 +25,7 @@
             <thead>
               <tr>
               	<th>Nº</th>
+                <th>DUI</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>PreInscrito</th>
@@ -43,6 +45,7 @@
 				?>
                  <tr class="gradeA">
                  	<td align="center" valign="middle"><?php echo $contador_lista;?></td>
+                    <td align="center" valign="middle"><?php echo $valor['dui'];?></td>
                 	<td align="center" valign="middle"><?php echo $valor['nombres'];?></td>
                     <td align="center" valign="middle"><?php echo $valor['apellidos'];?></td>
                     
@@ -85,26 +88,7 @@
 			
 			echo form_close();
 			
-			}else{
-				?>
-                <?php
-            	echo form_open('');
-				?>
-                <table align="center" width="80%" class="lista_personas">
-            	<tr>
-                	<td align="center" valign="middle"><b>Nombre de la persona</b></td>
-                    <td align="center" valign="middle"><b>Preinscrito</b></td>
-                    <td align="center" valign="middle"><b>Inscribir</b></td>
-                   
-                </tr>
-                </table>
-                <div align="center"><input type="submit" value="Enviar Inscripcion" /></div>
-                <?php
-                echo form_close();
-				?>
-                
-                <?php
-				}
+			}
 			?>
             
               <!--<button onClick="imprimir_asistencia();">Imprimir Asistencia</button> -->

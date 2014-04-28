@@ -28,11 +28,13 @@ class Mante_personal_model extends CI_Model {
 		if($id==0)
 		{
 			$info_user=$this->datos_user['info_s'];
-			$this->db->select("a.*, b.nombre_cargo, c.sucursal as nombre_sucursal");
+			$this->db->select("a.*, b.nombre_cargo, c.sucursal as nombre_sucursal, d.cooperativa as nombre_cooperativa");
 			$this->db->where("a.id_cargo = b.id_cargo");
 			$this->db->from("mante_cargos b");
 			$this->db->where("a.id_sucursal = c.id_sucursal");
 			$this->db->from("conf_sucursal c");
+			$this->db->from("conf_cooperativa d");
+			$this->db->where("d.id_cooperativa = a.id_cooperativa");
 			if($info_user)
 			{
 				if($info_user['id_sucursal']!=0)

@@ -34,6 +34,8 @@ class F_listado extends CI_Controller {
 		$this->load->model($model);
 		$this->load->model("cooperativa_model");
 		$this->load->model("mante_cargos_model");
+		$this->load->model("pl_capacitaciones_model");
+		$this->load->model("pl_modulos_model");
 		
 		$this->set_campo("dui","DUI",'required|xss_clean');
 		$this->set_campo("nombres","Nombres",'required|xss_clean');
@@ -94,15 +96,16 @@ class F_listado extends CI_Controller {
 	{
 		$model=$this->modelo_usar;
 		
-		$data['modulo']=$this->$model->obtener_modulo($id_modulo);
+		$data['modulo']=$this->pl_modulos_model->obtener($id_modulo);
 		
 		if($data['modulo'])
 		{
+			$data['capacitacion']=$this->pl_capacitaciones_model->obtener($data['modulo']['id_capacitacion']);
 			$data['mensaje']="";
 			$data['title']="Listado del modulo ".$data['modulo']['nombre_modulo'];
 			$data['template']="sistema";
 			$data['contenido']=$this->carpeta_view."/listado";
-			$data['nombres_personas']=$this->$model->obtener_personas($data['modulo']['id_capacitacion'],$id_modulo);
+			$data['nombres_personas']=$this->$model->obtener_personas($data['modulo']['id_capacitacion'],$id_modulo,1);
 			
 			$data['model']=$model;
 			$this->load->view('template',$data);

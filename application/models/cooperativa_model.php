@@ -65,6 +65,6 @@ class Cooperativa_model extends CI_Model {
 	
 	public function obtener_sucursales_x_cooperativas($id_cooperativa=0)
 	{
-		return $this->db->select('a.*')->get_where('conf_sucursal a','a.activo = 1 and a.id_cooperativa = '.$id_cooperativa.' ')->result_array();
+		return $this->db->order_by('sucursal','ASC')->select('a.*')->get_where('conf_sucursal a','a.activo = 1 and a.id_cooperativa = '.$id_cooperativa.' ')->result_array();
 	}
 }

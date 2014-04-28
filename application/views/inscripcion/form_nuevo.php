@@ -16,14 +16,16 @@ echo form_open('',array(
 		<td>DUI / Identificación: </td>
 		<td><?php 
 			echo form_input("dui");
-			?><button class="bus" onclick="buscar_persona();">Buscar</button></td>
+			?><!--<button class="bus" onclick="buscar_persona();">Buscar</button>-->
+            <button class="bus" onclick="abrir_busqueda();">Buscar</button>
+            </td>
 	</tr>
 	<?php
 	foreach($this->campos as $llave=>$valor)
 	{
 		?>
 	<tr class="<?php echo ($valor['nombre_campo']=='id_cooperativa' || $valor['nombre_campo']=='id_sucursal')?'no_afi':'';?>">
-		<td><?php echo $valor['nombre_mostrar']; ?>: </td>
+		<td><div class="<?php echo $valor['nombre_campo'];?>"><?php echo $valor['nombre_mostrar']; ?> : </div> </td>
 		<td><?php 
 			switch($valor['tipo_elemento'])
 			{
@@ -133,14 +135,19 @@ $(document).ready(function(e){
 			});
 		
     });
+	$('input[name=dui]').attr('readonly', true);
 	$('input[name=nombres]').attr('readonly', true);
 	$('input[name=apellidos]').attr('readonly', true);
-	$('select[name=id_cooperativa]').attr('readonly', true);
-	$('select[name=id_sucursal]').attr('readonly', true);
-	$('select[name=id_cargo]').attr('readonly', true);
 	$('input[name=correo]').attr('readonly', true);
+	/*
+	$('select[name=id_cooperativa]').attr('style', 'display:none;');
+	$('select[name=id_sucursal]').attr('style', 'display:none;');
+	$('select[name=id_cargo]').attr('style', 'display:none;');
 	
-
+	*/
+	$('select[name=id_cooperativa], .id_cooperativa').attr('style', 'display:none;');
+	$('select[name=id_sucursal], .id_sucursal').attr('style', 'display:none;');
+	$('select[name=id_cargo] , .id_cargo').attr('style', 'display:none;');
 });
 
 
@@ -164,7 +171,7 @@ function buscar_persona()
 					$('select[name=id_cooperativa]').val(data.id_cooperativa);
 					$('select[name=id_cooperativa]').change();
 					$('select[name=id_sucursal]').val(data.id_sucursal);
-					setTimeout("$('select[name=id_sucursal]').val("+data.id_sucursal+");",3000);
+					setTimeout("$('select[name=id_sucursal]').val("+data.id_sucursal+");",2000);
 					//setTimeout("alert('"+data.id_sucursal+"');",3000);
 					//$('select[name=id_sucursal]').change();
 					$('select[name=id_cargo]').val(data.id_cargo);
@@ -204,6 +211,27 @@ function buscar_persona()
 	});
 	return false;
 }
+
+function abrir_busqueda()
+{
+	event.preventDefault();
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/buscar_todo');?>",
+		  type:"POST",
+		  success:function(data){
+
+		  	$.fancybox(data);
+		  }
+	
+	});
+}
+
+function seleccionar_dui(dui)
+{
+	$('input[name=dui]').val(dui);
+	buscar_persona();
+	$.fancybox.close();
+	}
 
 
 </script>
