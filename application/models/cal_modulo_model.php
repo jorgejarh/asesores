@@ -126,7 +126,7 @@ class Cal_modulo_model extends CI_Model {
 	
 	function guardar_calificacion($calificaciones=array(),$id_modulo=0)
 	{
-		$this->db->delete("pl_modulos_calificacion",array('id_modulo'=>$id_modulo));
+		//$this->db->delete("pl_modulos_calificacion",array('id_modulo'=>$id_modulo));
 		foreach($calificaciones as $key=>$val)
 		{
 			$this->db->insert("pl_modulos_calificacion",array('id_modulo'=>$id_modulo,'id_aspecto'=>$key,'nota'=>$val,'id_usuario'=>$this->datos_user['id_usuario'],'f_creacion'=>date('Y-m-d H:i:s')));
@@ -134,5 +134,11 @@ class Cal_modulo_model extends CI_Model {
 		$this->db->update("pl_modulos",array('es_calificado'=>1),array('id_modulo'=>$id_modulo));
 	}
 	
-	
+	function obtener_suma_modulo_aspecto($id_modulo=0,$id_aspecto=0)
+	{
+		$this->db->select_sum("nota");
+		$dato=$this->db->get_where("pl_modulos_calificacion",array("id_modulo"=>$id_modulo,"id_aspecto"=>$id_aspecto))->row_array();
+		return ($dato["nota"])?$dato["nota"]:"0";
+		
+	}
 }

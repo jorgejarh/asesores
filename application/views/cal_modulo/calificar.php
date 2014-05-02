@@ -10,7 +10,7 @@ echo form_open('',array(
 				);
 ?>
 <p>Exelente - 5, Muy Bueno - 4, Bueno - 3, Regular - 2, Malo - 1</p>
-<table align="center" style="margin:auto;">
+<table align="center" style="margin:auto; ">
 	<?php
 	$contador=0;
     foreach($resultados as $valor)

@@ -8,7 +8,10 @@
 <script type="text/javascript" language="javascript" src="<?php echo base_url();?>public/js/graficos/modules/data.js"></script>
 <script type="text/javascript" language="javascript" src="<?php echo base_url();?>public/js/graficos/modules/exporting.js"></script>
 <style type="text/css">
-
+body
+{
+	font-family:calibri;
+}
 table
 {
 	border-collapse:collapse;}

@@ -93,7 +93,8 @@ class Cal_modulo extends CI_Controller {
 	public function inscribir_modulo($id_modulo=0)
 	{
 		$model=$this->modelo_usar;
-		
+		$this->load->model('mante_resultados_model');
+		$this->load->model('mante_aspectos_model');
 		$data['modulo']=$this->$model->obtener_modulo($id_modulo);
 		
 		if($data['modulo'])
@@ -102,6 +103,17 @@ class Cal_modulo extends CI_Controller {
 			$data['title']="Calificaion del modulo ".$data['modulo']['nombre_modulo'];
 			$data['template']="sistema";
 			$data['contenido']=$this->carpeta_view."/inscribir_modulo";
+			
+			$data['resultados']=$this->mante_resultados_model->obtener();
+			foreach($data['resultados'] as $key=>$val)
+			{
+				$data['resultados'][$key]['aspectos']=$this->mante_aspectos_model->lista($val['id_mante_cat_resultado']);
+				foreach($data['resultados'][$key]['aspectos'] as $key_3=>$val_3)
+				{
+					
+					$data['resultados'][$key]['aspectos'][$key_3]['nota_aspecto']=$this->$model->obtener_suma_modulo_aspecto($id_modulo,$val_3["id_aspectos_considerar"]);
+				}
+			}
 			
 			$data['model']=$model;
 			$this->load->view('template',$data);
