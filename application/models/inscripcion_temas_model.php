@@ -51,6 +51,19 @@ class Inscripcion_temas_model extends CI_Model {
 		
 	}
 	
+	function lista_x_cooperativa($id_cooperativa=0)
+	{
+		
+		$this->db->select("a.*, b.nombre_capacitacion, 
+										IFNULL((select count(*) from inscripcion_temas_personas c where c.id_inscripcion_tema = a.id_inscripcion_tema ) ,0) as n_personas",false);
+		
+		$this->db->where("a.id_capacitacion = b.id_capacitacion");
+		
+		$this->db->where("a.id_cooperativa",$id_cooperativa);
+		
+		return $this->db->get_where($this->nombre_tabla." a, pl_capacitaciones b",array('a.activo'=>1))->result_array();
+		
+	}
 	
 	function actualizar($datos,$id)
 	{
