@@ -59,7 +59,7 @@ class Mante_aspectos_model extends CI_Model {
 	
 	function obtener_por_modulo($id_modulo=0,$id_mante_cat_resultado)
 	{
-		return $this->db->select("a.*,b.*, sum(b.nota) as nota")
+		return $this->db->select("a.*,b.*, sum(b.nota) as nota, count(*) as cuantos")
 						->group_by("b.id_aspecto")
 						->order_by("a.".$this->id_tabla,'ASC')
 						->where("b.id_aspecto = a.id_aspectos_considerar and b.id_modulo = ".$id_modulo)

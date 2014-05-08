@@ -91,6 +91,7 @@ table tr
         <?php
 		$contador=0;
 		$suma_resultados=0;
+		$numero_eval=0;
         foreach($resultados as $valor)
 		{
 			if($valor['aspectos'])
@@ -110,11 +111,11 @@ table tr
                                 $sum_aspecto=0;
                                 foreach($valor['aspectos'] as $valor2)
                                 {
-                                    $sum_aspecto=$sum_aspecto+$valor2['nota'];
+                                    $sum_aspecto=$sum_aspecto+($valor2['nota']/$valor2['cuantos']);
                                     ?>
                                 <tr>
                                     <td align="left" class="borde_left"><p><?php echo $valor2['nombre'];?></p></td>
-                                    <td align="right" class="borde"><p><?php echo $valor2['nota'];?></p></td>
+                                    <td align="right" class="borde"><p><?php echo ($valor2['nota']/$valor2['cuantos']);?></p></td>
                                 </tr>
                                     <?php
                                 }
@@ -141,7 +142,10 @@ table tr
                                     ?>
                                 <tr>
                                     <th><?php echo $valor2['nombre'];?></th>
-                                    <td><?php echo $valor2['nota'];?></td>
+                                    <td><?php echo ($valor2['nota']/$valor2['cuantos']); 
+									$numero_eval=$valor2['cuantos'];
+									
+									?></td>
                                 </tr>
                                     <?php
                                 }
@@ -149,6 +153,7 @@ table tr
                             </tbody>
                         </table>
                         <div id="grafico_<?php echo $contador;?>" class="div_grafico"></div>
+                        
                         <script type="text/javascript">
 						$(function () {
 							$('#grafico_<?php echo $contador;?>').highcharts({
@@ -210,7 +215,8 @@ table tr
                 <td align="center" class="borde"><p><?php echo number_format($suma_resultados/$contador,2);?></p></td>
             </tr>
         </table>
-        
+        <br />
+        <p align="center">Numero de Evaluaciones: <b><?php echo $numero_eval;?></b></p>
          <table class="ocultar" id="tabla_general">
             <thead>
                 <tr>

@@ -114,7 +114,7 @@ class Cal_modulo extends CI_Controller {
 					$data['resultados'][$key]['aspectos'][$key_3]['nota_aspecto']=$this->$model->obtener_suma_modulo_aspecto($id_modulo,$val_3["id_aspectos_considerar"]);
 				}
 			}
-			
+			$data['total_eval']=count($data['resultados']);
 			$data['model']=$model;
 			$this->load->view('template',$data);
 			

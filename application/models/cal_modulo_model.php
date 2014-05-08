@@ -136,9 +136,9 @@ class Cal_modulo_model extends CI_Model {
 	
 	function obtener_suma_modulo_aspecto($id_modulo=0,$id_aspecto=0)
 	{
-		$this->db->select_sum("nota");
+		$this->db->select("SUM(nota) as nota, count(*) as cuantos");
 		$dato=$this->db->get_where("pl_modulos_calificacion",array("id_modulo"=>$id_modulo,"id_aspecto"=>$id_aspecto))->row_array();
-		return ($dato["nota"])?$dato["nota"]:"0";
+		return $dato;
 		
 	}
 }

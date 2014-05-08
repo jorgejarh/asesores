@@ -8,6 +8,7 @@
           </tr>
         </table>
       </h2>
+      
       <div class="" style="width:90%; margin:auto;" align="center">
         <button class="cal_mod" onClick="calificar(<?php echo $modulo['id_modulo'];?>);">Nuevo</button>
 <table align="center" style="margin:auto; width:345px;">
@@ -26,7 +27,7 @@
                     ?>
                 <tr>
                 	<td align="left"><?php echo $valor2["nombre"];?></td>
-                    <td align="right"><b><?php echo $valor2["nota_aspecto"];?></b>
+                    <td align="right"><b><?php echo ($valor2["nota_aspecto"]['nota']/$valor2["nota_aspecto"]['cuantos']);$total_eval=$valor2["nota_aspecto"]['cuantos'];?></b>
                    
                     </td>
                 </tr>
@@ -40,6 +41,8 @@
 	}
 	?>
 	</table>
+    <br />
+    <p align="center">Numero de Evaluaciones: <?php echo $total_eval;?></p>
         <br />
         
         <?php
