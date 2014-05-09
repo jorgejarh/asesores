@@ -8,41 +8,32 @@
       		</tr>
       	</table>
       	</h2>
-         <div class="bot_atras">
-    	<?php
-        echo anchor($this->nombre_controlador,'<- Regresar');
-		?>
-    </div>
       		<div class="" style="width:90%; margin:auto;">
-           
       	         <?php
-if($inscripciones)
+if($listado)
 {
 	?>
   <table id="example" class="display" >
     <thead>
       <tr>
-        <th>Capacitación</th>
-        <th>Inscritos</th>
-        <th>Ver Modulos</th>
-        <!--<th>Ver Nota de Cargo</th>-->
+        <th>Cooperativa</th>
+        <th>Telefono</th>
+        <th>Email</th>
+        <th>Agregar Abono</th>
       </tr>
     </thead>
     <tbody>
       <?php
-		foreach($inscripciones as $valor)
+		foreach($listado as $valor)
 		{
 			?>
       <tr class="gradeA">
-       <td><?php echo $valor['nombre_capacitacion'];?></td>
-       <td><?php echo $valor['n_personas'];?></td>
-        <td width="150" align="center"><a title="Ver Modulos"  href="<?php echo site_url($this->nombre_controlador.'/modulos/'.$valor['id_inscripcion_tema']);?>" ><?php echo img('public/img/ico_page.png');?></a></td>
-        <?php
-		/*
-        <td width="150" align="center"><a title="Ver Nota de Cargo" target="_blank" href="<?php echo site_url($this->nombre_controlador.'/ver_nota_cargo/'.$valor['id_inscripcion_tema']);?>" ><?php echo img('public/img/ico_page.png');?></a></td>
+       <td><?php echo $valor['cooperativa'];?></td>
+       <td><?php echo $valor['telefono'];?></td>
+      <td><?php echo $valor['email'];?></td>
+        <td align="center" class=""><a title="Ver Capacitaciones" href="<?php echo site_url($this->nombre_controlador.'/abonar/'.$valor['id_cooperativa']);?>" ><?php echo img('public/img/ico_page.png');?></a></td>
       </tr>
       <?php
-	  */
 		}
 		?>
     </tbody>

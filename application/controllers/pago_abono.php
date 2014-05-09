@@ -1,17 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Notas_cargo extends CI_Controller {
+class Pago_abono extends CI_Controller {
 	
 	
 	public $datos_user=array();
 
-	public $carpeta_view="notas_cargo";
+	public $carpeta_view="pago_abono";
 
-	public $modelo_usar="notas_cargo_model";
+	public $modelo_usar="pago_abono_model";
 
-	public $nombre_controlador="notas_cargo";
+	public $nombre_controlador="pago_abono";
 	
-	public $nombre_titulo="Notas de cargo";
+	public $nombre_titulo="Abonos";
 
 	function __construct()
     {

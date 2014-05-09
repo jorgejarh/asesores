@@ -67,7 +67,7 @@ class Inscripcion_model extends CI_Model {
 		$this->db->where("a.id_inscripcion_tema = b.id_inscripcion_tema");
 		$this->db->where(" b.id_inscripcion_personas = c.id_inscripcion_personas",false,false);
 		return $this->db->order_by('b.apellidos')
-					->get_where('inscripcion_temas a, inscripcion_temas_personas b, inscripcion_asistencia c',array('a.id_capacitacion'=>$id_capacitacion))
+					->get_where('inscripcion_temas a, inscripcion_temas_personas b, inscripcion_asistencia c',array('a.id_capacitacion'=>$id_capacitacion,'c.id_modulo'=>$id_modulo))
 					->result_array();
 	}
 	

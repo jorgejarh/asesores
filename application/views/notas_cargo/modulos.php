@@ -10,39 +10,55 @@
       	</h2>
          <div class="bot_atras">
     	<?php
-        echo anchor($this->nombre_controlador,'<- Regresar');
+        echo anchor($this->nombre_controlador."/capacitaciones/".$cooperativa['id_cooperativa'],'<- Regresar');
 		?>
     </div>
       		<div class="" style="width:90%; margin:auto;">
-           
+           <pre>
       	         <?php
-if($inscripciones)
+				 //print_r($modulos);
+				 ?>
+                 </pre>
+                 <?php
+				 
+if($modulos)
 {
 	?>
   <table id="example" class="display" >
     <thead>
       <tr>
-        <th>Capacitación</th>
+        <th>Modulo</th>
         <th>Inscritos</th>
-        <th>Ver Modulos</th>
-        <!--<th>Ver Nota de Cargo</th>-->
+        <th>Pers. que asistieron</th>
+        <th>Precio</th>
+        <th>Total</th>
+        <th>Ver Nota de Cargo</th>
       </tr>
     </thead>
     <tbody>
       <?php
-		foreach($inscripciones as $valor)
+		foreach($modulos as $valor)
 		{
+			$precio_mod=obtener_precio_modulo($valor['id_modulo']);
 			?>
       <tr class="gradeA">
-       <td><?php echo $valor['nombre_capacitacion'];?></td>
-       <td><?php echo $valor['n_personas'];?></td>
-        <td width="150" align="center"><a title="Ver Modulos"  href="<?php echo site_url($this->nombre_controlador.'/modulos/'.$valor['id_inscripcion_tema']);?>" ><?php echo img('public/img/ico_page.png');?></a></td>
+       <td><?php echo $valor['nombre_modulo'];?></td>
+       <td><?php echo $valor['pre_inscritos'];?></td>
+       <td><?php echo $valor['asistencia'];?></td>
+       <td>$<?php echo number_format($precio_mod,2);?></td>
+       <td>$<?php echo number_format($valor['asistencia']*$precio_mod,2);?></td>
+        <td width="150" align="center">
         <?php
-		/*
-        <td width="150" align="center"><a title="Ver Nota de Cargo" target="_blank" href="<?php echo site_url($this->nombre_controlador.'/ver_nota_cargo/'.$valor['id_inscripcion_tema']);?>" ><?php echo img('public/img/ico_page.png');?></a></td>
+        if($valor['asistencia']!=0)
+		{
+		?>
+        <a title="Ver Nota de Cargo" target="_blank" href="<?php echo site_url($this->nombre_controlador.'/ver_nota_cargo_modulo/'.$cooperativa['id_cooperativa'].'/'.$valor['id_modulo'].'/'.$inscripcion['id_inscripcion_tema']);?>" ><?php echo img('public/img/ico_page.png');?></a>
+        <?php
+		}
+		?>
+        </td>
       </tr>
       <?php
-	  */
 		}
 		?>
     </tbody>

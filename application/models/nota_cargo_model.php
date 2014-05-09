@@ -55,4 +55,6 @@ class Nota_cargo_model extends CI_Model {
 	}
 	
 	
+
+	
 }

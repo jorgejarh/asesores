@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Notas_cargo_model extends CI_Model {
+class Pago_abono_model extends CI_Model {
 
     function __construct()
     {
