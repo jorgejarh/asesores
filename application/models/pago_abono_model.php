@@ -17,14 +17,13 @@ class Pago_abono_model extends CI_Model {
 			}
 	}
 	
-	function obtener_info_modulo($id_modulo=0,$id_inscripcion_tema=0,$asistencia=0)
+	function nuevo($datos=array())
 	{
-		if($asistencia!=0)
-		{
-			$this->db->where("b.aprobado = 1");
-		}
-		$this->db->select("a.*,b.*")->where("a.id_inscripcion_personas = b.id_inscripcion_personas");
-		return $this->db->get_where('inscripcion_temas_personas a, inscripcion_asistencia b',array('b.id_modulo'=>$id_modulo,'a.id_inscripcion_tema'=>$id_inscripcion_tema))->result_array();
+		$this->db->insert('abono_x_cooperativa',$datos);
 	}
-	
+
+	function lista($id_cooperativa=0)
+	{
+		return $this->db->get_where('abono_x_cooperativa',array('id_cooperativa'=>$id_cooperativa))->result_array();
+	}
 }
