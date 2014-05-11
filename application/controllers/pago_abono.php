@@ -65,9 +65,9 @@ class Pago_abono extends CI_Controller {
 				redirect($this->nombre_controlador."/abonar/".$id_cooperativa);
 			}
 			
-			$this->load->model("inscripcion_temas_model");
 			$data['title']=$this->nombre_titulo." - ".$data['cooperativa']['cooperativa'];
 			$data['contenido']=$this->carpeta_view."/nuevo";
+			$data['modulos']=$this->$model->obtener_modulos_x_cooperativa($id_cooperativa);
 			$data['template']="sistema";
 			$this->load->view('template',$data);
 			
