@@ -107,6 +107,20 @@ $(document).ready(function(e){
 
 jQuery(function($){
    $(".texto_nota").mask("99.99");
+   
+   $(".texto_nota").each(function(index, element) {
+    	$(this).keyup(function(e) {
+            if(parseInt($(this).val())>=1 && parseInt($(this).val())<=5)
+			{
+				
+			}else{
+				$(this).val(0);
+				return false;
+				}
+        });
+		
+	});
+   
 });
 
 </script>

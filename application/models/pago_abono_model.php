@@ -19,7 +19,26 @@ class Pago_abono_model extends CI_Model {
 	
 	function nuevo($datos=array())
 	{
+		unset($datos['tipo_abono']);
+		$modulos=array();
+		if(isset($datos['modulo']))
+		{
+			$modulos=$datos['modulo'];
+			unset($datos['modulo']);
+			
+		}
+		
 		$this->db->insert('abono_x_cooperativa',$datos);
+		$id_nota_cargo=$this->db->insert_id();
+		foreach($modulos as $key=>$val)
+		{
+			$this->db->insert('abono_x_cooperativa_detalle',array('id_nota_cargo'=>$id_nota_cargo,'id_modulo'=>$key,'cantidad'=>$val));
+			$this->db->query("update pl_modulos_saldo set saldo = saldo - ".$val." where id_cooperativa = ".$datos['id_cooperativa']." and id_modulo = ".$key);
+			/*$this->db->update('pl_modulos_saldo',array('saldo -'=>$val),array('id_cooperativa'=>$datos['id_cooperativa'],'id_modulo'=>$key));
+			echo $this->db->last_query();
+			exit;*/
+		}
+		
 	}
 
 	function lista($id_cooperativa=0)

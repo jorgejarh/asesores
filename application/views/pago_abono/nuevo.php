@@ -77,7 +77,7 @@
                         </td>
                     </tr>
                </table>
-               <!--<p align="center"><input  type="submit" value="Guardar" name="enviar"/></p>-->
+               <p align="center"><input  type="submit" value="Guardar" name="enviar"/></p>
 		        <?php
                 echo form_close();
 				?>
@@ -91,12 +91,54 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(e) {
+	
+	$('#form_nuevo').submit(function(e) {
+        
+		var total_abonar=parseFloat($('.total_abonar').html());
+		if(parseFloat($("input[name=abono]").val())!=total_abonar)
+		{
+			alert("La suma de las cantidades no es igual al abono.");
+			return false;
+		}
+		
+    });
+	
+	
+	$(".caja_abono").each(function(index, element) {
+		$(this).keyup(function(e) {
+			
+			var actual=parseFloat($(".saldo_actual_"+$(this).attr('id_mod')).html());
+			
+			if(parseFloat($(this).val())>actual)
+			{
+				alert("La cantidad ingresada sobrepasa al saldo actual.");
+				$(this).val(actual);
+				return false;
+			}else{
+				llenar_todo_info();
+				}
+        });
+    });
+	
+	$("input[name=abono]").keyup(function(e) {
+        
+		var saldo_total=parseFloat($('.saldo_total').html());
+		if(parseFloat($(this).val())>saldo_total)
+		{
+			alert("El abono no debe ser mayor al saldo.");
+			$(this).val(saldo_total.toFixed(2));
+			return false;
+		}
+		
+    });
+	
     $("input[name=tipo_abono]").click(function(e) {
         if($(this).is(':checked'))
 		{
 			var porcentaje=(parseFloat($("input[name=abono]").val())/parseFloat($(".saldo_total").html()));
 			console.log(porcentaje);
 			var total_abono=0;
+			var total_saldo_nuevo=0;
 			//var 
 			$(".caja_abono").each(function(index, element) {
 				
@@ -105,24 +147,43 @@ $(document).ready(function(e) {
 				
 				
 				total_abono=total_abono+parseFloat($(this).val());
-              	$(this).attr('readonly', true); 
-				
+				total_saldo_nuevo=total_saldo_nuevo+parseFloat($(".nuevo_saldo_"+$(this).attr('id_mod')).html());
             });
 			
 			$('.total_abonar').html((total_abono).toFixed(2));
 			
-		}else{
-			$(".caja_abono").each(function(index, element) {
-               $(this).attr('readonly', false); 
-            });
+			$('.nuevo_saldo_total').html((total_saldo_nuevo).toFixed(2));
+			
+			
 		}
+		
     });
 });
 
+
 jQuery(function($){
-   $(".caja_abono").mask("#0.00", {reverse: true,maxlength: false});
+   $(".caja_abono, input[name=abono]").mask("#0.00", {reverse: true,maxlength: false});
 });
 
+
+function llenar_todo_info()
+{
+	var total_abono=0;
+	var total_saldo_nuevo=0;
+	//var 
+	$(".caja_abono").each(function(index, element) {
+		
+		$(".nuevo_saldo_"+$(this).attr('id_mod')).html((parseFloat($(".saldo_actual_"+$(this).attr('id_mod')).html())-parseFloat($(this).val())).toFixed(2));
+		
+		
+		total_abono=total_abono+parseFloat($(this).val());
+		total_saldo_nuevo=total_saldo_nuevo+parseFloat($(".nuevo_saldo_"+$(this).attr('id_mod')).html());
+	});
+	
+	$('.total_abonar').html((total_abono).toFixed(2));
+	
+	$('.nuevo_saldo_total').html((total_saldo_nuevo).toFixed(2));
+}
 
 </script>
 <style type="text/css">

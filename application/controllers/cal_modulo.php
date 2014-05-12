@@ -104,7 +104,9 @@ class Cal_modulo extends CI_Controller {
 			$data['template']="sistema";
 			$data['contenido']=$this->carpeta_view."/inscribir_modulo";
 			
-			$data['resultados']=$this->mante_resultados_model->obtener();
+			
+			
+			/*$data['resultados']=$this->mante_resultados_model->obtener();
 			foreach($data['resultados'] as $key=>$val)
 			{
 				$data['resultados'][$key]['aspectos']=$this->mante_aspectos_model->lista($val['id_mante_cat_resultado']);
@@ -113,8 +115,13 @@ class Cal_modulo extends CI_Controller {
 					
 					$data['resultados'][$key]['aspectos'][$key_3]['nota_aspecto']=$this->$model->obtener_suma_modulo_aspecto($id_modulo,$val_3["id_aspectos_considerar"]);
 				}
-			}
-			$data['total_eval']=count($data['resultados']);
+			}*/
+			
+			
+			
+			
+			$data['listado']=$this->$model->obtener_lista($id_modulo);
+			$data['total_eval']=count($data['listado']);
 			$data['model']=$model;
 			$this->load->view('template',$data);
 			
@@ -277,6 +284,18 @@ class Cal_modulo extends CI_Controller {
 			$this->load->view($this->carpeta_view.'/ver_resultados',$data);
 		}
 		
+	}
+	
+	public function eliminar()
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		if ($post)
+		{
+			$id=$post['id'];
+			unset($post['id']);
+			$resultado= $this->$model->eliminar($id,$post);
+		}
 	}
 	
 }

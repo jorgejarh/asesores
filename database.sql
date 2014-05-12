@@ -27,11 +27,27 @@ CREATE TABLE `abono_x_cooperativa` (
   `fecha_creacion` datetime default NULL,
   `id_usuario_add` int(11) default NULL,
   PRIMARY KEY  (`id_abono`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `abono_x_cooperativa` */
 
-insert  into `abono_x_cooperativa`(`id_abono`,`id_cooperativa`,`abono`,`fecha_creacion`,`id_usuario_add`) values (1,6,'300.00','2014-05-09 23:58:31',16),(2,6,'600.00','2014-05-09 23:58:34',16);
+insert  into `abono_x_cooperativa`(`id_abono`,`id_cooperativa`,`abono`,`fecha_creacion`,`id_usuario_add`) values (1,6,'105.00','2014-05-11 23:21:47',16);
+
+/*Table structure for table `abono_x_cooperativa_detalle` */
+
+DROP TABLE IF EXISTS `abono_x_cooperativa_detalle`;
+
+CREATE TABLE `abono_x_cooperativa_detalle` (
+  `id_nota_detalle` int(11) NOT NULL auto_increment,
+  `id_nota_cargo` int(11) default NULL,
+  `id_modulo` int(11) default NULL,
+  `cantidad` decimal(18,2) default NULL,
+  PRIMARY KEY  (`id_nota_detalle`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `abono_x_cooperativa_detalle` */
+
+insert  into `abono_x_cooperativa_detalle`(`id_nota_detalle`,`id_nota_cargo`,`id_modulo`,`cantidad`) values (1,1,10,'5.00'),(2,1,12,'50.00'),(3,1,13,'50.00');
 
 /*Table structure for table `abonos_cooperativas` */
 
@@ -1011,17 +1027,35 @@ DROP TABLE IF EXISTS `pl_modulos_calificacion`;
 
 CREATE TABLE `pl_modulos_calificacion` (
   `id_calificacion` int(11) NOT NULL auto_increment,
+  `id_calificacion_head` int(11) default '0',
   `id_modulo` int(11) NOT NULL,
   `id_aspecto` int(11) NOT NULL,
   `nota` decimal(5,2) NOT NULL,
   `id_usuario` int(11) default NULL,
   `f_creacion` datetime default NULL,
   PRIMARY KEY  (`id_calificacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_calificacion` */
 
-insert  into `pl_modulos_calificacion`(`id_calificacion`,`id_modulo`,`id_aspecto`,`nota`,`id_usuario`,`f_creacion`) values (1,10,1,'5.00',1,'2014-02-26 20:32:51'),(2,10,5,'3.00',1,'2014-02-26 20:32:51'),(3,10,7,'5.00',1,'2014-02-26 20:32:51'),(4,10,8,'4.00',1,'2014-02-26 20:32:51'),(5,10,9,'2.00',1,'2014-02-26 20:32:51'),(6,10,10,'5.00',1,'2014-02-26 20:32:51'),(7,10,2,'4.00',1,'2014-02-26 20:32:51'),(8,10,11,'1.00',1,'2014-02-26 20:32:51'),(9,10,12,'3.00',1,'2014-02-26 20:32:51'),(10,10,13,'5.00',1,'2014-02-26 20:32:51'),(11,10,3,'1.00',1,'2014-02-26 20:32:51'),(12,10,6,'4.00',1,'2014-02-26 20:32:51'),(13,10,4,'5.00',1,'2014-02-26 20:32:51'),(14,12,1,'3.00',16,'2014-05-02 03:03:50'),(15,12,5,'3.00',16,'2014-05-02 03:03:50'),(16,12,7,'3.00',16,'2014-05-02 03:03:50'),(17,12,8,'3.00',16,'2014-05-02 03:03:50'),(18,12,9,'3.00',16,'2014-05-02 03:03:50'),(19,12,10,'3.00',16,'2014-05-02 03:03:50'),(20,12,2,'3.00',16,'2014-05-02 03:03:50'),(21,12,11,'3.00',16,'2014-05-02 03:03:50'),(22,12,12,'3.00',16,'2014-05-02 03:03:50'),(23,12,13,'3.00',16,'2014-05-02 03:03:50'),(24,12,3,'3.00',16,'2014-05-02 03:03:50'),(25,12,6,'3.00',16,'2014-05-02 03:03:50'),(26,12,4,'3.00',16,'2014-05-02 03:03:50'),(27,10,1,'3.00',16,'2014-05-02 03:04:59'),(28,10,5,'2.00',16,'2014-05-02 03:04:59'),(29,10,7,'1.00',16,'2014-05-02 03:04:59'),(30,10,8,'5.00',16,'2014-05-02 03:04:59'),(31,10,9,'4.00',16,'2014-05-02 03:04:59'),(32,10,10,'1.00',16,'2014-05-02 03:04:59'),(33,10,2,'3.00',16,'2014-05-02 03:04:59'),(34,10,11,'2.00',16,'2014-05-02 03:04:59'),(35,10,12,'4.00',16,'2014-05-02 03:04:59'),(36,10,13,'4.00',16,'2014-05-02 03:04:59'),(37,10,3,'4.00',16,'2014-05-02 03:05:00'),(38,10,6,'4.00',16,'2014-05-02 03:05:00'),(39,10,4,'4.00',16,'2014-05-02 03:05:00'),(40,12,1,'3.00',16,'2014-05-02 03:16:38'),(41,12,5,'2.00',16,'2014-05-02 03:16:38'),(42,12,7,'2.00',16,'2014-05-02 03:16:38'),(43,12,8,'3.00',16,'2014-05-02 03:16:38'),(44,12,9,'3.00',16,'2014-05-02 03:16:38'),(45,12,10,'4.00',16,'2014-05-02 03:16:38'),(46,12,2,'4.00',16,'2014-05-02 03:16:38'),(47,12,11,'1.00',16,'2014-05-02 03:16:38'),(48,12,12,'2.00',16,'2014-05-02 03:16:38'),(49,12,13,'3.00',16,'2014-05-02 03:16:38'),(50,12,3,'2.00',16,'2014-05-02 03:16:38'),(51,12,6,'1.00',16,'2014-05-02 03:16:38'),(52,12,4,'4.00',16,'2014-05-02 03:16:38'),(53,12,1,'3.00',16,'2014-05-07 20:55:27'),(54,12,5,'5.00',16,'2014-05-07 20:55:27'),(55,12,7,'2.00',16,'2014-05-07 20:55:27'),(56,12,8,'1.00',16,'2014-05-07 20:55:27'),(57,12,9,'4.00',16,'2014-05-07 20:55:27'),(58,12,10,'2.00',16,'2014-05-07 20:55:27'),(59,12,2,'3.00',16,'2014-05-07 20:55:27'),(60,12,11,'1.00',16,'2014-05-07 20:55:27'),(61,12,12,'5.00',16,'2014-05-07 20:55:27'),(62,12,13,'2.00',16,'2014-05-07 20:55:27'),(63,12,3,'3.00',16,'2014-05-07 20:55:27'),(64,12,6,'5.00',16,'2014-05-07 20:55:27'),(65,12,4,'4.00',16,'2014-05-07 20:55:27'),(66,12,1,'3.00',16,'2014-05-07 21:35:16'),(67,12,5,'3.00',16,'2014-05-07 21:35:16'),(68,12,7,'3.00',16,'2014-05-07 21:35:16'),(69,12,8,'3.00',16,'2014-05-07 21:35:16'),(70,12,9,'3.00',16,'2014-05-07 21:35:16'),(71,12,10,'3.00',16,'2014-05-07 21:35:16'),(72,12,2,'3.00',16,'2014-05-07 21:35:16'),(73,12,11,'3.00',16,'2014-05-07 21:35:16'),(74,12,12,'3.00',16,'2014-05-07 21:35:16'),(75,12,13,'3.00',16,'2014-05-07 21:35:16'),(76,12,3,'3.00',16,'2014-05-07 21:35:16'),(77,12,6,'3.00',16,'2014-05-07 21:35:16'),(78,12,4,'3.00',16,'2014-05-07 21:35:16');
+insert  into `pl_modulos_calificacion`(`id_calificacion`,`id_calificacion_head`,`id_modulo`,`id_aspecto`,`nota`,`id_usuario`,`f_creacion`) values (1,1,12,1,'3.00',16,'2014-05-12 00:01:06'),(2,1,12,5,'3.00',16,'2014-05-12 00:01:06'),(3,1,12,7,'3.00',16,'2014-05-12 00:01:06'),(4,1,12,8,'3.00',16,'2014-05-12 00:01:06'),(5,1,12,9,'3.00',16,'2014-05-12 00:01:06'),(6,1,12,10,'3.00',16,'2014-05-12 00:01:06'),(7,1,12,2,'3.00',16,'2014-05-12 00:01:06'),(8,1,12,11,'3.00',16,'2014-05-12 00:01:06'),(9,1,12,12,'3.00',16,'2014-05-12 00:01:06'),(10,1,12,13,'3.00',16,'2014-05-12 00:01:06'),(11,1,12,3,'3.00',16,'2014-05-12 00:01:06'),(12,1,12,6,'3.00',16,'2014-05-12 00:01:06'),(13,1,12,4,'3.00',16,'2014-05-12 00:01:06'),(14,2,12,1,'5.00',16,'2014-05-12 00:02:26'),(15,2,12,5,'5.00',16,'2014-05-12 00:02:26'),(16,2,12,7,'5.00',16,'2014-05-12 00:02:26'),(17,2,12,8,'5.00',16,'2014-05-12 00:02:26'),(18,2,12,9,'5.00',16,'2014-05-12 00:02:26'),(19,2,12,10,'5.00',16,'2014-05-12 00:02:26'),(20,2,12,2,'5.00',16,'2014-05-12 00:02:26'),(21,2,12,11,'5.00',16,'2014-05-12 00:02:26'),(22,2,12,12,'5.00',16,'2014-05-12 00:02:26'),(23,2,12,13,'5.00',16,'2014-05-12 00:02:26'),(24,2,12,3,'5.00',16,'2014-05-12 00:02:27'),(25,2,12,6,'5.00',16,'2014-05-12 00:02:27'),(26,2,12,4,'5.00',16,'2014-05-12 00:02:27');
+
+/*Table structure for table `pl_modulos_calificacion_head` */
+
+DROP TABLE IF EXISTS `pl_modulos_calificacion_head`;
+
+CREATE TABLE `pl_modulos_calificacion_head` (
+  `id_calificacion_head` int(11) NOT NULL auto_increment,
+  `numero` int(11) default NULL,
+  `id_modulo` int(11) default NULL,
+  `f_creacion` date default NULL,
+  `id_usuario` int(11) default NULL,
+  PRIMARY KEY  (`id_calificacion_head`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pl_modulos_calificacion_head` */
+
+insert  into `pl_modulos_calificacion_head`(`id_calificacion_head`,`numero`,`id_modulo`,`f_creacion`,`id_usuario`) values (1,1,12,'2014-05-12',16),(2,2,12,'2014-05-12',16);
 
 /*Table structure for table `pl_modulos_eval` */
 
@@ -1069,11 +1103,11 @@ CREATE TABLE `pl_modulos_saldo` (
   `id_cooperativa` int(11) default NULL,
   `saldo` decimal(18,2) default '0.00',
   PRIMARY KEY  (`id_saldo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pl_modulos_saldo` */
 
-insert  into `pl_modulos_saldo`(`id_saldo`,`id_modulo`,`id_cooperativa`,`saldo`) values (1,10,6,'10.00'),(2,12,6,'200.00'),(3,13,6,'100.00');
+insert  into `pl_modulos_saldo`(`id_saldo`,`id_modulo`,`id_cooperativa`,`saldo`) values (19,10,6,'5.00'),(20,12,6,'150.00'),(21,13,6,'50.00');
 
 /*Table structure for table `pl_opiniones` */
 
@@ -1306,7 +1340,7 @@ CREATE TABLE `usu_usuario` (
 
 /*Data for the table `usu_usuario` */
 
-insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`,`exigir`) values (1,'llievano','e10adc3949ba59abbe56e057f20f883e','Luis Lievano','22222222','','dkfjkdsjfk','','2014-04-01 11:59:44',1,4,1,1),(2,'pgarrido','e10adc3949ba59abbe56e057f20f883e','Patricia Garrido','25553563','','9re98r9488dvkfckf','patricia.garrido@fedecaces.com','2014-04-01 12:57:25',1,6,1,0),(3,'Administrador','9450476b384b32d8ad8b758e76c98a69','Raúl Eduardo Mauricio Campos','25553560','78741657',NULL,'raul.mauricio@fedecaces.com','2014-04-07 22:15:17',1,1,1,0),(4,'nvasquez','e10adc3949ba59abbe56e057f20f883e','Nelson Vásquez','25553565','',NULL,'nelson.vasquez@fedecaces.com','2013-07-23 11:42:19',1,2,1,1),(5,'jnavarrete','e10adc3949ba59abbe56e057f20f883e','Jaime Arturo Navarrete','25553563','',NULL,'jaime.navarrete@fedecaces.com',NULL,1,2,1,1),(6,'srivera','e10adc3949ba59abbe56e057f20f883e','Noé Saúl Rivera','25553591','',NULL,'saul.rivera@fedecaces.com','2013-11-06 17:42:32',1,2,1,1),(7,'mvasquez','e10adc3949ba59abbe56e057f20f883e','Mineth Vasquez','25553561','',NULL,'gerencia@asesoresparaeldesarrollo.com','2014-03-05 22:02:44',1,7,1,1),(8,'frivera','e10adc3949ba59abbe56e057f20f883e','Fernando Rivera','25553592','',NULL,'fernando.rivera@asesoresparaeldesarrollo.com','2014-02-16 20:14:28',1,2,1,1),(9,'glopez','e10adc3949ba59abbe56e057f20f883e','Gladis Lopez','25553564','',NULL,'gladis.lopez@asesoresparaeldesarrollo.com','2014-02-13 23:32:02',1,6,1,1),(10,'mmolina','249ba3301069177fc9380feeedb6d396','Moris Molina','25553565','',NULL,'moris.molina@fedecaces.com','2014-03-31 16:01:01',1,2,1,1),(11,'vcisneros','e10adc3949ba59abbe56e057f20f883e','Vilma del Carmen Cisneros','25553563','',NULL,'vilma.cisneros@fedecaces.com',NULL,1,4,1,1),(12,'ehenriquez','e10adc3949ba59abbe56e057f20f883e','Eric Henriquez','23339134','78599641',NULL,'gerencia.acacypac@fedecaces.com','2014-05-05 23:55:34',1,3,1,0),(13,'funes1','7c687bcfb658fb63a706b4d8dba14d75','Linda Claudia Funes','22211438','79273870',NULL,'gerencia.electra@fedecaces.com','2014-04-02 10:05:17',1,3,1,0),(14,'mineth','b24bbbf00b2b4fc46ca9d32087feb573','Minetilla','22222222','',NULL,'','2014-04-01 16:13:08',1,3,1,0),(15,'cisneros','e10adc3949ba59abbe56e057f20f883e','Vilma','2222222','',NULL,'',NULL,1,3,1,1),(16,'Admin','202cb962ac59075b964b07152d234b70','Sergio Doradea','2358956','',NULL,'','2014-05-10 23:13:46',1,8,1,0),(17,'usudemo','e10adc3949ba59abbe56e057f20f883e','Usuario Demo','2562325','',NULL,'','2014-04-07 22:42:03',1,3,1,1);
+insert  into `usu_usuario`(`id_usuario`,`usuario`,`clave`,`nombre_completo`,`telefono`,`celular`,`direccion`,`correo`,`ultimo_acceso`,`estado`,`id_subrol`,`activo`,`exigir`) values (1,'llievano','e10adc3949ba59abbe56e057f20f883e','Luis Lievano','22222222','','dkfjkdsjfk','','2014-04-01 11:59:44',1,4,1,1),(2,'pgarrido','e10adc3949ba59abbe56e057f20f883e','Patricia Garrido','25553563','','9re98r9488dvkfckf','patricia.garrido@fedecaces.com','2014-04-01 12:57:25',1,6,1,0),(3,'Administrador','9450476b384b32d8ad8b758e76c98a69','Raúl Eduardo Mauricio Campos','25553560','78741657',NULL,'raul.mauricio@fedecaces.com','2014-04-07 22:15:17',1,1,1,0),(4,'nvasquez','e10adc3949ba59abbe56e057f20f883e','Nelson Vásquez','25553565','',NULL,'nelson.vasquez@fedecaces.com','2013-07-23 11:42:19',1,2,1,1),(5,'jnavarrete','e10adc3949ba59abbe56e057f20f883e','Jaime Arturo Navarrete','25553563','',NULL,'jaime.navarrete@fedecaces.com',NULL,1,2,1,1),(6,'srivera','e10adc3949ba59abbe56e057f20f883e','Noé Saúl Rivera','25553591','',NULL,'saul.rivera@fedecaces.com','2013-11-06 17:42:32',1,2,1,1),(7,'mvasquez','e10adc3949ba59abbe56e057f20f883e','Mineth Vasquez','25553561','',NULL,'gerencia@asesoresparaeldesarrollo.com','2014-03-05 22:02:44',1,7,1,1),(8,'frivera','e10adc3949ba59abbe56e057f20f883e','Fernando Rivera','25553592','',NULL,'fernando.rivera@asesoresparaeldesarrollo.com','2014-02-16 20:14:28',1,2,1,1),(9,'glopez','e10adc3949ba59abbe56e057f20f883e','Gladis Lopez','25553564','',NULL,'gladis.lopez@asesoresparaeldesarrollo.com','2014-02-13 23:32:02',1,6,1,1),(10,'mmolina','249ba3301069177fc9380feeedb6d396','Moris Molina','25553565','',NULL,'moris.molina@fedecaces.com','2014-03-31 16:01:01',1,2,1,1),(11,'vcisneros','e10adc3949ba59abbe56e057f20f883e','Vilma del Carmen Cisneros','25553563','',NULL,'vilma.cisneros@fedecaces.com',NULL,1,4,1,1),(12,'ehenriquez','e10adc3949ba59abbe56e057f20f883e','Eric Henriquez','23339134','78599641',NULL,'gerencia.acacypac@fedecaces.com','2014-05-05 23:55:34',1,3,1,0),(13,'funes1','7c687bcfb658fb63a706b4d8dba14d75','Linda Claudia Funes','22211438','79273870',NULL,'gerencia.electra@fedecaces.com','2014-04-02 10:05:17',1,3,1,0),(14,'mineth','b24bbbf00b2b4fc46ca9d32087feb573','Minetilla','22222222','',NULL,'','2014-04-01 16:13:08',1,3,1,0),(15,'cisneros','e10adc3949ba59abbe56e057f20f883e','Vilma','2222222','',NULL,'',NULL,1,3,1,1),(16,'Admin','202cb962ac59075b964b07152d234b70','Sergio Doradea','2358956','',NULL,'','2014-05-11 19:48:30',1,8,1,0),(17,'usudemo','e10adc3949ba59abbe56e057f20f883e','Usuario Demo','2562325','',NULL,'','2014-04-07 22:42:03',1,3,1,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

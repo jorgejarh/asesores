@@ -11,6 +11,47 @@
       
       <div class="" style="width:90%; margin:auto;" align="center">
         <button class="cal_mod" onClick="calificar(<?php echo $modulo['id_modulo'];?>);">Nuevo</button>
+        
+          <?php
+if($listado)
+{
+	?>
+  <table id="example" class="display" >
+    <thead>
+      <tr>
+      	<th>Numero</th>
+       	<th>Fecha</th>
+       
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+		foreach($listado as $valor)
+		{
+			
+			?>
+      <tr class="gradeA">
+      	<td align="center"><?php echo $valor['numero'];?></td>
+       
+        <td align="center"><?php echo date("d/m/Y",strtotime($valor['f_creacion']));?></td>
+        <td align="center" class="datatable_icono">
+        
+          <a onClick="eliminar_registro(<?php echo $valor['id_calificacion_head']; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
+          </td>
+      </tr>
+      <?php
+		}
+		?>
+    </tbody>
+  </table>
+  <?php
+}
+?>
+
+<?php
+/*
+?>   
 <table align="center" style="margin:auto; width:345px;">
 	<?php
 	$contador=0;
@@ -42,6 +83,10 @@
 	?>
 	</table>
     <br />
+    
+  <?php
+  */
+  ?>  
     <p align="center">Numero de Evaluaciones: <?php echo $total_eval;?></p>
         <br />
         
@@ -77,6 +122,28 @@ function calificar(id)
 	
 	});
 }
+
+
+function eliminar_registro(id)
+{
+	if(!confirm('¿Seguro que desea eliminar?'))
+	{
+		return false;
+	}
+
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/eliminar');?>",
+		  type:"POST",
+		  data:{'id':id},
+		  success:function(data){
+		  	
+		  		location.reload();
+		
+		  }
+		  
+		});
+}
+
 </script> 
 <script type="text/javascript">
 function imprimir_select(muestra)

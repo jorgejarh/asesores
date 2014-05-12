@@ -127,9 +127,21 @@ class Cal_modulo_model extends CI_Model {
 	function guardar_calificacion($calificaciones=array(),$id_modulo=0)
 	{
 		//$this->db->delete("pl_modulos_calificacion",array('id_modulo'=>$id_modulo));
+		
+		$this->db->select("IFNULL(MAX(numero),0) as numero",false);
+		$dato=$this->db->get_where("pl_modulos_calificacion_head",array('id_modulo'=>$id_modulo))->row_array();
+		
+		$this->db->insert("pl_modulos_calificacion_head",
+							array(	'id_modulo'=>$id_modulo,
+									'numero'=>($dato['numero']+1),
+									'id_usuario'=>$this->datos_user['id_usuario'],
+									'f_creacion'=>date('Y-m-d H:i:s')
+								)
+						);
+		$id_head=$this->db->insert_id();
 		foreach($calificaciones as $key=>$val)
 		{
-			$this->db->insert("pl_modulos_calificacion",array('id_modulo'=>$id_modulo,'id_aspecto'=>$key,'nota'=>$val,'id_usuario'=>$this->datos_user['id_usuario'],'f_creacion'=>date('Y-m-d H:i:s')));
+			$this->db->insert("pl_modulos_calificacion",array('id_calificacion_head'=>$id_head,'id_modulo'=>$id_modulo,'id_aspecto'=>$key,'nota'=>$val,'id_usuario'=>$this->datos_user['id_usuario'],'f_creacion'=>date('Y-m-d H:i:s')));
 		}
 		$this->db->update("pl_modulos",array('es_calificado'=>1),array('id_modulo'=>$id_modulo));
 	}
@@ -140,5 +152,17 @@ class Cal_modulo_model extends CI_Model {
 		$dato=$this->db->get_where("pl_modulos_calificacion",array("id_modulo"=>$id_modulo,"id_aspecto"=>$id_aspecto))->row_array();
 		return $dato;
 		
+	}
+	
+	function obtener_lista($id_modulo=0)
+	{
+		return $this->db->get_where("pl_modulos_calificacion_head",array('id_modulo'=>$id_modulo))->result_array();
+	}
+	
+	
+	function eliminar($id=0)
+	{
+		$this->db->delete("pl_modulos_calificacion_head",array('id_calificacion_head'=>$id));
+		$this->db->delete("pl_modulos_calificacion",array('id_calificacion_head'=>$id));
 	}
 }
