@@ -111,11 +111,11 @@ table tr
                                 $sum_aspecto=0;
                                 foreach($valor['aspectos'] as $valor2)
                                 {
-                                    $sum_aspecto=$sum_aspecto+($valor2['nota']/$valor2['cuantos']);
+                                    $sum_aspecto=number_format($sum_aspecto+($valor2['nota']/$valor2['cuantos']),2);
                                     ?>
                                 <tr>
                                     <td align="left" class="borde_left"><p><?php echo $valor2['nombre'];?></p></td>
-                                    <td align="right" class="borde"><p><?php echo ($valor2['nota']/$valor2['cuantos']);?></p></td>
+                                    <td align="right" class="borde"><p><?php echo number_format($valor2['nota']/$valor2['cuantos'],2);?></p></td>
                                 </tr>
                                     <?php
                                 }
@@ -142,7 +142,7 @@ table tr
                                     ?>
                                 <tr>
                                     <th><?php echo $valor2['nombre'];?></th>
-                                    <td><?php echo ($valor2['nota']/$valor2['cuantos']); 
+                                    <td><?php echo number_format($valor2['nota']/$valor2['cuantos'],2); 
 									$numero_eval=$valor2['cuantos'];
 									
 									?></td>

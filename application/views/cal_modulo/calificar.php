@@ -114,7 +114,7 @@ jQuery(function($){
 			{
 				
 			}else{
-				$(this).val(0);
+				$(this).val("");
 				return false;
 				}
         });

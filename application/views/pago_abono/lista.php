@@ -19,6 +19,7 @@ if($listado)
         <th>Cooperativa</th>
         <th>Telefono</th>
         <th>Email</th>
+        <th>Abono Total</th>
         <th>Agregar Abono</th>
       </tr>
     </thead>
@@ -30,7 +31,9 @@ if($listado)
       <tr class="gradeA">
        <td><?php echo $valor['cooperativa'];?></td>
        <td><?php echo $valor['telefono'];?></td>
+       
       <td><?php echo $valor['email'];?></td>
+      <td>$<?php echo number_format($valor['abono'],2);?></td>
         <td align="center" class=""><a title="Ver Capacitaciones" href="<?php echo site_url($this->nombre_controlador.'/abonar/'.$valor['id_cooperativa']);?>" ><?php echo img('public/img/ico_page.png');?></a></td>
       </tr>
       <?php

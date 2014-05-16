@@ -92,7 +92,7 @@ class F_listado extends CI_Controller {
 		echo '<div><button onclick="inscribir_modulo();">Inscribir a este modulo</button></div>';
 	}
 	
-	public function listado($id_modulo=0)
+	public function listado($id_modulo=0,$imprimir=0)
 	{
 		$model=$this->modelo_usar;
 		
@@ -106,9 +106,19 @@ class F_listado extends CI_Controller {
 			$data['template']="sistema";
 			$data['contenido']=$this->carpeta_view."/listado";
 			$data['nombres_personas']=$this->$model->obtener_personas($data['modulo']['id_capacitacion'],$id_modulo,1);
-			
 			$data['model']=$model;
-			$this->load->view('template',$data);
+			
+			if($imprimir==0)
+			{
+				$this->load->view('template',$data);
+			}else{
+				header("Content-type: application/vnd.ms-word"); 
+				header("Content-Disposition: attachment; filename=listado.doc");  
+				$this->load->view($this->carpeta_view."/imprimir",$data);
+				
+				}
+			
+			
 			
 		}else{
 			

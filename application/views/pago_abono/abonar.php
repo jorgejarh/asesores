@@ -17,14 +17,15 @@
       		<div class="" style="width:90%; margin:auto;">
            
       	         <?php
+				 $total=0;
 if($lista)
 {
 	?>
   <table id="example" class="display" >
     <thead>
       <tr>
-        <th>Fecha</th>
-        <th>Abono</th>
+        <th align="center">Fecha</th>
+        <th align="center">Abono</th>
       </tr>
     </thead>
     <tbody>
@@ -33,19 +34,22 @@ if($lista)
 		{
 			?>
       <tr class="gradeA">
-       <td><?php echo date('d/m/Y',strtotime($valor['fecha_creacion']));?></td>
-       <td>$<?php echo number_format($valor['abono'],2);?></td>
+       <td align="center"><?php echo date('d/m/Y',strtotime($valor['fecha_creacion']));?></td>
+       <td align="center">$<?php echo number_format($valor['abono'],2);$total+=number_format($valor['abono'],2);?></td>
         
         <?php
 		}
 		?>
     </tbody>
   </table>
+ 
   <?php
 }
 ?>
-		        
+<div style="clear:both;"> </div>
+		         <p align="center">Abono Total: $<b><?php echo $total;?></b></p>
     		</div>
+            
     	</div>
     	<!-- end #dashboard --> 
   	</div>

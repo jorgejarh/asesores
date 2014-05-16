@@ -9,11 +9,14 @@ class Notas_cargo_model extends CI_Model {
 	
 	function obtener_cooperativas($datos=array())
 	{
+		$this->db->where("a.id_cooperativa = b.id_cooperativa");
+		$this->db->from("inscripcion_temas b");
+		$this->db->group_by("a.id_cooperativa");
 		if(!$datos)
 		{
-			return $this->db->get_where("conf_cooperativa",array('activo'=>1))->result_array();
+			return $this->db->get_where("conf_cooperativa a",array('a.activo'=>1))->result_array();
 		}else{
-			return $this->db->get_where("conf_cooperativa",array('id_cooperativa'=>$datos['id_cooperativa']))->result_array();
+			return $this->db->get_where("conf_cooperativa a",array('a.id_cooperativa'=>$datos['id_cooperativa']))->result_array();
 			}
 	}
 	

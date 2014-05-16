@@ -19,9 +19,9 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Numero</th>
-       	<th>Fecha</th>
-       
+      	<th align="center">Numero</th>
+       	<th align="center">Fecha</th>
+       <th align="center">Promedio</th>
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -35,8 +35,9 @@ if($listado)
       	<td align="center"><?php echo $valor['numero'];?></td>
        
         <td align="center"><?php echo date("d/m/Y",strtotime($valor['f_creacion']));?></td>
-        <td align="center" class="datatable_icono">
-        
+        <td align="center">
+		<?php echo number_format($valor['prom'],2);?></td>
+        <td align="center">
           <a onClick="eliminar_registro(<?php echo $valor['id_calificacion_head']; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
           </td>
       </tr>

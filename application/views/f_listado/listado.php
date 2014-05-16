@@ -112,7 +112,8 @@ function opinion()
 
 function imprimir_asistencia()
 {
-	imprimir_select("lista_asistencia");
+	//imprimir_select("lista_asistencia");
+	window.location="<?php echo site_url($this->nombre_controlador."/listado/".$modulo['id_modulo']."/1");?>";
 }
 </script> 
 
