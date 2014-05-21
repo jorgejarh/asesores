@@ -120,7 +120,7 @@ class Pl_subrubro extends CI_Controller {
 		
 		if($data['dato'])
 		{
-			$data['curriculas']=preparar_select($this->$model->obtener_curriculas(),'id_curricula','curricula');
+			//$data['curriculas']=preparar_select($this->$model->obtener_curriculas(),'id_curricula','curricula');
 			$data['title']=$this->nombre_titulo." - Editar";
 			$this->load->view($this->carpeta_view.'/form_editar',$data);
 		}else{
