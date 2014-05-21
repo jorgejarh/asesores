@@ -33,6 +33,9 @@ class Opinion extends CI_Controller {
         $model=$this->modelo_usar;
 		$this->load->model($model);
 		$this->load->model('pl_modulos_model');
+		$this->load->model('cal_modulo_model');
+		
+		
 		
 		$this->set_campo("mas_gusto","Lo que MAS les gusto del evento",'xss_clean','textarea');
 		$this->set_campo("menos_gusto","Lo que MENOS les gusto del evento",'xss_clean','textarea');
@@ -43,6 +46,7 @@ class Opinion extends CI_Controller {
 
 	public function index($id_modulo=0)
 	{
+		
 		$data['modulo']=$this->pl_modulos_model->obtener($id_modulo);
 		if($data['modulo'])
 		{
@@ -67,6 +71,11 @@ class Opinion extends CI_Controller {
 		$data=array();
 		$data['title']=$this->nombre_titulo." - Nuevo";
 		$data['id']=$id;
+		
+		$this->set_campo("id_calificacion","Nº de Calificacion",'required|xss_clean','select',
+									preparar_select(
+											$this->cal_modulo_model->obtener_lista($id),"numero","numero"));
+		
 		$this->load->view($this->carpeta_view.'/form_nuevo',$data);
 	}
 	
@@ -117,6 +126,10 @@ class Opinion extends CI_Controller {
 		
 		if($data['dato'])
 		{
+			$this->set_campo("id_calificacion","Nº de Calificacion",'required|xss_clean','select',
+									preparar_select(
+											$this->cal_modulo_model->obtener_lista($data['dato']['id_modulo']),"numero","numero"));
+											
 			$data['title']=$this->nombre_titulo." - Editar";
 			$this->load->view($this->carpeta_view.'/form_editar',$data);
 		}else{

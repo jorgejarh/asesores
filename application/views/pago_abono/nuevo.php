@@ -127,14 +127,21 @@ $(document).ready(function(e) {
 		{
 			alert("El abono no debe ser mayor al saldo.");
 			$(this).val(saldo_total.toFixed(2));
+			
 			return false;
-		}
+		}else{
+			
+			
+			
+			}
 		
     });
 	
     $("input[name=tipo_abono]").click(function(e) {
         if($(this).is(':checked'))
 		{
+			
+			//$("input[name=abono]").prop("readonly",false);
 			var porcentaje=(parseFloat($("input[name=abono]").val())/parseFloat($(".saldo_total").html()));
 			console.log(porcentaje);
 			var total_abono=0;
@@ -155,9 +162,21 @@ $(document).ready(function(e) {
 			$('.nuevo_saldo_total').html((total_saldo_nuevo).toFixed(2));
 			
 			
-		}
+		}else{
+			
+				$(".caja_abono").each(function(index, element){
+					$(this).val("");
+					$(".nuevo_saldo_"+$(this).attr('id_mod')).html(0);
+				});
+				$('.total_abonar').html(0);
+			
+				$('.nuevo_saldo_total').html(0);
+				//$("input[name=abono]").prop("readonly",true);
+				$("input[name=abono]").val(0);
+			}
 		
     });
+	///$("input[name=abono]").prop("readonly",true);
 });
 
 
@@ -183,6 +202,9 @@ function llenar_todo_info()
 	$('.total_abonar').html((total_abono).toFixed(2));
 	
 	$('.nuevo_saldo_total').html((total_saldo_nuevo).toFixed(2));
+	
+	$("input[name=abono]").val(total_abono.toFixed(2));
+	
 }
 
 </script>
