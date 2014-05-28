@@ -51,7 +51,11 @@ $total_pagar=$precio_indi*$cantidad_personas;
 			echo $letra->ValorEnLetras($total_pagar,"Dolares");?></b></p>
         </div>
         <div>
-        	<p>Por Participación en jornada de capacitación: <b><?php echo ($modulo['nombre_modulo']);?></b></p>
+        	<p>Por Participación en jornada de capacitación: <p>
+            <p>Plan: <b> <?php echo $capacitacion['nombre_plan']?></b></p>
+			<p>Modalidad: <b><?php echo $capacitacion['nombre_modalidad']?></b></p>
+			<p>Capacitación: <b><?php echo $capacitacion['nombre_capacitacion']?></b></p>
+            <p>Modulo: <b><?php echo $modulo['nombre_modulo']?></b></p>
         </div>
         <div>
         	<p>Participantes: </p>

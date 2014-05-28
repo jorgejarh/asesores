@@ -109,7 +109,7 @@ class Inscripcion_temas_personas_model extends CI_Model {
 	
 	function obtener_cargos()
 	{
-		return $this->db->get_where('mante_cargos a',array('a.activo'=>1))->result_array();
+		return $this->db->order_by('nombre_cargo')->get_where('mante_cargos a',array('a.activo'=>1))->result_array();
 	}
 	
 	

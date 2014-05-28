@@ -60,6 +60,7 @@ class Inscripcion_temas_personas extends CI_Controller {
 			$data['contenido']=$this->carpeta_view."/lista"; 
 			
 			$data['model']=$model;
+			$data['id']=$data['inscripcion']['id_inscripcion_tema'];
 			$this->load->view('template',$data);
 		}else{
 			redirect('inscripcion_temas');
