@@ -31,7 +31,7 @@ if($listado)
        <td><?php echo $valor['cooperativa'];?></td>
        <td><?php echo $valor['telefono'];?></td>
       <td><?php echo $valor['email'];?></td>
-        <td align="center" class="datatable_icono"><a href="<?php echo site_url('estado_cuenta/ver/'.$valor['id_cooperativa']);?>" target="_blank" ><?php echo img('public/img/ico_page.png');?></a></td>
+        <td align="center" class="datatable_icono"><a onclick="ver_estado(<?php echo $valor['id_cooperativa'];?>);" ><?php echo img('public/img/ico_page.png');?></a></td>
       </tr>
       <?php
 		}
@@ -57,53 +57,16 @@ if($listado)
 	    } );
 	} );
 
-function nuevo_registro()
+
+function ver_estado(id)
 {
-	window.location.href="<?php echo site_url("nota_cargo/nuevo");?>";
+	var f = new Date();
+	
+	f_inicio=prompt('Fecha Inicio formato (dd/mm/yyyy): ',f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+	f_fin=prompt('Fecha Fin formato (dd/mm/yyyy): ',f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+	window.open("<?php echo site_url('estado_cuenta/ver_total'); ?>/"+id+"?f_i="+f_inicio+"&f_fin="+f_fin);
 }
 
-function editar_registro(id)
-{
-	$.ajax({
-		  url: "<?php echo site_url('conf_menu/editar');?>/"+id,
-		  type:"POST",
-		  success:function(data){
-
-		  	$.fancybox(data);
-		  }
-		  
-		});
-}
-
-function eliminar_registro(id)
-{
-	if(!confirm('¿Todos los submenus tambien se eliminaran, Seguro de desea el registro,?'))
-	{
-		return false;
-	}
-
-	$.ajax({
-		  url: "<?php echo site_url('conf_menu/eliminar');?>/"+id,
-		  type:"POST",
-		  success:function(data){
-			  
-			  	if(data=="ok")
-			  	{
-					alert("Registro Eliminado");
-					location.reload();
-				}
-			/*  
-		  	$.fancybox({
-		  		content:data,
-		  		afterClose:function()
-		  		{
-		  			location.reload();
-		  		}
-		  	});*/
-		  }
-		  
-		});
-}
 
 </script>
 

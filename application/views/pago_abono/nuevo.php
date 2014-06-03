@@ -56,6 +56,9 @@
 								$total_saldo=0;
                                 foreach($modulos as $valor)
 								{
+									//print_r($valor);
+									if($valor['saldo']!=0)
+									{
 									?>
                                     <tr class="gradeA">
                                     	<td valign="middle" width="300"><?php echo $valor['nombre_modulo'];?></td>
@@ -64,6 +67,7 @@
                                         <td valign="middle"  align="center"><div class="nuevo_saldo_<?php echo $valor['id_modulo'];?>">00.00</div></td>
                                     </tr>
                                     <?php
+									}
 								}
 								?>
                                 <tr class="gradeA">

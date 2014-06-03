@@ -36,5 +36,18 @@ class Estado_cuenta extends CI_Controller {
 		
 	}
 	
+	public function ver_total($id_cooperativa=0)
+	{
+		$data['titulo']="Imprimir";
+		$data['cooperativa']=$this->estado_cuenta_model->obtener_una_cooperativa($id_cooperativa);
+		if($data['cooperativa'])
+		{
+			$data['modulos']=$this->estado_cuenta_model->obtener_estado_x_cooperativa($id_cooperativa);
+			
+			//echo $this->db->last_query();
+			$this->load->view('estado_cuenta/ver_total',$data);
+		}
+		
+	}
 	
 }
