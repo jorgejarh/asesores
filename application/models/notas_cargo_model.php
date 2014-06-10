@@ -9,6 +9,7 @@ class Notas_cargo_model extends CI_Model {
 	
 	function obtener_cooperativas($datos=array())
 	{
+		$this->db->select("(select count(c.id_inscripcion_personas) from inscripcion_temas_personas c where c.id_inscripcion_tema = b.id_inscripcion_tema ) as cantidad, a.*",false);
 		$this->db->where("a.id_cooperativa = b.id_cooperativa");
 		$this->db->from("inscripcion_temas b");
 		$this->db->group_by("a.id_cooperativa");

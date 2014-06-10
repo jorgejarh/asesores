@@ -18,7 +18,7 @@ class Estado_cuenta extends CI_Controller {
 		$data['template']="sistema";
 		$data['contenido']="estado_cuenta/lista";
 		$data['listado']=$this->estado_cuenta_model->obtener_cooperativas($this->datos_user['info_s']);
-		
+		$data['lista']=preparar_select($this->estado_cuenta_model->obtener_cooperativas($this->datos_user['info_s']),'id_cooperativa','cooperativa');
 		$this->load->view('template',$data);
 
 	}
@@ -48,6 +48,17 @@ class Estado_cuenta extends CI_Controller {
 			$this->load->view('estado_cuenta/ver_total',$data);
 		}
 		
+	}
+	
+	public function generar_resultado()
+	{
+		$post=$this->input->post();
+		$data['cooperativa']=$this->estado_cuenta_model->obtener_una_cooperativa($post['id_cooperativa']);
+		if($data['cooperativa'])
+		{
+			$data['modulos']=$this->estado_cuenta_model->obtener_estado_x_cooperativa($post['id_cooperativa']);
+			$this->load->view('estado_cuenta/generar',$data);
+		}
 	}
 	
 }

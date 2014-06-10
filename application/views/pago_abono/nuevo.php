@@ -113,10 +113,16 @@ $(document).ready(function(e) {
 			
 			var actual=parseFloat($(".saldo_actual_"+$(this).attr('id_mod')).html());
 			
+			if(isNaN($(this).val()))
+			{
+				$(this).val(0);
+				return false;
+			}
+			
 			if(parseFloat($(this).val())>actual)
 			{
 				alert("La cantidad ingresada sobrepasa al saldo actual.");
-				$(this).val(actual);
+				$(this).val(actual.toFixed(2));
 				return false;
 			}else{
 				llenar_todo_info();
@@ -185,7 +191,7 @@ $(document).ready(function(e) {
 
 
 jQuery(function($){
-   $(".caja_abono, input[name=abono]").mask("#0.00", {reverse: true,maxlength: false});
+   $("input[name=abono]").mask("#0.00", {reverse: true,maxlength: false});
 });
 
 

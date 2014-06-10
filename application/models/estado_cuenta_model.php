@@ -70,19 +70,21 @@ class Estado_cuenta_model extends CI_Model {
 	}
 	
 	
-	function obtener_abonos_x_modulo($id_cooperativa,$id_modulo)
+	function obtener_abonos_x_modulo($id_modulo,$id_cooperativa)
 	{
-		return $this->db->query("SELECT 
+		$datos=$this->db->query("SELECT 
 								  a.fecha_creacion,
 								  b.id_modulo,
 								  b.cantidad 
 								FROM
 								  abono_x_cooperativa a,
 								  abono_x_cooperativa_detalle b 
-								WHERE a.id_cooperativa = 6 
+								WHERE a.id_cooperativa = ".$id_cooperativa." 
 								  AND a.id_abono = b.id_nota_cargo 
-								  AND b.id_modulo=10
+								  AND b.id_modulo=".$id_modulo."
 								ORDER BY a.fecha_creacion ASC ")->result_array();
+								
+		return $datos;
 	}
 	
 }

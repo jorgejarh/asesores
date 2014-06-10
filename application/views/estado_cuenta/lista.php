@@ -8,6 +8,40 @@
       		</tr>
       	</table>
       	</h2>
+        <div>
+        <?php
+			echo form_open('',array(
+								'id'=>'form_nuevo'
+									),
+								array(
+								
+									)
+							);
+			?>
+        	<table>
+            	<tr>
+                	<td>Cooperativa:</td>
+                	<td><?php echo form_dropdown('id_cooperativa',$lista);?></td>
+                    <td>Fecha Inicio:</td>
+                	<td><?php echo form_input(array('name'=>'f_ini','class'=>'date_','value'=>date('Y-m-d')));?></td>
+                     <td>Fecha Fin:</td>
+                	<td><?php echo form_input(array('name'=>'f_fin','class'=>'date_','value'=>date('Y-m-d')));?></td>
+                    <td><input type="submit" value="Generar" /></td>
+                </tr>
+            </table>
+            <?php
+            echo form_close();
+			?>
+        </div>
+        <div class="cargando_">
+
+</div>
+        <div style="width:90%; margin:auto;" id="resultado" >
+        	
+        </div>
+        <?php
+        /*
+		?>
       		<div class="" style="width:90%; margin:auto;">
       	         <?php
 if($listado)
@@ -43,6 +77,9 @@ if($listado)
 ?>
 		        
     		</div>
+             <?php
+        */
+		?>
     	</div>
     	<!-- end #dashboard --> 
   	</div>
@@ -55,6 +92,51 @@ if($listado)
 	    $('#example').dataTable( {
 	        <?php echo config_lenguaje_tabla(); ?>
 	    } );
+		
+		
+		$( ".date_" ).datepicker({
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+			changeYear: true
+		});
+		
+		
+		
+		
+		
+	$('#form_nuevo').submit(function(){
+
+			form=$(this);
+
+			$('.cargando_').fadeIn('fast');
+			$('#resultado').fadeOut('fast');
+			$.ajax({
+				  url: "<?php echo site_url('estado_cuenta/generar_resultado');?>",
+				  type:"POST",
+				  //dataType:"json",
+				  data:$(this).serialize(),
+				  success:function(data){
+							$('#resultado').hide('fast');
+				  			$('#resultado').html(data);
+							$('#resultado').fadeIn();
+				  			$('.cargando_').fadeOut('fast');
+				  		
+				  		
+				  },
+				   error:function()
+				  {
+					 alert("Error al procesar, Intente de nuevo"); 
+					 location.reload();
+				  }
+			});
+			
+			return false;
+		});
+
+		
+		
+		
+		
 	} );
 
 
@@ -62,8 +144,8 @@ function ver_estado(id)
 {
 	var f = new Date();
 	
-	f_inicio=prompt('Fecha Inicio formato (dd/mm/yyyy): ',f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
-	f_fin=prompt('Fecha Fin formato (dd/mm/yyyy): ',f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+	f_inicio=$('input[name=f_ini]').val();
+	f_fin=$('input[name=f_fin]').val();
 	window.open("<?php echo site_url('estado_cuenta/ver_total'); ?>/"+id+"?f_i="+f_inicio+"&f_fin="+f_fin);
 }
 

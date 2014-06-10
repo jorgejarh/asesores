@@ -5,17 +5,9 @@ if(!($this->input->get('f_i') && $this->input->get('f_fin')))
 {
 	die("Fechas Requeridas");
 }
-$f_i_array= explode("/",$this->input->get('f_i'));
-$f_f_array= explode("/",$this->input->get('f_fin'));
 
-if(count($f_i_array)!=3 || count($f_f_array)!=3 )
-{
-	die('Fechas Incorrectas');
-}
-
-
-$f_ini=strtotime($f_i_array[2]."-".$f_i_array[1]."-".$f_i_array[0]);
-$f_fin=strtotime($f_f_array[2]."-".$f_f_array[1]."-".$f_f_array[0]);
+$f_ini=strtotime($this->input->get('f_i'));
+$f_fin=strtotime($this->input->get('f_fin'));
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

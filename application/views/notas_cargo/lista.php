@@ -26,6 +26,8 @@ if($listado)
       <?php
 		foreach($listado as $valor)
 		{
+			if($valor['cantidad']!=0)
+			{
 			?>
       <tr class="gradeA">
        <td><?php echo $valor['cooperativa'];?></td>
@@ -34,6 +36,7 @@ if($listado)
         <td align="center" class=""><a title="Ver Capacitaciones" href="<?php echo site_url($this->nombre_controlador.'/capacitaciones/'.$valor['id_cooperativa']);?>" ><?php echo img('public/img/ico_page.png');?></a></td>
       </tr>
       <?php
+			}
 		}
 		?>
     </tbody>
