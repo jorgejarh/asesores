@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Opinion_model extends CI_Model {
+class Mante_opiniones_model extends CI_Model {
 	
-	public $nombre_tabla="pl_opiniones";
+	public $nombre_tabla="mante_opiniones";
 	
 	public $id_tabla="";
 	
@@ -24,29 +24,13 @@ class Opinion_model extends CI_Model {
 	
     function obtener($id=0)
 	{
-		
 		if($id==0)
 		{
-			
+			$this->db->order_by('nombre_opinion','ASC');
 			return $this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1))->result_array();
 		}else{
-			return $this->db->get_where($this->nombre_tabla." a",array($this->id_tabla=>$id))->row_array();
+			return $this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
 			}
-	}
-	
-	function lista($id=0)
-	{
-		$this->db->select("a.*, (select nombre_opinion from mante_opiniones b where a.mas_gusto = b.id_opinion) as nombre_gusto, (select nombre_opinion from mante_opiniones b where a.menos_gusto = b.id_opinion) as nombre_menos, (select nombre_opinion from mante_opiniones b where a.sugerencia = b.id_opinion) as nombre_sugerencia, (select nombre_opinion from mante_opiniones b where a.areas_capacitado = b.id_opinion) as nombre_areas");
-		
-		
-		$datos=$this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_modulo'=>$id))->result_array();
-				
-		return $datos;
-	}
-	
-	function obtener_subrubros($id_rubro=0)
-	{
-		return $this->db->get_where("pl_subrubro a",array('a.id_rubro'=>$id_rubro))->result_array();
 	}
 	
 	function actualizar($datos,$id)
@@ -66,6 +50,9 @@ class Opinion_model extends CI_Model {
 		return $this->db->update($this->nombre_tabla,array('activo'=>0),array($this->id_tabla=>$id));
 		//return $this->db->delete($this->nombre_tabla,array($this->id_tabla=>$id));
 	}
+	
+	
+	
 	
 	
 }

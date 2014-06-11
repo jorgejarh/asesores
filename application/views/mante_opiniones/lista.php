@@ -1,21 +1,14 @@
 <div id="content_main" class="clearfix">
   <div id="main_panel_container" class="left" style="width:900px;">
     <div id="dashboard" style="width:100%;padding-bottom:50px;">
-    
-    
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td>Opiniones para <?php echo $modulo['nombre_modulo'];?></td>
-      			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $modulo['id_modulo']?>);">Nuevo</button></td>
+      			<td><?php echo $title;?></td>
+      			<td style="text-align:right;"><button onClick="nuevo_registro();">Nuevo</button></td>
       		</tr>
       	</table>
       </h2>
-      <!--<div class="bot_atras">
-    	<?php
-        echo anchor('inscripcion/inscribir_modulo/'.$modulo['id_modulo'],'<- Regresar');
-		?>
-    </div>-->
       <div class="" style="width:90%; margin:auto;">
       
         <?php
@@ -25,10 +18,9 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Lo que MAS les gusto del evento</th>
-        <th>Lo que MENOS les gusto del evento</th>
-        <th>Sugerencia</th>
-        <th>Areas que le gustaria ser Capacitado</th>
+      	<th>ID</th>
+        <th>Opinion</th>
+        
         <th>&nbsp;</th>
         <th>&nbsp;</th>
       </tr>
@@ -37,13 +29,11 @@ if($listado)
       <?php
 		foreach($listado as $valor)
 		{
-			$total_rubro=0.00;
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombre_gusto'];?></td>
-        <td><?php echo $valor['nombre_menos'];?></td>
-        <td><?php echo $valor['nombre_sugerencia'];?></td>
-        <td><?php echo $valor['nombre_areas'];?></td>
+      <td><?php echo $valor['id_opinion'];?></td>
+      	<td><?php echo $valor['nombre_opinion'];?></td>
+      
         <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
@@ -74,10 +64,10 @@ if($listado)
 	    } );
 	} );
 
-function nuevo_registro(id)
+function nuevo_registro()
 {
 	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/nuevo');?>/"+id,
+		  url: "<?php echo site_url($this->nombre_controlador.'/nuevo');?>",
 		  type:"POST",
 		  success:function(data){
 
@@ -119,6 +109,40 @@ function eliminar_registro(id)
 		  
 		});
 }
+
+function profesiones(id)
+{
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/profesiones');?>/"+id,
+		  type:"POST",
+		  success:function(data){
+
+		  	$.fancybox({
+				content:data,
+				autoHeight:true
+				});
+		  }
+		  
+		});
+}
+
+function especialidades(id)
+{
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/especialidades');?>/"+id,
+		  type:"POST",
+		  success:function(data){
+
+		  	$.fancybox({
+				content:data,
+				autoHeight:true
+				});
+		  }
+		  
+		});
+}
+
+
 
 </script>
 

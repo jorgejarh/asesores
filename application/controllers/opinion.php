@@ -34,13 +34,13 @@ class Opinion extends CI_Controller {
 		$this->load->model($model);
 		$this->load->model('pl_modulos_model');
 		$this->load->model('cal_modulo_model');
+		$this->load->model('mante_opiniones_model');
 		
 		
-		
-		$this->set_campo("mas_gusto","Lo que MAS les gusto del evento",'xss_clean','textarea');
-		$this->set_campo("menos_gusto","Lo que MENOS les gusto del evento",'xss_clean','textarea');
-		$this->set_campo("sugerencia","Sugerencia",'xss_clean','textarea');
-		$this->set_campo("areas_capacitado","Areas que le gustaria ser Capacitado",'xss_clean','textarea');
+		$this->set_campo("mas_gusto","Lo que MAS les gusto del evento",'xss_clean','select',preparar_select($this->mante_opiniones_model->obtener(0),'id_opinion','nombre_opinion'));
+		$this->set_campo("menos_gusto","Lo que MENOS les gusto del evento",'xss_clean','select',preparar_select($this->mante_opiniones_model->obtener(0),'id_opinion','nombre_opinion'));
+		$this->set_campo("sugerencia","Sugerencia",'xss_clean','select',preparar_select($this->mante_opiniones_model->obtener(0),'id_opinion','nombre_opinion'));
+		$this->set_campo("areas_capacitado","Areas que le gustaria ser Capacitado",'xss_clean','select',preparar_select($this->mante_opiniones_model->obtener(0),'id_opinion','nombre_opinion'));
 		
     }
 
