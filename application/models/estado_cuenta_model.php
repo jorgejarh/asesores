@@ -64,11 +64,18 @@ class Estado_cuenta_model extends CI_Model {
 		foreach($datos as $key=>$val)
 		{
 			$datos[$key]['abonos']=$this->obtener_abonos_x_modulo($val['id_modulo'],$id_cooperativa);
+			$datos[$key]['descuentos']=$this->obtener_descuentos_x_modulo($val['id_modulo'],$id_cooperativa);
 		}
 		
 		return $datos;
 	}
 	
+	function obtener_descuentos_x_modulo($id_modulo,$id_cooperativa)
+	{
+		$datos=$this->db->get_where('inscripcion_temas_descuentos',array('id_cooperativa'=>$id_cooperativa,'id_modulo'=>$id_modulo))->result_array();
+								
+		return $datos;
+	}
 	
 	function obtener_abonos_x_modulo($id_modulo,$id_cooperativa)
 	{

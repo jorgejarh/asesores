@@ -9,9 +9,10 @@ if(!($this->input->post('f_ini') && $this->input->post('f_fin')))
 
 $f_ini=strtotime($this->input->post('f_ini'));
 $f_fin=strtotime($this->input->post('f_fin')." 23:59:59");
-
-
- 
+/*
+echo "<pre>";
+ print_r($modulos);
+ echo "</pre>";*/
 if($modulos)
 {
 	?>
@@ -45,6 +46,22 @@ if($modulos)
                     <td align="center">$ <?php  echo number_format($saldo,2);?></td>
                 </tr>
                 <?php
+						foreach($valor['descuentos'] as $valor_des)
+						{
+							$canti=($valor_des['descuento']/100)*$valor['saldo'];
+							$contador++;
+							$saldo-=$canti;
+							?>
+							<tr class="gradeA">
+								<td align="center"><?php echo date('d/m/Y',strtotime( $valor_des['f_creacion']));?></td>
+								<td align="left">Descuento (<?php echo $valor_des['descuento']."%"; ?>) de $ <?php echo $canti;?> a <?php echo $valor['nombre_modulo'];?></td>
+								<td align="center">$ <?php echo number_format(0,2);?></td>
+								<td align="center">$ <?php echo number_format($canti,2);?></td>
+								<td align="center">$ <?php  echo number_format($saldo,2);?></td>
+							</tr>
+							<?php
+							
+						}
 					
 						foreach($valor['abonos'] as $valor_2)
 						{

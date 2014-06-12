@@ -111,7 +111,24 @@ p {
                     <td align="center"><p>$ <?php  echo number_format($saldo,2);?></p></td>
                 </tr>
                 <?php
-					
+						
+						foreach($valor['descuentos'] as $valor_des)
+						{
+							$canti=($valor_des['descuento']/100)*$valor['saldo'];
+							$contador++;
+							$saldo-=$canti;
+							?>
+							<tr class="<?php echo (($contador%2)==0)?'gris_l_2':'';?>">
+								<td align="center"><p><?php echo date('d/m/Y',strtotime( $valor_des['f_creacion']));?></p></td>
+								<td align="center"><p>Descuento (<?php echo $valor_des['descuento']."%"; ?>) de $ <?php echo $canti;?> a <?php echo $valor['nombre_modulo'];?></p></td>
+								<td align="center"><p>$ <?php echo number_format(0,2);?></p></td>
+								<td align="center"><p>$ <?php echo number_format($canti,2);?></p></td>
+								<td align="center"><p>$ <?php  echo number_format($saldo,2);?></p></td>
+							</tr>
+							<?php
+							
+						}
+						
 						foreach($valor['abonos'] as $valor_2)
 						{
 							$f_act1=strtotime($valor_2['fecha_creacion']);

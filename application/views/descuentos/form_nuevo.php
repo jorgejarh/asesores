@@ -109,6 +109,35 @@ $(document).ready(function(e){
 					  $.each(data,function(index,elemento){
 						  
 						  $("select[name=id_inscripcion_tema]").append(obtener_opcion(elemento.id_inscripcion_tema,elemento.nombre_capacitacion));
+						  $("select[name=id_inscripcion_tema]").change();
+						  //alert(elemento.nombre_capacitacion);
+						  });
+					  
+				  			//$("input[name=id_inscripcion_tema]").html(data);			  		
+				  },
+				   error:function()
+				  {
+					 alert("Error al procesar, Intente de nuevo"); 
+					 location.reload();
+				  }
+			});
+		
+    });
+	
+	$("select[name=id_inscripcion_tema]").change(function(e) {
+        
+		var id_tema=$(this).val();
+		
+		$.ajax({
+				  url: "<?php echo site_url($this->nombre_controlador.'/obtener_modulos');?>",
+				  type:"POST",
+				  dataType:"json",
+				  data:{'id_tema':id_tema},
+				  success:function(data){
+					  $("select[name=id_modulo]").html("");
+					  $.each(data,function(index,elemento){
+						  
+						  $("select[name=id_modulo]").append(obtener_opcion(elemento.id_modulo,elemento.nombre_modulo));
 						  //alert(elemento.nombre_capacitacion);
 						  });
 					  

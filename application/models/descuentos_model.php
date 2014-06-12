@@ -27,7 +27,7 @@ class Descuentos_model extends CI_Model {
 		if($id==0)
 		{
 			//$this->db->select("*, concat(nombres,' ',apellidos) as nombre_completo",false);
-			return $this->db->select("a.id_descuento,b.cooperativa, a.descuento, d.nombre_capacitacion")->where("a.id_cooperativa = b.id_cooperativa and c.id_inscripcion_tema = a.id_inscripcion_tema and d.id_capacitacion = c.id_capacitacion")->get_where($this->nombre_tabla." a, conf_cooperativa b, inscripcion_temas c, pl_capacitaciones d",array('a.activo'=>1))->result_array();
+			return $this->db->select("a.id_descuento,b.cooperativa, a.descuento, d.nombre_capacitacion, e.nombre_modulo")->where("a.id_cooperativa = b.id_cooperativa and c.id_inscripcion_tema = a.id_inscripcion_tema and d.id_capacitacion = c.id_capacitacion and e.id_modulo = a.id_modulo")->get_where($this->nombre_tabla." a, conf_cooperativa b, inscripcion_temas c, pl_capacitaciones d, pl_modulos e",array('a.activo'=>1))->result_array();
 		}else{
 			return $this->db->get_where($this->nombre_tabla." a",array("a.".$this->id_tabla=>$id))->row_array();
 			}
@@ -55,5 +55,15 @@ class Descuentos_model extends CI_Model {
 		return $this->db->select("a.*, b.nombre_capacitacion")->where("b.id_capacitacion = a.id_capacitacion")->get_where("inscripcion_temas a, pl_capacitaciones b",array("a.activo"=>1,'a.id_cooperativa'=>$id_cooperativa))->result_array();
 	}
 	
+	function obtener_modulos($id_tema=0)
+	{
+		$datos=$this->db->get_where('inscripcion_temas',array('id_inscripcion_tema'=>$id_tema))->row_array();
+		if($datos)
+		{
+			return $this->db->get_where('pl_modulos',array('id_capacitacion'=>$datos['id_capacitacion']))->result_array();
+		}else{
+			return array();
+			}
+	}
 	
 }
