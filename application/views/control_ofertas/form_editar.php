@@ -40,11 +40,7 @@ echo form_open('',array(
 	}
 	?>
 	
-    <tr>
-    	<td>Acreditado:</td>
-        <td><?php echo form_checkbox('acreditado', '1', $dato['acreditado']);?></td>
-    </tr>
-
+   
 	<tr>
 		<td colspan="2"><hr></td>
 	</tr>

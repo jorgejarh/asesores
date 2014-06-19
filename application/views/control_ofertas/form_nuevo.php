@@ -42,11 +42,7 @@ echo form_open('',array(
 	}
 	?>
 	
-     <tr>
-    	<td>Acreditado:</td>
-        <td><?php echo form_checkbox('acreditado', '1');?></td>
-    </tr>
-	
+   
 	
 	<tr>
 		<td colspan="2"><hr></td>
@@ -69,7 +65,27 @@ echo form_close();
 <script type="text/javascript">
 $(document).ready(function(e){
 
-
+	
+	$('select[name=id_plan]').change(function(e) {
+		
+        $.ajax({
+				  url: "<?php echo site_url($this->nombre_controlador.'/modalidades');?>",
+				  type:"POST",
+				 
+				  data:{id:$(this).val()},
+				  success:function(data){
+					  
+					   $('select[name=id_modalidad]').html("");
+					  $('select[name=id_modalidad]').html(data)
+					  
+				  		id_modalidad
+				  		
+				  }
+			});
+    });
+	$('select[name=id_plan]').change();
+	
+	
 	$('#form_nuevo').submit(function(){
 
 		form=$(this);

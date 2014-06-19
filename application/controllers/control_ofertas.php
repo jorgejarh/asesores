@@ -33,16 +33,25 @@ class Control_ofertas extends CI_Controller {
         $this->datos_user=comprobar_login();
         $model=$this->modelo_usar;
 		$this->load->model($model);
-		/*$this->set_campo("id_tipo_facilitador","Tipo de Facilitador",'required|xss_clean', 'select',preparar_select($this->mante_tipos_facilitadores_model->obtener(),'id_tipo_facilitador','nombre_tipo_facilitador'));*/
-		$this->set_campo("nombres","Nombres",'required|xss_clean', 'text');
-		$this->set_campo("apellidos","Apellidos",'required|xss_clean', 'text');
-		$this->set_campo("direccion","Direccion",'xss_clean', 'textarea');
-		$this->set_campo("telefono","Tel. Casa",'callback_validar_telefonos|xss_clean', 'text');
-		$this->set_campo("t_oficina","Tel. Oficina",'xss_clean', 'text');
-		$this->set_campo("celular","Tel. Celular",'xss_clean', 'text');
-		$this->set_campo("correo","Email",'xss_clean|valid_email', 'text');
-		$this->set_campo("nacionalidad","Nacionalidad",'xss_clean', 'text');
-
+		$this->load->model("cooperativa_model");
+		$this->load->model("pl_planes_model");
+		$this->set_campo("codigo_oferta","Nº Oferta",'required|xss_clean', 'text');
+		$this->set_campo("id_servicio","Servicio",'required|xss_clean', 'select',preparar_select($this->$model->servicios(),'id_servicio','nombre'));
+		$this->set_campo("id_plan","Plan",'required|xss_clean', 'select',preparar_select($this->pl_planes_model->obtener(0),'id_plan','nombre_plan'));
+		$this->set_campo("id_modalidad","Modalidad",'required|xss_clean', 'select',array());
+		$this->set_campo("id_capacitacion","Capacitacion",'required|xss_clean', 'select',array());
+		$this->set_campo("id_cooperativa","Cooperativa",'required|xss_clean', 'select',preparar_select($this->cooperativa_model->obtener_cooperativa(),'id_cooperativa','cooperativa'));
+		
+		$this->set_campo("fecha_envio_solicitante","Fecha Envio al solicitante",'xss_clean', 'text');
+		$this->set_campo("id_resolucion","Resolucion",'required|xss_clean', 'select',preparar_select($this->$model->obtener_resoluciones(),'id_resolucion','nombre'));
+		$this->set_campo("fecha_aceptada","Fecha Aceptada",'xss_clean', 'text');
+		$this->set_campo("fecha_inicio","Fecha Inicio",'xss_clean', 'text');
+		$this->set_campo("fecha_fin","Fecha Fin",'xss_clean', 'text');
+		$this->set_campo("id_estado","Estado",'required|xss_clean', 'select',preparar_select($this->$model->obtener_estados(),'id_estado','nombre'));
+		$this->set_campo("fecha_entrega","Fecha ntrega",'xss_clean', 'text');
+		$this->set_campo("monto","Monto",'xss_clean', 'text');
+		$this->set_campo("observacion","Observacion",'xss_clean', 'textarea');
+		$this->set_campo("montos","Monto",'xss_clean', 'text');
     }
 	
 	
@@ -71,6 +80,21 @@ class Control_ofertas extends CI_Controller {
 		$data['model']=$model;
 		$this->load->view('template',$data);
 
+	}
+	
+	public function modalidades()
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		if($post)
+		{
+			$this->load->model("pl_modalidades_model");
+			$datos=$this->pl_modalidades_model->lista($post['id']);
+			foreach($datos as $valor)
+			{
+				echo '<option value="'.$valor['id_plan_modalidad'].'">'.$valor['nombre_modalidad'].'</option>';
+			}
+		}
 	}
 	
 	public function nuevo()

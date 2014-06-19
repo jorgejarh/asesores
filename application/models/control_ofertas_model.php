@@ -52,37 +52,19 @@ class Control_ofertas_model extends CI_Model {
 	}
 	
 	
-	function obtener_profesiones($id_facilitador=0)
+	function servicios()
 	{
-		return $this->db->select("b.id_profesion",false)->where("a.id_profesion = b.id_profesion",false,false)->get_where('mante_profesion_x_facilitador a, mante_profesiones b',array('a.id_facilitador'=>$id_facilitador))->result_array();
+		return $this->db->get("ofertas_servicios")->result_array();
 	}
 	
-	function actualizar_profesiones($id_profesiones,$id_facilitador)
+	function obtener_resoluciones()
 	{
-		$this->db->delete('mante_profesion_x_facilitador',array('id_facilitador'=>$id_facilitador));
-		foreach($id_profesiones as $profesion)
-		{
-			$this->db->insert('mante_profesion_x_facilitador',array('id_facilitador'=>$id_facilitador,'id_profesion'=>$profesion));
-		}
-		return true;
+		return $this->db->get("ofertas_resolucion")->result_array();
 	}
 	
-	function obtener_especalidades($id_facilitador=0)
+	function obtener_estados()
 	{
-		return $this->db->select("b.id_especialidad",false)->where("a.id_especialidad = b.id_especialidad",false,false)->get_where('mante_especialidades_x_facilitador a, mante_especialidades b',array('a.id_facilitador'=>$id_facilitador))->result_array();
+		return $this->db->get("ofertas_estados")->result_array();
 	}
-	
-	function actualizar_especialidades($id_especialidades,$id_facilitador=0)
-	{
-		
-		$this->db->delete('mante_especialidades_x_facilitador',array('id_facilitador'=>$id_facilitador));
-		
-		foreach($id_especialidades as $especialidad)
-		{
-			$this->db->insert('mante_especialidades_x_facilitador',array('id_facilitador'=>$id_facilitador,'id_especialidad'=>$especialidad));
-		}
-		return true;
-	}
-	
 	
 }
