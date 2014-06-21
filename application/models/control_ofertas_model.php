@@ -26,8 +26,9 @@ class Control_ofertas_model extends CI_Model {
 	{
 		if($id==0)
 		{
-			
-			return $this->db->get_where($this->nombre_tabla." a",array('a.activo'=>1))->result_array();
+			$this->db->select("a.*, b.nombre_capacitacion, c.cooperativa, d.nombre as nombre_servicio, e.nombre as nombre_resolucion, f.nombre as nombre_estado ");
+			$this->db->where("a.id_capacitacion = b.id_capacitacion and a.id_cooperativa = c.id_cooperativa and d.id_servicio = a.id_servicio and a.id_resolucion = e.id_resolucion and a.id_estado = f.id_estado");
+			return $this->db->get_where($this->nombre_tabla." a, pl_capacitaciones b, conf_cooperativa c, ofertas_servicios d, ofertas_resolucion e, ofertas_estados f",array('a.activo'=>1))->result_array();
 		}else{
 			return $this->db->get_where($this->nombre_tabla,array($this->id_tabla=>$id))->row_array();
 			}

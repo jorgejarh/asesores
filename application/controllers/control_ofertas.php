@@ -51,7 +51,7 @@ class Control_ofertas extends CI_Controller {
 		$this->set_campo("fecha_entrega","Fecha ntrega",'xss_clean', 'text');
 		$this->set_campo("monto","Monto",'xss_clean', 'text');
 		$this->set_campo("observacion","Observacion",'xss_clean', 'textarea');
-		$this->set_campo("montos","Monto",'xss_clean', 'text');
+		$this->set_campo("montos","Montos",'xss_clean', 'text');
     }
 	
 	
@@ -97,6 +97,23 @@ class Control_ofertas extends CI_Controller {
 		}
 	}
 	
+	public function capacitaciones()
+	{
+		$model=$this->modelo_usar;
+		$post=$this->input->post();
+		if($post)
+		{
+			$this->load->model("pl_capacitaciones_model");
+			$datos=$this->pl_capacitaciones_model->lista($post['id']);
+			foreach($datos as $valor)
+			{
+				echo '<option value="'.$valor['id_capacitacion'].'">'.$valor['nombre_capacitacion'].'</option>';
+			}
+		}
+	}
+	
+	
+	
 	public function nuevo()
 	{
 		$model=$this->modelo_usar;
@@ -111,7 +128,8 @@ class Control_ofertas extends CI_Controller {
 		$model=$this->modelo_usar;
 		$post=$this->input->post();
 		
-		
+		unset($post['id_plan']);
+		unset($post['id_modalidad']);
 		if($post)
 		{
 			$json=array();
@@ -212,89 +230,4 @@ class Control_ofertas extends CI_Controller {
 		}
 	}
 	
-	
-	public function profesiones($id=0)
-	{
-		$model=$this->modelo_usar;
-		$data['model']=$model;			
-		$data['dato']=$this->$model->obtener($id);
-		
-		if($data['dato'])
-		{
-			$this->load->model("mante_profesiones_model");
-			$data['profesiones']=preparar_select($this->mante_profesiones_model->obtener(),'id_profesion','nombre_profesion');
-			$data['profesiones_actuales']=$this->$model->obtener_profesiones($id);
-			$data['title']=$this->nombre_titulo." - Asignar Profesiones";
-			$this->load->view($this->carpeta_view.'/profesiones',$data);
-		}
-
-		
-	}
-	
-	public function actualizar_profesiones()
-	{
-		$model=$this->modelo_usar;
-		$data['model']=$model;			
-		$post=$this->input->post();
-		if($post)
-		{
-			$id=$post['id'];
-			if(isset($post['id_profesion']))
-			{
-				$resultado=$this->$model->actualizar_profesiones($post['id_profesion'],$id);
-								
-			}else{
-				$resultado=$this->$model->actualizar_profesiones(array(),$id);
-				}
-			
-		}
-		$json['error']=false;
-		
-		echo json_encode($json);
-		
-	}
-	
-	public function especialidades($id=0)
-	{
-		$model=$this->modelo_usar;
-		$data['model']=$model;			
-		$data['dato']=$this->$model->obtener($id);
-		if($data['dato'])
-		{
-			$this->load->model("mante_especialidades_model");
-			$data['especialidades']=preparar_select($this->mante_especialidades_model->obtener(),'id_especialidad','nombre_especialidad');
-			$data['especialidades_actuales']=$this->$model->obtener_especalidades($id);
-			$data['title']=$this->nombre_titulo." - Asignar Especialidades";
-			$this->load->view($this->carpeta_view.'/especialidades',$data);
-		}
-
-		
-	}
-	
-	public function actualizar_especialidades()
-	{
-		$model=$this->modelo_usar;
-		$data['model']=$model;			
-		$post=$this->input->post();
-		
-		if($post)
-		{
-			$id=$post['id'];
-			
-			if(isset($post['id_especialidad']))
-			{
-				
-				$resultado=$this->$model->actualizar_especialidades($post['id_especialidad'],$id);
-								
-			}else{
-				$resultado=$this->$model->actualizar_especialidades(array(),$id);
-				}
-			
-		}
-		$json['error']=false;
-		
-		echo json_encode($json);
-		
-	}
-
 }

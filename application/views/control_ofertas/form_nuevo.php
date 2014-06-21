@@ -64,7 +64,38 @@ echo form_close();
 </div>
 <script type="text/javascript">
 $(document).ready(function(e){
-
+	
+	
+		$( "input[name=fecha_inicio]" ).datepicker({
+		dateFormat: "yy-mm-dd",
+		changeMonth: true,
+      changeYear: true
+		});
+	
+	$( "input[name=fecha_fin]" ).datepicker({
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+		  changeYear: true
+			});
+	
+	$( "input[name=fecha_aceptada]" ).datepicker({
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+		  changeYear: true
+			});
+			
+	$( "input[name=fecha_envio_solicitante]" ).datepicker({
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+		  changeYear: true
+			});
+	$( "input[name=fecha_entrega]" ).datepicker({
+			dateFormat: "yy-mm-dd",
+			changeMonth: true,
+		  changeYear: true
+			});
+	
+	
 	
 	$('select[name=id_plan]').change(function(e) {
 		
@@ -76,13 +107,32 @@ $(document).ready(function(e){
 				  success:function(data){
 					  
 					   $('select[name=id_modalidad]').html("");
-					  $('select[name=id_modalidad]').html(data)
+					  $('select[name=id_modalidad]').html(data);
+					  $('select[name=id_modalidad]').change();
 					  
-				  		id_modalidad
+				  }
+			});
+    });
+	
+	
+	$('select[name=id_modalidad]').change(function(e) {
+		
+        $.ajax({
+				  url: "<?php echo site_url($this->nombre_controlador.'/capacitaciones');?>",
+				  type:"POST",
+				 
+				  data:{id:$(this).val()},
+				  success:function(data){
+					  
+					   $('select[name=id_capacitacion]').html("");
+					  $('select[name=id_capacitacion]').html(data)
+					  
 				  		
 				  }
 			});
     });
+	
+	
 	$('select[name=id_plan]').change();
 	
 	
@@ -117,7 +167,7 @@ $(document).ready(function(e){
 				   error:function()
 				  {
 					 alert("Error al procesar, Intente de nuevo"); 
-					 location.reload();
+					 //location.reload();
 				  }
 			});
 
@@ -125,8 +175,18 @@ $(document).ready(function(e){
 
 		return false;
 	});
+	
+	
 
+		
+		
 });
 
 
 </script>
+<style type="text/css">
+.ui-datepicker
+{
+	z-index:10000;
+}
+</style>

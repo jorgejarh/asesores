@@ -9,7 +9,7 @@
       		</tr>
       	</table>
       </h2>
-      <div class="" style="width:90%; margin:auto;">
+      <div class="" style="width:100%; margin:auto; font-size:8px;">
       
         <?php
 if($listado)
@@ -18,13 +18,21 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Tipo</th>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Acreditado</th>
-        <th>Agregar Documentos</th>
-        <th>Asigar Profesión</th>
-        <th>Asigar Especialidad</th>
+      	<th>N° OFERTA</th>
+        <th>Totulo</th>
+        <th>SERVICIO</th>
+        <th>TÍTULO</th>
+        <th>COOPERATIVA</th>
+        <th>FECHA DE ENVÍO AL SOLICITANTE</th>
+        <th>RESOLUCIÓN</th>
+        <th>Fecha de Aceptada</th>
+        <th>INICIA</th>
+        <th>FINALIZA</th>
+        <th>FECHA DE ENTREGA</th>
+        <th>MONTO</th>
+        <th>OBSERVACIÓN</th>
+        <th>MONTOS</th>
+        
         <th>&nbsp;</th>
         <th>&nbsp;</th>
       </tr>
@@ -35,17 +43,24 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombre_tipo_facilitador'];?></td>
-      	<td><?php echo $valor['apellidos'].", ".$valor['nombres'];?></td>
-       <td><?php echo $valor['correo'];?></td>
-       <td><?php echo ($valor['acreditado']==1)?'Si':'No'; ?></td>
-       <td align="center" class="datatable_icono"><a href="<?php echo site_url('mante_facilitadores_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="profesiones(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_page.png');?></a></td>
-        <td align="center" class="datatable_icono"><a onClick="especialidades(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/ico_settings.png');?></a></td>
+      	<td><?php echo $valor['codigo_oferta'];?></td>
+     <td><?php echo $valor['nombre_servicio'];?></td>
+     <td><?php echo $valor['nombre_capacitacion'];?></td>
+     <td><?php echo $valor['cooperativa'];?></td>
+     <td><?php echo $valor['fecha_envio_solicitante'];?></td>
+     <td><?php echo $valor['nombre_resolucion'];?></td>
+     <td><?php echo $valor['fecha_aceptada'];?></td>
+     <td><?php echo $valor['fecha_inicio'];?></td>
+     <td><?php echo $valor['fecha_fin'];?></td>
+     <td><?php echo $valor['nombre_estado'];?></td>
+     <td><?php echo $valor['fecha_entrega'];?></td>
+     <td><?php echo $valor['monto'];?></td>
+      <td><?php echo $valor['observacion'];?></td>
+       <td><?php echo $valor['montos'];?></td>
         <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
-          <a title="Eliminar" onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
+          <a onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a>
           </td>
       </tr>
       <?php
