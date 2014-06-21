@@ -28,7 +28,7 @@ echo form_open('',array(
 			 		break;
 			 	case 'select':
 			 		
-					echo form_dropdown($valor['nombre_campo'], $valor['datos_select'], $dato['id_tipo_facilitador']);
+					echo form_dropdown($valor['nombre_campo'], $valor['datos_select'], $dato[$valor['nombre_campo']] );
 
 			 		break;
 			 } 

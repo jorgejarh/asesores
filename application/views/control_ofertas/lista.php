@@ -9,7 +9,7 @@
       		</tr>
       	</table>
       </h2>
-      <div class="" style="width:100%; margin:auto; font-size:8px;">
+      <div class="" style="width:90%; margin:auto; font-size:8px; overflow:auto;">
       
         <?php
 if($listado)
@@ -19,16 +19,21 @@ if($listado)
     <thead>
       <tr>
       	<th>N° OFERTA</th>
-        <th>Totulo</th>
         <th>SERVICIO</th>
         <th>TÍTULO</th>
         <th>COOPERATIVA</th>
         <th>FECHA DE ENVÍO AL SOLICITANTE</th>
+        
         <th>RESOLUCIÓN</th>
+        <th>Vigencia de la Oferta</th>
         <th>Fecha de Aceptada</th>
+        <th>Días efectivos de resolución</th>
         <th>INICIA</th>
         <th>FINALIZA</th>
+        <th>Dias Habiles</th>
+        <th>ESTADO</th>
         <th>FECHA DE ENTREGA</th>
+        <th>Días efectivos</th>
         <th>MONTO</th>
         <th>OBSERVACIÓN</th>
         <th>MONTOS</th>
@@ -49,11 +54,15 @@ if($listado)
      <td><?php echo $valor['cooperativa'];?></td>
      <td><?php echo $valor['fecha_envio_solicitante'];?></td>
      <td><?php echo $valor['nombre_resolucion'];?></td>
+      <td><?php echo contar_dias($valor['fecha_envio_solicitante'],date("Y-m-d"));?></td>
      <td><?php echo $valor['fecha_aceptada'];?></td>
+      <td><?php echo contar_dias($valor['fecha_envio_solicitante'],$valor['fecha_aceptada']);?></td>
      <td><?php echo $valor['fecha_inicio'];?></td>
      <td><?php echo $valor['fecha_fin'];?></td>
+     <td><?php echo eva_dias_f(DiasHabiles($valor['fecha_inicio'],$valor['fecha_fin'] ));?></td>
      <td><?php echo $valor['nombre_estado'];?></td>
      <td><?php echo $valor['fecha_entrega'];?></td>
+     <td><?php echo eva_dias_f(DiasHabiles($valor['fecha_inicio'],$valor['fecha_entrega'] ));?></td>
      <td><?php echo $valor['monto'];?></td>
       <td><?php echo $valor['observacion'];?></td>
        <td><?php echo $valor['montos'];?></td>
@@ -133,37 +142,6 @@ function eliminar_registro(id)
 		});
 }
 
-function profesiones(id)
-{
-	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/profesiones');?>/"+id,
-		  type:"POST",
-		  success:function(data){
-
-		  	$.fancybox({
-				content:data,
-				autoHeight:true
-				});
-		  }
-		  
-		});
-}
-
-function especialidades(id)
-{
-	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/especialidades');?>/"+id,
-		  type:"POST",
-		  success:function(data){
-
-		  	$.fancybox({
-				content:data,
-				autoHeight:true
-				});
-		  }
-		  
-		});
-}
 
 
 

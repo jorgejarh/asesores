@@ -1,4 +1,119 @@
 <?php
+
+
+function eva_dias_f($arreglo) 
+{ 
+	$feriados        = array( 
+	'1-1'  //  Año Nuevo (irrenunciable) 
+	/*'10-4',  //  Viernes Santo (feriado religioso) 
+	'11-4',  //  Sábado Santo (feriado religioso) 
+	'1-5',  //  Día Nacional del Trabajo (irrenunciable) 
+	'21-5',  //  Día de las Glorias Navales 
+	'29-6',  //  San Pedro y San Pablo (feriado religioso) 
+	'16-7',  //  Virgen del Carmen (feriado religioso) 
+	'15-8',  //  Asunción de la Virgen (feriado religioso) 
+	'18-9',  //  Día de la Independencia (irrenunciable) 
+	'19-9',  //  Día de las Glorias del Ejército 
+	'12-10',  //  Aniversario del Descubrimiento de América 
+	'31-10',  //  Día Nacional de las Iglesias Evangélicas y Protestantes (feriado religioso) 
+	'1-11',  //  Día de Todos los Santos (feriado religioso) 
+	'8-12',  //  Inmaculada Concepción de la Virgen (feriado religioso) 
+	'13-12',  //  elecciones presidencial y parlamentarias (puede que se traslade al domingo 13) 
+	'25-12',  //  Natividad del Señor (feriado religioso) (irrenunciable) */
+	); 
+	
+	$j= count($arreglo); 
+	$dia_=0;
+	for($i=0;$i<=$j-1;$i++) 
+	{ 
+	
+	$dia = $arreglo[$i]; 
+	
+			$fecha = getdate($dia); 
+				$feriado = $fecha['mday']."-".$fecha['mon']; 
+						if($fecha["wday"]==0 or $fecha["wday"]==6) 
+						{ 
+							$dia_ ++; 
+						} 
+							elseif(in_array($feriado,$feriados)) 
+							{    
+								$dia_++; 
+							} 
+	} 
+	$rlt = $j - $dia_; 
+	return $rlt; 
+}
+
+
+function DiasHabiles($fecha_inicial,$fecha_final) 
+{ 
+	
+	$array_1=explode("-",$fecha_inicial);
+	$fecha_inicial=$array_1[2]."-".$array_1[1]."-".$array_1[0];
+	
+	list($dia,$mes,$year) = explode("-",$fecha_inicial); 
+	$ini = mktime(0, 0, 0, $mes , $dia, $year); 
+	
+	$array_2=explode("-",$fecha_final);
+	$fecha_final=$array_2[2]."-".$array_2[1]."-".$array_2[0];
+	
+	list($diaf,$mesf,$yearf) = explode("-",$fecha_final); 
+	$fin = mktime(0, 0, 0, $mesf , $diaf, $yearf); 
+	
+	$r = 1; 
+	while($ini != $fin) 
+	{ 
+	$ini = mktime(0, 0, 0, $mes , $dia+$r, $year); 
+	$newArray[] .=$ini;  
+	$r++; 
+	} 
+	return $newArray; 
+}
+
+if ( ! function_exists('contar_dias'))
+{
+	function contar_dias($fecha1,$fecha2)
+	{
+		$array_f=explode("-",$fecha1);
+		//defino fecha 1 
+		$ano1 = $array_f[0]; 
+		$mes1 = $array_f[1];
+		$dia1 =	$array_f[2];
+		
+		$array_f1=explode("-",$fecha2);
+		//defino fecha 2 
+		$ano2 = $array_f1[0]; 
+		$mes2 = $array_f1[1]; 
+		$dia2 = $array_f1[2]; 
+		
+		//calculo timestam de las dos fechas 
+		$timestamp1 = mktime(0,0,0,$mes1,$dia1,$ano1); 
+		$timestamp2 = mktime(4,12,0,$mes2,$dia2,$ano2); 
+		
+		//resto a una fecha la otra 
+		$segundos_diferencia = $timestamp1 - $timestamp2; 
+		//echo $segundos_diferencia; 
+		
+		//convierto segundos en días 
+		$dias_diferencia = $segundos_diferencia / (60 * 60 * 24); 
+		
+		//obtengo el valor absoulto de los días (quito el posible signo negativo) 
+		$dias_diferencia = abs($dias_diferencia); 
+		
+		//quito los decimales a los días de diferencia 
+		$dias_diferencia = floor($dias_diferencia); 
+		
+		echo $dias_diferencia; 
+	}
+}
+
+
+
+
+
+
+
+
 if ( ! function_exists('comprobar_login'))
 {
 	function comprobar_login()
