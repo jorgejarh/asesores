@@ -172,6 +172,19 @@ class Control_ofertas extends CI_Controller {
 		if($data['dato'])
 		{
 			$data['title']=$this->nombre_titulo." - Editar";
+			
+			$this->load->model("pl_capacitaciones_model");
+			$cap=$this->pl_capacitaciones_model->obtener($data['dato']['id_capacitacion']);
+			
+			
+			$this->load->model("pl_modalidades_model");
+			$mod=$this->pl_modalidades_model->obtener($cap['id_plan_modalidad']);
+			
+			
+			
+			$data['dato']['id_modalidad']=$mod['id_modalidad'];
+			$data['dato']['id_plan']=$mod['id_plan'];
+			
 			$this->load->view($this->carpeta_view.'/form_editar',$data);
 		}else{
 			redirect($this->nombre_controlador);
