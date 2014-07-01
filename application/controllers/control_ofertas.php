@@ -42,7 +42,7 @@ class Control_ofertas extends CI_Controller {
 		$this->set_campo("id_capacitacion","Capacitacion",'required|xss_clean', 'select',array());
 		$this->set_campo("id_cooperativa","Cooperativa",'required|xss_clean', 'select',preparar_select($this->cooperativa_model->obtener_cooperativa(),'id_cooperativa','cooperativa'));
 		
-		$this->set_campo("fecha_envio_solicitante","Fecha Envio al solicitante",'xss_clean', 'text');
+		$this->set_campo("fecha_envio_solicitante","Fecha Envio al solicitante",'required|xss_clean', 'text');
 		$this->set_campo("id_resolucion","Resolucion",'required|xss_clean', 'select',preparar_select($this->$model->obtener_resoluciones(),'id_resolucion','nombre'));
 		$this->set_campo("fecha_aceptada","Fecha Aceptada",'xss_clean', 'text');
 		$this->set_campo("fecha_inicio","Fecha Inicio",'xss_clean', 'text');
@@ -70,7 +70,7 @@ class Control_ofertas extends CI_Controller {
 		}
 	}
 	
-	public function index()
+	public function index($excel="")
 	{
 		$model=$this->modelo_usar;
 		$data['title']=$this->nombre_titulo;
@@ -78,7 +78,44 @@ class Control_ofertas extends CI_Controller {
 		$data['contenido']=$this->carpeta_view."/lista";
 		$data['listado']=$this->$model->obtener();
 		$data['model']=$model;
-		$this->load->view('template',$data);
+		
+		if($excel=="")
+		{
+			$this->load->view('template',$data);
+		}else{
+				header("Content-type: application/vnd.ms-excel"); 
+				header("Content-Disposition: attachment; filename=ofertas_".date('d-m-Y').".xls");  
+				
+				$data['contenido']=$this->carpeta_view."/excel";
+				/*$file_name="ofertas_".date('y-m-d').'.xls';
+			 // get the file Mime type using the file extension
+				switch(strtolower(substr(strrchr($file_name, '.'), 1))) {
+					case 'pdf':  $mime = 'application/pdf'; break; // pdf files
+					case 'zip':  $mime = 'application/zip'; break; // zip files
+					case 'jpeg': $mime = 'image/jpeg'; break;// images jpeg
+					case 'jpg':  $mime = 'image/jpg'; break;
+					case 'mp3':  $mime = 'audio/mpeg'; break; // audio mp3 formats
+					case 'doc':  $mime = 'application/msword'; break; // ms word
+					case 'avi':  $mime = 'video/x-msvideo'; break;  // video avi format
+					case 'txt':  $mime = 'text/plain'; break; // text files
+					case 'xls':  $mime = 'application/vnd.ms-excel'; break; // ms excel
+					default: $mime = 'application/force-download';
+				}
+				
+				header('Pragma: public');   // required
+				header('Expires: 0');       // no cache
+				header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+				header('Cache-Control: private',false);
+				header('Content-Type: '.$mime);
+				header('Content-Disposition: attachment; filename="'.basename($file_name).'"');
+				header('Content-Transfer-Encoding: binary');
+				header('Connection: close');*/
+				//readfile($file_name);       
+				$this->load->view($data['contenido'],$data);
+				/*exit();*/
+			
+						
+			}
 
 	}
 	

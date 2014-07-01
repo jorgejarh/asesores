@@ -1,20 +1,9 @@
-<div id="content_main" class="clearfix">
-  <div id="main_panel_container" class="left" style="width:900px;">
-    <div id="dashboard" style="width:100%;padding-bottom:50px;">
-      <h2 class="ico_mug">
-        <table style="width:100%;">
-          <tr>
-            <td><?php echo $title;?></td>
-            <td style="text-align:right;"><button onClick="nuevo_registro();">Nuevo</button></td>
-          </tr>
-        </table>
-      </h2>
-      <div align="right">
-	<?php
-    	echo anchor(uri_string().'/index/descargar',img(array('src'=>'public/img/excel_icon.png','title'=>'Descargar en Excel')));
-	?>
-		</div>
-      <div class="" style="width:90%; margin:auto; font-size:8px; overflow:auto;">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
         <?php
 if($listado)
 {
@@ -40,8 +29,7 @@ if($listado)
               <th>MONTO</th>
               <th>OBSERVACIÓN</th>
               <th>MONTOS</th>
-              <th>&nbsp;</th>
-              <th>&nbsp;</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -73,8 +61,7 @@ if($listado)
               <td><?php echo $valor['monto'];?></td>
               <td><?php echo $valor['observacion'];?></td>
               <td><?php echo $valor['montos'];?></td>
-              <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
-              <td align="center" class="datatable_icono"><a onClick="eliminar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);" title="Clic para Eliminar"><?php echo img('public/img/cancel.png');?></a></td>
+             
             </tr>
             <?php
 		}
@@ -84,69 +71,5 @@ if($listado)
         <?php
 }
 ?>
-
-      </div>
-    </div>
-    <!-- end #dashboard --> 
-  </div>
-  
-  <!-- end #sidebar --> 
-  
-</div>
-<script type="text/javascript">
-	$(document).ready(function() {
-	    $('#example').dataTable( {
-	        <?php echo config_lenguaje_tabla(); ?>
-	    } );
-	} );
-
-function nuevo_registro()
-{
-	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/nuevo');?>",
-		  type:"POST",
-		  success:function(data){
-
-		  	$.fancybox(data);
-		  }
-		  
-		});
-}
-
-function editar_registro(id)
-{
-	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/editar');?>/"+id,
-		  type:"POST",
-		  success:function(data){
-
-		  	$.fancybox(data);
-		  }
-		  
-		});
-}
-
-function eliminar_registro(id)
-{
-	if(!confirm('¿Seguro que desea eliminar?'))
-	{
-		return false;
-	}
-
-	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/eliminar');?>",
-		  type:"POST",
-		  data:{'id':id},
-		  success:function(data){
-		  	
-		  		location.reload();
-		
-		  }
-		  
-		});
-}
-
-
-
-
-</script> 
+</body>
+</html>

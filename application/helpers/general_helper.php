@@ -29,7 +29,7 @@ function eva_dias_f($arreglo)
 	
 	$dia = $arreglo[$i]; 
 	
-			$fecha = getdate($dia); 
+			$fecha = getdate(time($dia)); 
 				$feriado = $fecha['mday']."-".$fecha['mon']; 
 						if($fecha["wday"]==0 or $fecha["wday"]==6) 
 						{ 
@@ -47,7 +47,7 @@ function eva_dias_f($arreglo)
 
 function DiasHabiles($fecha_inicial,$fecha_final) 
 { 
-	
+	$newArray[]=array();
 	$array_1=explode("-",$fecha_inicial);
 	$fecha_inicial=$array_1[2]."-".$array_1[1]."-".$array_1[0];
 	
@@ -103,15 +103,24 @@ if ( ! function_exists('contar_dias'))
 		//quito los decimales a los días de diferencia 
 		$dias_diferencia = floor($dias_diferencia); 
 		
-		echo $dias_diferencia; 
+		return $dias_diferencia; 
 	}
 }
 
 
 
-
-
-
+if ( ! function_exists('validar_fecha'))
+{
+	function validar_fecha($fecha)
+	{
+		if($fecha="0000-00-00")
+		{
+			return "";
+			}else{
+				return $fecha;
+				}
+	}
+}
 
 
 if ( ! function_exists('comprobar_login'))
