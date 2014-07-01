@@ -236,6 +236,10 @@ class Control_ofertas extends CI_Controller {
 	{
 		$post=$this->input->post();
 		$model=$this->modelo_usar;
+		
+		unset($post['id_plan']);
+		unset($post['id_modalidad']);
+		
 		if($post)
 		{
 			$id=$post['id'];
