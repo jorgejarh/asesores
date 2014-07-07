@@ -113,7 +113,7 @@ if ( ! function_exists('validar_fecha'))
 {
 	function validar_fecha($fecha)
 	{
-		if($fecha=="0000-00-00")
+		if($fecha="0000-00-00")
 		{
 			return "";
 			}else{
