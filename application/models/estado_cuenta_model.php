@@ -72,7 +72,7 @@ class Estado_cuenta_model extends CI_Model {
 	
 	function obtener_descuentos_x_modulo($id_modulo,$id_cooperativa)
 	{
-		$datos=$this->db->get_where('inscripcion_temas_descuentos',array('id_cooperativa'=>$id_cooperativa,'id_modulo'=>$id_modulo))->result_array();
+		$datos=$this->db->get_where('inscripcion_temas_descuentos',array('id_cooperativa'=>$id_cooperativa,'id_modulo'=>$id_modulo,'activo'=>1))->result_array();
 								
 		return $datos;
 	}

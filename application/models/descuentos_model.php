@@ -27,7 +27,7 @@ class Descuentos_model extends CI_Model {
 		if($id==0)
 		{
 			//$this->db->select("*, concat(nombres,' ',apellidos) as nombre_completo",false);
-			return $this->db->select("a.id_descuento,b.cooperativa, a.descuento, d.nombre_capacitacion, e.nombre_modulo")->where("a.id_cooperativa = b.id_cooperativa and c.id_inscripcion_tema = a.id_inscripcion_tema and d.id_capacitacion = c.id_capacitacion and e.id_modulo = a.id_modulo")->get_where($this->nombre_tabla." a, conf_cooperativa b, inscripcion_temas c, pl_capacitaciones d, pl_modulos e",array('a.activo'=>1))->result_array();
+			return $this->db->select("a.f_creacion,a.id_descuento,b.cooperativa, a.descuento, d.nombre_capacitacion, e.nombre_modulo")->where("a.id_cooperativa = b.id_cooperativa and c.id_inscripcion_tema = a.id_inscripcion_tema and d.id_capacitacion = c.id_capacitacion and e.id_modulo = a.id_modulo")->get_where($this->nombre_tabla." a, conf_cooperativa b, inscripcion_temas c, pl_capacitaciones d, pl_modulos e",array('a.activo'=>1))->result_array();
 		}else{
 			return $this->db->get_where($this->nombre_tabla." a",array("a.".$this->id_tabla=>$id))->row_array();
 			}
@@ -65,5 +65,20 @@ class Descuentos_model extends CI_Model {
 			return array();
 			}
 	}
+	
+	function obtener_descuento_x_modulo($id_cooperativa,$id_modulo)
+	{
+		$datos=$this->db->select("sum(descuento) as des")->get_where('inscripcion_temas_descuentos',array('id_cooperativa'=>$id_cooperativa,'id_modulo'=>$id_modulo,'activo'=>1))->row_array();
+		
+		if($datos)
+		{
+			return $datos["des"];
+		}else{
+			return 0;
+			}
+								
+		
+	}
+	
 	
 }

@@ -18,7 +18,7 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Id</th>
+      	<th>Fecha</th>
       	<th>Cooperativa</th>
         <th>Capacitación</th>
         <th>Modulo</th>
@@ -33,7 +33,7 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['id_descuento'];?></td>
+      	<td><?php echo date('d/m/Y',strtotime($valor['f_creacion']));?></td>
       	<td><?php echo $valor['cooperativa'];?></td>
         <td><?php echo $valor['nombre_capacitacion'];?></td>
         <td><?php echo $valor['nombre_modulo'];?></td>

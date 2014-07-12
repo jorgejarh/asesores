@@ -73,6 +73,8 @@ class Pago_abono_model extends CI_Model {
 	
 	function obtener_modulos_x_cooperativa($id_cooperativa=0)
 	{
+		$this->load->model('descuentos_model');
+		
 		$datos= $this->obtener_info_mod_x_cooperativa($id_cooperativa);
   	
 		foreach($datos as $val)
@@ -80,7 +82,10 @@ class Pago_abono_model extends CI_Model {
 			$dat_mod_sal=$this->db->get_where('pl_modulos_saldo',array('id_modulo'=>$val['id_modulo'],'id_cooperativa'=>$id_cooperativa))->row_array();
 			if(!$dat_mod_sal)
 			{
-				$this->db->insert('pl_modulos_saldo',array('id_modulo'=>$val['id_modulo'],'id_cooperativa'=>$id_cooperativa,'saldo'=>$val['inscritos']*$val['precio_venta']));
+				$descuento=$this->descuentos_model->obtener_descuento_x_modulo($id_cooperativa,$val['id_modulo']);
+				$saldo_normal=$val['inscritos']*$val['precio_venta'];
+				$saldo_con_descuento=$saldo_normal-($saldo_normal*($descuento/100));
+				$this->db->insert('pl_modulos_saldo',array('id_modulo'=>$val['id_modulo'],'id_cooperativa'=>$id_cooperativa,'saldo'=>$saldo_con_descuento));
 			}
 		}
   		$datos= $this->obtener_info_mod_x_cooperativa($id_cooperativa);
