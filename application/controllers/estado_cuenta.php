@@ -61,4 +61,6 @@ class Estado_cuenta extends CI_Controller {
 		}
 	}
 	
+	
+	
 }

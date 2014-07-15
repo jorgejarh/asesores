@@ -105,7 +105,9 @@ p {
 				?>
                 <tr class="<?php echo (($contador%2)==0)?'gris_l_2':'';?>">
                 	<td align="center"><p><?php echo date('d/m/Y',strtotime( $valor['fecha_creacion']));?></p></td>
-                    <td align="center"><p>Inscripcion de <?php echo $valor['num_personas'];?> persona(s) en <?php echo $valor['nombre_modulo'];?></p></td>
+                    <td align="center"><p> <?php
+                    echo $this->estado_cuenta_model->_imprimir_leyenda($valor['id_modulo'],$valor['num_personas']);
+					?></p></td>
                     <td align="center"><p>$ <?php echo number_format($valor['saldo'],2);?></p></td>
                     <td align="center"><p>$ <?php echo number_format(0,2);?></p></td>
                     <td align="center"><p>$ <?php  echo number_format($saldo,2);?></p></td>

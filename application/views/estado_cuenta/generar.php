@@ -39,8 +39,15 @@ if($modulos)
 				$saldo+=$valor['saldo'];
 				?>
                 <tr class="gradeA">
-                	<td align="center"><?php echo date('d/m/Y',strtotime( $valor['fecha_creacion']));?></td>
-                    <td align="left">Inscripcion de <?php echo $valor['num_personas'];?> persona(s) en <?php echo $valor['nombre_modulo'];?></td>
+                	<td align="center"><?php echo date('d/m/Y',strtotime( $valor['fecha_creacion']));
+					
+					
+					?></td>
+                    <td align="left">
+                    <?php
+                    echo $this->estado_cuenta_model->_imprimir_leyenda($valor['id_modulo'],$valor['num_personas']);
+					?>
+                    </td>
                     <td align="center">$ <?php echo number_format($valor['saldo'],2);?></td>
                     <td align="center">$ <?php echo number_format(0,2);?></td>
                     <td align="center">$ <?php  echo number_format($saldo,2);?></td>

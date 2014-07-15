@@ -164,7 +164,18 @@ $(document).ready(function(e) {
 				
 				
 				total_abono=total_abono+parseFloat($(this).val());
+				
+				if(isNaN(total_abono))
+				{
+					total_abono=0;
+				}
+				
 				total_saldo_nuevo=total_saldo_nuevo+parseFloat($(".nuevo_saldo_"+$(this).attr('id_mod')).html());
+				if(isNaN(total_saldo_nuevo))
+				{
+					total_saldo_nuevo=0;
+				}
+				
             });
 			
 			$('.total_abonar').html((total_abono).toFixed(2));
@@ -202,11 +213,45 @@ function llenar_todo_info()
 	//var 
 	$(".caja_abono").each(function(index, element) {
 		
-		$(".nuevo_saldo_"+$(this).attr('id_mod')).html((parseFloat($(".saldo_actual_"+$(this).attr('id_mod')).html())-parseFloat($(this).val())).toFixed(2));
 		
+		var saldo_nuevo_uno=(parseFloat($(".saldo_actual_"+$(this).attr('id_mod')).html())-parseFloat($(this).val()));
 		
-		total_abono=total_abono+parseFloat($(this).val());
-		total_saldo_nuevo=total_saldo_nuevo+parseFloat($(".nuevo_saldo_"+$(this).attr('id_mod')).html());
+		if(isNaN(saldo_nuevo_uno))
+		{
+			saldo_nuevo_uno=0;
+		}
+		
+		$(".nuevo_saldo_"+$(this).attr('id_mod')).html(saldo_nuevo_uno.toFixed(2));
+		
+		var num_nuevo=parseFloat($(this).val());
+		if(isNaN(num_nuevo))
+		{
+			num_nuevo=0;
+			
+		}
+		
+		total_abono=total_abono+num_nuevo;
+		
+		if(isNaN(total_abono))
+		{
+			total_abono=0;
+			
+		}
+		
+		var num_nuevo_2=parseFloat($(".nuevo_saldo_"+$(this).attr('id_mod')).html());
+		
+		if(isNaN(num_nuevo_2))
+		{
+			num_nuevo_2=0;
+			
+		}
+		
+		total_saldo_nuevo=total_saldo_nuevo+num_nuevo_2;
+		if(isNaN(total_saldo_nuevo))
+		{
+			total_saldo_nuevo=0;
+		}
+		
 	});
 	
 	$('.total_abonar').html((total_abono).toFixed(2));

@@ -9,12 +9,17 @@ class Estado_cuenta_model extends CI_Model {
 	
 	function obtener_cooperativas($datos=array())
 	{
-		if(!$datos)
-		{
-			return $this->db->get_where("conf_cooperativa",array('activo'=>1))->result_array();
-		}else{
-			return $this->db->get_where("conf_cooperativa",array('id_cooperativa'=>$datos['id_cooperativa']))->result_array();
-			}
+		
+		if($datos)
+			{
+				
+				return $this->db->order_by('cooperativa','ASC')->get_where("conf_cooperativa a",array('a.activo'=>1,'a.id_cooperativa'=>$datos['id_cooperativa']))->result_array();
+			}else{
+				
+				return $this->db->order_by('cooperativa','ASC')->get_where("conf_cooperativa a",array('a.activo'=>1))->result_array();
+				
+				}
+		
 	}
 	
 	function obtener_una_cooperativa($id_cooperativa=0)
@@ -92,6 +97,19 @@ class Estado_cuenta_model extends CI_Model {
 								ORDER BY a.fecha_creacion ASC ")->result_array();
 								
 		return $datos;
+	}
+	
+	
+	public function _imprimir_leyenda($id_modulo,$personas)
+	{
+		$data=array();
+		$this->load->model("pl_capacitaciones_model");
+		$this->load->model("pl_modulos_model");
+		$data['modulo']=$this->pl_modulos_model->obtener($id_modulo);
+		$data['capacitacion']=$this->pl_capacitaciones_model->obtener($data['modulo']['id_capacitacion']);
+		
+		return "Inscripcion de ".$personas." persona(s) a Plan: ".$data['capacitacion']['nombre_plan'].", Modalidad: ".$data['capacitacion']['nombre_modalidad'].", Capacitación: ".$data['capacitacion']['nombre_capacitacion'].", Módulo: ".$data['modulo']['nombre_modulo'];
+		//print_r($data['capacitacion']);
 	}
 	
 }
