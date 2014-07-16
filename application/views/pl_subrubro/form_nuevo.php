@@ -22,12 +22,12 @@ echo form_open('',array(
 			{
 				case 'text':
 
-					if( $valor['nombre_campo'] == 'unidades' ){
+					if( $valor['nombre_campo'] == 'unidades' || $valor['nombre_campo'] == 'unidades_reales'  ){
 
 						echo form_input($valor['nombre_campo'], $n_participantes );
 					}else{
 						
-						if( $valor['nombre_campo'] == 'dias' ){
+						if( $valor['nombre_campo'] == 'dias' || $valor['nombre_campo'] == 'dias_reales' ){
 
 							echo form_input($valor['nombre_campo'], $dias );
 						}else{

@@ -151,7 +151,8 @@ class Pl_capacitaciones_model extends CI_Model {
 		return $this->db->query("SELECT 
 				  b.`id_rubro_name`,
 				  d.nombre,
-				  SUM(c.costo * c.dias * c.unidades) AS total 
+				  SUM(c.costo * c.dias * c.unidades) AS total ,
+				  SUM(c.costo_real * c.dias_reales * c.unidades_reales) AS total_real 
 				FROM
 				  `pl_modulos` a,
 				  `pl_rubro` b,
@@ -175,9 +176,13 @@ class Pl_capacitaciones_model extends CI_Model {
 				  d.nombre,
 				  c.`nombre` AS nombre_sub,
 				  (c.costo * c.dias * c.unidades) AS total ,
+				  (c.costo_real * c.dias_reales * c.unidades_reales) AS total_real ,
 					c.unidades,
 					  c.dias,
-						c.costo
+						c.costo,
+						c.unidades_reales,
+					  c.dias_reales,
+						c.costo_real
 				FROM
 				  `pl_modulos` a,
 				  `pl_rubro` b,
@@ -193,5 +198,7 @@ class Pl_capacitaciones_model extends CI_Model {
 				  AND d.`activo` = 1 
 				  AND b.`id_rubro_name`=".$id_rubro."")->result_array();
 	}
+	
+	
 	
 }

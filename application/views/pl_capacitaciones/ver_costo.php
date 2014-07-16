@@ -91,7 +91,7 @@ p {
       </ul>
     </div>
   </div>
-  <h2 align="center">Presupuesto de eventos de Capacitacion</h2>
+  <h2 align="center">Costo Real de eventos de Capacitacion</h2>
   <h3 align="center"><?php echo $datos['modalidad']['nombre_plan'];?></h3>
   <table align="center" width="80%" >
     <tr>
@@ -126,7 +126,7 @@ p {
 					foreach($rubros['sub'] as $subrubro)
 					{
 						
-						$total_rubro+=($subrubro['unidades']*$subrubro['costo']*$subrubro['dias'] );
+						$total_rubro+=($subrubro['unidades_reales']*$subrubro['costo_real']*$subrubro['dias_reales'] );
 					}
 				}
 				$costo_total+=$total_rubro;
@@ -151,7 +151,7 @@ p {
 	  ?></p></td>
     </tr>
   </table>
-  <h3 align="center"><?php echo "PRESUPUESTO";?></h3>
+  <h3 align="center"><?php echo "Costo Real";?></h3>
   <table width="80%" class="cuadro" cellpadding="0" cellspacing="0" >
     <tr class="gris_l">
       <td align="center" valign="middle"><b>Rubros</b></td>
@@ -175,7 +175,7 @@ p {
         </b></td>
       <td align="center" valign="middle">&nbsp;</td>
       <td align="center" valign="middle">&nbsp;</td>
-      <td align="right" valign="middle"><span style="float:left; margin-left:5px;">$</span> <b><?php echo number_format($valrubros['total'],2);?></b></td>
+      <td align="right" valign="middle"><span style="float:left; margin-left:5px;">$</span> <b><?php echo number_format($valrubros['total_real'],2);?></b></td>
     </tr>
     <?php
 			
@@ -187,11 +187,12 @@ p {
     <tr>
       <td align="left" valign="middle">&nbsp;&nbsp;
         <?php
+		
                         echo $subrubro['nombre_sub'];
                         ?></td>
-      <td align="center" valign="middle"><?php echo $subrubro['unidades'];?></td>
-      <td align="right" valign="middle"><span style="float:left;margin-left:5px;">$</span> <?php echo number_format($subrubro['costo'],2);?></td>
-      <td align="right" valign="middle"><span style="float:left; margin-left:5px;">$</span> <?php echo number_format($subrubro['total'],2);?></td>
+      <td align="center" valign="middle"><?php echo $subrubro['unidades_reales'];?></td>
+      <td align="right" valign="middle"><span style="float:left;margin-left:5px;">$</span> <?php echo number_format($subrubro['costo_real'],2);?></td>
+      <td align="right" valign="middle"><span style="float:left; margin-left:5px;">$</span> <?php echo number_format($subrubro['total_real'],2);?></td>
     </tr>
     <?php
 				}
@@ -216,7 +217,7 @@ p {
 		}
 		?>
   <div style="margin-top:40px;">
-  	 <h2 align="center">RESULTADOS FINANCIEROS ESTIMADOS</h2>
+  	 <h2 align="center">RESULTADOS FINANCIEROS REALES</h2>
      <table width="80%" class="cuadro">
      	 <tr class="gris_l">
         	<td align="center"><b>Detalle</b></td>

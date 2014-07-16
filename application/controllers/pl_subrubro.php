@@ -37,7 +37,10 @@ class Pl_subrubro extends CI_Controller {
 		$this->set_campo("nombre","Nombre",'required|xss_clean');
 		$this->set_campo("dias","Dias",'required|xss_clean');
 		$this->set_campo("unidades","Unidades",'required|integer|xss_clean');
-		$this->set_campo("costo","Costo por unidad",'required|numeric|xss_clean');
+		$this->set_campo("costo","Costo por unidad",'numeric|xss_clean');
+		$this->set_campo("dias_reales","Dias Reales",'xss_clean');
+		$this->set_campo("unidades_reales","Unidades Reales",'integer|xss_clean');
+		$this->set_campo("costo_real","Costo por unidad Reales",'required|numeric|xss_clean');
 		
     }
 

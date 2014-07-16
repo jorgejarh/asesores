@@ -27,10 +27,10 @@ if($listado)
       <tr>
       	<th><?php echo $plan_modalidad['nombre_modalidad'];?></th>
         <th>Presupuesto</th>
+        <th>Costo Real</th>
         <th># de Modulos</th>
         <th># Par. Estimados</th>
-        <!--<th>Pres. Total</th>
-        <th>Costo Individual</th>-->
+        
         <th>Asignar Modulos</th>
         <th>Agregar Documentos</th>
         <th>Estado</th>
@@ -45,19 +45,13 @@ if($listado)
 			?>
       <tr class="gradeA">
       	<td><?php echo $valor['nombre_capacitacion'];?></td>
-        <td align="center"><a target="_blank" href="<?php echo site_url('pl_capacitaciones/ver_presupuesto/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
+        <td align="center">
+        <a target="_blank" href="<?php echo site_url('pl_capacitaciones/ver_presupuesto/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
+        <td align="center">
+        <a target="_blank" href="<?php echo site_url('pl_capacitaciones/ver_costo_real/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
         <td><?php echo $valor['num_modulos'];?></td>
         <td><?php echo $valor['n_participantes']+$valor['n_participantes_no']+$valor['n_participantes_ex'];?></td>
-        <!--<td>$ <?php $total=obtener_costo_capacitacion($valor[$this->$model->id_tabla]); echo number_format($total,2);?></td>
-        <td>$ <?php 
-		if($valor['n_participantes']!=0)
-		{
-			echo number_format($total/$valor['n_participantes'],2);
-		}else{
-			echo "0.00";
-			}
-			?></td>
-       -->
+       
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_capacitaciones_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center" class="datatable_icono">
