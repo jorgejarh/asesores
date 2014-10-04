@@ -275,7 +275,7 @@ function calificar(id)
 
 $(document).ready(function() {
 	    $('#example').dataTable( {
-	        <?php echo config_lenguaje_tabla(); ?>
+	        <?php echo config_lenguaje_tabla(25); ?>
 	    } );
 	} );
 

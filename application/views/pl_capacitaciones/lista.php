@@ -48,12 +48,12 @@ if($listado)
         <td align="center">
         <a target="_blank" href="<?php echo site_url('pl_capacitaciones/ver_presupuesto/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
         <td align="center">
-        <a target="_blank" href="<?php echo site_url('pl_capacitaciones/ver_costo_real/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
+        <a target="_blank" href="<?php echo site_url('pl_capacitaciones/ver_costo_real/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_page.png');?></a></td>
         <td><?php echo $valor['num_modulos'];?></td>
         <td><?php echo $valor['n_participantes']+$valor['n_participantes_no']+$valor['n_participantes_ex'];?></td>
        
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
-        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_capacitaciones_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
+        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_capacitaciones_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
         <td align="center" class="datatable_icono">
         <?php
         if($valor['cerrado']==0)

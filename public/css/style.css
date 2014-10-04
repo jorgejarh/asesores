@@ -91,19 +91,22 @@ a:hover#passwordrecoverylink{color:#000;}
 #top_menu ul li a:hover{background:url(../img/menutop_hover.jpg) bottom center no-repeat}
 /* ------------------------------------------------------------------------------------
 STRUCTURE					 */
-#container{	overflow:hidden;   width:960px; margin:0 auto;background:url(../img/overlay.jpg) no-repeat;}
+#container{	overflow:hidden;   width:100%; margin:0 auto;background:url(../img/overlay.jpg) no-repeat;}
 #header{}
 #footer{clear:both; }
-#content_main{background:#f1f1f1;width:940px;padding:10px;-moz-border-radius:3px;}
-#top_menu{background:url(../img/menutop.jpg) no-repeat top center;width:960px;margin-top:30px;height:35px;}
+#content{ margin: auto;
+max-width: 90%;}
+
+#content_main{background:#f1f1f1;width:100%;/*padding:5px;*/-moz-border-radius:3px;}
+#top_menu{background:url(../img/menutop.jpg) repeat top center;width:100%;margin-top:30px;height:35px;}
 #profile_info{background:url(../img/loginbox.jpg) no-repeat top center;width:231px;height:59px;padding:4px;float:right;margin-top:35px;font-size:12px;color:#fff;line-height:10px;}
 #profile_info p{background:none;}
 #avatar{float:left;margin:0px 10px;}
 #postedit{background:#f1f1f1;width:940px;padding:10px;-moz-border-radius:3px;}
-#dashboard{width:640px;background:#fff;padding:10px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
+#dashboard{ background:#fff;/*padding:10px;*/border-top:1px solid #ddd;border-bottom:1px solid #ddd;}
 #sidebar{width:250px;background:#fff;padding:10px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;-moz-border-radius:3px;}
-#footer{background:#f1f1f1;width:940px;padding:10px;-moz-border-radius:3px;margin-top:10px;}
-#footer p{background:none;padding:0px;margin:0px}
+#footer{background:#f1f1f1;width:100%;/*padding:10px;*/-moz-border-radius:3px;margin-top:10px;}
+#footer p{background:none;padding:10px;margin:0px}
 .panel{min-height:285px;}
 .section,.panel,#shortcuts,#chart,.quickview{background:#fff;padding:10px;border-top:1px solid #ddd;border-bottom:1px solid #ddd;-moz-border-radius:3px;}
 #postedit,#panels,#shortcuts{margin-top:10px;}
@@ -270,3 +273,8 @@ a
 {
 	font-size:12px;
 	}
+	
+#main_panel_container
+{
+	width:100%!important;
+}

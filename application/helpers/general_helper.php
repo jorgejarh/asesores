@@ -140,10 +140,10 @@ if ( ! function_exists('comprobar_login'))
 	}
 }
 
-function config_lenguaje_tabla()
+function config_lenguaje_tabla($pag=10)
 {
 	return '"sPaginationType": "full_numbers",
-			"iDisplayLength": 50,
+			"iDisplayLength": '.$pag.',
 	        "oLanguage": {
 			"sLengthMenu": "Mostrar _MENU_ registros por página",
 			"sZeroRecords": "No se encontraron registros",

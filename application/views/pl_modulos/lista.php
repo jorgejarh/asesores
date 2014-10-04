@@ -20,7 +20,7 @@
         echo anchor('pl_capacitaciones/index/'.$capacitacion['id_plan_modalidad'],'<- Regresar');
 		?>
     </div>
-      <div class="" style="width:100%; margin:auto;">
+      <div class="" style="width:90%; margin:auto;">
       
         <?php
 if($listado)
@@ -68,9 +68,9 @@ if($listado)
 		?>
         </td>-->
         <td align="center"	class="datatable_icono"><a onclick="temas(<?php echo $valor[$this->$model->id_tabla]?>);" ><?php echo img('public/img/ico_settings.png');?></a></td>
-        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_rubro/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
+        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_rubro/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
         
-        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos_eval/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
+        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos_eval/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_page.png');?></a></td>
         <td align="center"><?php echo $valor['porcentaje'];?> %</td>
          <td align="center" class="datatable_icono">
         <?php
