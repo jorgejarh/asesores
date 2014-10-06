@@ -1,0 +1,16 @@
+UPDATE 
+  inscripcion_temas_personas m
+SET
+  m.id_sucursal = 
+  (SELECT 
+    v.id_sucursal 
+  FROM
+    mante_personal v 
+  WHERE v.dui = m.dui);
+
+
+UPDATE inscripcion_temas SET id_cooperativa=22 WHERE id_cooperativa=48;
+
+UPDATE inscripcion_temas_personas SET id_inscripcion_tema=48 WHERE id_inscripcion_tema=34;
+
+DELETE FROM conf_cooperativa WHERE id_cooperativa=48;

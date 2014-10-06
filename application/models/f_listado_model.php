@@ -59,7 +59,7 @@ class F_listado_model extends CI_Model {
 							(select nombre_cargo from mante_cargos x where x.id_cargo = b.id_cargo limit 1) as nombre_cargo',false);
 		$this->db->where("a.id_inscripcion_tema = b.id_inscripcion_tema");
 		$this->db->where(" b.id_inscripcion_personas = c.id_inscripcion_personas",false,false);
-		
+		$this->db->where("c.id_modulo = ".$id_modulo);
 		if($aprobado==1)
 		{
 			$this->db->where("c.aprobado = 1");

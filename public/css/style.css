@@ -95,7 +95,7 @@ STRUCTURE					 */
 #header{}
 #footer{clear:both; }
 #content{ margin: auto;
-max-width: 90%;}
+max-width: 98%;}
 
 #content_main{background:#f1f1f1;width:100%;/*padding:5px;*/-moz-border-radius:3px;}
 #top_menu{background:url(../img/menutop.jpg) repeat top center;width:100%;margin-top:30px;height:35px;}

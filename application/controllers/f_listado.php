@@ -106,6 +106,8 @@ class F_listado extends CI_Controller {
 			$data['template']="sistema";
 			$data['contenido']=$this->carpeta_view."/listado";
 			$data['nombres_personas']=$this->$model->obtener_personas($data['modulo']['id_capacitacion'],$id_modulo,1);
+			//echo $this->db->last_query();
+			//exit();
 			$data['model']=$model;
 			
 			if($imprimir==0)

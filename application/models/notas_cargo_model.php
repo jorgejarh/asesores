@@ -28,7 +28,27 @@ class Notas_cargo_model extends CI_Model {
 			$this->db->where("b.aprobado = 1");
 		}
 		$this->db->select("a.*,b.*")->where("a.id_inscripcion_personas = b.id_inscripcion_personas");
-		return $this->db->get_where('inscripcion_temas_personas a, inscripcion_asistencia b',array('b.id_modulo'=>$id_modulo,'a.id_inscripcion_tema'=>$id_inscripcion_tema))->result_array();
+		return $this->db->get_where('inscripcion_temas_personas a, inscripcion_asistencia b',
+									array(	'b.id_modulo'=>$id_modulo,
+											'a.id_inscripcion_tema'=>$id_inscripcion_tema
+										)
+									)->result_array();
+	}
+	
+	function obtener_info_modulo_x_cooperativa($id_modulo=0,$id_inscripcion_tema=0,$asistencia=0)
+	{
+		$cooperativa=$this->db->query("SELECT id_cooperativa FROM inscripcion_temas WHERE id_inscripcion_tema=".$id_inscripcion_tema)->row_array();
+		
+		if($asistencia!=0)
+		{
+			$this->db->where("b.aprobado = 1");
+		}
+		$this->db->select("a.*,b.*")->where("a.id_inscripcion_personas = b.id_inscripcion_personas");
+		return $this->db->get_where('inscripcion_temas_personas a, inscripcion_asistencia b',
+									array(	'b.id_modulo'=>$id_modulo,
+											'a.id_inscripcion_tema'=>$id_inscripcion_tema
+										)
+									)->result_array();
 	}
 	
 }

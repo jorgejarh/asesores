@@ -43,17 +43,22 @@
                     <p align="left"><b>Dirigido a:</b> <?php echo $capacitacion['dirigido'];?></p>
                     <p align="left"><b>Lugar:</b> <?php echo $modulo['nombre_lugar'];?></p>
                     <p align="left"><b>Facilitadores:</b> <?php 
-					$conta=count($modulo['facilitadores_nombres[]']); 
-					$van=0; 
-					foreach ($modulo['facilitadores_nombres[]'] as $valor)
+					
+					if($modulo['facilitadores_nombres[]'])
 					{
-						$van++;
-						echo $valor;
-						if($conta!=$van)
+						$conta=count($modulo['facilitadores_nombres[]']); 
+						$van=0; 
+						foreach ($modulo['facilitadores_nombres[]'] as $valor)
 						{
-							echo ", ";
-							}
-					} 
+							$van++;
+							echo $valor;
+							if($conta!=$van)
+							{
+								echo ", ";
+								}
+						} 
+					}
+										
 					?> </p>
                     <table width="100%" class="l_tabla">
                     	<tr>

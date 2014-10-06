@@ -28,6 +28,10 @@ body
 $precio_indi=obtener_precio_modulo($modulo['id_modulo']);
 $cantidad_personas=count($personas);
 $total_pagar=$precio_indi*$cantidad_personas;
+/*Descuentos*/
+$descuento=($porcent_descuento_total/100)*$total_pagar;
+$total_pagar=$total_pagar-$descuento;
+
 ?>
 	<div class="page_">
     	<table width="100%">

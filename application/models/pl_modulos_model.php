@@ -58,6 +58,7 @@ class Pl_modulos_model extends CI_Model {
 					$dato['facilitadores_nombres[]'][]=$valor['nombres']." ".$valor['apellidos'];
 				}
 			}else{
+				$dato['facilitadores_nombres[]']=array();
 				$dato['facilitadores[]']=array();
 				}
 			

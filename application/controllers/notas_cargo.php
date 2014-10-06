@@ -18,6 +18,8 @@ class Notas_cargo extends CI_Controller {
         parent::__construct();
         $this->datos_user=comprobar_login();
 		$this->load->model($this->modelo_usar);
+		$this->load->model("estado_cuenta_model");
+		
     }
 
 	public function index()
@@ -138,6 +140,17 @@ class Notas_cargo extends CI_Controller {
 			$data['capacitacion']=$this->pl_capacitaciones_model->obtener($data['inscripcion_tema']['id_capacitacion']);
 			$data['modulo']=$this->pl_modulos_model->obtener($id_modulo);
 			$data['personas']=$this->$model->obtener_info_modulo($id_modulo,$id_inscripcion_tema,1);
+			
+			$descuentos=$this->estado_cuenta_model->obtener_descuentos_x_modulo($id_modulo,$data['inscripcion_tema']['id_cooperativa']);
+			$data['porcent_descuento_total']=0;
+			
+			foreach($descuentos as $valor_des)
+			{
+				$data['porcent_descuento_total']=$data['porcent_descuento_total']+$valor_des['descuento'];
+			}
+			
+			//echo $this->db->last_query();
+			//exit();
 			$this->load->view($this->carpeta_view."/ver_nota_cargo_modulo",$data);
 			
 		}else{
