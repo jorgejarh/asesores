@@ -1,21 +1,14 @@
 <div id="content_main" class="clearfix">
   <div id="main_panel_container" class="left" style="width:900px;">
     <div id="dashboard" style="width:100%;padding-bottom:50px;">
-    
-    
       <h2 class="ico_mug">
       	<table style="width:100%;">
       		<tr>
-      			<td><?php echo $plan['nombre_plan'];?></td>
-      			<td style="text-align:right;"><button onClick="nuevo_registro(<?php echo $plan['id_plan']?>);">Nuevo</button></td>
+      			<td><?php echo $title;?></td>
+      			<td style="text-align:right;"><button onClick="nuevo_registro();">Nuevo</button></td>
       		</tr>
       	</table>
       </h2>
-      <div class="bot_atras">
-    	<?php
-        echo anchor('pl_planes','<- Regresar');
-		?>
-    </div>
       <div class="" style="width:90%; margin:auto;">
       
         <?php
@@ -25,11 +18,9 @@ if($listado)
   <table id="example" class="display" >
     <thead>
       <tr>
-      	<th>Modalidad</th>
-        <th>Descripción</th>
-        <th>Total</th>
-        <th>Asignar</th>
-        <!--<th>Agregar Documentos</th>-->
+      	<th>Tipo Proveedor</th>
+        <th>Nombre</th>
+        <th>Telefono</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
       </tr>
@@ -40,11 +31,10 @@ if($listado)
 		{
 			?>
       <tr class="gradeA">
-      	<td><?php echo $valor['nombre_modalidad']; ?></td>
-        <td><?php echo $valor['objetivo'];?></td>
-        <td>$<?php echo number_format( obtener_costo_plan_modalidad($valor[$this->$model->id_tabla]),2);?></td>
-        <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_capacitaciones/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
-        <!--<td align="center" class="datatable_icono"><a href="<?php echo site_url('mante_modalidades_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>-->
+      	<td><?php echo $valor['nombre_tipo'];?></td>
+      	<td><?php echo $valor['nombre_proveedor']."";?></td>
+       <td><?php echo $valor['telefono'];?></td>
+      
         <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
@@ -75,10 +65,10 @@ if($listado)
 	    } );
 	} );
 
-function nuevo_registro(id)
+function nuevo_registro()
 {
 	$.ajax({
-		  url: "<?php echo site_url($this->nombre_controlador.'/nuevo');?>/"+id,
+		  url: "<?php echo site_url($this->nombre_controlador.'/nuevo');?>",
 		  type:"POST",
 		  success:function(data){
 
@@ -120,6 +110,40 @@ function eliminar_registro(id)
 		  
 		});
 }
+
+function profesiones(id)
+{
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/profesiones');?>/"+id,
+		  type:"POST",
+		  success:function(data){
+
+		  	$.fancybox({
+				content:data,
+				autoHeight:true
+				});
+		  }
+		  
+		});
+}
+
+function especialidades(id)
+{
+	$.ajax({
+		  url: "<?php echo site_url($this->nombre_controlador.'/especialidades');?>/"+id,
+		  type:"POST",
+		  success:function(data){
+
+		  	$.fancybox({
+				content:data,
+				autoHeight:true
+				});
+		  }
+		  
+		});
+}
+
+
 
 </script>
 
