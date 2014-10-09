@@ -27,7 +27,7 @@ if($listado)
       <tr>
       	<th><?php echo $plan_modalidad['nombre_modalidad'];?></th>
         <th>Presupuesto</th>
-        <th>Costo Real</th>
+        <th>Resultado Financiero</th>
         <th># de Modulos</th>
         <th># Par. Estimados</th>
         

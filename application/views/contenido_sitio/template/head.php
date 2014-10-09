@@ -18,8 +18,8 @@
     
         <div id="header">
             <div id="logo"><?php 
-			echo anchor('sitio',img(array('src'=>'public/images_sitio/img/logo_t_asesores.png',
-											'height'=>'80'
+			echo anchor('sitio',img(array('src'=>'public/images_sitio/img/nvo_logo.JPG',
+											'height'=>'90'
 											)
 									)
 						);

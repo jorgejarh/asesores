@@ -278,3 +278,8 @@ a
 {
 	width:100%!important;
 }
+
+.texto_dinero
+{
+	text-align:right;
+}

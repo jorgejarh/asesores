@@ -10,7 +10,7 @@
 					?>
           <li><?php echo img(array('src'=>'public/images_sitio/slider/'.$valor['nombre_archivo'],
 											'width'=>965,
-											'height'=>280));?></li>
+											'height'=>175));?></li>
           <?php
 				}
 				?>
@@ -52,9 +52,9 @@
 
 <div class="center_content">
   <div class="home_section_left"> <img src="<?php echo base_url('public/sitio');?>/images/icon1.gif" alt="" title="" class="home_section_icon" border="0">
-    <h2 class="home_title">Capacitaciones</h2>
-    <div class="home_subtitle">Capacitaciones</div>
-    <div class="home_section_thumb"> <img src="<?php echo base_url('public/sitio');?>/capacitacion.fw.png" alt="" title="" border="0"> </div>
+    <h2 class="home_title">Capacitación</h2>
+    <div class="home_subtitle">Capacitación</div>
+    <div class="home_section_thumb"><!-- <img src="<?php echo base_url('public/sitio');?>/capacitacion.fw.png" alt="" title="" border="0"> --></div>
     
     <p><span>- Diplomados Especializados</span></p>
     <p><span>- Círculos ejecutivos</span></p>
@@ -65,9 +65,9 @@
     <div class="clear"></div>
   </div>
   <div class="home_section_left"> <img src="<?php echo base_url('public/sitio');?>/images/icon2.gif" alt="" title="" class="home_section_icon" border="0">
-    <h2 class="home_title">Asesorias</h2>
-    <div class="home_subtitle">Asesorias</div>
-    <div class="home_section_thumb"> <img src="<?php echo base_url('public/sitio');?>/asesorias.fw.png" alt="" title="" border="0"> </div>
+    <h2 class="home_title">Asesoría</h2>
+    <div class="home_subtitle">Asesoría</div>
+    <div class="home_section_thumb"> <!--<img src="<?php echo base_url('public/sitio');?>/asesorias.fw.png" alt="" title="" border="0"> --></div>
     <p><span>- Elaboración de diagnosticos</span></p>
     <p><span>- Elaboracion de planes de trabajo</span></p>
     <p><span>- Apoyo en el proceso de tomas de deciciones</span></p>
@@ -77,9 +77,9 @@
     <div class="clear"></div>
   </div>
   <div class="home_section_left"> <img src="<?php echo base_url('public/sitio');?>/images/icon3.gif" alt="" title="" class="home_section_icon" border="0">
-    <h2 class="home_title">Consultoarias</h2>
-    <div class="home_subtitle">Consultorias</div>
-    <div class="home_section_thumb"> <img src="<?php echo base_url('public/sitio');?>/consultorias.fw.png" alt="" title="" border="0"> </div>
+    <h2 class="home_title">Consultoarías</h2>
+    <div class="home_subtitle">Consultoarías</div>
+    <div class="home_section_thumb"><!-- <img src="<?php echo base_url('public/sitio');?>/consultorias.fw.png" alt="" title="" border="0"> --></div>
     <p><span>- Consultoría Administrativa y Financiera</span></p>
     <p><span>- Consultoría de Recursos Humanos</span></p>
     <p><span>- Planificación estratégica</span></p>
