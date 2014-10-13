@@ -62,6 +62,12 @@ echo form_open('',array(
 			echo form_dropdown('id_cargo',$cargos);
 			?></td>
 	</tr>
+    <tr>
+		<td>Genero: </td>
+		<td><?php 
+			echo form_dropdown('genero',array('M'=>'Masculino','F'=>'Femenino'));
+			?></td>
+	</tr>
 	<tr>
 		<td colspan="2"><hr></td>
 	</tr>

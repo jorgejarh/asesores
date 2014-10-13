@@ -42,7 +42,7 @@ class Mante_personal extends CI_Controller {
 		//$this->set_campo("id_sucursal","Sucursal",'required|xss_clean','select',preparar_select($this->inscripcion_temas_personas_model->obtener_sucursales($this->datos_user['info_s']),'id_sucursal','sucursal'));
 		$this->set_campo("id_sucursal","Sucursal",'required|xss_clean','select',array());
 		$this->set_campo("id_cargo","Cargo",'required|xss_clean','select',preparar_select($this->inscripcion_temas_personas_model->obtener_cargos(),'id_cargo','nombre_cargo'));
-		
+		$this->set_campo("genero","Genero",'required|xss_clean','select',array('M'=>'Masculino','F'=>'Femenino'));
 
     }
 

@@ -12,7 +12,7 @@
       
       	<button onClick="nueva_persona();">Inscribir Persona</button>
             <button onClick="registrar_persona();">Registrar Persona</button>
-            <button ><a target="_blank" href="<?php echo site_url('f_listado/listado/'.$modulo['id_modulo']);?>">Imprimir Lista</a></button>
+            <button ><a target="_blank" style="color:#FFF;" href="<?php echo site_url('f_listado/listado/'.$modulo['id_modulo']);?>">Imprimir Lista</a></button>
       	<div class="form_user" style="display:none;"></div>
       		<?php
             if($nombres_personas)
@@ -26,8 +26,10 @@
               <tr>
               	<th>Nº</th>
                 <th>DUI</th>
+                <th>Cooperativa</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
+                <th>Genero</th>
                 <th>PreInscrito</th>
                 <th>Inscrito</th>
                 <th>Eliminar</th>
@@ -35,6 +37,7 @@
             </thead>
             <tbody>
             	  <?php
+				
 				$son=count($nombres_personas);
 				$van=0;
 				$contador_lista=0;
@@ -46,9 +49,10 @@
                  <tr class="gradeA">
                  	<td align="center" valign="middle"><?php echo $contador_lista;?></td>
                     <td align="center" valign="middle"><?php echo $valor['dui'];?></td>
-                	<td align="center" valign="middle"><?php echo $valor['nombres'];?></td>
-                    <td align="center" valign="middle"><?php echo $valor['apellidos'];?></td>
-                    
+                    <td align="left" valign="middle"><?php echo $valor['nombre_cooperativa'];?></td>
+                	<td align="left" valign="middle"><?php echo $valor['nombres'];?></td>
+                    <td align="left" valign="middle"><?php echo $valor['apellidos'];?></td>
+                    <td align="left" valign="middle"><?php echo $valor['genero'];?></td>
                     <td align="center" valign="middle">
                     <?php 
 					if($valor['asistio']==1)

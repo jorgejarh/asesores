@@ -23,6 +23,7 @@ if($listado)
         <th>Cooperativa</th>
         <th>Sucursal</th>
         <th>Cargo</th>
+        <th>Genero</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
       </tr>
@@ -40,6 +41,7 @@ if($listado)
         
         <td><?php echo $valor['nombre_sucursal'];?></td>
         <td><?php echo $valor['nombre_cargo'];?></td>
+        <td><?php echo $valor['genero'];?></td>
         <td align="center" class="datatable_icono"><a title="Editar" onClick="editar_registro(<?php echo $valor[$this->$model->id_tabla]; ?>);"><?php echo img('public/img/edit.png');?></a></td>
         <td align="center" class="datatable_icono">
         
