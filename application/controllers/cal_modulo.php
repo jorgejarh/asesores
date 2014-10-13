@@ -87,7 +87,7 @@ class Cal_modulo extends CI_Controller {
 		/*$listado[0]=".: Seleccione:.";
 		  ksort($listado);*/
 		echo form_dropdown('',$listado,0,'id="id_modulo"');
-		echo '<div><button onclick="inscribir_modulo();">Seleccionar modulo</button></div>';
+		echo '<div><button onclick="inscribir_modulo();">Calificar Modulo</button></div>';
 	}
 	
 	public function inscribir_modulo($id_modulo=0)

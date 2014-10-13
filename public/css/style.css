@@ -283,3 +283,20 @@ a
 {
 	text-align:right;
 }
+
+
+.ui-datepicker
+{
+	z-index:100000;
+}
+
+
+.combo_largos select
+{
+	width:100%;
+}
+
+.caja_para_numero
+{
+	max-width:50px;
+}

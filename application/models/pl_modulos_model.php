@@ -43,6 +43,7 @@ class Pl_modulos_model extends CI_Model {
 			$this->db->from("mante_lugares b");
 			$this->db->where("b.id_lugar = a.id_lugar");
 			$dato=$this->db->get_where($this->nombre_tabla." a",array("a.".$this->id_tabla=>$id))->row_array();
+			
 			$this->db->select("a.*, b.*");
 			$this->db->where("a.id_facilitador = b.id_facilitador");
 			$facilitadores=$this->db->get_where('pl_modulo_facilitador a, mante_facilitadores b',array("a.".$this->id_tabla=>$id))->result_array();
@@ -71,8 +72,31 @@ class Pl_modulos_model extends CI_Model {
 	function lista($id=0)
 	{
 		$this->db->select("a.*",false);
-		return $this->db->order_by("a.fecha_prevista","ASC")->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_capacitacion'=>$id))->result_array();
+		$resultado=$this->db->order_by("a.fecha_prevista","ASC")->get_where($this->nombre_tabla." a",array('a.activo'=>1,'a.id_capacitacion'=>$id))->result_array();
 		
+		foreach($resultado as $key=>$valor)
+		{
+			$this->db->select("a.*, b.*");
+			$this->db->where("a.id_facilitador = b.id_facilitador");
+			$facilitadores=$this->db->get_where('pl_modulo_facilitador a, mante_facilitadores b',array("a.".$this->id_tabla=>$valor['id_modulo']))->result_array();
+			
+			if($facilitadores)
+			{
+				foreach($facilitadores as $valor2)
+				{
+					$resultado[$key]['facilitadores[]'][]=$valor2['id_facilitador'];
+				}
+				foreach($facilitadores as $valor2)
+				{
+					$resultado[$key]['facilitadores_nombres[]'][]=$valor2['nombres']." ".$valor2['apellidos'];
+				}
+			}else{
+				$resultado[$key]['facilitadores_nombres[]']=array();
+				$resultado[$key]['facilitadores[]']=array();
+				}
+		}
+		
+		return $resultado;
 	}
 	
 	function puede_evaluar($id,$data)

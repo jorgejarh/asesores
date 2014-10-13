@@ -32,6 +32,7 @@ if($listado)
       	<th >Inicio</th>
         <th >Fin</th>
       	<th>Nombre del Modulo</th>
+        <th>Facilitadores</th>
          <!--<th>Ver Pres.</th>-->
          <th>Asignar Tema</th>
         <th>Asignar Costos</th>
@@ -44,6 +45,11 @@ if($listado)
     </thead>
     <tbody>
       <?php
+	 /* echo "<pre>";
+	  print_r($listado);
+	  echo "</pre>";
+	  */
+	  //exit;
 		foreach($listado as $valor)
 		{
 			?>
@@ -52,7 +58,16 @@ if($listado)
         <td><?php 
 		echo date('d/m/Y',strtotime($valor['fecha_prevista_fin']));?></td>
       	<td><?php echo $valor['nombre_modulo'];?></td>
-        
+        <td>
+        <?php
+        foreach($valor['facilitadores_nombres[]'] as $fa)
+		{
+			?>
+			- <?php echo $fa;?> <br />
+            <?php
+		}
+		?>
+        </td>
         <!--
         <td align="center"	class="">
         <?php

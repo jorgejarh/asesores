@@ -8,7 +8,7 @@
           </tr>
         </table>
       </h2>
-      <div class="" style="width:90%; margin:auto;">
+      <div class="combo_largos" style="width:90%; margin:auto;">
         <div>
           <p>Seleccione un plan</p>
           <?php

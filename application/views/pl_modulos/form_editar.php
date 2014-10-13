@@ -8,7 +8,7 @@ echo form_open('',array(
 				);
 ?>
 
-<table align="center" style="margin:auto;  width:400px;">
+<table align="center" style="margin:auto;  width:600px;">
 	<?php
 	foreach($this->campos as $llave=>$valor)
 	{
@@ -61,6 +61,23 @@ echo form_open('',array(
          
 		</td>
 	</tr>
+    <tr>
+		<td>Fecha Real Inicio:</td>
+		<td> 
+        	
+			<?php echo form_input('fecha_real_inicio',  date('Y-m-d',strtotime($dato['fecha_real_inicio'])),'id="fecha_r_i"  readonly="readonly" '); ?>
+            
+		</td>
+	</tr>
+    <tr>
+		<td>Fecha Real Final:</td>
+		<td> 
+        	
+			<?php echo form_input('fecha_real_fin',  date('Y-m-d',strtotime($dato['fecha_real_fin'])),'id="fecha_r_f"  readonly="readonly"'); ?>
+            
+		</td>
+	</tr>
+    
     <tr>
 		<td colspan="2"><h3 align="center">Contenido desde perfil</h3><hr></td>
 	</tr>
@@ -132,6 +149,17 @@ echo form_close();
 <script type="text/javascript">
 $(document).ready(function(e){
 	
+	$( "#fecha_r_i" ).datepicker({
+		dateFormat: "yy-mm-dd",
+		changeMonth: true,
+      changeYear: true
+		});
+	
+	$( "#fecha_r_f" ).datepicker({
+		dateFormat: "yy-mm-dd",
+		changeMonth: true,
+      changeYear: true
+		});
 	
 	
 	$('#cambiar_curr').click(function(e) {

@@ -10,7 +10,7 @@ echo form_open('',array(
 				);
 ?>
 <p>Exelente - 5, Muy Bueno - 4, Bueno - 3, Regular - 2, Malo - 1</p>
-<table align="center" style="margin:auto; ">
+<table align="center" style="margin:auto; width:500px; ">
 	<?php
 	$contador=0;
     foreach($resultados as $valor)
@@ -18,22 +18,21 @@ echo form_open('',array(
 		$contador++;
 		?>
         <tr>
-        	<td><p><b><?php echo $contador." - ".$valor["nombre"];?></b></p>
-            <table width="100%">
+        	<td colspan="2"><p><b><?php echo $contador." - ".$valor["nombre"];?></b></p></td>
+        	  </tr>
             	<?php
                 foreach($valor["aspectos"] as $valor2)
                 {
                     ?>
                 <tr>
                 	<td align="left"><?php echo $valor2["nombre"];?></td>
-                    <td align="right"><?php echo form_input(array('class'=>"texto_nota",'name'=>"calificacion[".$valor2['id_aspectos_considerar']."]"));?></td>
+                    <td align="left"><?php echo form_input(array('class'=>"texto_nota caja_para_numero",'name'=>"calificacion[".$valor2['id_aspectos_considerar']."]"));?></td>
                 </tr>
                 <?php
 				}
 				?>
-            </table>
-            </td>
-        </tr>
+            
+      
         <?php
 	}
 	?>

@@ -87,7 +87,7 @@ class Mod_opinion extends CI_Controller {
 		/*$listado[0]=".: Seleccione:.";
 		  ksort($listado);*/
 		echo form_dropdown('',$listado,0,'id="id_modulo"');
-		echo '<div><button onclick="inscribir_modulo();">Inscribir a este modulo</button></div>';
+		echo '<div><button onclick="inscribir_modulo();">Entrar</button></div>';
 	}
 	
 	public function inscribir_modulo($id_modulo=0)
