@@ -81,8 +81,16 @@ if($listado)
         <?php
 		}*/
 		?>
+        </td>
+        <td align="center"	class="datatable_icono">
+        <a onclick="temas(<?php echo $valor[$this->$model->id_tabla]?>);" ><?php echo img('public/img/ico_settings.png');?></a>
+        
         </td>-->
-        <td align="center"	class="datatable_icono"><a onclick="temas(<?php echo $valor[$this->$model->id_tabla]?>);" ><?php echo img('public/img/ico_settings.png');?></a></td>
+        
+        <td align="center"	class="datatable_icono">
+        <a href="<?php echo site_url('Pl_modulo_temas/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a>
+        
+        </td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_rubro/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
         
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos_eval/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_page.png');?></a></td>

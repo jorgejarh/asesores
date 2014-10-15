@@ -1,5 +1,5 @@
 <div id="content_main" class="clearfix">
-  <div id="main_panel_container" class="left" style="width:900px;">
+  <div id="main_panel_container" class="left">
     <div id="dashboard" style="width:100%;padding-bottom:50px;">
       <h2 class="ico_mug">
         <table style="width:100%;">
@@ -14,7 +14,7 @@
     	echo anchor(uri_string().'/index/descargar',img(array('src'=>'public/img/excel_icon.png','title'=>'Descargar en Excel')));
 	?>
 		</div>
-      <div class="" style="width:90%; margin:auto; font-size:8px; overflow:auto;">
+      <div class="" style="width:95%; margin:auto; font-size:8px; overflow:auto;">
         <?php
 if($listado)
 {

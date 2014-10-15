@@ -157,6 +157,9 @@ table tr
                         <script type="text/javascript">
 						$(function () {
 							$('#grafico_<?php echo $contador;?>').highcharts({
+								credits: {
+									  enabled: false
+								  },
 								data: {
 									table: document.getElementById('tabla_<?php echo $contador;?>')
 								},
@@ -249,6 +252,9 @@ table tr
         <script type="text/javascript">
 		$(function () {
 			$('#grafico_general').highcharts({
+				credits: {
+				  enabled: false
+			  },
 				data: {
 					table: document.getElementById('tabla_general')
 				},
@@ -271,7 +277,7 @@ table tr
 				},
 				xAxis: {
 					labels: {
-						rotation: -45,
+						rotation: -90,
 						align: 'right',
 						style: {
 							fontSize: '10px',

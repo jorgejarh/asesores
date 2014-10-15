@@ -156,9 +156,9 @@ class Cal_modulo_model extends CI_Model {
 	
 	function obtener_lista($id_modulo=0)
 	{
-		$this->db->select("a.*,AVG(b.nota) as prom");
+		$this->db->select("a.id_calificacion_head,a.numero, a.f_creacion, AVG(b.nota) as prom");
 		$this->db->where("a.id_calificacion_head = b.id_calificacion_head");
-		$this->db->group_by("a.id_calificacion_head");
+		$this->db->group_by("a.id_calificacion_head, a.numero");
 		return $this->db->get_where("pl_modulos_calificacion_head a, pl_modulos_calificacion b",array('a.id_modulo'=>$id_modulo))->result_array();
 	}
 	

@@ -1,5 +1,5 @@
 <div id="content_main" class="clearfix">
-  <div id="main_panel_container" class="left" style="width:900px;">
+  <div id="main_panel_container" class="left">
     <div id="dashboard" style="width:100%;padding-bottom:50px;">
       <h2 class="ico_mug">
         <table style="width:100%;">
@@ -8,8 +8,13 @@
           </tr>
         </table>
       </h2>
-      <div class="" style="width:90%; margin:auto;" align="center">
-      
+      <div class="" style="width:95%; margin:auto;" align="center">
+      <div class="bot_atras" style="text-align:left;">
+    	<?php
+        echo anchor('inscripcion','<- Regresar');
+		?>
+    </div>
+    
       	<button onClick="nueva_persona();">Inscribir Persona</button>
             <button onClick="registrar_persona();">Registrar Persona</button>
             <button ><a target="_blank" style="color:#FFF;" href="<?php echo site_url('f_listado/listado/'.$modulo['id_modulo']);?>">Imprimir Lista</a></button>

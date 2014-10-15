@@ -13,6 +13,8 @@
         <button class="cal_mod" onClick="calificar(<?php echo $modulo['id_modulo'];?>);">Nuevo</button>
         
           <?php
+$suma=0;
+$cuantos=0;
 if($listado)
 {
 	?>
@@ -29,7 +31,8 @@ if($listado)
       <?php
 		foreach($listado as $valor)
 		{
-			
+			$cuantos++;
+			$suma=$suma+number_format($valor['prom'],2);
 			?>
       <tr class="gradeA">
       	<td align="center"><?php echo $valor['numero'];?></td>
@@ -49,7 +52,7 @@ if($listado)
   <?php
 }
 ?>
-
+<p><b>Promedio General: <?php echo number_format($suma/$cuantos,2);?></b></p>
 <?php
 /*
 ?>   
