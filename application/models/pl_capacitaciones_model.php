@@ -199,6 +199,41 @@ class Pl_capacitaciones_model extends CI_Model {
 				  AND b.`id_rubro_name`=".$id_rubro."")->result_array();
 	}
 	
-	
+	function obtener_participantes($id_capacitacion,$modulos)
+	{
+		$datos=$this->db->query("SELECT 
+							  a.`id_inscripcion_tema`,
+							  b.`id_cooperativa`,
+							  b.`cooperativa`,
+							  c.`dui`,
+							  c.`nombres`,
+							  c.`apellidos` ,
+							  c.`id_inscripcion_personas`
+							FROM
+							  inscripcion_temas a,
+							  conf_cooperativa b,
+							  inscripcion_temas_personas c
+							WHERE a.id_capacitacion = ".$id_capacitacion." 
+							  AND a.activo = 1 
+							  AND b.`activo`=1
+							  AND c.`activo`=1
+							  AND a.`id_cooperativa`=b.`id_cooperativa`
+							  AND a.`id_inscripcion_tema`=c.`id_inscripcion_tema`
+							ORDER BY b.`cooperativa` ASC
+							")->result_array();
+		
+		foreach($datos as $key=>$val)
+		{
+			$datos[$key]['modulos']=$modulos;
+			
+			foreach($datos[$key]['modulos'] as $key2=>$val2)
+			{
+				$datos[$key]['modulos'][$key2]['nota']=0;
+			}
+		}
+		
+		return $datos;
+		
+	}
 	
 }

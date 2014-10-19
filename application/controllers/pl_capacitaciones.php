@@ -33,7 +33,7 @@ class Pl_capacitaciones extends CI_Controller {
         $model=$this->modelo_usar;
 		$this->load->model($model);
 		$this->load->model('pl_modalidades_model');
-		
+		$this->load->model('pl_modulos_model');
 		$this->set_campo("nombre_capacitacion","Nombre",'required|xss_clean');
 		$this->set_campo("objetivo","Descripción",'xss_clean','textarea');
 		$this->set_campo("dirigido","Dirigido a",'required|xss_clean','textarea');
@@ -438,5 +438,25 @@ class Pl_capacitaciones extends CI_Controller {
 		}
 	}
 	
+	
+	function ver_participantes($id_capacitacion=0)
+	{
+		$model=$this->modelo_usar;
+		$data['model']=$model;			
+		$data['dato']=$this->$model->obtener($id_capacitacion);
+		
+		if($data['dato'])
+		{
+			$data['title']=$this->nombre_titulo." - Participantes";
+			$data['modulos']=$this->pl_modulos_model->lista($id_capacitacion);
+			$data['info']=$this->$model->obtener_participantes($id_capacitacion,$data['modulos']);
+			
+			$this->load->view($this->carpeta_view.'/ver_participantes',$data);
+		}else{
+			redirect($this->nombre_controlador);
+
+		}
+
+	}
 
 }

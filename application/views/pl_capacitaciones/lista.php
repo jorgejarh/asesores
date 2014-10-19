@@ -33,6 +33,7 @@ if($listado)
         
         <th>Asignar Modulos</th>
         <th>Agregar Documentos</th>
+        <th>Ver Participantes</th>
         <th>Estado</th>
         <th>&nbsp;</th>
         <th>&nbsp;</th>
@@ -54,6 +55,7 @@ if($listado)
        
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_modulos/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_settings.png');?></a></td>
         <td align="center"	class="datatable_icono"><a href="<?php echo site_url('pl_capacitaciones_docs/index/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
+        <td align="center" class="datatable_icono"><a href="<?php echo site_url('pl_capacitaciones/ver_participantes/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_posts.png');?></a></td>
         <td align="center" class="datatable_icono">
         <?php
         if($valor['cerrado']==0)

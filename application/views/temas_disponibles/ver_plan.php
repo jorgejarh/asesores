@@ -24,6 +24,8 @@ $(document).ready(function(event){
 
 </script>
 <style>
+body{
+	font-family:Calibri,Arial;}
 .div_imprimir {
 	position:absolute;
 	right:0px;
@@ -104,7 +106,8 @@ h1,h2,h3,h4
 </head>
 
 <body>
-<div style="width:900px; margin:auto;" align="center">
+
+<div style="width:100%; margin:auto;" align="center">
   <div style="position:relative; " align="right">
     <div class="div_imprimir"><?php echo img(array('src'=>'public/img/icono-impresora.jpg','width'=>50));?> 
       <ul class="opciones_">
@@ -127,21 +130,20 @@ h1,h2,h3,h4
     <table align="center" cellpadding="0" cellspacing="0" class="t">
     	<tr>
         	<td align="center" valign="middle"><b>Modalidad</b></td>
-            
             <td align="center" valign="middle"><b>Nombre</b></td>
             <td align="center" valign="middle"><b>Inversion del tema</b></td>
             <td align="center" valign="middle"><b>Modulo</b></td>
             <td align="center" valign="middle"><b>Inversion del Modulo</b></td>
-            <td align="center" valign="middle" width="100"><b>Temas</b></td>
-            <td align="center" valign="middle" width="90"><b>Fecha inicio</b></td>
-            <td align="center" valign="middle" width="90"><b>Fecha Fin</b></td>
+            <td align="center" valign="middle" ><b>Temas</b></td>
+            <td align="center" valign="middle" ><b>Fecha inicio</b></td>
+            <td align="center" valign="middle" ><b>Fecha Fin</b></td>
         </tr>
     	<?php
         foreach($datos_plan['modalidades'] as $modalidad)
 		{
 			?>
             <tr>
-                <td align="left" valign="middle">
+                <td align="left" valign="middle" >
                 	<h3 align="center"><?php echo $modalidad['nombre_modalidad'];?></h3>
                 </td>
                
