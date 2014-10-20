@@ -160,6 +160,27 @@ function config_lenguaje_tabla($pag=10)
 		}';
 }
 
+function config_lenguaje_tabla_sin_nada($pag)
+{
+	return '
+			"iDisplayLength": '.$pag.',
+	        "oLanguage": {
+			"sLengthMenu": "Mostrar _MENU_ registros por página",
+			"sZeroRecords": "No se encontraron registros",
+			"sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+			"sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
+			"sInfoFiltered": "(filtrado de _MAX_ total de registros)",
+			"sSearch": "Buscar: ",
+			"oPaginate": {
+        		"sFirst": "Primero",
+        		"sLast": "Ultimo",
+        		"sNext": "Siguiente",
+        		"sPrevious": "Anterior"
+      		}
+		}';
+}
+
+
 
 if ( ! function_exists('preparar_select'))
 {

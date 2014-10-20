@@ -225,15 +225,64 @@ class Pl_capacitaciones_model extends CI_Model {
 		foreach($datos as $key=>$val)
 		{
 			$datos[$key]['modulos']=$modulos;
-			
+			$suma_nota=0;
+			$suma_asistencia=0;
 			foreach($datos[$key]['modulos'] as $key2=>$val2)
 			{
-				$datos[$key]['modulos'][$key2]['nota']=0;
+				$datos[$key]['modulos'][$key2]['nota']=$this->obtener_nota_x_modulo($val2['id_modulo'],$val['id_inscripcion_personas']);
+				$datos[$key]['modulos'][$key2]['asistencia']=$this->obtener_asistencia_x_modulo($val2['id_modulo'],$val['id_inscripcion_personas']);
+				$suma_asistencia+=$datos[$key]['modulos'][$key2]['asistencia'];
+				$suma_nota+=$datos[$key]['modulos'][$key2]['nota'];
 			}
+			$datos[$key]['nota_final']=$suma_nota/count($modulos);
+			$datos[$key]['por_asistencia']=($suma_asistencia/count($modulos))*100;
+			
+			
 		}
 		
 		return $datos;
 		
 	}
+	
+	function obtener_nota_x_modulo($id_modulo, $id_inscripcion_personas)
+	{
+		$nota=$this->db->query("SELECT 
+								  SUM(a.`nota`* (b.`porcentaje`/100)) AS nota_final
+								FROM
+								  `pl_modulos_notas` a,
+								  `pl_modulos_eval` b
+								WHERE a.`id_modulo` = ".$id_modulo." 
+								  AND a.`id_inscripcion_persona` = ".$id_inscripcion_personas."
+								  AND a.`id_eval_x_mod`= b.`id_eval_x_mod`
+								  AND b.`activo`=1
+								  ")->row_array();
+		if($nota)
+		{
+			return number_format($nota['nota_final'],2);
+		}else{
+			return 0;
+			}
+		
+	}
+	
+	function obtener_asistencia_x_modulo($id_modulo, $id_inscripcion_personas)
+	{
+		$asistencia=$this->db->query("SELECT 
+								  COUNT(*) AS asistencia
+								FROM
+								  `inscripcion_asistencia` 
+								WHERE `id_modulo` = ".$id_modulo." 
+								  AND `id_inscripcion_personas` = ".$id_inscripcion_personas."
+								  AND `asistio`=1 AND `aprobado`=1
+								  ")->row_array();
+		if($asistencia)
+		{
+			return $asistencia['asistencia'];
+		}else{
+			return 0;
+			}
+		
+	}
+	
 	
 }

@@ -3,7 +3,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $title;?></title>
+
 <script type="text/javascript" language="javascript" src="<?php echo base_url();?>public/js/datatable/media/js/jquery.js"></script>
+ <!--Datatable-->
+	<style type="text/css" title="currentStyle">
+			@import "<?php echo base_url();?>public/js/datatable/media/css/demo_table.css";
+	</style>
+	
+	<script type="text/javascript" language="javascript" src="<?php echo base_url();?>public/js/datatable/media/js/jquery.dataTables.js"></script>
+
 <style>
 body{
 	font-family:Calibri,Arial;}
@@ -27,7 +35,8 @@ h1,h2,h3,h4
 
 <div style="width:100%; margin:auto;" align="center">
  	<h2><?php echo ($dato["nombre_capacitacion"]);?></h2>
-    <table width="100%">
+    <table id="example" class="display" >
+   		<thead>
     	<tr>
         	<th>Cooperativa</th>
             <th>Nombre</th>
@@ -39,12 +48,16 @@ h1,h2,h3,h4
                 <?php
 			}
 			?>
+            <th>Nota Final</th>
+            <th>Asistencia</th>
         </tr>
+      	</thead>
+         <tbody>
         <?php
         foreach($info as $valor)
 		{
 			?>
-            <tr>
+            <tr class="gradeA">
         		<td align="left"><?php echo $valor['cooperativa'];?></td>
                 <td align="left"><?php echo $valor['apellidos'].", ".$valor['nombres'];?></td>
                 <?php
@@ -55,10 +68,13 @@ h1,h2,h3,h4
 					<?php
 				}
 			?>
+            	<td><?php echo $valor['nota_final'];?></td>
+                <td><?php echo $valor['por_asistencia'];?>%</td>
         	</tr>
             <?php
 		}
 		?>
+        </tbody>
     </table>
     <pre>
     <?php
@@ -66,5 +82,12 @@ h1,h2,h3,h4
 		?>
     </pre>
 </div>
+<script type="text/javascript">
+	/*$(document).ready(function() {
+	    $('#example').dataTable( {
+	        <?php echo config_lenguaje_tabla_sin_nada(100); ?>
+	    } );
+	} );*/
+</script>
 </body>
 </html>
