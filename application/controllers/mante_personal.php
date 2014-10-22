@@ -35,7 +35,7 @@ class Mante_personal extends CI_Controller {
 		$this->load->model($model);
 		$this->load->model('inscripcion_temas_personas_model');
 		$this->set_campo("id_cooperativa","Cooperativa",'required|xss_clean','select',preparar_select($this->$model->obtener_cooperativas($this->datos_user['info_s']),'id_cooperativa','cooperativa'));
-		$this->set_campo("dui","DUI",'required|is_unique[mante_personal.dui]|xss_clean');
+		$this->set_campo("dui","DUI",'required|xss_clean');
 		$this->set_campo("nombres","Nombres",'required|xss_clean');
 		$this->set_campo("apellidos","Apellidos",'required|xss_clean');
 		$this->set_campo("correo","Correo",'valid_email|xss_clean');
@@ -77,6 +77,7 @@ class Mante_personal extends CI_Controller {
 		{
 			$json=array();
 			
+			$this->set_campo("dui","DUI",'required|is_unique[mante_personal.dui]|xss_clean');
 			foreach($this->campos as $llave=>$valor)		
 			{
 				$this->form_validation->set_rules($valor['nombre_campo'], $valor['nombre_mostrar'], $valor['reglas']);
@@ -136,6 +137,8 @@ class Mante_personal extends CI_Controller {
 			unset($post['id']);
 						
 			$json=array();
+			
+			$this->set_campo("dui","DUI",'required|xss_clean');
 			
 			foreach($this->campos as $llave=>$valor)		
 			{

@@ -38,6 +38,7 @@ h1,h2,h3,h4
     <table id="example" class="display" >
    		<thead>
     	<tr>
+        	<th>Nº</th>
         	<th>Cooperativa</th>
             <th>Nombre</th>
             <?php
@@ -54,10 +55,13 @@ h1,h2,h3,h4
       	</thead>
          <tbody>
         <?php
+		$con=0;
         foreach($info as $valor)
 		{
+			$con++;
 			?>
             <tr class="gradeA">
+            <td align="left"><?php echo $con;?></td>
         		<td align="left"><?php echo $valor['cooperativa'];?></td>
                 <td align="left"><?php echo $valor['apellidos'].", ".$valor['nombres'];?></td>
                 <?php
@@ -83,11 +87,11 @@ h1,h2,h3,h4
     </pre>
 </div>
 <script type="text/javascript">
-	/*$(document).ready(function() {
+	$(document).ready(function() {
 	    $('#example').dataTable( {
-	        <?php echo config_lenguaje_tabla_sin_nada(100); ?>
+	        <?php echo config_lenguaje_tabla_sin_nada(50); ?>
 	    } );
-	} );*/
+	} );
 </script>
 </body>
 </html>
