@@ -21,9 +21,9 @@ if($modulos)
       <tr>
         <th>Fecha</th>
         <th>Concepto</th>
-        <th>Cargo</th>
-        <th>Abono</th>
-        <th>Saldo</th>
+        <th >Cargo</th>
+        <th >Abono</th>
+        <th >Saldo</th>
       </tr>
     </thead>
     <tbody>
@@ -48,9 +48,9 @@ if($modulos)
                     echo $this->estado_cuenta_model->_imprimir_leyenda($valor['id_modulo'],$valor['num_personas']);
 					?>
                     </td>
-                    <td align="center">$ <?php echo number_format($valor['saldo'],2);?></td>
-                    <td align="center">$ <?php echo number_format(0,2);?></td>
-                    <td align="center">$ <?php  echo number_format($saldo,2);?></td>
+                    <td class="texto_dinero" >$<?php echo number_format($valor['saldo'],2);?></td>
+                    <td class="texto_dinero" >$<?php echo number_format(0,2);?></td>
+                    <td class="texto_dinero">$<?php  echo number_format($saldo,2);?></td>
                 </tr>
                 <?php
 						foreach($valor['descuentos'] as $valor_des)
@@ -62,9 +62,9 @@ if($modulos)
 							<tr class="gradeA">
 								<td align="center"><?php echo date('d/m/Y',strtotime( $valor_des['f_creacion']));?></td>
 								<td align="left">Descuento (<?php echo $valor_des['descuento']."%"; ?>) de $ <?php echo $canti;?> a <?php echo $valor['nombre_modulo'];?></td>
-								<td align="center">$ <?php echo number_format(0,2);?></td>
-								<td align="center">$ <?php echo number_format($canti,2);?></td>
-								<td align="center">$ <?php  echo number_format($saldo,2);?></td>
+								<td class="texto_dinero">$<?php echo number_format(0,2);?></td>
+								<td class="texto_dinero">$<?php echo number_format($canti,2);?></td>
+								<td class="texto_dinero">$<?php  echo number_format($saldo,2);?></td>
 							</tr>
 							<?php
 							
@@ -80,10 +80,10 @@ if($modulos)
 							?>
 							<tr class="gradeA">
 								<td align="center"><?php echo date('d/m/Y',strtotime( $valor_2['fecha_creacion']));?></td>
-								<td align="left">Abono de $ <?php echo $valor_2['cantidad'];?> a <?php echo $valor['nombre_modulo'];?></td>
-								<td align="center">$ <?php echo number_format(0,2);?></td>
-								<td align="center">$ <?php echo number_format($valor_2['cantidad'],2);?></td>
-								<td align="center">$ <?php  echo number_format($saldo,2);?></td>
+								<td align="left">Abono de $<?php echo $valor_2['cantidad'];?> a <?php echo $valor['nombre_modulo'];?></td>
+								<td class="texto_dinero">$<?php echo number_format(0,2);?></td>
+								<td class="texto_dinero">$<?php echo number_format($valor_2['cantidad'],2);?></td>
+								<td class="texto_dinero">$<?php  echo number_format($saldo,2);?></td>
 							</tr>
 							<?php
 							}//if

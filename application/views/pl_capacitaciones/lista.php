@@ -30,7 +30,6 @@ if($listado)
         <th>Resultado Financiero</th>
         <th># de Modulos</th>
         <th># Par. Estimados</th>
-        
         <th>Asignar Modulos</th>
         <th>Agregar Documentos</th>
         <th>Ver Participantes</th>
@@ -49,7 +48,9 @@ if($listado)
         <td align="center">
         <a target="_blank" href="<?php echo site_url('pl_capacitaciones/ver_presupuesto/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_chart_bar.png');?></a></td>
         <td align="center">
-        <a target="_blank" href="<?php echo site_url('pl_capacitaciones/ver_costo_real/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_page.png');?></a></td>
+        <a target="_blank" href="<?php echo site_url('pl_capacitaciones/ver_costo_real/'.$valor[$this->$model->id_tabla]);?>" ><?php echo img('public/img/ico_page.png');?></a>
+        
+        </td>
         <td><?php echo $valor['num_modulos'];?></td>
         <td><?php echo $valor['n_participantes']+$valor['n_participantes_no']+$valor['n_participantes_ex'];?></td>
        

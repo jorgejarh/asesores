@@ -24,7 +24,17 @@ class Pl_capacitaciones_model extends CI_Model {
 	
     function obtener($id=0)
 	{
-		$this->db->select("a.*, c.nombre_modalidad, e.nombre_plan ");
+		$this->db->select("a.*, c.nombre_modalidad, e.nombre_plan, (SELECT 
+							SUM(f.precio_venta) 
+						  FROM
+							pl_modulos f 
+						  WHERE f.activo = 1 
+							AND f.id_capacitacion = a.id_capacitacion) cuota_1, (SELECT 
+							SUM(f.precio_venta_no) 
+						  FROM
+							pl_modulos f 
+						  WHERE f.activo = 1 
+							AND f.id_capacitacion = a.id_capacitacion) cuota_2",false);
 		
 		$this->db->where("a.id_capacitacion = d.id_capacitacion ");
 		
@@ -282,6 +292,44 @@ class Pl_capacitaciones_model extends CI_Model {
 			return 0;
 			}
 		
+	}
+	
+	function obtener_cooperativas_inscritas($id_capacitacion=0)
+	{
+		return $this->db->query("SELECT 
+						  b.`cooperativa` AS nombre_cooperativa,
+						  COUNT(c.id_inscripcion_personas) numero_participantes,
+						  (SELECT 
+							SUM(d.precio_venta) 
+						  FROM
+							pl_modulos d 
+						  WHERE d.activo = 1 
+							AND d.id_capacitacion = ".$id_capacitacion.") valor,
+						  COUNT(c.id_inscripcion_personas) * 
+						  (SELECT 
+							SUM(e.precio_venta) 
+						  FROM
+							pl_modulos e 
+						  WHERE e.activo = 1 
+							AND e.id_capacitacion = ".$id_capacitacion.") total,
+						  (SELECT 
+							GROUP_CONCAT(CONCAT(f.descuento,'%'))
+						  FROM
+							inscripcion_temas_descuentos f 
+						  WHERE f.activo = 1 
+							AND f.id_inscripcion_tema = a.id_inscripcion_tema) descuento,
+						  a.* 
+						FROM
+						  inscripcion_temas a,
+						  conf_cooperativa b,
+						  inscripcion_temas_personas c
+						WHERE a.id_capacitacion = ".$id_capacitacion." 
+						  AND a.`id_cooperativa` = b.`id_cooperativa` 
+						  AND a.`activo` = 1 
+						  AND b.`activo` = 1 
+						  AND c.`activo` = 1 
+						  AND c.`id_inscripcion_tema` = a.`id_inscripcion_tema` 
+						GROUP BY a.`id_cooperativa`")->result_array();
 	}
 	
 	
