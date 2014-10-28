@@ -333,4 +333,5 @@ class Pl_capacitaciones_model extends CI_Model {
 	}
 	
 	
+	
 }

@@ -144,9 +144,11 @@ p {
     </tr>
     <?php
 	$conta=0;
+	$precio_a=0;
 	foreach($datos as $dato)
 	{
 	$conta++;
+		$precio_a=$dato['valor'];
     ?>
     <tr class="" >
     	<td><?php echo $conta;?></td>
@@ -162,7 +164,36 @@ p {
     ?>
   </table>
   
-  
+  <table class="cuadro" cellpadding="0" cellspacing="0">
+  	<tr>
+    	<td>Ingresos</td>
+        <td>No. Participantes</td>
+        <td>Costos Unitario</td>
+        <td>Costo Total</td>
+    </tr>
+    <tr>
+    	<td>Afiliados</td>
+        <td><?php echo $conta;?></td>
+        <td class="texto_dinero">$<?php echo $precio_a;?></td>
+        <td class="texto_dinero">$<?php echo $conta*$precio_a; ?></td>
+    </tr>
+    <tr>
+    	<td>No Afiliados</td>
+        <td><?php echo 0;?></td>
+        <td class="texto_dinero">$0</td>
+        <td class="texto_dinero">$0</td>
+    </tr>
+    <tr>
+    	<td><b>Total</b></td>
+        <td><?php echo $conta;?></td>
+        <td class="texto_dinero"><b>$<?php echo $precio_a;?></b></td>
+        <td class="texto_dinero"><b>$<?php echo $conta*$precio_a; ?></b></td>
+    </tr>
+    <tr>
+    	<td colspan="4"><b>EGRESOS</b></td>
+    </tr>
+    
+  </table>
   
 </div>
 </body>
