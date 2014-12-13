@@ -19,6 +19,7 @@
 					      <tr>
 					      	<th>Logo</th>
 					        <th>Cooperativa</th>
+                            <th>Tipo Cooperativa</th>
 					        <th>Gerente</th>
 					        <th>Tel&eacute;fono</th>
 					        <th>Email</th>
@@ -62,6 +63,7 @@
 		      					</div>
 		      					</td>
 						        <td><?php echo $valor['cooperativa'];?></td>
+                                <td><?php echo $valor['tipo_cooperativa'];?></td>
 						        <td><?php echo $valor['gerente'];?></td>
 						        <td><?php echo $valor['telefono'];?></td>
 						        <td><a href="mailto:<?php echo $valor['email'];?>"><?php echo $valor['email'];?></a></td>

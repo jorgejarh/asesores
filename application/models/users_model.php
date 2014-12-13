@@ -112,10 +112,25 @@ function obtener_datos_usuario($id)
         return $this->db->get_where('usu_subrol',array('estado'=>1,'id_rol'=>$id_rol))->result_array();
     }
 
-    function obtener_cooperativas()
+    function obtener_cooperativas($tipo_cooperativa=0)
     {
-        return $this->db->get_where('conf_cooperativa',array('activo'=>1))->result_array();
+		$this->db->select("a.*, b.tipo_cooperativa");
+		$this->db->where("a.id_tipo_cooperativa = b.id_tipo_cooperativa");
+		if($tipo_cooperativa==0)
+		{
+			return $this->db->get_where('conf_cooperativa a, conf_tipos_cooperativas b',array('a.activo'=>1))->result_array();
+		}else{
+			
+			return $this->db->get_where('conf_cooperativa a, conf_tipos_cooperativas b',array('a.activo'=>1,'a.id_tipo_cooperativa'=>$tipo_cooperativa))->result_array();
+			}
+        
     }
+	
+	function obtener_tipos_cooperativas()
+	{
+		return $this->db->order_by("id_tipo_cooperativa","ASC")->get("conf_tipos_cooperativas")->result_array();
+	}
+	
     function obtener_sucursales($id_cooperativa)
     {
         return $this->db->get_where('conf_sucursal',array('id_cooperativa'=>$id_cooperativa))->result_array();

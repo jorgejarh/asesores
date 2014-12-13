@@ -11,6 +11,12 @@ echo form_open('',array(
 	<tr>
 		<td colspan="2" align="center"><div id="error" style="color:red;"></div></td>
 	</tr>
+     <tr>
+		<td valign="middle">Tipo de Cooperativa: </td>
+		<td valign="middle"><?php
+        echo form_dropdown("id_tipo_cooperativa",$tipos_cooperativas,$dato['id_tipo_cooperativa']);
+		?></td>
+	</tr>
 	<tr>
 		<td>Nombre de la Cooperativa: </td>
 		<td><input value= "<?php echo $dato['cooperativa']; ?>" type="text" id="cooperativa" name="cooperativa" /></td>

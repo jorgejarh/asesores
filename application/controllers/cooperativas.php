@@ -25,6 +25,7 @@ class Cooperativas extends CI_Controller {
 	public function nuevo()
 	{
 		$data=array();
+		$data["tipos_cooperativas"]=preparar_select($this->users_model->obtener_tipos_cooperativas(),"id_tipo_cooperativa","tipo_cooperativa");
 		$this->load->view('cooperativas/form_nuevo',$data);
 	}
 	
@@ -51,6 +52,7 @@ class Cooperativas extends CI_Controller {
 	public function editar($id=0)
 	{
 		$data['dato']=$this->cooperativa_model->obtener_cooperativa($id);
+		$data["tipos_cooperativas"]=preparar_select($this->users_model->obtener_tipos_cooperativas(),"id_tipo_cooperativa","tipo_cooperativa");
 		$this->load->view('cooperativas/form_editar',$data);
 	}
 

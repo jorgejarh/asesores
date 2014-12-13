@@ -151,10 +151,13 @@ class Inscripcion extends CI_Controller {
 	{
 		$model=$this->modelo_usar;
 		$data=array();
-		$data['title']=$this->nombre_titulo." - Regitrar Persona";
+		$data['title']=$this->nombre_titulo." - Registrar Persona";
 		$data['id']=$id_capacitacion;
 		$data['id_modulo']=$id_modulo;
 		$data['cooperativas']=preparar_select($this->cooperativa_model->obtener_cooperativa(),'id_cooperativa','cooperativa');
+		
+		$data['tipos_cooperativas']=preparar_select($this->users_model->obtener_tipos_cooperativas(),'id_tipo_cooperativa','tipo_cooperativa');
+		
 		$data['cargos']=preparar_select($this->mante_cargos_model->obtener(),'id_cargo','nombre_cargo');
 		$this->load->view($this->carpeta_view.'/registrar_persona',$data);
 	}
@@ -176,6 +179,22 @@ class Inscripcion extends CI_Controller {
 			echo '<option value="'.$key.'">'.$val.'</option>';
 		}
 	}
+	
+	public function obtener_cooperativas_x_tipo($id_tipo=0)
+	{
+		$lista=array();
+		$tipos=$this->users_model->obtener_cooperativas($id_tipo);
+		
+		foreach($tipos as $indice=>$valor)
+		{
+			$lista[$valor['id_cooperativa']]=$valor["cooperativa"];
+		}
+		foreach($lista as $key=>$val)
+		{
+			echo '<option value="'.$key.'">'.$val.'</option>';
+		}
+	}
+	
 	
 	public function insertar($id_modulo=0)
 	{

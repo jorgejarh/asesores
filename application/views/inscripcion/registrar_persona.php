@@ -15,7 +15,7 @@ echo form_open('',array(
     <tr>
 		<td>Tipo Persona: </td>
 		<td><?php 
-			echo form_dropdown('tipo_persona',array('A'=>'Afiliado','NA'=>'No Afiliado','EX'=>'Extranjero'));
+			echo form_dropdown('tipo_persona',array('A'=>'Cooperativa','NA'=>'Persona Natural','EX'=>'Persona Extranjera'));
 			?></td>
 	</tr>
     
@@ -45,9 +45,16 @@ echo form_open('',array(
 	</tr>
     
     <tr class="no_afi">
+		<td>Tipo de Cooperativa: </td>
+		<td><?php 
+			echo form_dropdown('',$tipos_cooperativas,0,'id="id_tipo_cooperativa"');
+			?></td>
+	</tr>
+    
+    <tr class="no_afi">
 		<td>Cooperativa: </td>
 		<td><?php 
-			echo form_dropdown('id_cooperativa',$cooperativas);
+			echo form_dropdown('id_cooperativa',array());
 			?></td>
 	</tr>
     <tr class="no_afi">
@@ -88,8 +95,7 @@ echo form_close();
 </div>
 <script type="text/javascript">
 $(document).ready(function(e){
-
-
+	
 	$('#form_nuevo').submit(function(){
 
 		form=$(this);
@@ -158,13 +164,37 @@ $(document).ready(function(e){
     });
 	
 	
+	$('#id_tipo_cooperativa').change(function(e) {
+		
+			$.ajax({
+				  url: "<?php echo site_url($this->nombre_controlador.'/obtener_cooperativas_x_tipo');?>/"+$(this).val(),
+				  type:"POST",
+				  dataType:"html",
+				  data:$(this).serialize(),
+				  success:function(data){
+
+				  		$('select[name=id_cooperativa]').html(data);
+						
+						$('select[name=id_cooperativa]').val(1);
+						$('select[name=id_cooperativa]').change();
+						
+						
+				  },
+				   error:function()
+				  {
+					 alert("Error al procesar los tipos de cooperativas"); 
+					 //location.reload();
+				  }
+			});
+		
+		});
+	
 	$('select[name=tipo_persona]').change(function(e) {
 		
 		if($(this).val()=="A")
 		{
 			$('.no_afi').show();
-			$('select[name=id_cooperativa]').val(1);
-			$('select[name=id_cooperativa]').change();
+			$('#id_tipo_cooperativa').change();
 			
 		}else{
 			$('.no_afi').hide();
@@ -174,5 +204,5 @@ $(document).ready(function(e){
 	
 });
 
-
+$('select[name=tipo_persona]').change();
 </script>

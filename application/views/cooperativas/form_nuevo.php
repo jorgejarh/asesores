@@ -15,6 +15,12 @@ echo form_open_multipart('cooperativas/do_upload',array(
 		<td valign="middle">Logo: </td>
 		<td valign="middle"><input type="file" name="file" is="file" size="25" /></td>
 	</tr>-->
+    <tr>
+		<td valign="middle">Tipo de Cooperativa: </td>
+		<td valign="middle"><?php
+        echo form_dropdown("id_tipo_cooperativa",$tipos_cooperativas);
+		?></td>
+	</tr>
 	<tr>
 		<td valign="middle">Nombre Cooperativa: </td>
 		<td valign="middle"><input type="text" id="cooperativa" name="cooperativa"  size="30" /></td>
