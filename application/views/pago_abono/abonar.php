@@ -25,6 +25,7 @@ if($lista)
     <thead>
       <tr>
         <th align="center">Fecha</th>
+        <th align="center">Concepto</th>
         <th align="center">Abono</th>
       </tr>
     </thead>
@@ -35,6 +36,7 @@ if($lista)
 			?>
       <tr class="gradeA">
        <td align="center"><?php echo date('d/m/Y',strtotime($valor['fecha_creacion']));?></td>
+       <td align="center"><?php echo $valor['concepto'];?></td>
        <td align="center">$<?php echo number_format($valor['abono'],2);$total+=number_format($valor['abono'],2);?></td>
         
         <?php

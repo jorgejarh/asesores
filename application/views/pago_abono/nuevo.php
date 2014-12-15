@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                     	<td align="right">
-                       Abonar equitativamente a todos los modulos<input value="1" type="checkbox" name="tipo_abono" />  </td>
+                       Abonar equitativamente a todos los modulos <input value="1" type="checkbox" name="tipo_abono" />  </td>
                     </tr>
                     <tr>
                     	<td align="left">
@@ -72,13 +72,18 @@
 								?>
                                 <tr class="gradeA">
                                 	<td align="right"><b>Totales</b></td>
-                                    <td align="center"><b class="saldo_total"><?php echo number_format($total_saldo,2);?></b></td>
+                                    <td align="center"><b class="saldo_total"><?php echo number_format($total_saldo,2,'.','');?></b></td>
                                     <td align="center"><b class="total_abonar">0.00</b></td>
                                     <td align="center"><b class="nuevo_saldo_total">0.00</b></td>
                                 </tr>
                              </tbody>
                            </table>
                         </td>
+                    </tr>
+                    <tr>
+                    	<td align="center">Concepto: <br />
+                        <textarea name="concepto" style="width:100%; height:100px;"></textarea>
+                       </td>
                     </tr>
                </table>
                <p align="center"><input  type="submit" value="Guardar" name="enviar"/></p>

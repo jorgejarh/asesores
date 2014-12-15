@@ -37,7 +37,7 @@
                 <th>Genero</th>
                 <th>PreInscrito</th>
                 <th>Inscrito</th>
-                <th>Eliminar</th>
+                <th>Eliminar Persona</th>
               </tr>
             </thead>
             <tbody>
@@ -197,7 +197,7 @@ function inscribir_persona_uno(asistio,aprobado,id_asistencia)
 
 function eliminar_registro(id,id_2)
 {
-	if(confirm("¿Esta seguro de eliminar?"))
+	if(confirm("¿Esta seguro de eliminar, se eliminara esta persona en todos los modulos relacionados a la capacitacion?"))
 	{
 		$.ajax({
 			  url: "<?php echo site_url($this->nombre_controlador.'/eliminar_asistencia/');?>",

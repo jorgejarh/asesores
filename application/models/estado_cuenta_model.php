@@ -112,4 +112,18 @@ class Estado_cuenta_model extends CI_Model {
 		//print_r($data['capacitacion']);
 	}
 	
+	public function _imprimir_leyenda_2($id_modulo)
+	{
+		$data=array();
+		$this->load->model("pl_capacitaciones_model");
+		$this->load->model("pl_modulos_model");
+		$data['modulo']=$this->pl_modulos_model->obtener($id_modulo);
+		$data['capacitacion']=$this->pl_capacitaciones_model->obtener($data['modulo']['id_capacitacion']);
+		
+		return "Plan: ".$data['capacitacion']['nombre_plan'].", Modalidad: ".$data['capacitacion']['nombre_modalidad'].", Capacitación: ".$data['capacitacion']['nombre_capacitacion'].", Módulo: ".$data['modulo']['nombre_modulo'];
+		//print_r($data['capacitacion']);
+	}
+	
+	
+	
 }

@@ -45,7 +45,7 @@ $total_pagar=$total_pagar-$descuento;
         	<table width="100%">
             	<tr>
                 	<td align="left"><p>Cooperativa: <b><?php echo $cooperativa['cooperativa'];?></b></p></td>
-                    <td align="right"><p>Por $: <b><?php echo number_format($total_pagar,2);?></b></p></td>
+                    <td align="right"><p>Por $: <b><?php echo number_format($total_pagar,2);?></b> MAS  IVA</p></td>
                 </tr>
             </table>
         </div>
@@ -78,17 +78,24 @@ $total_pagar=$total_pagar-$descuento;
         	<table width="100%">
             	<tr>
                 	<td align="center"><p>Inversión Individual: <b>$ <?php echo $precio_indi;?></b></p> </td>
-                    <td align="center"><p>Inversión Total: <b>$ <?php echo $total_pagar;?></b></p> </td>
+                    <td align="center"><p>Inversión Total: <b>$ <?php echo $total_pagar;?></b> MAS IVA</p> </td>
             	</tr>
             </table>
         </div>
         <div>
-        	<p>San Salvador, <?php echo date('d');?> de <?php echo date('m');?> de <?php echo date('Y');?></p>
+        <?php
+        $fecha_letra=fecha_es(date('Y-m-d'));
+		//print_r($fecha_letra);
+		?>
+        	<p>San Salvador, <?php echo date('d');?> de <?php echo $fecha_letra['mes_nombre'];?> de <?php echo date('Y');?></p>
         </div>
          <div>
         	<table width="100%">
             	<tr>
-                	<td align="center"><p>Elaborado</p> </td>
+                	<td align="center">
+                    <p>Elaborado</p> 
+                    <p><?php echo $this->datos_user['nombre_completo']; ?></p>
+                    </td>
                     <td align="center"><p>Autorizado</p> </td>
             	</tr>
             </table>

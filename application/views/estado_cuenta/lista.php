@@ -126,7 +126,7 @@ if($listado)
 				   error:function()
 				  {
 					 alert("Error al procesar, Intente de nuevo"); 
-					 location.reload();
+					// location.reload();
 				  }
 			});
 			

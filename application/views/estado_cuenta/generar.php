@@ -61,7 +61,15 @@ if($modulos)
 							?>
 							<tr class="gradeA">
 								<td align="center"><?php echo date('d/m/Y',strtotime( $valor_des['f_creacion']));?></td>
-								<td align="left">Descuento (<?php echo $valor_des['descuento']."%"; ?>) de $ <?php echo $canti;?> a <?php echo $valor['nombre_modulo'];?></td>
+								<td align="left">Descuento (<?php echo $valor_des['descuento']."%"; ?>) de $ <?php echo $canti;?> a 
+								
+                                <?php
+								echo $this->estado_cuenta_model->_imprimir_leyenda_2($valor_des['id_modulo']);
+								?>
+                                
+								<?php //echo $valor['nombre_modulo'];?>
+                                
+                                </td>
 								<td class="texto_dinero">$<?php echo number_format(0,2);?></td>
 								<td class="texto_dinero">$<?php echo number_format($canti,2);?></td>
 								<td class="texto_dinero">$<?php  echo number_format($saldo,2);?></td>
@@ -80,7 +88,11 @@ if($modulos)
 							?>
 							<tr class="gradeA">
 								<td align="center"><?php echo date('d/m/Y',strtotime( $valor_2['fecha_creacion']));?></td>
-								<td align="left">Abono de $<?php echo $valor_2['cantidad'];?> a <?php echo $valor['nombre_modulo'];?></td>
+								<td align="left">Abono de $<?php echo $valor_2['cantidad'];?> a 
+								 <?php
+								echo $this->estado_cuenta_model->_imprimir_leyenda_2($valor_2['id_modulo']);
+								?>
+                                </td>
 								<td class="texto_dinero">$<?php echo number_format(0,2);?></td>
 								<td class="texto_dinero">$<?php echo number_format($valor_2['cantidad'],2);?></td>
 								<td class="texto_dinero">$<?php  echo number_format($saldo,2);?></td>
